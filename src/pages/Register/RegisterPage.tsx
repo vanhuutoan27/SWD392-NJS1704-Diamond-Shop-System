@@ -1,11 +1,9 @@
 import PasswordInput from "@/components/molecules/PasswordInput";
 import { validateEmail } from "@/lib/utils";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function RegisterPage() {
-  const navigate = useNavigate();
-
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -55,11 +53,11 @@ function RegisterPage() {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <PasswordInput
+          {/* <PasswordInput
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
-          />
+          /> */}
 
           {error && <p className="pb-1 text-xs text-red-500">{error}</p>}
 
