@@ -7,6 +7,7 @@ import { IUser } from "@/types/user.interface";
 
 function LoginPage() {
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -39,6 +40,7 @@ function LoginPage() {
           <p className="ml-2 pb-2 text-xs text-red-500">
             {errors.password?.message}
           </p>
+
           <button
             type="submit"
             className="my-2 w-full select-none rounded-md bg-primary p-2 py-3 text-sm font-medium text-white transition-all duration-200 hover:bg-yellow-500"

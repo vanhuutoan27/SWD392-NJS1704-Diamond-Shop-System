@@ -1,65 +1,56 @@
 import PasswordInput from "@/components/molecules/PasswordInput";
-import { validateEmail } from "@/lib/utils";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { registerSchema } from "@/schemas/register";
+import { IUser } from "@/types/user.interface";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 
 function RegisterPage() {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IUser>({
+    resolver: zodResolver(registerSchema),
+  });
 
-    if (!fullName) {
-      setError("Please enter your full name");
-      return;
-    }
-
-    if (!validateEmail(email)) {
-      setError("Please enter a valid email address");
-      return;
-    }
-
-    if (!password) {
-      setError("Please enter the password");
-      return;
-    }
-
-    // Register API call
-    console.log(JSON.stringify({ fullName, email, password }, null, 2));
+  const onSubmit = async (data: IUser) => {
+    console.log(JSON.stringify(data, null, 2));
+    navigate("/");
   };
 
   return (
     <div className="flex w-full items-center justify-center">
       <div className="w-96 rounded border bg-white px-7 py-10 shadow-md">
-        <form onSubmit={handleRegister}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <h4 className="mb-7 text-2xl font-semibold">Register</h4>
 
           <input
             type="text"
             placeholder="Full name"
-            className="mb-4 w-full rounded border-[1.5px] bg-transparent px-5 py-3 text-sm outline-none"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
+            {...register("fullName")}
+            className="mb-1 w-full rounded border-[1.5px] bg-transparent px-5 py-3 text-sm outline-none"
           />
+          <p className="ml-2 pb-2 text-xs text-red-500">
+            {errors.fullName?.message}
+          </p>
 
           <input
             type="text"
             placeholder="Email"
-            className="mb-4 w-full rounded border-[1.5px] bg-transparent px-5 py-3 text-sm outline-none"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            {...register("email")}
+            className="mb-1 w-full rounded border-[1.5px] bg-transparent px-5 py-3 text-sm outline-none"
           />
+          <p className="ml-2 pb-2 text-xs text-red-500">
+            {errors.email?.message}
+          </p>
 
-          {/* <PasswordInput
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-          /> */}
-
-          {error && <p className="pb-1 text-xs text-red-500">{error}</p>}
+          <PasswordInput register={register} placeholder="Password" />
+          <p className="ml-2 pb-2 text-xs text-red-500">
+            {errors.password?.message}
+          </p>
 
           <button
             type="submit"
