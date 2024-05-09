@@ -1,13 +1,13 @@
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
+import { UseFormRegister } from "react-hook-form";
 
 interface PasswordInputProps {
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  register: UseFormRegister<any>;
   placeholder: string;
 }
 
-function PasswordInput({ value, onChange, placeholder }: PasswordInputProps) {
+function PasswordInput({ register, placeholder }: PasswordInputProps) {
   const [isShowPassword, setIsShowPassword] = useState(false);
 
   const toggleShowPassword = () => {
@@ -15,11 +15,10 @@ function PasswordInput({ value, onChange, placeholder }: PasswordInputProps) {
   };
 
   return (
-    <div className="mb-3 flex items-center rounded-md border-[1.5px] bg-transparent px-5">
+    <div className="mb-1 flex items-center rounded-md border-[1.5px] bg-transparent px-5">
       <input
         type={isShowPassword ? "text" : "password"}
-        value={value}
-        onChange={onChange}
+        {...register("password")}
         placeholder={placeholder || "Password"}
         className="mr-3 w-full rounded-md bg-transparent py-3 text-sm outline-none"
       />
@@ -27,13 +26,13 @@ function PasswordInput({ value, onChange, placeholder }: PasswordInputProps) {
       {isShowPassword ? (
         <Eye
           size={20}
-          className="cursor-pointer text-primary"
+          className="cursor-pointer select-none text-primary"
           onClick={() => toggleShowPassword()}
         />
       ) : (
         <EyeOff
           size={20}
-          className="cursor-pointer text-slate-400"
+          className="cursor-pointer select-none text-slate-400"
           onClick={() => toggleShowPassword()}
         />
       )}

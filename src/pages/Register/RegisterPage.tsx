@@ -72,7 +72,7 @@ function RegisterPage() {
 
           <p className="mt-4 text-center text-sm">
             Already have an account?{" "}
-            <Link to="/login" className="font-semibold text-primary underline">
+            <Link to="/login" className="font-medium text-primary underline">
               Login
             </Link>
           </p>

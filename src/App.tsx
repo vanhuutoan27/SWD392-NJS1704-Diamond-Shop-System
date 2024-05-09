@@ -37,6 +37,8 @@ function App() {
           }
         />
       </Route>
+
+      <Route element={<AuthLayout />}></Route>
     </Routes>
   );
 }

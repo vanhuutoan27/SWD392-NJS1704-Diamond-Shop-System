@@ -1,8 +1,62 @@
+import { Link, useLocation } from "react-router-dom";
+
 function Header() {
+  const location = useLocation();
+  const currentUrl = location.pathname;
+
+  const Menus = [
+    {
+      id: 1,
+      title: "Home",
+      link: "/",
+    },
+    {
+      id: 2,
+      title: "About Us",
+      link: "/about-us",
+    },
+    {
+      id: 3,
+      title: "Shop",
+      link: "/shop",
+    },
+    {
+      id: 4,
+      title: "Blog",
+      link: "/blog",
+    },
+    {
+      id: 5,
+      title: "Contact",
+      link: "/contact",
+    },
+  ];
+
   return (
-    <div className="flex items-center justify-between bg-white px-6 py-2 shadow-md drop-shadow">
-      <h2 className="cursor-pointer py-2 text-xl font-bold select-none text-black">
+    <div className="flex items-center justify-between bg-white px-40 py-3 shadow-md drop-shadow">
+      <h2 className="cursor-pointer select-none py-2 text-2xl font-bold text-black">
         Diamoon
+      </h2>
+
+      <div className="flex w-fit gap-x-8">
+        {Menus.map((menu, index) => (
+          <Link to={menu.link} key={menu.id}>
+            <li
+              key={index}
+              className={`text-md mt-1 flex cursor-pointer items-center p-2 transition-all duration-200 hover:text-primary ${
+                menu.link === currentUrl
+                  ? "text-primary hover:text-yellow-500"
+                  : "text-[#06264b]"
+              }`}
+            >
+              <span className="float-left block">{menu.title}</span>
+            </li>
+          </Link>
+        ))}
+      </div>
+
+      <h2 className="cursor-pointer select-none py-2 text-2xl font-bold text-black">
+        Login
       </h2>
     </div>
   );
