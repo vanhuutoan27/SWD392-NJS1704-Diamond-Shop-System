@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import PasswordInput from "@/components/molecules/PasswordInput";
 import { Link, useNavigate } from "react-router-dom";
 import { loginSchema } from "@/schemas/login";
 import { IUser } from "@/types/user.interface";
-import { Button } from "@/components/atoms/button";
+import { Button } from "@/components/global/atoms/button";
+import PasswordInput from "@/components/global/molecules/PasswordInput";
 
 function LoginPage() {
   const navigate = useNavigate();

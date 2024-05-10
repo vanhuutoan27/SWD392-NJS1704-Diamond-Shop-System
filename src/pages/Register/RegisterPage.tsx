@@ -1,4 +1,4 @@
-import PasswordInput from "@/components/molecules/PasswordInput";
+import PasswordInput from "@/components/global/molecules/PasswordInput";
 import { registerSchema } from "@/schemas/register";
 import { IUser } from "@/types/user.interface";
 import { zodResolver } from "@hookform/resolvers/zod";
