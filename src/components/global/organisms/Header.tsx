@@ -1,4 +1,4 @@
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "../atoms/button";
@@ -51,10 +51,18 @@ function Header() {
         <Link to="/login">
           <Button>Login</Button>
         </Link>
-        <Menu
-          onClick={toggleMenu}
-          className="cursor-pointer select-none text-black md:hidden"
-        />
+
+        {isMenuOpen ? (
+          <X
+            onClick={toggleMenu}
+            className="cursor-pointer select-none text-gray-900 md:hidden"
+          />
+        ) : (
+          <Menu
+            onClick={toggleMenu}
+            className="cursor-pointer select-none text-gray-900 md:hidden"
+          />
+        )}
       </div>
     </div>
   );

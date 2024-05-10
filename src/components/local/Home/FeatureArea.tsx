@@ -1,22 +1,22 @@
 function FeatureArea() {
   const features = [
     {
-      img: "../public/icons/delivery_small.png",
+      img: "/icons/delivery_small.png",
       title: "Free Shipping",
       desc: "Product are free shipping",
     },
     {
-      img: "../public/icons/technical-support_small.png",
+      img: "/icons/technical-support_small.png",
       title: "Support 24/7",
       desc: "Support 24 hours a day",
     },
     {
-      img: "../public/icons/padlock_small.png",
+      img: "/icons/padlock_small.png",
       title: "Secure Payment",
       desc: "We ensure secure payment",
     },
     {
-      img: "../public/icons/money-back-guarantee_small.png",
+      img: "/icons/money-back-guarantee_small.png",
       title: "100% Moneyback",
       desc: "Most product are free shipping",
     },
@@ -25,7 +25,10 @@ function FeatureArea() {
   return (
     <div className="container mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
       {features.map((feature, index) => (
-        <div key={index} className="flex items-center gap-4 px-5 py-6">
+        <div
+          key={index}
+          className="flex items-center justify-center gap-4 px-5 py-6"
+        >
           <img
             src={feature.img}
             alt={feature.title}
