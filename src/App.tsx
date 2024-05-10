@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { Loader } from "./components/atoms/Loader";
 import RootLayout from "./components/templates/RootLayout";
 import AuthLayout from "./components/templates/AuthLayout";
+import NotFound from "./pages/NotFound/NotFoundPage";
 
 function App() {
   const Home = lazy(() => import("./pages/Home/HomePage"));
@@ -20,6 +21,7 @@ function App() {
             </Suspense>
           }
         />
+
         <Route
           path="/login"
           element={
@@ -28,6 +30,7 @@ function App() {
             </Suspense>
           }
         />
+
         <Route
           path="/register"
           element={
@@ -39,6 +42,9 @@ function App() {
       </Route>
 
       <Route element={<AuthLayout />}></Route>
+
+      <Route path="/not-found" element={<NotFound />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

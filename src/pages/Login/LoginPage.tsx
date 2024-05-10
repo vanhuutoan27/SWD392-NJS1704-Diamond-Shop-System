@@ -25,7 +25,7 @@ function LoginPage() {
     <div className="flex w-full items-center justify-center">
       <div className="w-96 rounded-xl border bg-white px-7 py-10 shadow-md">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <h4 className="mb-7 text-2xl font-semibold">Login</h4>
+          <h2 className="mb-7 text-2xl font-semibold text-gray-900">Login</h2>
           <input
             type="text"
             placeholder="Email"
