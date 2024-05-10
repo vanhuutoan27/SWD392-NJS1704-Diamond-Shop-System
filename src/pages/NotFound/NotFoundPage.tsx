@@ -31,9 +31,9 @@ function NotFoundPage() {
             <Button type="button" variant="secondary" onClick={goBack}>
               Go back to the previous page
             </Button>
-            <Button type="button">
-              <Link to="/">Home Page</Link>
-            </Button>
+            <Link to="/">
+              <Button type="button">Home Page</Button>
+            </Link>
           </div>
         </div>
       </div>
