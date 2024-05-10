@@ -6,7 +6,7 @@ function RootLayout() {
   return (
     <div className="h-screen">
       <Header />
-      <div className="container flex min-h-full py-10">
+      <div className="flex min-h-full">
         <Outlet />
       </div>
       <Footer />

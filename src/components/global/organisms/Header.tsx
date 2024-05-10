@@ -57,7 +57,7 @@ function Header() {
         </div>
 
         <h2 className="cursor-pointer select-none py-2 text-2xl font-bold text-gray-900">
-          Login
+          <Link to="/login">Login</Link>
         </h2>
       </div>
     </div>

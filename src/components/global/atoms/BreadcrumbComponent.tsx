@@ -5,7 +5,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/atoms/breadcrumb";
+} from "@/components/global/atoms/breadcrumb";
 import { Slash } from "lucide-react";
 
 type BreadcrumbComponentProps = {

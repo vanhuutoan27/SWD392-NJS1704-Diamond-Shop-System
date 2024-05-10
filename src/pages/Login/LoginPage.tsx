@@ -4,6 +4,7 @@ import PasswordInput from "@/components/molecules/PasswordInput";
 import { Link, useNavigate } from "react-router-dom";
 import { loginSchema } from "@/schemas/login";
 import { IUser } from "@/types/user.interface";
+import { Button } from "@/components/atoms/button";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -40,13 +41,9 @@ function LoginPage() {
           <p className="ml-2 pb-2 text-xs text-red-500">
             {errors.password?.message}
           </p>
-
-          <button
-            type="submit"
-            className="my-2 w-full select-none rounded-md bg-primary p-2 py-3 text-sm font-medium text-white transition-all duration-200 hover:bg-yellow-500"
-          >
+          <Button type="submit" className="w-full py-6">
             Login
-          </button>
+          </Button>
           <p className="mt-4 text-center text-sm">
             Not registered yet?{" "}
             <Link to="/register" className="font-medium text-primary underline">
