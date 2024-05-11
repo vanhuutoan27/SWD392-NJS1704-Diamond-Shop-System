@@ -26,7 +26,7 @@ function RegisterPage() {
     <div className="flex w-full items-center justify-center">
       <div className="w-96 rounded border bg-white px-7 py-10 shadow-md">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <h2 className="mb-7 text-2xl font-semibold text-gray-900">
+          <h2 className="mb-7 text-center text-2xl font-semibold text-gray-900">
             Register
           </h2>
 

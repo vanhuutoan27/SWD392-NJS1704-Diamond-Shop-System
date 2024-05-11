@@ -52,7 +52,14 @@ function Footer() {
     <div className="mt-20 bg-primary text-white">
       <div className="container grid grid-cols-12 gap-6 px-5 py-16 sm:px-8">
         <ul className="col-span-12 mb-5 sm:col-span-12 lg:col-span-6 lg:mb-0">
-          <h3 className="mb-6 font-semibold">About Info</h3>
+          <div className="mb-4 uppercase">
+            <h2 className="cursor-pointer select-none text-4xl font-bold">
+              <Link to="/">Diamoon</Link>
+            </h2>
+            <h4 className="select-none font-semibold tracking-widest">
+              Diamond Shop System
+            </h4>
+          </div>
           {aboutInfos.map((aboutInfo) => (
             <li key={aboutInfo.name}>
               <Link
@@ -66,7 +73,7 @@ function Footer() {
           ))}
         </ul>
         <ul className="col-span-12 mb-5 sm:col-span-4 md:mb-0 lg:col-span-2">
-          <h3 className="mb-6 font-semibold">Quick Links</h3>
+          <h3 className="mb-6 text-xl font-semibold uppercase">Quick Links</h3>
           {quickLinks.map((quickLink) => (
             <li key={quickLink.name}>
               <Link
@@ -80,7 +87,7 @@ function Footer() {
           ))}
         </ul>
         <ul className="col-span-12 mb-5 sm:col-span-4 md:mb-0 lg:col-span-2">
-          <h3 className="mb-6 font-semibold">Information</h3>
+          <h3 className="mb-6 text-xl font-semibold uppercase">Information</h3>
           {Informations.map((Information) => (
             <li key={Information.name}>
               <Link
@@ -94,7 +101,7 @@ function Footer() {
           ))}
         </ul>
         <ul className="col-span-12 mb-5 sm:col-span-4 md:mb-0 lg:col-span-2">
-          <h3 className="mb-6 font-semibold">Follow Us On</h3>
+          <h3 className="mb-6 text-xl font-semibold uppercase">Follow Us On</h3>
           {socialMedias.map((socialMedia) => (
             <li key={socialMedia.name}>
               <Link

@@ -1,7 +1,5 @@
 function ProductDetailPage() {
-  return (
-    <div>ProductDetailPage</div>
-  )
+  return <div className="container">ProductDetailPage</div>;
 }
 
-export default ProductDetailPage
+export default ProductDetailPage;

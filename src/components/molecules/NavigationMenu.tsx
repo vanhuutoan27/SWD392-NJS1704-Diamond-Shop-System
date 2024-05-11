@@ -7,9 +7,11 @@ function NavigationMenu() {
 
   const Menus = [
     { title: "Home", link: "/" },
-    { title: "About Us", link: "/about-us" },
-    { title: "Shop", link: "/shop" },
-    { title: "Blog", link: "/blog" },
+    { title: "About", link: "/about" },
+    { title: "Diamond", link: "/product" },
+    { title: "Jewelry", link: "/jewelry" },
+    { title: "Promotion", link: "/promotion" },
+    { title: "News", link: "/news" },
     { title: "Contact", link: "/contact" },
   ];
 

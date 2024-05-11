@@ -9,6 +9,9 @@ function App() {
   const Home = lazy(() => import("./pages/Home/HomePage"));
   const Login = lazy(() => import("./pages/Login/LoginPage"));
   const Register = lazy(() => import("./pages/Register/RegisterPage"));
+  const Product = lazy(() => import("./pages/Product/ProductPage"));
+  const ProductDetail = lazy(() => import("./pages/Product/ProductDetailPage"));
+  const Cart = lazy(() => import("./pages/Cart/CartPage"));
 
   return (
     <Routes>
@@ -36,6 +39,33 @@ function App() {
           element={
             <Suspense fallback={<Loader />}>
               <Register />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/product"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Product />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/product:id"
+          element={
+            <Suspense fallback={<Loader />}>
+              <ProductDetail />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/cart"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Cart />
             </Suspense>
           }
         />
