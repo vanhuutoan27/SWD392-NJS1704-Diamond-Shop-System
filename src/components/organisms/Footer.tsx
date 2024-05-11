@@ -49,7 +49,7 @@ function Footer() {
   ];
 
   return (
-    <div className="bg-gray-900 text-white">
+    <div className="mt-20 bg-primary text-white">
       <div className="container grid grid-cols-12 gap-6 px-5 py-16 sm:px-8">
         <ul className="col-span-12 mb-5 sm:col-span-12 lg:col-span-6 lg:mb-0">
           <h3 className="mb-6 font-semibold">About Info</h3>
@@ -71,7 +71,7 @@ function Footer() {
             <li key={quickLink.name}>
               <Link
                 to={quickLink.link}
-                className="flex items-center gap-2 text-sm leading-8 transition-all duration-200 hover:text-primary"
+                className="flex items-center gap-2 text-sm leading-8 transition-all duration-200 hover:text-[#888]"
               >
                 {quickLink.icon}
                 {quickLink.name}
@@ -85,7 +85,7 @@ function Footer() {
             <li key={Information.name}>
               <Link
                 to={Information.link}
-                className="flex items-center gap-2 text-sm leading-8 transition-all duration-200 hover:text-primary"
+                className="flex items-center gap-2 text-sm leading-8 transition-all duration-200 hover:text-[#888]"
               >
                 {Information.icon}
                 {Information.name}
@@ -99,7 +99,7 @@ function Footer() {
             <li key={socialMedia.name}>
               <Link
                 to={socialMedia.link}
-                className="flex items-center gap-2 text-sm leading-10 transition-all duration-200 hover:text-primary"
+                className="flex items-center gap-2 text-sm leading-10 transition-all duration-200 hover:text-[#888]"
               >
                 {socialMedia.icon}
 
@@ -110,7 +110,7 @@ function Footer() {
         </ul>
       </div>
 
-      <div className="grid grid-cols-1 items-center gap-x-12 gap-y-4 pb-6 pt-2 text-center text-sm text-slate-300 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 items-center gap-y-4 pb-6 pt-2 text-center text-sm text-slate-300 sm:grid-cols-2 lg:grid-cols-3">
         <span>&copy; 2024 Diamoon. All rights reserved.</span>
         <span>Terms &bull; Privacy Policy</span>
 
@@ -119,7 +119,7 @@ function Footer() {
             <Link
               to={socialMedia.link}
               key={socialMedia.name}
-              className="mx-2 inline-flex items-center rounded-full bg-primary p-2 text-gray-900 transition-all duration-200 hover:bg-yellow-500 hover:text-slate-100"
+              className="mx-2 inline-flex items-center rounded-full bg-primary p-2 text-[#888] transition-all duration-200 hover:bg-gray-900 hover:text-slate-100"
             >
               {socialMedia.icon}
             </Link>

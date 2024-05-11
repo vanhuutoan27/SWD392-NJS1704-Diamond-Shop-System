@@ -10,15 +10,19 @@ function Header() {
           <h2 className="cursor-pointer select-none text-center text-4xl font-bold text-gray-900 md:text-left">
             <Link to="/">Diamoon</Link>
           </h2>
-          <h4 className="font-semibold tracking-widest">Diamond Shop System</h4>
+          <h4 className="select-none font-semibold tracking-widest">
+            Diamond Shop System
+          </h4>
         </div>
 
         <div className="hidden gap-4 md:flex">
           <Link to="/register">
-            <Button variant="secondary">Register</Button>
+            <Button type="button" variant="secondary">
+              Register
+            </Button>
           </Link>
           <Link to="/login">
-            <Button>Login</Button>
+            <Button type="button">Login</Button>
           </Link>
         </div>
       </div>
