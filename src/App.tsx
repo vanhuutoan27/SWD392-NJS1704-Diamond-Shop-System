@@ -9,6 +9,9 @@ function App() {
   const Home = lazy(() => import("./pages/Home/HomePage"));
   const Login = lazy(() => import("./pages/Login/LoginPage"));
   const Register = lazy(() => import("./pages/Register/RegisterPage"));
+  const About = lazy(() => import("./pages/About/AboutPage"));
+  const Blog = lazy(() => import("./pages/Blog/BlogPage"));
+  const Contact = lazy(() => import("./pages/Contact/ContactPage"));
   const Product = lazy(() => import("./pages/Product/ProductPage"));
   const ProductDetail = lazy(() => import("./pages/Product/ProductDetailPage"));
   const Cart = lazy(() => import("./pages/Cart/CartPage"));
@@ -39,6 +42,33 @@ function App() {
           element={
             <Suspense fallback={<Loader />}>
               <Register />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/about"
+          element={
+            <Suspense fallback={<Loader />}>
+              <About />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/blog"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Blog />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/contact"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Contact />
             </Suspense>
           }
         />
