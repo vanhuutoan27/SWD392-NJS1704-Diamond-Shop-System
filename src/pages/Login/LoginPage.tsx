@@ -3,8 +3,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate } from "react-router-dom";
 import { loginSchema } from "@/schemas/login";
 import { IUser } from "@/types/user.interface";
-import { Button } from "@/components/global/atoms/button";
-import PasswordInput from "@/components/global/molecules/PasswordInput";
+import { Button } from "@/components/atoms/button";
+import PasswordInput from "@/components/molecules/PasswordInput";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ function LoginPage() {
     <div className="flex w-full items-center justify-center">
       <div className="w-96 rounded-xl border bg-white px-7 py-10 shadow-md">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <h2 className="mb-7 text-2xl font-semibold text-gray-900">Login</h2>
+          <h2 className="mb-7 text-2xl font-semibold text-primary">Login</h2>
           <input
             type="text"
             placeholder="Email"

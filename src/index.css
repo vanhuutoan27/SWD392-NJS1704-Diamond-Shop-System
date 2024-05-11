@@ -97,3 +97,9 @@
     overflow-x: hidden;
   }
 }
+
+@layer components {
+  .sticky-nav {
+    @apply fixed left-0 right-0 top-0 z-50 bg-white shadow-md;
+  }
+}

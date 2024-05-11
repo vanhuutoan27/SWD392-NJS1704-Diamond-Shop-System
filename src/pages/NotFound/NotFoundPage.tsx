@@ -1,8 +1,8 @@
-import Header from "@/components/global/organisms/Header";
-import BreadcrumbComponent from "@/components/global/atoms/BreadcrumbComponent";
-import Footer from "@/components/global/organisms/Footer";
+import Header from "@/components/organisms/Header";
+import BreadcrumbComponent from "@/components/atoms/BreadcrumbComponent";
+import Footer from "@/components/organisms/Footer";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/global/atoms/button";
+import { Button } from "@/components/atoms/button";
 
 function NotFoundPage() {
   const goBack = () => {

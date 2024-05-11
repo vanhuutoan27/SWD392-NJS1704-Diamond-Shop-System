@@ -1,4 +1,5 @@
-import PasswordInput from "@/components/global/molecules/PasswordInput";
+import { Button } from "@/components/atoms/button";
+import PasswordInput from "@/components/molecules/PasswordInput";
 import { registerSchema } from "@/schemas/register";
 import { IUser } from "@/types/user.interface";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -54,12 +55,9 @@ function RegisterPage() {
             {errors.password?.message}
           </p>
 
-          <button
-            type="submit"
-            className="my-2 w-full select-none rounded-md bg-primary p-2 py-3 text-sm font-medium text-white transition-all duration-200 hover:bg-yellow-500"
-          >
+          <Button type="submit" className="w-full py-6">
             Register
-          </button>
+          </Button>
 
           <p className="mt-4 text-center text-sm">
             Already have an account?{" "}

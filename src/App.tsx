@@ -1,8 +1,8 @@
 import { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Loader } from "./components/global/atoms/Loader";
-import RootLayout from "./components/global/templates/RootLayout";
-import AuthLayout from "./components/global/templates/AuthLayout";
+import { Loader } from "./components/atoms/Loader";
+import RootLayout from "./components/templates/RootLayout";
+import AuthLayout from "./components/templates/AuthLayout";
 import NotFound from "./pages/NotFound/NotFoundPage";
 
 function App() {

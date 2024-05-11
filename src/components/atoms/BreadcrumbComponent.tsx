@@ -5,7 +5,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/global/atoms/breadcrumb";
+} from "@/components/atoms/breadcrumb";
 import { Slash } from "lucide-react";
 
 type BreadcrumbComponentProps = {
@@ -20,8 +20,8 @@ function BreadcrumbComponent({
   currentPage,
 }: BreadcrumbComponentProps) {
   return (
-    <div className="flex justify-center bg-secondary py-8">
-      <Breadcrumb>
+    <div className="flex bg-secondary py-3">
+      <Breadcrumb className="container">
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink
