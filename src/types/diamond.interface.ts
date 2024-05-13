@@ -13,23 +13,23 @@ export interface IDiamond {
 export const IDiamondShape = [
   {
     shapeName: "Diamond Round",
-    shapeImage: "../../public/images/diamond_shape_round.jpg",
+    shapeImage: "../images/diamond_shape_round.jpg",
   },
   {
     shapeName: "Diamond Emerald",
-    shapeImage: "../../public/images/diamond_shape_emerald.jpg",
+    shapeImage: "../images/diamond_shape_emerald.jpg",
   },
   {
     shapeName: "Diamond Heart",
-    shapeImage: "../../public/images/diamond_shape_heat.jpg",
+    shapeImage: "../images/diamond_shape_heat.jpg",
   },
   {
     shapeName: "Diamond Cushion",
-    shapeImage: "../../public/images/diamond_shape_cushion.jpg",
+    shapeImage: "../images/diamond_shape_cushion.jpg",
   },
   {
     shapeName: "Diamond Pear",
-    shapeImage: "../../public/images/diamond_shape_pear.jpg",
+    shapeImage: "../images/diamond_shape_pear.jpg",
   },
 ];
 
