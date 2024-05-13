@@ -10,11 +10,11 @@
   }
 
   .btn-primary {
-    @apply my-1 w-full select-none rounded bg-primary p-2 text-sm text-white transition-all duration-200 hover:bg-blue-600;
+    @apply my-1 w-full select-none rounded bg-primary p-2 text-sm text-white transition-all duration-300 hover:bg-blue-600;
   }
 
   .icon-btn {
-    @apply cursor-pointer text-slate-300 transition-all duration-200 hover:text-primary;
+    @apply cursor-pointer text-slate-300 transition-all duration-300 hover:text-primary;
   }
 
   .input-label {

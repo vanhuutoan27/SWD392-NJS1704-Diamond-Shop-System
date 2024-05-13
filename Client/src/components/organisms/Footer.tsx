@@ -64,7 +64,7 @@ function Footer() {
             <li key={aboutInfo.name}>
               <Link
                 to={aboutInfo.link}
-                className="flex items-center gap-2 text-sm leading-10 transition-all duration-200"
+                className="flex items-center gap-2 text-sm leading-10 transition-all duration-300"
               >
                 {aboutInfo.icon}
                 <span className="mt-1">{aboutInfo.name}</span>
@@ -78,7 +78,7 @@ function Footer() {
             <li key={quickLink.name}>
               <Link
                 to={quickLink.link}
-                className="flex items-center gap-2 text-sm leading-8 transition-all duration-200 hover:text-[#888]"
+                className="flex items-center gap-2 text-sm leading-8 transition-all duration-300 hover:text-[#888]"
               >
                 {quickLink.icon}
                 {quickLink.name}
@@ -92,7 +92,7 @@ function Footer() {
             <li key={Information.name}>
               <Link
                 to={Information.link}
-                className="flex items-center gap-2 text-sm leading-8 transition-all duration-200 hover:text-[#888]"
+                className="flex items-center gap-2 text-sm leading-8 transition-all duration-300 hover:text-[#888]"
               >
                 {Information.icon}
                 {Information.name}
@@ -106,7 +106,7 @@ function Footer() {
             <li key={socialMedia.name}>
               <Link
                 to={socialMedia.link}
-                className="flex items-center gap-2 text-sm leading-10 transition-all duration-200 hover:text-[#888]"
+                className="flex items-center gap-2 text-sm leading-10 transition-all duration-300 hover:text-[#888]"
               >
                 {socialMedia.icon}
 
@@ -126,7 +126,7 @@ function Footer() {
             <Link
               to={socialMedia.link}
               key={socialMedia.name}
-              className="mx-2 inline-flex items-center rounded-full bg-primary p-2 text-[#888] transition-all duration-200 hover:bg-gray-800 hover:text-slate-100"
+              className="mx-2 inline-flex items-center rounded-full bg-primary p-2 text-[#888] transition-all duration-300 hover:bg-gray-800 hover:text-slate-100"
             >
               {socialMedia.icon}
             </Link>

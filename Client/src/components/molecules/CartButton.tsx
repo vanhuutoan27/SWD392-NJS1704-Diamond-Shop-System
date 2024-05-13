@@ -29,7 +29,7 @@ function CartButton() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <div className="relative flex cursor-pointer select-none items-center gap-4 text-primary transition-all duration-200 hover:text-[#888]">
+        <div className="relative flex cursor-pointer select-none items-center gap-4 text-primary transition-all duration-300 hover:text-[#888]">
           <ShoppingCart strokeWidth={2.5} />
           <span className="mt-1 text-sm font-medium">
             Cart ({cartItems.length})
@@ -56,7 +56,7 @@ function CartButton() {
               <div className="flex w-full flex-col gap-2">
                 <Link
                   to={cartItem.productUrl}
-                  className="text-base font-semibold transition-all duration-200 hover:text-[#888]"
+                  className="text-base font-semibold transition-all duration-300 hover:text-[#888]"
                 >
                   {cartItem.name}
                 </Link>

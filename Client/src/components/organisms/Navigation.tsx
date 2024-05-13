@@ -27,7 +27,7 @@ function Navigation() {
       className={`flex items-center justify-between bg-white py-4 ${isSticky ? "sticky-nav px-48 lg:py-2" : ""}`}
     >
       <div
-        className={`${isSticky ? "hidden lg:flex" : ""} ${isMenuOpen ? "top-[20%]" : "-top-[100%]"} absolute left-0 z-10 flex min-h-[40vh] w-full items-center shadow-md duration-500 ease-in-out lg:static lg:min-h-fit lg:w-auto lg:shadow-none`}
+        className={`${isSticky ? "hidden lg:flex" : ""} ${isMenuOpen ? "top-[20%]" : "-top-[100%]"} absolute left-0 z-10 flex min-h-[40vh] w-full items-center shadow-md duration-300 ease-in-out lg:static lg:min-h-fit lg:w-auto lg:shadow-none`}
       >
         <NavigationMenu />
       </div>

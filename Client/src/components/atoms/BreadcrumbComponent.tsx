@@ -26,7 +26,7 @@ function BreadcrumbComponent({
           <BreadcrumbItem>
             <BreadcrumbLink
               href={lastPageUrl}
-              className="text-gray-800 transition-all duration-200 hover:text-primary"
+              className="text-gray-800 transition-all duration-300 hover:text-primary"
             >
               {lastPage}
             </BreadcrumbLink>
