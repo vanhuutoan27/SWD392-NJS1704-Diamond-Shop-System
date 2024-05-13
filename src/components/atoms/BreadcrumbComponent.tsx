@@ -20,13 +20,13 @@ function BreadcrumbComponent({
   currentPage,
 }: BreadcrumbComponentProps) {
   return (
-    <div className="flex bg-secondary py-3">
-      <Breadcrumb className="container">
+    <div className="flex py-3">
+      <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink
               href={lastPageUrl}
-              className="text-gray-900 transition-all duration-200 hover:text-yellow-500"
+              className="text-gray-800 transition-all duration-200 hover:text-primary"
             >
               {lastPage}
             </BreadcrumbLink>
@@ -35,7 +35,7 @@ function BreadcrumbComponent({
             <Slash />
           </BreadcrumbSeparator>
           <BreadcrumbItem>
-            <BreadcrumbPage className="font-medium">
+            <BreadcrumbPage className="font-semibold text-primary">
               {currentPage}
             </BreadcrumbPage>
           </BreadcrumbItem>

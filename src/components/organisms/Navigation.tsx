@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import NavigationMenu from "../molecules/NavigationMenu";
 import CartButton from "../molecules/CartButton";
-import NavigationMobile from "../molecules/NavigationMobile";
+import NavigationMobile from "./NavigationMobile";
 
 function Navigation() {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -24,10 +24,10 @@ function Navigation() {
 
   return (
     <div
-      className={`flex items-center justify-between py-4 ${isSticky ? "sticky-nav px-8 lg:py-1" : ""}`}
+      className={`flex items-center justify-between bg-white py-4 ${isSticky ? "sticky-nav px-48 lg:py-2" : ""}`}
     >
       <div
-        className={`${isSticky ? "hidden lg:flex" : ""} ${isMenuOpen ? "top-[20%]" : "-top-[100%]"} absolute left-0 z-10 flex min-h-[40vh] w-full items-center bg-white shadow-md duration-500 ease-in-out lg:static lg:min-h-fit lg:w-auto lg:shadow-none`}
+        className={`${isSticky ? "hidden lg:flex" : ""} ${isMenuOpen ? "top-[20%]" : "-top-[100%]"} absolute left-0 z-10 flex min-h-[40vh] w-full items-center shadow-md duration-500 ease-in-out lg:static lg:min-h-fit lg:w-auto lg:shadow-none`}
       >
         <NavigationMenu />
       </div>
@@ -37,7 +37,7 @@ function Navigation() {
 
         {isMenuOpen ? (
           <div
-            className="flex cursor-pointer select-none gap-4 font-semibold uppercase text-gray-900 lg:hidden"
+            className="flex cursor-pointer select-none gap-4 font-semibold uppercase text-gray-800 lg:hidden"
             onClick={toggleMenu}
           >
             <X />
@@ -45,7 +45,7 @@ function Navigation() {
           </div>
         ) : (
           <div
-            className="flex cursor-pointer select-none gap-4 font-semibold uppercase text-gray-900 lg:hidden"
+            className="flex cursor-pointer select-none gap-4 font-semibold uppercase text-gray-800 lg:hidden"
             onClick={toggleMenu}
           >
             <Menu />

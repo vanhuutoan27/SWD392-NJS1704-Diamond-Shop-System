@@ -8,7 +8,7 @@ function NavigationMenu() {
   const Menus = [
     { title: "Home", link: "/" },
     { title: "About", link: "/about" },
-    { title: "Diamond", link: "/product" },
+    { title: "Diamond", link: "/diamond" },
     { title: "Jewelry", link: "/jewelry" },
     { title: "Promotion", link: "/promotion" },
     { title: "News", link: "/news" },
@@ -22,8 +22,8 @@ function NavigationMenu() {
           <Link to={menu.link} key={index}>
             <li
               key={index}
-              className={`text-md mt-1 flex cursor-pointer items-center px-2 text-[14px] font-bold uppercase text-primary transition-all duration-200 hover:text-[#888] ${
-                menu.link === currentUrl ? "text-primary " : "text-gray-900"
+              className={`text-md mt-1 flex cursor-pointer items-center text-[14px] font-semibold uppercase text-primary transition-all duration-200 hover:text-[#888] ${
+                menu.link === currentUrl ? "text-primary " : "text-gray-800"
               }`}
             >
               <span className="float-left block">{menu.title}</span>

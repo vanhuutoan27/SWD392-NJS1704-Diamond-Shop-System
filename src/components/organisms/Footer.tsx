@@ -126,7 +126,7 @@ function Footer() {
             <Link
               to={socialMedia.link}
               key={socialMedia.name}
-              className="mx-2 inline-flex items-center rounded-full bg-primary p-2 text-[#888] transition-all duration-200 hover:bg-gray-900 hover:text-slate-100"
+              className="mx-2 inline-flex items-center rounded-full bg-primary p-2 text-[#888] transition-all duration-200 hover:bg-gray-800 hover:text-slate-100"
             >
               {socialMedia.icon}
             </Link>

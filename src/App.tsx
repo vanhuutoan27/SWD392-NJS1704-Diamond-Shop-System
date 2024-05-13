@@ -10,11 +10,13 @@ function App() {
   const Login = lazy(() => import("./pages/Login/LoginPage"));
   const Register = lazy(() => import("./pages/Register/RegisterPage"));
   const About = lazy(() => import("./pages/About/AboutPage"));
+  const Jewelry = lazy(() => import("./pages/Jewelry/JewelryPage"));
+  const JewelryDetail = lazy(() => import("./pages/Jewelry/JewelryDetailPage"));
+  const Diamond = lazy(() => import("./pages/Diamond/DiamondPage"));
+  const DiamondDetail = lazy(() => import("./pages/Diamond/DiamondDetailPage"));
+  const Cart = lazy(() => import("./pages/Cart/CartPage"));
   const Blog = lazy(() => import("./pages/Blog/BlogPage"));
   const Contact = lazy(() => import("./pages/Contact/ContactPage"));
-  const Product = lazy(() => import("./pages/Product/ProductPage"));
-  const ProductDetail = lazy(() => import("./pages/Product/ProductDetailPage"));
-  const Cart = lazy(() => import("./pages/Cart/CartPage"));
 
   return (
     <Routes>
@@ -56,6 +58,51 @@ function App() {
         />
 
         <Route
+          path="/jewelry"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Jewelry />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/jewelry:id"
+          element={
+            <Suspense fallback={<Loader />}>
+              <JewelryDetail />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/diamond"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Diamond />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/diamond:id"
+          element={
+            <Suspense fallback={<Loader />}>
+              <DiamondDetail />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/cart"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Cart />
+            </Suspense>
+          }
+        />
+
+        <Route
           path="/blog"
           element={
             <Suspense fallback={<Loader />}>
@@ -69,33 +116,6 @@ function App() {
           element={
             <Suspense fallback={<Loader />}>
               <Contact />
-            </Suspense>
-          }
-        />
-
-        <Route
-          path="/product"
-          element={
-            <Suspense fallback={<Loader />}>
-              <Product />
-            </Suspense>
-          }
-        />
-
-        <Route
-          path="/product:id"
-          element={
-            <Suspense fallback={<Loader />}>
-              <ProductDetail />
-            </Suspense>
-          }
-        />
-
-        <Route
-          path="/cart"
-          element={
-            <Suspense fallback={<Loader />}>
-              <Cart />
             </Suspense>
           }
         />

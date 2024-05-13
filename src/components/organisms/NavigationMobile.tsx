@@ -1,4 +1,4 @@
-import NavigationMenu from "./NavigationMenu";
+import NavigationMenu from "../molecules/NavigationMenu";
 
 function NavigationMobile({ isMenuOpen }: { isMenuOpen: boolean }) {
   return (

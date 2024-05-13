@@ -7,7 +7,7 @@ function Header() {
     <div className="container bg-white pt-8">
       <div className="flex items-center justify-center md:justify-between">
         <div className="uppercase">
-          <h2 className="cursor-pointer select-none text-center text-4xl font-bold text-gray-900 md:text-left">
+          <h2 className="cursor-pointer select-none text-center text-4xl font-bold text-gray-800 md:text-left">
             <Link to="/">Diamoon</Link>
           </h2>
           <h4 className="select-none font-semibold tracking-widest">

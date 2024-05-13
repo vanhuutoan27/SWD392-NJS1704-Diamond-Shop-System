@@ -10,36 +10,38 @@ function NotFoundPage() {
   };
 
   return (
-    <div className="h-screen">
+    <>
       <Header />
-      <BreadcrumbComponent
-        lastPage="Home"
-        lastPageUrl="/"
-        currentPage="404 Not Found"
-      />
+      <div className="container h-screen">
+        <BreadcrumbComponent
+          lastPage="Home"
+          lastPageUrl="/"
+          currentPage="404 Not Found"
+        />
 
-      <div className="flex h-3/4 w-full justify-center">
-        <div className=" flex w-[700px] flex-col justify-center bg-white px-4 text-center font-medium">
-          <h1 className="mb-2 text-9xl font-bold text-gray-200">404</h1>
-          <p className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Uh-oh!
-          </p>
-          <p className="mt-4 text-gray-500">
-            Something went wrong. Please try again later.
-          </p>
-          <div className="mt-6 flex items-center justify-center gap-4">
-            <Button type="button" variant="secondary" onClick={goBack}>
-              Go back to the previous page
-            </Button>
-            <Link to="/">
-              <Button type="button">Home Page</Button>
-            </Link>
+        <div className="flex h-3/4 w-full justify-center">
+          <div className=" flex w-[700px] flex-col justify-center bg-white px-4 text-center font-medium">
+            <h1 className="mb-2 text-9xl font-bold text-gray-200">404</h1>
+            <p className="text-2xl font-bold tracking-tight text-gray-800 sm:text-4xl">
+              Uh-oh!
+            </p>
+            <p className="mt-4 text-gray-500">
+              Something went wrong. Please try again later.
+            </p>
+            <div className="mt-6 flex items-center justify-center gap-4">
+              <Button type="button" variant="secondary" onClick={goBack}>
+                Go back to the previous page
+              </Button>
+              <Link to="/">
+                <Button type="button">Home Page</Button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
 
       <Footer />
-    </div>
+    </>
   );
 }
 
