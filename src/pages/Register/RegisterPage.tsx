@@ -33,11 +33,11 @@ function RegisterPage() {
           <input
             type="text"
             placeholder="Full name"
-            {...register("fullName")}
+            {...register("name")}
             className="mb-1 w-full rounded border-[1.5px] bg-transparent px-5 py-3 text-sm outline-none"
           />
           <p className="ml-2 pb-2 text-xs text-red-500">
-            {errors.fullName?.message}
+            {errors.name?.message}
           </p>
 
           <input

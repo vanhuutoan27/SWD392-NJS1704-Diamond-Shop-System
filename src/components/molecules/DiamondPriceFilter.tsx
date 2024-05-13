@@ -12,7 +12,7 @@ import {
 function DiamondPriceFilter() {
   const [selectedPrice, setSelectedPrice] = useState("");
 
-  const handlePriceSelection = (price) => {
+  const handlePriceSelection = (price: string) => {
     setSelectedPrice(price);
   };
 
@@ -21,7 +21,7 @@ function DiamondPriceFilter() {
       <h4 className="mb-2 text-sm font-semibold">Price Range</h4>
       <Select>
         <SelectTrigger className="w-full">
-          <SelectValue placeholder="Price Range" value={selectedPrice} />
+          <SelectValue placeholder={selectedPrice || "Price Range"} />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
