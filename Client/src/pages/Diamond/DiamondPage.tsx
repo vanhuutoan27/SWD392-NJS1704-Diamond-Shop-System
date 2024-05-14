@@ -7,8 +7,13 @@ import DiamondPriceFilter from "@/components/molecules/DiamondPriceFilter";
 import DiamondShapeFilter from "@/components/molecules/DiamondShapeFilter";
 import DiamondSizeFilter from "@/components/molecules/DiamondSizeFilter";
 import DiamondWeightFilter from "@/components/molecules/DiamondWeightFilter";
+import { DataTable } from "@/components/molecules/DiamondDataTable";
+import { diamondData } from "@/constants/diamond";
+import { columns } from "@/components/molecules/DiamondColumns";
 
 function DiamondPage() {
+  const [isReset, setIsReset] = useState(false);
+
   // States for each filter
   const [selectedShape, setSelectedShape] = useState("");
   const [selectedPrice, setSelectedPrice] = useState("");
@@ -38,13 +43,27 @@ function DiamondPage() {
 
   // Function to reset all filters
   const handleReset = () => {
+    setIsReset(true);
     setSelectedShape("");
     setSelectedPrice("");
     setSelectedWeight("");
     setSelectedSize("");
     setSelectedColor("");
     setSelectedClarify("");
+
+    setTimeout(() => {
+      setIsReset(false);
+    }, 300);
   };
+
+  const suggestedProducts = [
+    "D-IF-6.3",
+    "D-VS1-5.4",
+    "D-VVS1-5.0",
+    "D-VS2-4.4",
+  ];
+
+  const data = diamondData;
 
   return (
     <div className="container">
@@ -53,7 +72,7 @@ function DiamondPage() {
         lastPageUrl="/"
         currentPage="Diamond"
       />
-      <div>
+      <>
         <div className="relative">
           <h3 className="mb-3 w-fit border-b-4 border-primary text-xl font-semibold uppercase leading-[60px]">
             Diamond
@@ -63,15 +82,31 @@ function DiamondPage() {
         <div className="flex flex-col gap-8">
           <div className="flex w-full justify-between gap-10">
             <div className="flex w-1/4 flex-col gap-4">
-              <DiamondShapeFilter onShapeSelected={handleShapeSelection} />
-              <DiamondPriceFilter onPriceSelected={handlePriceSelection} />
+              <DiamondShapeFilter
+                onShapeSelected={handleShapeSelection}
+                isResetting={isReset}
+              />
+              <DiamondPriceFilter
+                onPriceSelected={handlePriceSelection}
+                isResetting={isReset}
+              />
             </div>
             <div className="flex w-3/4 flex-col gap-2">
-              <DiamondWeightFilter onWeightSelected={handleWeightSelection} />
-              <DiamondSizeFilter onSizeSelected={handleSizeSelection} />
-              <DiamondColorFilter onColorSelected={handleColorSelection} />
+              <DiamondWeightFilter
+                onWeightSelected={handleWeightSelection}
+                isResetting={isReset}
+              />
+              <DiamondSizeFilter
+                onSizeSelected={handleSizeSelection}
+                isResetting={isReset}
+              />
+              <DiamondColorFilter
+                onColorSelected={handleColorSelection}
+                isResetting={isReset}
+              />
               <DiamondClarifyFilter
                 onClarifySelected={handleClarifySelection}
+                isResetting={isReset}
               />
             </div>
           </div>
@@ -82,7 +117,7 @@ function DiamondPage() {
             <Button onClick={handleFilter}>Filter</Button>
           </div>
         </div>
-      </div>
+      </>
 
       <div>
         <div className="relative">
@@ -91,6 +126,17 @@ function DiamondPage() {
           </h3>
           <div className="absolute inset-x-0 bottom-0 h-[2px] bg-primary" />
         </div>
+        <div className="mb-4 flex gap-2">
+          {suggestedProducts.map((product, index) => (
+            <span
+              key={index}
+              className="cursor-pointer rounded-md border-[1px] border-slate-700 px-4 py-1 text-sm transition-all duration-300 hover:bg-primary hover:text-white"
+            >
+              {product}
+            </span>
+          ))}
+        </div>
+        <DataTable columns={columns} data={data} />
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Select,
   SelectContent,
@@ -10,15 +10,25 @@ import {
 
 interface DiamondPriceFilterProps {
   onPriceSelected: (price: string) => void;
+  isResetting: boolean;
 }
 
-function DiamondPriceFilter({ onPriceSelected }: DiamondPriceFilterProps) {
+function DiamondPriceFilter({
+  onPriceSelected,
+  isResetting,
+}: DiamondPriceFilterProps) {
   const [selectedPrice, setSelectedPrice] = useState("");
 
   const handlePriceSelection = (price: string) => {
     setSelectedPrice(price);
     onPriceSelected(price);
   };
+
+  useEffect(() => {
+    if (isResetting) {
+      setSelectedPrice("");
+    }
+  }, [isResetting]);
 
   return (
     <div className="flex flex-col">

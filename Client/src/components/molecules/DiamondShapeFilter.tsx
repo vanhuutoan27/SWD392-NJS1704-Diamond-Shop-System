@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IDiamondShape } from "@/types/diamond.interface";
 
 interface DiamondShapeFilterProps {
   onShapeSelected: (shape: string) => void;
+  isResetting: boolean;
 }
 
-function DiamondShapeFilter({ onShapeSelected }: DiamondShapeFilterProps) {
+function DiamondShapeFilter({
+  onShapeSelected,
+  isResetting,
+}: DiamondShapeFilterProps) {
   const [selectedShape, setSelectedShape] = useState("");
   const shapes = Object.values(IDiamondShape);
 
@@ -13,6 +17,12 @@ function DiamondShapeFilter({ onShapeSelected }: DiamondShapeFilterProps) {
     setSelectedShape(shapeName);
     onShapeSelected(shapeName);
   };
+
+  useEffect(() => {
+    if (isResetting) {
+      setSelectedShape("");
+    }
+  }, [isResetting]);
 
   return (
     <div className="flex flex-col">
