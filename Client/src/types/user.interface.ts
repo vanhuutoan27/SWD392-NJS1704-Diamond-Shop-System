@@ -3,6 +3,7 @@ export interface IUser {
   name: string;
   email: string;
   password: string;
+  avatar: string;
   createdOn: string;
   role: IUserRole;
   status: IUserStatus;
