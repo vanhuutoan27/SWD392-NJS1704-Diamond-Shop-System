@@ -10,6 +10,7 @@ import DiamondWeightFilter from "@/components/molecules/DiamondWeightFilter";
 import { DataTable } from "@/components/molecules/DiamondDataTable";
 import { diamondData } from "@/constants/diamond";
 import { columns } from "@/components/molecules/DiamondColumns";
+import Section from "@/components/organisms/Section";
 
 function DiamondPage() {
   const [isReset, setIsReset] = useState(false);
@@ -72,13 +73,9 @@ function DiamondPage() {
         lastPageUrl="/"
         currentPage="Diamond"
       />
-      <>
-        <div className="relative">
-          <h3 className="mb-3 w-fit border-b-4 border-primary text-xl font-semibold uppercase leading-[60px]">
-            Diamond
-          </h3>
-          <div className="absolute inset-x-0 bottom-0 h-[2px] bg-primary" />
-        </div>
+      <div>
+        <Section pageName={"Diamond"} />
+
         <div className="flex flex-col gap-8">
           <div className="flex w-full justify-between gap-10">
             <div className="flex w-1/4 flex-col gap-4">
@@ -117,7 +114,7 @@ function DiamondPage() {
             <Button onClick={handleFilter}>Filter</Button>
           </div>
         </div>
-      </>
+      <div/>
 
       <div>
         <div className="relative">
@@ -137,6 +134,7 @@ function DiamondPage() {
           ))}
         </div>
         <DataTable columns={columns} data={data} />
+        <Section pageName={"Suggested Products"} />
       </div>
     </div>
   );
