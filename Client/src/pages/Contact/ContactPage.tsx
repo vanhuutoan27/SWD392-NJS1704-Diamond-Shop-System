@@ -1,20 +1,22 @@
 import BreadcrumbComponent from "@/components/atoms/BreadcrumbComponent";
-import IntroContact from "@/components/atoms/IntroContact";
-import FormInput from "@/components/atoms/FormInput";
+import ContactInfo from "@/components/molecules/ContactInfo";
+import ContactForm from "@/components/molecules/ContactForm";
+import Section from "@/components/organisms/Section";
 
 function ContactPage() {
   return (
     <div className="container">
-      <div>
-        <BreadcrumbComponent
-          lastPage="HOME"
-          lastPageUrl="/"
-          currentPage="CONTACT"
-        />
-      </div>
-      <div className="intro_contact mt-14 flex">
-        <IntroContact />
-        <FormInput />
+      <BreadcrumbComponent
+        lastPage="Home"
+        lastPageUrl="/"
+        currentPage="Contact"
+      />
+
+      <Section pageName={"Contact"} />
+
+      <div className="flex h-screen items-center w-full justify-center gap-4">
+        {/* <ContactInfo /> */}
+        <ContactForm />
       </div>
     </div>
   );

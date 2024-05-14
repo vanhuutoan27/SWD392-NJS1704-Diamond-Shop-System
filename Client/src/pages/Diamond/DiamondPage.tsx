@@ -7,6 +7,7 @@ import DiamondPriceFilter from "@/components/molecules/DiamondPriceFilter";
 import DiamondShapeFilter from "@/components/molecules/DiamondShapeFilter";
 import DiamondSizeFilter from "@/components/molecules/DiamondSizeFilter";
 import DiamondWeightFilter from "@/components/molecules/DiamondWeightFilter";
+import Section from "@/components/organisms/Section";
 
 function DiamondPage() {
   // States for each filter
@@ -54,12 +55,8 @@ function DiamondPage() {
         currentPage="Diamond"
       />
       <div>
-        <div className="relative">
-          <h3 className="mb-3 w-fit border-b-4 border-primary text-xl font-semibold uppercase leading-[60px]">
-            Diamond
-          </h3>
-          <div className="absolute inset-x-0 bottom-0 h-[2px] bg-primary" />
-        </div>
+        <Section pageName={"Diamond"} />
+
         <div className="flex flex-col gap-8">
           <div className="flex w-full justify-between gap-10">
             <div className="flex w-1/4 flex-col gap-4">
@@ -85,12 +82,7 @@ function DiamondPage() {
       </div>
 
       <div>
-        <div className="relative">
-          <h3 className="mb-3 w-fit border-b-4 border-primary text-xl font-semibold uppercase leading-[60px]">
-            Suggested Products
-          </h3>
-          <div className="absolute inset-x-0 bottom-0 h-[2px] bg-primary" />
-        </div>
+        <Section pageName={"Suggested Products"} />
       </div>
     </div>
   );
