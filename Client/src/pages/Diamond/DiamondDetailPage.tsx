@@ -1,7 +1,13 @@
+import BreadcrumbComponent from "@/components/atoms/BreadcrumbComponent";
 
 function DiamondDetailPage() {
   return (
-    <div className="container">DiamondDetailPage</div>
+    <div className="container"><BreadcrumbComponent
+    lastPage="Home"
+    lastPageUrl="/"
+    currentPage="Contact"
+  />
+</div>
   )
 }
 
