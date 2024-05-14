@@ -1,5 +1,4 @@
 import BreadcrumbComponent from "@/components/atoms/BreadcrumbComponent";
-import ContactInfo from "@/components/molecules/ContactInfo";
 import ContactForm from "@/components/molecules/ContactForm";
 import Section from "@/components/organisms/Section";
 
