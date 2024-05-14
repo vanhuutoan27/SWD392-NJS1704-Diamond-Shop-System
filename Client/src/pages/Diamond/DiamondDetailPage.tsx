@@ -1,7 +1,7 @@
 
 function DiamondDetailPage() {
   return (
-    <div>DiamondDetailPage</div>
+    <div className="container">DiamondDetailPage</div>
   )
 }
 

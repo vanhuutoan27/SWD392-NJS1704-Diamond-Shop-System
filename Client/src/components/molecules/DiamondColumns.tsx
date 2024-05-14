@@ -5,12 +5,32 @@ import { IDiamond } from "@/types/diamond.interface";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 
+// Helper function to format numbers conditionally
+const formatNumber = (num: number) => {
+  const decimalPart = num.toString().split(".")[1];
+  if (decimalPart) {
+    if (decimalPart.length === 1) {
+      return num.toFixed(1);
+    } else if (decimalPart.length === 2) {
+      return num.toFixed(2);
+    }
+  }
+  return num.toFixed(1);
+};
+
 export const columns: ColumnDef<IDiamond>[] = [
   {
     accessorKey: "shape",
-    header: () => (
-      <div className="text-center font-medium text-primary">Shape</div>
-    ),
+    header: ({ column }) => {
+      return (
+        <div
+          className="flex cursor-pointer items-center text-white"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Shape
+        </div>
+      );
+    },
     cell: (info) => {
       const value: string = info.getValue() as string;
       return <div className="text-center">{value}</div>;
@@ -18,19 +38,33 @@ export const columns: ColumnDef<IDiamond>[] = [
   },
   {
     accessorKey: "weight",
-    header: () => (
-      <div className="text-center font-medium text-primary">Weight (cts)</div>
-    ),
+    header: ({ column }) => {
+      return (
+        <div
+          className="flex cursor-pointer items-center text-white"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Weight (cts)
+        </div>
+      );
+    },
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <div className="text-center">{value}</div>;
+      const value: number = parseFloat(info.getValue() as string);
+      return <div className="text-center">{formatNumber(value)}</div>;
     },
   },
   {
     accessorKey: "color",
-    header: () => (
-      <div className="text-center font-medium text-primary">Color</div>
-    ),
+    header: ({ column }) => {
+      return (
+        <div
+          className="flex cursor-pointer items-center text-white"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Color
+        </div>
+      );
+    },
     cell: (info) => {
       const value: string = info.getValue() as string;
       return <div className="text-center">{value}</div>;
@@ -38,9 +72,16 @@ export const columns: ColumnDef<IDiamond>[] = [
   },
   {
     accessorKey: "clarify",
-    header: () => (
-      <div className="text-center font-medium text-primary">Clarify</div>
-    ),
+    header: ({ column }) => {
+      return (
+        <div
+          className="flex cursor-pointer items-center text-white"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Clarify
+        </div>
+      );
+    },
     cell: (info) => {
       const value: string = info.getValue() as string;
       return <div className="text-center">{value}</div>;
@@ -48,9 +89,16 @@ export const columns: ColumnDef<IDiamond>[] = [
   },
   {
     accessorKey: "certification",
-    header: () => (
-      <div className="text-center font-medium text-primary">Certification</div>
-    ),
+    header: ({ column }) => {
+      return (
+        <div
+          className="flex cursor-pointer items-center text-white"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Certification
+        </div>
+      );
+    },
     cell: (info) => {
       const value: string = info.getValue() as string;
       return (
@@ -60,9 +108,16 @@ export const columns: ColumnDef<IDiamond>[] = [
   },
   {
     accessorKey: "size",
-    header: () => (
-      <div className="text-center font-medium text-primary">Size (mm)</div>
-    ),
+    header: ({ column }) => {
+      return (
+        <div
+          className="flex cursor-pointer items-center text-white"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Size (mm)
+        </div>
+      );
+    },
     cell: (info) => {
       const value: string = info.getValue() as string;
       return <div className="text-center">{value}</div>;
@@ -70,9 +125,16 @@ export const columns: ColumnDef<IDiamond>[] = [
   },
   {
     accessorKey: "fluorescence",
-    header: () => (
-      <div className="text-center font-medium text-primary">Fluorescence</div>
-    ),
+    header: ({ column }) => {
+      return (
+        <div
+          className="flex cursor-pointer items-center text-white"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Fluorescence
+        </div>
+      );
+    },
     cell: (info) => {
       const value: string = info.getValue() as string;
       return <div className="text-center">{value}</div>;
@@ -80,9 +142,16 @@ export const columns: ColumnDef<IDiamond>[] = [
   },
   {
     accessorKey: "qualityOfCut",
-    header: () => (
-      <div className="text-center font-medium text-primary">Quality Of Cut</div>
-    ),
+    header: ({ column }) => {
+      return (
+        <div
+          className="flex cursor-pointer items-center text-white"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Quality Of Cut
+        </div>
+      );
+    },
     cell: (info) => {
       const value: string = info.getValue() as string;
       return <div className="text-center">{value}</div>;
@@ -90,9 +159,16 @@ export const columns: ColumnDef<IDiamond>[] = [
   },
   {
     accessorKey: "price",
-    header: () => (
-      <div className="text-center font-medium text-primary">Price (VND)</div>
-    ),
+    header: ({ column }) => {
+      return (
+        <div
+          className="flex cursor-pointer items-center text-white"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Price (VND)
+        </div>
+      );
+    },
     cell: (info) => {
       const value: string = info.getValue() as string;
       return <div className="text-center">{value}</div>;
@@ -100,19 +176,26 @@ export const columns: ColumnDef<IDiamond>[] = [
   },
   {
     accessorKey: "details",
-    header: () => (
-      <div className="text-center font-medium text-primary">Details</div>
-    ),
+    header: () => {
+      return (
+        <div className="flex cursor-pointer items-center text-white">
+          Details
+        </div>
+      );
+    },
+    cell: (info) => {
+      const diamondId = info.row.original.diamondId;
 
-    cell: () => (
-      <Link
-        to=""
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center font-semibold text-red-500 transition-all duration-300 hover:translate-x-1"
-      >
-        Details <ChevronRight size={20} />
-      </Link>
-    ),
+      return (
+        <Link
+          to={`/diamond/${diamondId}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center font-semibold text-red-500 transition-all duration-300 hover:translate-x-1"
+        >
+          Details <ChevronRight size={20} />
+        </Link>
+      );
+    },
   },
 ];

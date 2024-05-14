@@ -11,6 +11,7 @@ export const diamondData: IDiamond[] = [
     size: "10.5*6.47",
     fluorescence: "None",
     qualityOfCut: "Excellent",
+    price: "270.000.000",
   },
   {
     diamondId: "2",
@@ -22,6 +23,7 @@ export const diamondData: IDiamond[] = [
     size: "4.4",
     fluorescence: "Medium",
     qualityOfCut: "Excellent",
+    price: "1.000.000.000",
   },
   {
     diamondId: "3",
@@ -33,5 +35,6 @@ export const diamondData: IDiamond[] = [
     size: "4.4",
     fluorescence: "Medium",
     qualityOfCut: "Excellent",
+    price: "120.000.000",
   },
 ];

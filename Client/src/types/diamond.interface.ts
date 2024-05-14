@@ -8,27 +8,28 @@ export interface IDiamond {
   size: string;
   fluorescence: string;
   qualityOfCut: string;
+  price: string;
 }
 
 export const IDiamondShape = [
   {
-    shapeName: "Diamond Round",
+    shapeName: "Round",
     shapeImage: "../images/diamond_shape_round.jpg",
   },
   {
-    shapeName: "Diamond Emerald",
+    shapeName: "Emerald",
     shapeImage: "../images/diamond_shape_emerald.jpg",
   },
   {
-    shapeName: "Diamond Heart",
+    shapeName: "Heart",
     shapeImage: "../images/diamond_shape_heat.jpg",
   },
   {
-    shapeName: "Diamond Cushion",
+    shapeName: "Cushion",
     shapeImage: "../images/diamond_shape_cushion.jpg",
   },
   {
-    shapeName: "Diamond Pear",
+    shapeName: "Pear",
     shapeImage: "../images/diamond_shape_pear.jpg",
   },
 ];
