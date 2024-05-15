@@ -11,7 +11,7 @@ function NavigationMenu() {
     { title: "Diamond", link: "/diamond" },
     { title: "Jewelry", link: "/jewelry" },
     { title: "Promotion", link: "/promotion" },
-    { title: "News", link: "/news" },
+    { title: "Blog", link: "/blog" },
     { title: "Contact", link: "/contact" },
   ];
 
