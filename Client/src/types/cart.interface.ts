@@ -8,8 +8,8 @@ export interface ICartBase {
   productType: ICartType;
   productId: string;
   quantity: number;
-  price: number;
-  image: string;
+  price?: number;
+  image?: string;
 }
 
 export interface IDiamondCart extends ICartBase {
