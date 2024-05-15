@@ -7,11 +7,11 @@ import { diamondData } from "../../constants/diamond";
 function DiamondDetailPage() {
   const { diamondId } = useParams();
 
-  const diamond = diamondData.find(
+  const diamondDetails = diamondData.find(
     (diamond) => diamond.diamondId === diamondId,
   );
 
-  if (!diamond) {
+  if (!diamondDetails) {
     return <div>Diamond not found!</div>;
   }
 
@@ -22,7 +22,7 @@ function DiamondDetailPage() {
         lastPageUrl="/"
         currentPage="Diamond"
       />
-      <DiamondDetail diamond={diamond} />
+      <DiamondDetail diamondDetails={diamondDetails} />
       <QualityCommitments />
     </div>
   );

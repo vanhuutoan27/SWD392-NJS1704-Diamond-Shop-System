@@ -1,11 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { IDiamond } from "@/types/diamond.interface";
 
-interface DiamondDetailProps {
-  diamond: IDiamond;
-}
-
-const DiamondDetail: React.FC<DiamondDetailProps> = ({ diamond }) => {
+function DiamondDetail({ diamondDetails }: { diamondDetails: IDiamond }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -32,8 +28,10 @@ const DiamondDetail: React.FC<DiamondDetailProps> = ({ diamond }) => {
         {/* Price */}
         <div className="w-1/2">
           <div className="mb-4 mt-10">
-            <h2 className="text-3xl">Diamond - size {diamond.size}</h2>
-            <h2 className="text-xl font-semibold">Price: {diamond.price}</h2>
+            <h2 className="text-3xl">Diamond - size {diamondDetails.size}</h2>
+            <h2 className="text-xl font-semibold">
+              Price: {diamondDetails.price}
+            </h2>
             <p className="text-sm">
               Price may vary depending on actual product size and weight.
             </p>
@@ -54,7 +52,7 @@ const DiamondDetail: React.FC<DiamondDetailProps> = ({ diamond }) => {
             <tr>
               <td className="border-2 border-gray-300 px-4 py-2">Shape</td>
               <td className="border-2 border-gray-300 px-4 py-2">
-                {diamond.shape}
+                {diamondDetails.shape}
               </td>
             </tr>
             <tr>
@@ -62,21 +60,21 @@ const DiamondDetail: React.FC<DiamondDetailProps> = ({ diamond }) => {
                 Weight
               </td>
               <td className="border-2 border-gray-300 bg-gray-200 px-4 py-2">
-                {diamond.weight}
+                {diamondDetails.weight}
               </td>
             </tr>
             <tr>
               <td className="border-2 border-gray-300 px-4 py-2">Color</td>
               <td className="border-2 border-gray-300 px-4 py-2">
-                {diamond.color}
+                {diamondDetails.color}
               </td>
             </tr>
             <tr>
               <td className="border-2 border-gray-300 bg-gray-200 px-4 py-2">
-                Clarity
+                Clarify
               </td>
               <td className="border-2 border-gray-300 bg-gray-200 px-4 py-2">
-                {diamond.clarity}
+                {diamondDetails.clarify}
               </td>
             </tr>
             <tr>
@@ -84,7 +82,7 @@ const DiamondDetail: React.FC<DiamondDetailProps> = ({ diamond }) => {
                 Certification
               </td>
               <td className="border-2 border-gray-300 px-4 py-2">
-                {diamond.certification}
+                {diamondDetails.certification}
               </td>
             </tr>
             <tr>
@@ -92,7 +90,7 @@ const DiamondDetail: React.FC<DiamondDetailProps> = ({ diamond }) => {
                 Size
               </td>
               <td className="border-2 border-gray-300 bg-gray-200 px-4 py-2">
-                {diamond.size}
+                {diamondDetails.size}
               </td>
             </tr>
             <tr>
@@ -100,7 +98,7 @@ const DiamondDetail: React.FC<DiamondDetailProps> = ({ diamond }) => {
                 Fluorescence
               </td>
               <td className="border-2 border-gray-300 px-4 py-2">
-                {diamond.fluorescence}
+                {diamondDetails.fluorescence}
               </td>
             </tr>
             <tr>
@@ -108,14 +106,13 @@ const DiamondDetail: React.FC<DiamondDetailProps> = ({ diamond }) => {
                 Quality of Cut
               </td>
               <td className="border-2 border-gray-300 bg-gray-200 px-4 py-2">
-                {diamond.qualityOfCut}
+                {diamondDetails.qualityOfCut}
               </td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      {/* Modal */}
       {isOpen && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75"
@@ -138,6 +135,6 @@ const DiamondDetail: React.FC<DiamondDetailProps> = ({ diamond }) => {
       )}
     </div>
   );
-};
+}
 
 export default DiamondDetail;
