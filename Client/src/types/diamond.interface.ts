@@ -4,7 +4,7 @@ export interface IDiamond {
   shape: string;
   weight: string;
   color: string;
-  clarify: string;
+  clarity: string;
   certification: string;
   size: string;
   fluorescence: string;
@@ -46,7 +46,7 @@ export const IDiamondWeight = [
 
 export const IDiamondColor = ["D", "E", "F", "G", "H", "I", "J", "K", "L", "M"];
 
-export const IDiamondClarify = [
+export const IDiamondClarity = [
   "IF",
   "VVS1",
   "VVS2",

@@ -85,7 +85,7 @@ function App() {
         />
 
         <Route
-          path="/diamond/:id"
+          path="/diamond/:diamondId"
           element={
             <Suspense fallback={<Loader />}>
               <DiamondDetail />
