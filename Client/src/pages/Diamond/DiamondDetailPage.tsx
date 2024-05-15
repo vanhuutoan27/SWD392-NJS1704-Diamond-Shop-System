@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import BreadcrumbComponent from "@/components/atoms/BreadcrumbComponent";
 import DiamondDetail from "@/components/molecules/DiamondDetail";
+import QualityCommitments from "@/components/molecules/QualityCommitments";
 import { diamondData } from "../../constants/diamond";
 
 function DiamondDetailPage() {
@@ -22,6 +23,7 @@ function DiamondDetailPage() {
         currentPage="Diamond"
       />
       <DiamondDetail diamond={diamond} />
+      <QualityCommitments />
     </div>
   );
 }
