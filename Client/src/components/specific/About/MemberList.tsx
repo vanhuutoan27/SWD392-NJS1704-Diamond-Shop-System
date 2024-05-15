@@ -1,4 +1,12 @@
-function MemberList({ member }) {
+interface MemberListProps {
+  member: {
+    img: string;
+    name: string;
+    role: string;
+  };
+}
+
+function MemberList({ member }: MemberListProps) {
   return (
     <div className="mx-auto w-1/6 max-w-xs overflow-hidden rounded text-center shadow-lg">
       <img className="w-full" src={member.img} alt={member.name} />
