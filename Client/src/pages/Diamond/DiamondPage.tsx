@@ -27,7 +27,9 @@ function DiamondPage() {
   const [filteredDiamonds, setFilteredDiamonds] = useState(diamondData);
 
   // Handlers for each filter
-  const handlePriceSelection = (price: string) => setSelectedPrice(price);
+  // Handlers for each filter
+  const handlePriceSelection = (price: string) =>
+    setSelectedPrice(price.toString());
   const handleShapeSelection = (shapes: string[]) => setSelectedShapes(shapes);
   const handleWeightSelection = (weight: string) => setSelectedWeight(weight);
   const handleSizeSelection = (size: string) => setSelectedSize(size);
@@ -47,11 +49,6 @@ function DiamondPage() {
       .split("-")
       .map((value) => parseFloat(value.trim()) * 1_000_000);
     return { min, max };
-  };
-
-  // Function to parse and remove commas from price strings
-  const parsePrice = (price: string) => {
-    return parseFloat(price.replace(/\./g, ""));
   };
 
   // Function to parse weight range
@@ -90,8 +87,7 @@ function DiamondPage() {
           ? selectedShapes.includes(diamond.shape)
           : true) &&
         (selectedPrice
-          ? parsePrice(diamond.price) >= minPrice &&
-            parsePrice(diamond.price) <= maxPrice
+          ? diamond.price >= minPrice && diamond.price <= maxPrice
           : true) &&
         (selectedWeight
           ? parseFloat(diamond.weight) >= minWeight &&

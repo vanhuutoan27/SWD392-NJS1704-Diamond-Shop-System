@@ -18,6 +18,10 @@ const formatNumber = (num: number) => {
   return num.toFixed(1);
 };
 
+export const formatPrice = (amount: number) => {
+  return new Intl.NumberFormat("vi-VN").format(amount);
+};
+
 export const columns: ColumnDef<IDiamond>[] = [
   {
     accessorKey: "shape",
@@ -170,8 +174,8 @@ export const columns: ColumnDef<IDiamond>[] = [
       );
     },
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <div className="text-center">{value}</div>;
+      const value: number = info.getValue() as number;
+      return <div className="text-center">{formatPrice(value)}</div>;
     },
   },
   {
