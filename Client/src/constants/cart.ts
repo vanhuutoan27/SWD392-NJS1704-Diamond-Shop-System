@@ -1,5 +1,5 @@
 import { getProductData } from "@/lib/utils";
-import { ICart, ICartBase, ICartType } from "@/types/cart.interface";
+import { ICart, ICartType } from "@/types/cart.interface";
 
 const rawCartData: ICartBase[] = [
   {

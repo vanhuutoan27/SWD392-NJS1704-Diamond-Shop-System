@@ -75,14 +75,14 @@ export const columns: ColumnDef<IDiamond>[] = [
     },
   },
   {
-    accessorKey: "clarify",
+    accessorKey: "clarity",
     header: ({ column }) => {
       return (
         <div
           className="flex cursor-pointer justify-center text-white"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Clarify
+          Clarity
         </div>
       );
     },

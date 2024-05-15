@@ -14,14 +14,14 @@ function AboutInfo() {
           WELCOME TO {projectName}
         </h2>
         <p className="mb-6 text-sm">
-          Diamoon your gateway to luxurious diamonds welcomes you with open
-          arms. Explore our exquisitecollection meticulously crafted to elevate
-          your style and grace.Experience unparalleled elegance and
+          {projectName} your gateway to luxurious diamonds welcomes you with
+          open arms. Explore our exquisitecollection meticulously crafted to
+          elevate your style and grace.Experience unparalleled elegance and
           sophistication.
         </p>
         <h2 className="mb-2 text-2xl font-normal">WE START AT 2022</h2>
         <p className="mb-6 text-sm">
-          Diamoon commencing its journeyin 2022, stands as your premier
+          {projectName} commencing its journeyin 2022, stands as your premier
           destination for exquisite diamonds. Withunparalleled quality and
           service, explore our curated collection to find timeless elegance for
           every occasion.
@@ -30,8 +30,8 @@ function AboutInfo() {
           WIN BEST ONLINE SHOP AT 2022
         </h2>
         <p className="text-sm">
-          Diamoon the proud recipient of the Best Online Shop award in 2022, is
-          your premier destination for exquisite diamonds. Explore our
+          {projectName} the proud recipient of the Best Online Shop award in
+          2022, is your premier destination for exquisite diamonds. Explore our
           meticulously curated collection, crafted with passion and precision,
           to discover timeless elegance for every occasion.
         </p>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/atoms/button";
 import BreadcrumbComponent from "@/components/atoms/BreadcrumbComponent";
-import DiamondClarifyFilter from "@/components/specific/Diamond/DiamondClarifyFilter";
+import DiamondClarityFilter from "@/components/specific/Diamond/DiamondClarityFilter";
 import DiamondColorFilter from "@/components/specific/Diamond/DiamondColorFilter";
 import DiamondPriceFilter from "@/components/specific/Diamond/DiamondPriceFilter";
 import DiamondShapeFilter from "@/components/specific/Diamond/DiamondShapeFilter";
@@ -22,11 +22,10 @@ function DiamondPage() {
   const [selectedWeight, setSelectedWeight] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
-  const [selectedClarify, setSelectedClarify] = useState("");
+  const [selectedClarity, setSelectedClarity] = useState("");
 
   const [filteredDiamonds, setFilteredDiamonds] = useState(diamondData);
 
-  // Handlers for each filter
   // Handlers for each filter
   const handlePriceSelection = (price: string) =>
     setSelectedPrice(price.toString());
@@ -34,8 +33,8 @@ function DiamondPage() {
   const handleWeightSelection = (weight: string) => setSelectedWeight(weight);
   const handleSizeSelection = (size: string) => setSelectedSize(size);
   const handleColorSelection = (color: string) => setSelectedColor(color);
-  const handleClarifySelection = (clarify: string) =>
-    setSelectedClarify(clarify);
+  const handleClaritySelection = (clarity: string) =>
+    setSelectedClarity(clarity);
 
   // Function to parse price range
   const parsePriceRange = (range: string) => {
@@ -98,7 +97,7 @@ function DiamondPage() {
             parseFloat(diamond.size) <= maxSize
           : true) &&
         (selectedColor ? diamond.color === selectedColor : true) &&
-        (selectedClarify ? diamond.clarify === selectedClarify : true)
+        (selectedClarity ? diamond.clarity === selectedClarity : true)
       );
     });
 
@@ -113,7 +112,7 @@ function DiamondPage() {
     setSelectedWeight("");
     setSelectedSize("");
     setSelectedColor("");
-    setSelectedClarify("");
+    setSelectedClarity("");
 
     setFilteredDiamonds(diamondData);
 
@@ -164,8 +163,8 @@ function DiamondPage() {
                 onColorSelected={handleColorSelection}
                 isResetting={isReset}
               />
-              <DiamondClarifyFilter
-                onClarifySelected={handleClarifySelection}
+              <DiamondClarityFilter
+                onClaritySelected={handleClaritySelection}
                 isResetting={isReset}
               />
             </div>

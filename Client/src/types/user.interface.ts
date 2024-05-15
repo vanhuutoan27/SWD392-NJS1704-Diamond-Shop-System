@@ -4,6 +4,8 @@ export interface IUser {
   email: string;
   password: string;
   avatar: string;
+  phone: string;
+  address: string;
   createdOn: string;
   role: IUserRole;
   status: IUserStatus;

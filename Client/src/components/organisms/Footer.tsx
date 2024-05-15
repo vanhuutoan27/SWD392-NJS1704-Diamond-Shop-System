@@ -1,3 +1,4 @@
+import { projectName } from "@/lib/constants";
 import {
   Circle,
   Facebook,
@@ -54,7 +55,7 @@ function Footer() {
         <ul className="col-span-12 mb-5 sm:col-span-12 lg:col-span-6 lg:mb-0">
           <div className="mb-4 uppercase">
             <h2 className="cursor-pointer select-none text-4xl font-bold">
-              <Link to="/">Diamoon</Link>
+              <Link to="/">{projectName}</Link>
             </h2>
             <h4 className="select-none font-semibold tracking-widest">
               Diamond Shop System
@@ -118,7 +119,7 @@ function Footer() {
       </div>
 
       <div className="grid grid-cols-1 items-center gap-y-4 pb-6 pt-2 text-center text-sm text-slate-300 sm:grid-cols-2 lg:grid-cols-3">
-        <span>&copy; 2024 Diamoon. All rights reserved.</span>
+        <span>&copy; 2024 {projectName}. All rights reserved.</span>
         <span>Terms &bull; Privacy Policy</span>
 
         <div>

@@ -19,11 +19,11 @@ interface renderTabContentProps {
 }
 
 function CartTable() {
-  const allItemsInCart = cartData;
-  const diamondsInCart = cartData.filter(
+  const allItemsInCart = cartData.filter((item) => item.quantity > 0);
+  const diamondsInCart = allItemsInCart.filter(
     (item) => item.productType === ICartType.Diamond,
   );
-  const jewelriesInCart = cartData.filter(
+  const jewelriesInCart = allItemsInCart.filter(
     (item) => item.productType === ICartType.Jewelry,
   );
 

@@ -13,7 +13,7 @@ import { ShoppingCart, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 function CartButton() {
-  const cartItems = cartData;
+  const cartItems = cartData.filter((item) => item.quantity > 0);
   const vatPercentage = 0.1;
 
   const subTotal = calculateCartTotal(cartItems);

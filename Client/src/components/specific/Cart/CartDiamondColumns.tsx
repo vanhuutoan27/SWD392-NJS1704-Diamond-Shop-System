@@ -83,14 +83,14 @@ export const cartDiamondColumns: ColumnDef<ICart>[] = [
     },
   },
   {
-    accessorKey: "clarify",
+    accessorKey: "clarity",
     header: ({ column }) => {
       return (
         <div
           className="flex cursor-pointer justify-center text-white"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Clarify
+          Clarity
         </div>
       );
     },

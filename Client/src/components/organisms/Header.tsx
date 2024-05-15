@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Navigation from "./Navigation";
 import { Button } from "../atoms/button";
+import { projectName } from "@/lib/constants";
 
 function Header() {
   return (
@@ -8,7 +9,7 @@ function Header() {
       <div className="flex items-center justify-center md:justify-between">
         <div className="uppercase">
           <h2 className="cursor-pointer select-none text-center text-4xl font-bold text-gray-800 md:text-left">
-            <Link to="/">Diamoon</Link>
+            <Link to="/">{projectName}</Link>
           </h2>
           <h4 className="select-none font-semibold tracking-widest">
             Diamond Shop System

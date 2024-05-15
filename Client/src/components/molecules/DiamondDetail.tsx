@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { IDiamond } from "@/types/diamond.interface";
+import { formatCurrency } from "@/lib/utils";
+import Section from "../organisms/Section";
+import { Button } from "../atoms/button";
+import { X } from "lucide-react";
 
 function DiamondDetail({ diamondDetails }: { diamondDetails: IDiamond }) {
   const [isOpen, setIsOpen] = useState(false);
+  const salePrice = "100.000.000";
 
   const openModal = () => {
     setIsOpen(true);
@@ -13,99 +18,121 @@ function DiamondDetail({ diamondDetails }: { diamondDetails: IDiamond }) {
   };
 
   return (
-    <div className="flex flex-wrap">
-      {/* Photo and Price */}
+    <div>
       <div className="flex w-full">
-        {/* Photo */}
         <div className="w-1/2">
           <img
-            src="https://scontent.fsgn2-8.fna.fbcdn.net/v/t1.15752-9/438293785_868801961659331_1845213149564609199_n.png?_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeF0SiCoQiDfyzGI2d96XDqkWoDCDAS76W9agMIMBLvpb7xPBtTjeBh0CBF76xnsTBuGjoZCT45Bianbj1Lyii06&_nc_ohc=rkriioWZrbQQ7kNvgGRIOcW&_nc_oc=AdgbLaJkkjGxG8kKNKngZf0phLAkMB8WZ9GnYeEtUMLq6-Otnk1LjBTB3jikkWhAJ0s&_nc_ht=scontent.fsgn2-8.fna&oh=03_Q7cD1QFj-A_l1mb6zSSaZwasOns1SraqpGM0C9xu2mPy87lbgA&oe=666C0340"
+            src="https://jemmia.vn/wp-content/uploads/2023/09/image-3-1.png"
             alt="Diamond"
             className="h-auto w-full cursor-pointer"
             onClick={openModal}
           />
         </div>
-        {/* Price */}
-        <div className="w-1/2">
-          <div className="mb-4 mt-10">
-            <h2 className="text-3xl">Diamond - size {diamondDetails.size}</h2>
-            <h2 className="text-xl font-semibold">
-              Price: {diamondDetails.price}
-            </h2>
-            <p className="text-sm">
-              Price may vary depending on actual product size and weight.
-            </p>
-            <p className="text-sm">
-              Please call (84) 012 345 6789 for support.
-            </p>
+
+        <div className="flex w-1/2 flex-col gap-3">
+          <h2 className="text-xl">
+            KIM CƯƠNG TỰ NHIÊN {diamondDetails.size}MM
+          </h2>
+
+          {salePrice ? (
+            <span className="flex">
+              <span className="mr-2 text-base font-semibold">{salePrice}</span>
+              <span className=" font-medium text-[#bababa] line-through">
+                {formatCurrency(diamondDetails.price)}
+              </span>
+            </span>
+          ) : (
+            <>
+              <span className="mr-2 text-base font-semibold">
+                {diamondDetails.price}
+              </span>
+            </>
+          )}
+
+          <p className="text-sm text-[#555]">
+            Price may vary depending on actual product size and weight. <br />
+            Please call{" "}
+            <span className="font-semibold text-primary">
+              (84) 098 765 321
+            </span>{" "}
+            for support.
+          </p>
+
+          <div className="mt-8 flex w-full gap-4">
+            <Button type="button" variant={"secondary"}>
+              Message
+            </Button>
+            <Button type="button">Add To Cart</Button>
           </div>
         </div>
       </div>
-      {/* Detailed Information */}
-      <div className="my-4 w-full border-b-2 border-gray-300 pb-2 text-center">
-        <h3 className="text-xl font-bold">PRODUCT DETAILS</h3>
-      </div>
+
+      <Section pageName={"PRODUCT DETAILS"} />
+
       <div className="w-full">
-        {/* Information Table */}
         <table className="w-full border-collapse">
           <tbody>
             <tr>
-              <td className="border-2 border-gray-300 px-4 py-2">Shape</td>
-              <td className="border-2 border-gray-300 px-4 py-2">
+              <td className="w-[300px] border-2 border-input px-4 py-2 ">
+                Shape
+              </td>
+              <td className="border-2 border-input px-4 py-2 italic">
                 {diamondDetails.shape}
               </td>
             </tr>
             <tr>
-              <td className="border-2 border-gray-300 bg-gray-200 px-4 py-2">
+              <td className="border-2 border-input bg-slate-100 px-4 py-2 ">
                 Weight
               </td>
-              <td className="border-2 border-gray-300 bg-gray-200 px-4 py-2">
+              <td className="border-2 border-input bg-slate-100 px-4 py-2 italic">
                 {diamondDetails.weight}
               </td>
             </tr>
             <tr>
-              <td className="border-2 border-gray-300 px-4 py-2">Color</td>
-              <td className="border-2 border-gray-300 px-4 py-2">
+              <td className="w-[300px] border-2 border-input px-4 py-2 ">
+                Color
+              </td>
+              <td className="border-2 border-input px-4 py-2 italic">
                 {diamondDetails.color}
               </td>
             </tr>
             <tr>
-              <td className="border-2 border-gray-300 bg-gray-200 px-4 py-2">
-                Clarify
+              <td className="border-2 border-input bg-slate-100 px-4 py-2 ">
+                Clarity
               </td>
-              <td className="border-2 border-gray-300 bg-gray-200 px-4 py-2">
-                {diamondDetails.clarify}
+              <td className="border-2 border-input bg-slate-100 px-4 py-2 italic">
+                {diamondDetails.clarity}
               </td>
             </tr>
             <tr>
-              <td className="border-2 border-gray-300 px-4 py-2">
+              <td className="w-[300px] border-2 border-input px-4 py-2 ">
                 Certification
               </td>
-              <td className="border-2 border-gray-300 px-4 py-2">
+              <td className="border-2 border-input px-4 py-2 italic">
                 {diamondDetails.certification}
               </td>
             </tr>
             <tr>
-              <td className="border-2 border-gray-300 bg-gray-200 px-4 py-2">
+              <td className="border-2 border-input bg-slate-100 px-4 py-2 ">
                 Size
               </td>
-              <td className="border-2 border-gray-300 bg-gray-200 px-4 py-2">
+              <td className="border-2 border-input bg-slate-100 px-4 py-2 italic">
                 {diamondDetails.size}
               </td>
             </tr>
             <tr>
-              <td className="border-2 border-gray-300 px-4 py-2">
+              <td className="w-[300px] border-2 border-input px-4 py-2">
                 Fluorescence
               </td>
-              <td className="border-2 border-gray-300 px-4 py-2">
+              <td className="border-2 border-input px-4 py-2 italic">
                 {diamondDetails.fluorescence}
               </td>
             </tr>
             <tr>
-              <td className="border-2 border-gray-300 bg-gray-200 px-4 py-2">
+              <td className="border-2 border-input bg-slate-100 px-4 py-2">
                 Quality of Cut
               </td>
-              <td className="border-2 border-gray-300 bg-gray-200 px-4 py-2">
+              <td className="border-2 border-input bg-slate-100 px-4 py-2 italic">
                 {diamondDetails.qualityOfCut}
               </td>
             </tr>
@@ -115,19 +142,18 @@ function DiamondDetail({ diamondDetails }: { diamondDetails: IDiamond }) {
 
       {isOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/75"
           onClick={closeModal}
         >
           <div className="relative">
-            <button
-              className="absolute right-0 top-0 mr-2 mt-2 text-4xl font-bold text-white"
+            <X
               onClick={closeModal}
-            >
-              &times;
-            </button>
+              className="absolute right-0 top-0 mr-2 mt-2 cursor-pointer text-black transition-all duration-300 hover:text-[#888]"
+            />
+
             <img
               className="max-h-full max-w-full"
-              src="https://jemmia.vn/wp-content/uploads/2023/09/image-3-1.png"
+              src={diamondDetails.image}
               alt="Diamond"
             />
           </div>

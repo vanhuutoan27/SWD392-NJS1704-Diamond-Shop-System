@@ -1,7 +1,9 @@
-import { IJewelry } from "@/types/jewelry.interface";
+import { ICartType } from "@/types/cart.interface";
+import { IJewelry, IJewelryStatus } from "@/types/jewelry.interface";
 
 export const jewelryData: IJewelry[] = [
   {
+    productType: ICartType.Jewelry,
     jewelryId: "J002",
     jewelryCategory: "Earrings",
     jewelryName: "18K DIAMOND EARRINGS",
@@ -14,5 +16,6 @@ export const jewelryData: IJewelry[] = [
     goldKarat: "18K",
     goldWeight: "0.86",
     price: 20210400,
+    status: IJewelryStatus.AVAILABLE,
   },
 ];
