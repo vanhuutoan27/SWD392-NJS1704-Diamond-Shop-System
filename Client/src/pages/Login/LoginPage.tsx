@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate } from "react-router-dom";
-import { loginSchema } from "@/schemas/login";
+import { loginSchema } from "@/schemas/LoginForm";
 import { IUser } from "@/types/user.interface";
 import { Button } from "@/components/atoms/button";
 import PasswordInput from "@/components/molecules/PasswordInput";
@@ -43,7 +43,7 @@ function LoginPage() {
           <p className="ml-2 pb-2 text-xs text-red-500">
             {errors.password?.message}
           </p>
-          <Button type="submit" className="w-full py-6">
+          <Button type="button" className="w-full py-6">
             Login
           </Button>
           <p className="mt-4 text-center text-sm">

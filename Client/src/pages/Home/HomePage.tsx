@@ -1,4 +1,4 @@
-import CarouselSlider from "@/components/molecules/CarouselSlider";
+import CarouselSlider from "@/components/specific/Home/CarouselSlider";
 
 function HomePage() {
   return (

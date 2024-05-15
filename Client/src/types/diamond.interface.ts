@@ -1,5 +1,6 @@
 export interface IDiamond {
   diamondId: string;
+  image: string;
   shape: string;
   weight: string;
   color: string;
@@ -8,7 +9,7 @@ export interface IDiamond {
   size: string;
   fluorescence: string;
   qualityOfCut: string;
-  price: string;
+  price: number;
 }
 
 export const IDiamondShape = [

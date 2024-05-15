@@ -1,9 +1,9 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { IDiamond } from "@/types/diamond.interface";
-import { Link } from "react-router-dom";
-import { ChevronRight } from "lucide-react";
+import { ICart } from "@/types/cart.interface";
+import { formatCurrency } from "@/lib/utils";
+import { X } from "lucide-react";
 
 // Helper function to format numbers conditionally
 const formatNumber = (num: number) => {
@@ -18,13 +18,25 @@ const formatNumber = (num: number) => {
   return num.toFixed(1);
 };
 
-export const columns: ColumnDef<IDiamond>[] = [
+export const cartDiamondColumns: ColumnDef<ICart>[] = [
+  {
+    accessorKey: "productId",
+    header: () => {
+      return (
+        <div className="flex cursor-pointer justify-center text-white">ID</div>
+      );
+    },
+    cell: (info) => {
+      const value: string = info.getValue() as string;
+      return <div className="text-center">{value}</div>;
+    },
+  },
   {
     accessorKey: "shape",
     header: ({ column }) => {
       return (
         <div
-          className="flex cursor-pointer items-center text-white"
+          className="flex cursor-pointer justify-center text-white"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Shape
@@ -41,7 +53,7 @@ export const columns: ColumnDef<IDiamond>[] = [
     header: ({ column }) => {
       return (
         <div
-          className="flex cursor-pointer items-center text-white"
+          className="flex cursor-pointer justify-center text-white"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Weight (cts)
@@ -58,7 +70,7 @@ export const columns: ColumnDef<IDiamond>[] = [
     header: ({ column }) => {
       return (
         <div
-          className="flex cursor-pointer items-center text-white"
+          className="flex cursor-pointer justify-center text-white"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Color
@@ -75,7 +87,7 @@ export const columns: ColumnDef<IDiamond>[] = [
     header: ({ column }) => {
       return (
         <div
-          className="flex cursor-pointer items-center text-white"
+          className="flex cursor-pointer justify-center text-white"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Clarify
@@ -92,7 +104,7 @@ export const columns: ColumnDef<IDiamond>[] = [
     header: ({ column }) => {
       return (
         <div
-          className="flex cursor-pointer items-center text-white"
+          className="flex cursor-pointer justify-center text-white"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Certification
@@ -111,7 +123,7 @@ export const columns: ColumnDef<IDiamond>[] = [
     header: ({ column }) => {
       return (
         <div
-          className="flex cursor-pointer items-center text-white"
+          className="flex cursor-pointer justify-center text-white"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Size (mm)
@@ -128,7 +140,7 @@ export const columns: ColumnDef<IDiamond>[] = [
     header: ({ column }) => {
       return (
         <div
-          className="flex cursor-pointer items-center text-white"
+          className="flex cursor-pointer justify-center text-white"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Fluorescence
@@ -145,7 +157,7 @@ export const columns: ColumnDef<IDiamond>[] = [
     header: ({ column }) => {
       return (
         <div
-          className="flex cursor-pointer items-center text-white"
+          className="flex cursor-pointer justify-center text-white"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Quality Of Cut
@@ -158,43 +170,54 @@ export const columns: ColumnDef<IDiamond>[] = [
     },
   },
   {
-    accessorKey: "price",
-    header: ({ column }) => {
+    accessorKey: "quantity",
+    header: () => {
       return (
-        <div
-          className="flex cursor-pointer items-center text-white"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Price (VND)
+        <div className="flex cursor-pointer justify-center text-white">
+          Quantity
         </div>
       );
     },
     cell: (info) => {
-      const value: string = info.getValue() as string;
+      const value: number = info.getValue() as number;
       return <div className="text-center">{value}</div>;
     },
   },
   {
-    accessorKey: "details",
+    accessorKey: "price",
     header: () => {
       return (
-        <div className="flex cursor-pointer items-center text-white">
-          Details
+        <div className="flex cursor-pointer justify-center text-white">
+          Price
         </div>
       );
     },
     cell: (info) => {
-      const diamondId = info.row.original.diamondId;
-
+      const value: number = info.getValue() as number;
       return (
-        <Link
-          to={`/diamond/${diamondId}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center font-semibold text-red-500 transition-all duration-300 hover:translate-x-1"
-        >
-          Details <ChevronRight size={20} />
-        </Link>
+        <div className="text-center font-semibold text-red-500">
+          {formatCurrency(value)}
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "action",
+    header: () => {
+      return (
+        <div className="flex cursor-pointer justify-center text-white">
+          Actions
+        </div>
+      );
+    },
+    cell: () => {
+      return (
+        <div className="flex justify-center">
+          <X
+            size={20}
+            className="cursor-pointer text-red-800 transition-all duration-300 hover:text-red-800/80"
+          />
+        </div>
       );
     },
   },

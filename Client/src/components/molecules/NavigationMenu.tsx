@@ -34,7 +34,9 @@ function NavigationMenu() {
         <div className="flex flex-col gap-y-4 md:hidden">
           <li>
             <Link to="/register">
-              <Button variant="secondary">Register</Button>
+              <Button type="button" variant="secondary">
+                Register
+              </Button>
             </Link>
           </li>
           <li>

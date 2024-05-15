@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { Button } from "@/components/atoms/button";
 import BreadcrumbComponent from "@/components/atoms/BreadcrumbComponent";
-import DiamondClarifyFilter from "@/components/molecules/DiamondClarifyFilter";
-import DiamondColorFilter from "@/components/molecules/DiamondColorFilter";
-import DiamondPriceFilter from "@/components/molecules/DiamondPriceFilter";
-import DiamondShapeFilter from "@/components/molecules/DiamondShapeFilter";
-import DiamondSizeFilter from "@/components/molecules/DiamondSizeFilter";
-import DiamondWeightFilter from "@/components/molecules/DiamondWeightFilter";
-import { DataTable } from "@/components/molecules/DiamondDataTable";
+import DiamondClarifyFilter from "@/components/specific/Diamond/DiamondClarifyFilter";
+import DiamondColorFilter from "@/components/specific/Diamond/DiamondColorFilter";
+import DiamondPriceFilter from "@/components/specific/Diamond/DiamondPriceFilter";
+import DiamondShapeFilter from "@/components/specific/Diamond/DiamondShapeFilter";
+import DiamondSizeFilter from "@/components/specific/Diamond/DiamondSizeFilter";
+import DiamondWeightFilter from "@/components/specific/Diamond/DiamondWeightFilter";
+import { DataTable } from "@/components/specific/Diamond/DiamondDataTable";
 import { diamondData } from "@/constants/diamond";
-import { columns } from "@/components/molecules/DiamondColumns";
+import { columns } from "@/components/specific/Diamond/DiamondColumns";
 import Section from "@/components/organisms/Section";
 import Chip from "@/components/atoms/Chip";
 
@@ -175,10 +175,12 @@ function DiamondPage() {
             </div>
           </div>
           <div className="flex justify-end gap-4">
-            <Button onClick={handleReset} variant="secondary">
+            <Button type="button" onClick={handleReset} variant="secondary">
               Reset
             </Button>
-            <Button onClick={handleFilter}>Filter</Button>
+            <Button type="button" onClick={handleFilter}>
+              Filter
+            </Button>
           </div>
         </div>
         <div />

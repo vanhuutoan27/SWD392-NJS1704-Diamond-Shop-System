@@ -1,6 +1,6 @@
 import { Button } from "@/components/atoms/button";
 import PasswordInput from "@/components/molecules/PasswordInput";
-import { registerSchema } from "@/schemas/register";
+import { registerSchema } from "@/schemas/RegisterForm";
 import { IUser } from "@/types/user.interface";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -55,7 +55,7 @@ function RegisterPage() {
             {errors.password?.message}
           </p>
 
-          <Button type="submit" className="w-full py-6">
+          <Button type="button" className="w-full py-6">
             Register
           </Button>
 

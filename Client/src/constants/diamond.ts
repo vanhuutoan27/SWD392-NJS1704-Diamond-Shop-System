@@ -2,7 +2,8 @@ import { IDiamond } from "@/types/diamond.interface";
 
 export const diamondData: IDiamond[] = [
   {
-    diamondId: "1",
+    diamondId: "D001",
+    image: "https://jemmia.vn/wp-content/uploads/2023/09/image-3-1.png",
     shape: "Pear",
     weight: "1.5",
     color: "F",
@@ -11,10 +12,11 @@ export const diamondData: IDiamond[] = [
     size: "10.5*6.47",
     fluorescence: "None",
     qualityOfCut: "Excellent",
-    price: "270.000.000",
+    price: 270000000,
   },
   {
-    diamondId: "2",
+    diamondId: "D002",
+    image: "https://jemmia.vn/wp-content/uploads/2023/09/image-3-1.png",
     shape: "Round",
     weight: "0.34",
     color: "D",
@@ -23,10 +25,11 @@ export const diamondData: IDiamond[] = [
     size: "4.4",
     fluorescence: "Medium",
     qualityOfCut: "Excellent",
-    price: "1.000.000.000",
+    price: 1000000000,
   },
   {
-    diamondId: "3",
+    diamondId: "D003",
+    image: "https://jemmia.vn/wp-content/uploads/2023/09/image-3-1.png",
     shape: "Round",
     weight: "0.34",
     color: "D",
@@ -35,6 +38,6 @@ export const diamondData: IDiamond[] = [
     size: "4.4",
     fluorescence: "Medium",
     qualityOfCut: "Excellent",
-    price: "120.000.000",
+    price: 120000000,
   },
 ];

@@ -1,7 +1,6 @@
-
 function JewelryPage() {
   return (
-    <div>JewelryPage</div>
+    <div className="container">JewelryPage</div>
   )
 }
 
