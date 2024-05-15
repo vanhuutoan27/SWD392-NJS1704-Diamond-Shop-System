@@ -1,7 +1,7 @@
 import { getProductData } from "@/lib/utils";
-import { ICart, ICartBase, ICartType } from "@/types/cart.interface";
+import { ICart, ICartType } from "@/types/cart.interface";
 
-const rawCartData: ICartBase[] = [
+const rawCartData: Omit<ICart, "price" | "image" | "size" | "jewelryName">[] = [
   {
     cartId: "C001",
     productType: ICartType.Diamond,
