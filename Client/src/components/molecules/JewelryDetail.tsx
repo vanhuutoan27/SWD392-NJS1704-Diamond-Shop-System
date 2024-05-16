@@ -45,8 +45,6 @@ function JewelryDetail({ jewelryDetails }: { jewelryDetails: IJewelry }) {
           />
           {images.length > 1 && isHovered && (
             <>
-              {" "}
-              {/* Conditionally render buttons based on hover state */}
               <button
                 onClick={prevImage}
                 className="absolute left-5 top-1/2 h-full w-10 -translate-y-1/2 text-black"
@@ -63,7 +61,7 @@ function JewelryDetail({ jewelryDetails }: { jewelryDetails: IJewelry }) {
           )}
         </div>
 
-        <div className="flex w-1/2 flex-col gap-3">
+        <div className="flex w-1/2 flex-col gap-3 ml-10">
           <h2 className="text-xl uppercase">{jewelryDetails.jewelryName}</h2>
 
           {salePrice ? (
@@ -173,9 +171,7 @@ function JewelryDetail({ jewelryDetails }: { jewelryDetails: IJewelry }) {
       </div>
 
       {isOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/75"
-        >
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75">
           <div className="relative">
             <X
               onClick={closeModal}
@@ -191,14 +187,14 @@ function JewelryDetail({ jewelryDetails }: { jewelryDetails: IJewelry }) {
               <>
                 <button
                   onClick={prevImage}
-                  className="absolute -left-20 top-1/2 h-10 w-10 -translate-y-1/2 rounded-full bg-slate-950 text-white"
+                  className="absolute -left-20 top-1/2 h-10 w-10 -translate-y-1/2 rounded-full opacity-60 bg-slate-950 text-white hover:bg-[#cecece] hover:text-[#383737]"
                 >
                   <p className=" text-center text-xl">{"<"}</p>
                 </button>
 
                 <button
                   onClick={nextImage}
-                  className="absolute -right-20 top-1/2 h-10 w-10 -translate-y-1/2 rounded-full bg-slate-950 text-white"
+                  className="absolute -right-20 top-1/2 h-10 w-10 -translate-y-1/2 rounded-full opacity-60 bg-slate-950 text-white hover:bg-[#cecece] hover:text-[#383737]"
                 >
                   <p className=" text-center text-xl">{">"}</p>
                 </button>

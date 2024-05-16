@@ -29,7 +29,7 @@ function DiamondDetail({ diamondDetails }: { diamondDetails: IDiamond }) {
           />
         </div>
 
-        <div className="flex w-1/2 flex-col gap-3">
+        <div className="flex w-1/2 flex-col gap-3 ml-10">
           <h2 className="text-xl uppercase">
             Natural Diamond {diamondDetails.size}mm
           </h2>
