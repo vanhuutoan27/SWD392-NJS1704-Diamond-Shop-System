@@ -68,7 +68,7 @@ function App() {
         />
 
         <Route
-          path="/jewelry:id"
+          path="/jewelry/:jewelryId"
           element={
             <Suspense fallback={<Loader />}>
               <JewelryDetail />

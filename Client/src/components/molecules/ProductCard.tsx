@@ -24,30 +24,57 @@ function ProductCard({
 
   return (
     <div className="ml-4 rounded-md border-2 border-input p-4 shadow-md">
-      <Link
-        to={`/diamond/${productId}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group relative"
-        onMouseEnter={() => setIsHover(true)}
-        onMouseLeave={() => setIsHover(false)}
-      >
-        {image2 && isHover ? (
-          <img src={image2} className="h-48 w-full rounded object-cover" />
-        ) : (
-          <img src={image} className="h-48 w-full rounded object-cover" />
-        )}
+      {size ? (
         <Link
           to={`/diamond/${productId}`}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${isHover ? "opacity-1 -bottom-4" : "-bottom-6 opacity-0"} absolute left-1/2 -translate-x-1/2 transition-all duration-300`}
+          className="group relative"
+          onMouseEnter={() => setIsHover(true)}
+          onMouseLeave={() => setIsHover(false)}
         >
-          <Button variant={"secondary"} className="bg-white/80">
-            View Details
-          </Button>
+          {image2 && isHover ? (
+            <img src={image2} className="h-48 w-full rounded object-cover" />
+          ) : (
+            <img src={image} className="h-48 w-full rounded object-cover" />
+          )}
+          <Link
+            to={`/diamond/${productId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${isHover ? "opacity-1 -bottom-4" : "-bottom-6 opacity-0"} absolute left-1/2 -translate-x-1/2 transition-all duration-300`}
+          >
+            <Button variant={"secondary"} className="bg-white/80">
+              View Details
+            </Button>
+          </Link>
         </Link>
-      </Link>
+      ) : (
+        <Link
+          to={`/jewelry/${productId}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative"
+          onMouseEnter={() => setIsHover(true)}
+          onMouseLeave={() => setIsHover(false)}
+        >
+          {image2 && isHover ? (
+            <img src={image2} className="h-48 w-full rounded object-cover" />
+          ) : (
+            <img src={image} className="h-48 w-full rounded object-cover" />
+          )}
+          <Link
+            to={`/jewelry/${productId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${isHover ? "opacity-1 -bottom-4" : "-bottom-6 opacity-0"} absolute left-1/2 -translate-x-1/2 transition-all duration-300`}
+          >
+            <Button variant={"secondary"} className="bg-white/80">
+              View Details
+            </Button>
+          </Link>
+        </Link>
+      )}
       <div className="mt-8 text-center">
         <p className="mb-1 text-xs text-gray-500">{productId}</p>
         <p className="h-12">
