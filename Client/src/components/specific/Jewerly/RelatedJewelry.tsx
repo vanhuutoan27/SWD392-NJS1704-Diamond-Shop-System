@@ -1,6 +1,6 @@
 import ProductCard from "@/components/molecules/ProductCard";
 import Section from "@/components/organisms/Section";
-import { IDiamond } from "@/types/diamond.interface";
+import { IJewelry } from "@/types/jewelry.interface";
 
 import {
   Carousel,
@@ -8,14 +8,14 @@ import {
   CarouselItem,
 } from "@/components/atoms/carousel";
 
-interface RelatedProductsProps {
-  relatedProducts: IDiamond[];
+interface RelatedJewelryProps {
+  relatedJewelry: IJewelry[];
 }
 
-function RelatedProducts({ relatedProducts }: RelatedProductsProps) {
+function RelatedJewelry({ relatedJewelry }: RelatedJewelryProps) {
   return (
     <div className="mt-10">
-      <Section pageName={"Related Products"} />
+      <Section pageName={"Related Jewelry"} />
 
       <Carousel
         opts={{
@@ -24,16 +24,17 @@ function RelatedProducts({ relatedProducts }: RelatedProductsProps) {
         className="w-full"
       >
         <CarouselContent>
-          {relatedProducts.map((diamond) => (
+          {relatedJewelry.map((jewelry) => (
             <CarouselItem
-              key={diamond.diamondId}
+              key={jewelry.jewelryId}
               className="p-2 md:basis-1/2 lg:basis-1/4"
             >
               <ProductCard
-                productId={diamond.diamondId}
-                image={diamond.image}
-                size={diamond.size}
-                price={diamond.price}
+                productId={jewelry.jewelryId}
+                image={jewelry.image}
+                image2={jewelry.image2}
+                jewelryName={jewelry.jewelryName}
+                price={jewelry.price}
               />
             </CarouselItem>
           ))}
@@ -43,4 +44,4 @@ function RelatedProducts({ relatedProducts }: RelatedProductsProps) {
   );
 }
 
-export default RelatedProducts;
+export default RelatedJewelry;

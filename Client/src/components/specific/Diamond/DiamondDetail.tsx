@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { IDiamond } from "@/types/diamond.interface";
 import { formatCurrency } from "@/lib/utils";
-import Section from "../organisms/Section";
-import { Button } from "../atoms/button";
+import Section from "../../organisms/Section";
+import { Button } from "../../atoms/button";
 import { X } from "lucide-react";
 
 function DiamondDetail({ diamondDetails }: { diamondDetails: IDiamond }) {
   const [isOpen, setIsOpen] = useState(false);
-  const salePrice = "100.000.000";
+  const salePrice = 100000000;
 
   const openModal = () => {
     setIsOpen(true);
@@ -36,7 +36,9 @@ function DiamondDetail({ diamondDetails }: { diamondDetails: IDiamond }) {
 
           {salePrice ? (
             <span className="flex">
-              <span className="mr-2 text-base font-semibold">{salePrice}</span>
+              <span className="mr-2 text-base font-semibold">
+                {formatCurrency(salePrice)}
+              </span>
               <span className=" font-medium text-[#bababa] line-through">
                 {formatCurrency(diamondDetails.price)}
               </span>
@@ -44,7 +46,7 @@ function DiamondDetail({ diamondDetails }: { diamondDetails: IDiamond }) {
           ) : (
             <>
               <span className="mr-2 text-base font-semibold">
-                {diamondDetails.price}
+                {formatCurrency(diamondDetails.price)}
               </span>
             </>
           )}
@@ -67,7 +69,7 @@ function DiamondDetail({ diamondDetails }: { diamondDetails: IDiamond }) {
         </div>
       </div>
 
-      <Section pageName={"PRODUCT DETAILS"} />
+      <Section pageName={"Diamond Details"} />
 
       <div className="w-full">
         <table className="w-full border-collapse">

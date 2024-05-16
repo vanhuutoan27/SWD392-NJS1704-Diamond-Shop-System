@@ -11,36 +11,29 @@ function QualityCommitment() {
         <li className="flex items-start text-[#888]">
           <ShieldCheck className="text-red-500" />
           <span className="ml-5">
-            100% of {projectName}'s diamonds are selected with strict standards
-            to ensure customers own diamonds that will last over time.
+            All jewelry is completely accurate in terms of gold content and
+            weight, strictly tested by spectroscopy.
           </span>
         </li>
         <li className="flex items-start text-[#888]">
           <ShieldCheck className="text-red-500" />
           <span className="ml-5">
-            100% of diamonds are imported officially, ensuring customer assets
-            are safe.
+            100% of diamond jewelry is certified to meet GIA standards.
           </span>
         </li>
         <li className="flex items-start text-[#888]">
           <ShieldCheck className="text-red-500" />
           <span className="ml-5">
-            100% of diamonds are assessed by the Gemological Institute of
-            America (GIA), authenticating their quality.
+            All jewelry products at {projectName} have full invoices and
+            documents proving origin and full information about gold content and
+            weight.
           </span>
         </li>
         <li className="flex items-start text-[#888]">
           <ShieldCheck className="text-red-500" />
           <span className="ml-5">
-            All diamond products at {projectName} have full invoices and
-            documents proving their origin.
-          </span>
-        </li>
-        <li className="flex items-start text-[#888]">
-          <ShieldCheck className="text-red-500" />
-          <span className="ml-5">
-            Reasonable purchasing and exchange policy, lifetime warranty policy
-            for all diamond products at {projectName}.
+            All jewelry products at Jemmia have full invoices and documents
+            proving origin and full information about gold content and weight.
           </span>
         </li>
       </ul>

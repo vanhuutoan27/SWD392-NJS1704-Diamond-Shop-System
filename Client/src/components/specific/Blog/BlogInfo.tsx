@@ -10,10 +10,10 @@ const BlogInfo: React.FC = () => {
     <div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
       {blogData.map((blog, index) => (
         <div
-          key={blog.blogID}
+          key={blog.blogId}
           className="overflow-hidden rounded-md bg-white shadow-md"
         >
-          <Link to={`/blog/${blog.blogID}`}>
+          <Link to={`/blog/${blog.blogId}`}>
             <img
               src={blog.img}
               alt={blog.title}
@@ -35,7 +35,7 @@ const BlogInfo: React.FC = () => {
             <p className="flex justify-self-start text-sm text-gray-800">
               {blog.intro}
             </p>
-            <Link to={`/blog/${blog.blogID}`} className="mt-8 flex justify-end">
+            <Link to={`/blog/${blog.blogId}`} className="mt-8 flex justify-end">
               <Button type="button">Read More</Button>
             </Link>
           </div>

@@ -113,7 +113,7 @@ function App() {
         />
 
         <Route
-          path="/blog/:blogID"
+          path="/blog/:blogId"
           element={
             <Suspense fallback={<Loader />}>
               <BlogDetail />

@@ -1,17 +1,14 @@
-import React from "react";
 import { useParams } from "react-router-dom";
 import { blogData } from "../../constants/blog"; // Adjust the import path as necessary
 import BreadcrumbComponent from "@/components/atoms/BreadcrumbComponent";
 import Section from "@/components/organisms/Section";
 import { Loader } from "@/components/atoms/Loader";
 
-const BlogDetailPage: React.FC = () => {
-  const { blogID } = useParams<{ blogID: string }>();
+function BlogDetailPage() {
+  const { blogId } = useParams<{ blogId: string }>();
 
-  // Find the blog post with the matching ID
-  const blogPost = blogData.find((blog) => blog.blogID === blogID);
+  const blogPost = blogData.find((blog) => blog.blogId === blogId);
 
-  // If no matching blog post is found, display a message
   if (!blogPost) {
     return <Loader />;
   }
@@ -44,6 +41,6 @@ const BlogDetailPage: React.FC = () => {
       </div>
     </div>
   );
-};
+}
 
 export default BlogDetailPage;

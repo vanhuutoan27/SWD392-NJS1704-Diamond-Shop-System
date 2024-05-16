@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
 import BreadcrumbComponent from "@/components/atoms/BreadcrumbComponent";
-import DiamondDetail from "@/components/molecules/DiamondDetail";
 import { diamondData } from "../../constants/diamond";
 import { Loader } from "@/components/atoms/Loader";
 import QualityCommitment from "@/components/specific/Diamond/QualityCommitment";
 import BuyingGuide from "@/components/specific/Diamond/BuyingGuide";
-import RelatedProducts from "@/components/specific/Diamond/RelatedProducts";
+import RelatedProducts from "@/components/specific/Diamond/RelatedDiamonds";
 import DiamondBanner from "@/components/specific/Diamond/DiamondBanner";
+import DiamondDetail from "@/components/specific/Diamond/DiamondDetail";
 
 function DiamondDetailPage() {
   const { diamondId } = useParams<{ diamondId: string }>();
@@ -38,7 +38,7 @@ function DiamondDetailPage() {
 
       <DiamondBanner />
 
-      <RelatedProducts relatedProducts={relatedProducts} />
+      <RelatedProducts relatedDiamonds={relatedProducts} />
     </div>
   );
 }

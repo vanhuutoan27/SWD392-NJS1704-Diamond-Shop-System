@@ -1,5 +1,5 @@
 export interface  IBlog{
-  blogID: string;
+  blogId: string;
   title: string;
   img: string;
   createOn: string;
