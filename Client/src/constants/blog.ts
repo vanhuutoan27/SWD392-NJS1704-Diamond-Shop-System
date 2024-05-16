@@ -5,8 +5,8 @@ export const blogData: IBlog[] = [
     blogId: "1",
     title: "The Exquisite Beauty of Pear Diamonds",
     img: "https://cdn.pixabay.com/photo/2016/06/23/18/56/diamond-1475978_640.png",
-    createOn: "10/5/2023",
-    createBy: "Jane Austen",
+    createdOn: "10/5/2023",
+    createdBy: "Jane Austen",
     intro:
       "A rare and exquisite beauty, the Pear diamond boasts a unique elegance that captures the essence of refinement.",
     description:
@@ -16,8 +16,8 @@ export const blogData: IBlog[] = [
     blogId: "2",
     title: "Radiant Cut",
     img: "https://cdn.pixabay.com/photo/2017/08/07/04/24/diamonds-2599816_640.jpg",
-    createOn: "10/5/2023",
-    createBy: "William Shakespeare",
+    createdOn: "10/5/2023",
+    createdBy: "William Shakespeare",
     intro:
       "Radiating beauty and brilliance, the Diamond Beautiful is a masterpiece of nature's finest work.",
     description:
@@ -27,8 +27,8 @@ export const blogData: IBlog[] = [
     blogId: "3",
     title: "The Magnificence of Emerald Cut Diamonds",
     img: "https://cdn.pixabay.com/photo/2016/02/08/07/42/diamond-1186139_640.jpg",
-    createOn: "10/5/2023",
-    createBy: "Charles Dickens",
+    createdOn: "10/5/2023",
+    createdBy: "Charles Dickens",
     intro:
       "As enchanting as a starry night sky, the Radiant Cut diamond exudes a celestial beauty that captivates the imagination.",
     description:
@@ -38,8 +38,8 @@ export const blogData: IBlog[] = [
     blogId: "4",
     title: "The Allure of Cushion Cut Diamonds",
     img: "https://cdn.pixabay.com/photo/2013/06/08/19/15/diamond-123338_640.jpg",
-    createOn: "10/5/2023",
-    createBy: "J.K. Rowling",
+    createdOn: "10/5/2023",
+    createdBy: "J.K. Rowling",
     intro:
       "Embodying the essence of love and passion, the Heart Shape diamond is a timeless symbol of romance and devotion.",
     description:
@@ -49,8 +49,8 @@ export const blogData: IBlog[] = [
     blogId: "5",
     title: "Princess Cut",
     img: "https://cdn.pixabay.com/photo/2024/04/22/12/46/ai-generated-8712522_640.jpg",
-    createOn: "10/5/2023",
-    createBy: "Ernest Hemingway",
+    createdOn: "10/5/2023",
+    createdBy: "Ernest Hemingway",
     intro:
       "Fit for royalty, the Princess Cut diamond is a regal and majestic gemstone that commands attention with its bold beauty and undeniable allure.",
     description:

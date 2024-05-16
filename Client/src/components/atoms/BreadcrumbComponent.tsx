@@ -12,6 +12,7 @@ type BreadcrumbComponentProps = {
   lastPage: string;
   lastPageUrl: string;
   currentPage: string;
+  currentPageUrl?: string;
   currentDetailPage?: string;
 };
 
@@ -19,6 +20,7 @@ function BreadcrumbComponent({
   lastPage,
   lastPageUrl,
   currentPage,
+  currentPageUrl,
   currentDetailPage,
 }: BreadcrumbComponentProps) {
   return (
@@ -36,15 +38,16 @@ function BreadcrumbComponent({
           <BreadcrumbSeparator>
             <Slash />
           </BreadcrumbSeparator>
-          <BreadcrumbItem>
-            <BreadcrumbPage
-              className={`text-primary ${currentDetailPage ? "cursor-pointer text-gray-800 transition-all duration-300 hover:text-[#888]" : ""}`}
-            >
-              {currentPage}
-            </BreadcrumbPage>
-          </BreadcrumbItem>
-          {currentDetailPage && (
+          {currentDetailPage ? (
             <>
+              <BreadcrumbItem>
+                <BreadcrumbLink
+                  href={currentPageUrl}
+                  className={`text-primary ${currentDetailPage ? "cursor-pointer text-gray-800 transition-all duration-300 hover:text-[#888]" : ""}`}
+                >
+                  {currentPage}
+                </BreadcrumbLink>
+              </BreadcrumbItem>
               <BreadcrumbSeparator>
                 <Slash />
               </BreadcrumbSeparator>
@@ -54,6 +57,12 @@ function BreadcrumbComponent({
                 </BreadcrumbPage>
               </BreadcrumbItem>
             </>
+          ) : (
+            <BreadcrumbItem>
+              <BreadcrumbPage className="font-semibold text-primary">
+                {currentPage}
+              </BreadcrumbPage>
+            </BreadcrumbItem>
           )}
         </BreadcrumbList>
       </Breadcrumb>

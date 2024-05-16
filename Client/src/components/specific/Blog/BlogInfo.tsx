@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { blogData } from "../../../constants/blog";
 import { Button } from "@/components/atoms/button";
 import { Link } from "react-router-dom";
+import { formatDate } from "@/lib/utils";
 
-const BlogInfo: React.FC = () => {
+function BlogInfo() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
@@ -26,8 +27,10 @@ const BlogInfo: React.FC = () => {
           </Link>
           <div className="p-4">
             <div className="mb-2 flex justify-between text-sm text-gray-600">
-              <span className="font-light">Created on: {blog.createOn}</span>
-              <span className="font-light">By: {blog.createBy}</span>
+              <span className="text-[#888]">
+                Created on: {formatDate(blog.createdOn)}
+              </span>
+              <span className="text-[#888]">By: {blog.createdBy}</span>
             </div>
             <div className="mb-2 border-b-2 border-neutral-100">
               <p className="text-xl font-medium">{blog.title}</p>
@@ -43,6 +46,6 @@ const BlogInfo: React.FC = () => {
       ))}
     </div>
   );
-};
+}
 
 export default BlogInfo;

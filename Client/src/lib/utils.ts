@@ -9,10 +9,12 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+// Scroll to top
 export const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
+// Calculate cart total
 export const calculateCartTotal = (cartItems: ICart[]) => {
   return cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -20,10 +22,24 @@ export const calculateCartTotal = (cartItems: ICart[]) => {
   );
 };
 
+// Format currency
 export const formatCurrency = (amount: number) => {
   return new Intl.NumberFormat("vi-VN").format(amount) + " VND";
 };
 
+// Format date
+export const formatDate = (dateStr: string): string => {
+  const date = new Date(dateStr);
+  if (isNaN(date.getTime())) {
+    return "Invalid Date";
+  }
+  const day = date.getDate().toString().padStart(2, "0");
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const year = date.getFullYear();
+  return `${month}/${day}/${year}`;
+};
+
+// Format date time
 export function getProductData(cartItem: ICart) {
   switch (cartItem.productType) {
     case ICartType.Diamond:
@@ -35,6 +51,7 @@ export function getProductData(cartItem: ICart) {
   }
 }
 
+// Get user role
 export function getUserRole(role: IUserRole): string {
   switch (role) {
     case IUserRole.Customer:
@@ -52,6 +69,7 @@ export function getUserRole(role: IUserRole): string {
   }
 }
 
+// Get user status
 export function getUserStatus(status: IUserStatus): string {
   switch (status) {
     case IUserStatus.Active:

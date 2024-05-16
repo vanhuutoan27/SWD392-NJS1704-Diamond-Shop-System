@@ -2,8 +2,8 @@ export interface  IBlog{
   blogId: string;
   title: string;
   img: string;
-  createOn: string;
-  createBy: string;
+  createdOn: string;
+  createdBy: string;
   description: string;
   intro: string;
 }
