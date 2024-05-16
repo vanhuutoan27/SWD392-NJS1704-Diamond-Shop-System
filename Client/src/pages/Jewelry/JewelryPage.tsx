@@ -1,9 +1,9 @@
-import ProductCard from "@/components/molecules/ProductCard";
-import { jewelryData } from "@/constants/jewelry";
+// import ProductCard from "@/components/molecules/ProductCard";
+// import { jewelryData } from "@/constants/jewelry";
 import { projectName } from "@/lib/constants";
 
 function JewelryPage() {
-  const jewelries = jewelryData;
+  // const jewelries = jewelryData;
 
   return (
     <div className="container">
