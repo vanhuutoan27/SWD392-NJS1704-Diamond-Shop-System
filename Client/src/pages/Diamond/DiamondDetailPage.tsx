@@ -15,7 +15,9 @@ function DiamondDetailPage() {
     (diamond) => diamond.diamondId === diamondId,
   );
 
-  const relatedProducts = diamondData;
+  const relatedProducts = diamondData.filter(
+    (diamond) => diamond.diamondId !== diamondId,
+  );
 
   if (!diamondDetails) {
     return <Loader />;

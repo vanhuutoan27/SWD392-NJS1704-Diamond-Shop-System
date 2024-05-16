@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "../atoms/button";
+import { scrollToTop } from "@/lib/utils";
 
 function NavigationMenu() {
   const location = useLocation();
@@ -19,7 +20,7 @@ function NavigationMenu() {
     <>
       <ul className="flex flex-col gap-y-4 px-6 py-4 md:flex-row md:items-center md:gap-8 md:px-0">
         {Menus.map((menu, index) => (
-          <Link to={menu.link} key={index}>
+          <Link to={menu.link} key={index} onClick={scrollToTop}>
             <li
               key={index}
               className={`text-md mt-1 flex cursor-pointer items-center text-[14px] font-semibold uppercase text-primary transition-all duration-300 hover:text-[#888] ${
