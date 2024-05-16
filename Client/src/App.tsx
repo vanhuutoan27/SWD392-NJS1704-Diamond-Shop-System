@@ -16,6 +16,7 @@ function App() {
   const DiamondDetail = lazy(() => import("./pages/Diamond/DiamondDetailPage"));
   const Cart = lazy(() => import("./pages/Cart/CartPage"));
   const Blog = lazy(() => import("./pages/Blog/BlogPage"));
+  const BlogDetail = lazy(() => import("./pages/Blog/BlogDetailPage"));
   const Contact = lazy(() => import("./pages/Contact/ContactPage"));
 
   return (
@@ -107,6 +108,15 @@ function App() {
           element={
             <Suspense fallback={<Loader />}>
               <Blog />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/blog/:blogID"
+          element={
+            <Suspense fallback={<Loader />}>
+              <BlogDetail />
             </Suspense>
           }
         />
