@@ -30,7 +30,7 @@ function RelatedProducts({ relatedProducts }: RelatedProductsProps) {
               className="p-2 md:basis-1/2 lg:basis-1/4"
             >
               <ProductCard
-                diamondId={diamond.diamondId}
+                productId={diamond.diamondId}
                 image={diamond.image}
                 size={diamond.size}
                 price={diamond.price}

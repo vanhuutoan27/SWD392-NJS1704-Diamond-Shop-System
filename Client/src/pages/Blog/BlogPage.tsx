@@ -12,6 +12,7 @@ function BlogPage() {
       />
 
       <Section pageName={"Blog"} />
+      
       <BlogInfo />
     </div>
   );

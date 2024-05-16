@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { blogData } from "../../constants/blog"; // Adjust the import path as necessary
 import BreadcrumbComponent from "@/components/atoms/BreadcrumbComponent";
 import Section from "@/components/organisms/Section";
+import { Loader } from "@/components/atoms/Loader";
 
 const BlogDetailPage: React.FC = () => {
   const { blogID } = useParams<{ blogID: string }>();
@@ -12,7 +13,7 @@ const BlogDetailPage: React.FC = () => {
 
   // If no matching blog post is found, display a message
   if (!blogPost) {
-    return <div>Blog post not found!</div>;
+    return <Loader />;
   }
 
   return (
