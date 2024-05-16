@@ -17,6 +17,6 @@ export const jewelryData: IJewelry[] = [
     goldKarat: "18K",
     goldWeight: "0.86",
     price: 20210400,
-    status: IJewelryStatus.AVAILABLE,
+    status: IJewelryStatus.Available,
   },
 ];

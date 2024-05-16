@@ -1,4 +1,5 @@
 import { projectName } from "@/lib/constants";
+import { scrollToTop } from "@/lib/utils";
 import {
   Circle,
   Facebook,
@@ -51,7 +52,9 @@ function Footer() {
         <ul className="col-span-12 mb-5 sm:col-span-12 lg:col-span-6 lg:mb-0">
           <div className="mb-4 uppercase">
             <h2 className="cursor-pointer select-none text-4xl font-bold">
-              <Link to="/">{projectName}</Link>
+              <Link to="/" onClick={scrollToTop}>
+                {projectName}
+              </Link>
             </h2>
             <h4 className="select-none font-semibold tracking-widest">
               Diamond Shop System
@@ -74,6 +77,7 @@ function Footer() {
           {quickLinks.map((quickLink) => (
             <li key={quickLink.name}>
               <Link
+                onClick={scrollToTop}
                 to={quickLink.link}
                 className="flex items-center gap-2 text-sm leading-8 transition-all duration-300 hover:text-[#888]"
               >
@@ -88,6 +92,7 @@ function Footer() {
           {Informations.map((Information) => (
             <li key={Information.name}>
               <Link
+                onClick={scrollToTop}
                 to={Information.link}
                 className="flex items-center gap-2 text-sm leading-8 transition-all duration-300 hover:text-[#888]"
               >
@@ -102,6 +107,7 @@ function Footer() {
           {socialMedias.map((socialMedia) => (
             <li key={socialMedia.name}>
               <Link
+                onClick={scrollToTop}
                 to={socialMedia.link}
                 className="flex items-center gap-2 text-sm leading-[45px] transition-all duration-300 hover:text-[#888]"
               >
@@ -121,6 +127,7 @@ function Footer() {
         <div>
           {socialMedias.map((socialMedia) => (
             <Link
+              onClick={scrollToTop}
               to={socialMedia.link}
               key={socialMedia.name}
               className="mx-2 inline-flex items-center rounded-full bg-primary p-2 text-[#888] transition-all duration-300 hover:bg-gray-800 hover:text-slate-100"

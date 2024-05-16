@@ -7,7 +7,7 @@ import { cartData } from "@/constants/cart";
 import { ICartType } from "@/types/cart.interface";
 import { Button } from "@/components/atoms/button";
 import { Link } from "react-router-dom";
-import { calculateCartTotal, formatCurrency } from "@/lib/utils";
+import { calculateCartTotal, formatCurrency, scrollToTop } from "@/lib/utils";
 import { ScrollArea, ScrollBar } from "@/components/atoms/scroll-area";
 
 interface renderTabContentProps {
@@ -95,12 +95,12 @@ function CartTable() {
       {tabData.map(renderTabContent)}
 
       <div className="flex w-full justify-end gap-4">
-        <Link to="/jewelry">
+        <Link to="/jewelry" onClick={scrollToTop}>
           <Button type="button" variant={"secondary"}>
             Continue Shopping
           </Button>
         </Link>
-        <Link to="/checkout">
+        <Link to="/checkout" onClick={scrollToTop}>
           <Button type="button">Checkout</Button>
         </Link>
       </div>

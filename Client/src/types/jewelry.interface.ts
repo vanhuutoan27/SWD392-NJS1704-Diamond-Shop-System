@@ -19,6 +19,7 @@ export interface IJewelry {
 }
 
 export const enum IJewelryStatus {
-  AVAILABLE = "Available",
-  UNAVAILABLE = "Unavailable",
+  Available = "Available",
+  OutOfStock = "Out of stock",
+  ComingSoon = "Coming soon",
 }

@@ -9,6 +9,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
 export const calculateCartTotal = (cartItems: ICart[]) => {
   return cartItems.reduce(
     (total, item) => total + item.price * item.quantity,

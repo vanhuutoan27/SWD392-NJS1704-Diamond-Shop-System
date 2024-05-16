@@ -8,7 +8,7 @@ import {
 } from "@/components/atoms/dropdown-menu";
 import { Separator } from "@/components/atoms/separator";
 import { cartData } from "@/constants/cart";
-import { calculateCartTotal, formatCurrency } from "@/lib/utils";
+import { calculateCartTotal, formatCurrency, scrollToTop } from "@/lib/utils";
 import { ShoppingCart, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -39,7 +39,13 @@ function CartButton() {
                 className="flex w-full items-center gap-4"
               >
                 <div className="flex h-14 w-14 items-center">
-                  <Link to={`/product/${cartItem.productId}`}>
+                  <Link
+                    to={
+                      cartItem.productType === "Diamond"
+                        ? `/diamond/${cartItem.productId}`
+                        : `/jewelry/${cartItem.productId}`
+                    }
+                  >
                     <img
                       src={cartItem.image}
                       alt={
@@ -56,7 +62,11 @@ function CartButton() {
                   <div>
                     <div>
                       <Link
-                        to={`/product/${cartItem.productId}`}
+                        to={
+                          cartItem.productType === "Diamond"
+                            ? `/diamond/${cartItem.productId}`
+                            : `/jewelry/${cartItem.productId}`
+                        }
                         className="mr-2 text-base font-semibold uppercase transition-all duration-300 hover:text-[#888]"
                       >
                         {cartItem.productType === "Diamond"
@@ -97,12 +107,12 @@ function CartButton() {
             </div>
 
             <div className="flex w-full justify-end gap-4">
-              <Link to="/cart">
+              <Link to="/cart" onClick={scrollToTop}>
                 <Button type="button" variant={"secondary"}>
                   View Cart
                 </Button>
               </Link>
-              <Link to="/checkout">
+              <Link to="/checkout" onClick={scrollToTop}>
                 <Button type="button">Checkout</Button>
               </Link>
             </div>
