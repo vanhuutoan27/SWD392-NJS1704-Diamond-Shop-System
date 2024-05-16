@@ -143,10 +143,7 @@ function DiamondDetail({ diamondDetails }: { diamondDetails: IDiamond }) {
       </div>
 
       {isOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/75"
-          onClick={closeModal}
-        >
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75">
           <div className="relative">
             <X
               onClick={closeModal}

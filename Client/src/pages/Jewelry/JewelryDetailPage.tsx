@@ -20,7 +20,6 @@ function JewelryDetailPage() {
   if (!jewelryDetails) {
     return <Loader />;
   }
-
   return (
     <div className="container">
       <BreadcrumbComponent
