@@ -30,8 +30,8 @@ function DiamondDetail({ diamondDetails }: { diamondDetails: IDiamond }) {
         </div>
 
         <div className="flex w-1/2 flex-col gap-3">
-          <h2 className="text-xl">
-            KIM CƯƠNG TỰ NHIÊN {diamondDetails.size}MM
+          <h2 className="text-xl uppercase">
+            Natural Diamond {diamondDetails.size}mm
           </h2>
 
           {salePrice ? (
@@ -73,7 +73,7 @@ function DiamondDetail({ diamondDetails }: { diamondDetails: IDiamond }) {
         <table className="w-full border-collapse">
           <tbody>
             <tr>
-              <td className="w-[300px] border-2 border-input px-4 py-2 ">
+              <td className="w-[300px] border-2 border-input px-4 py-2 text-[#888]">
                 Shape
               </td>
               <td className="border-2 border-input px-4 py-2 italic">
@@ -81,15 +81,15 @@ function DiamondDetail({ diamondDetails }: { diamondDetails: IDiamond }) {
               </td>
             </tr>
             <tr>
-              <td className="border-2 border-input bg-slate-100 px-4 py-2 ">
+              <td className="border-2 border-input bg-slate-50 px-4 py-2 text-[#888]">
                 Weight
               </td>
-              <td className="border-2 border-input bg-slate-100 px-4 py-2 italic">
+              <td className="border-2 border-input bg-slate-50 px-4 py-2 italic">
                 {diamondDetails.weight}
               </td>
             </tr>
             <tr>
-              <td className="w-[300px] border-2 border-input px-4 py-2 ">
+              <td className="w-[300px] border-2 border-input px-4 py-2 text-[#888]">
                 Color
               </td>
               <td className="border-2 border-input px-4 py-2 italic">
@@ -97,15 +97,15 @@ function DiamondDetail({ diamondDetails }: { diamondDetails: IDiamond }) {
               </td>
             </tr>
             <tr>
-              <td className="border-2 border-input bg-slate-100 px-4 py-2 ">
+              <td className="border-2 border-input bg-slate-50 px-4 py-2 text-[#888]">
                 Clarity
               </td>
-              <td className="border-2 border-input bg-slate-100 px-4 py-2 italic">
+              <td className="border-2 border-input bg-slate-50 px-4 py-2 italic">
                 {diamondDetails.clarity}
               </td>
             </tr>
             <tr>
-              <td className="w-[300px] border-2 border-input px-4 py-2 ">
+              <td className="w-[300px] border-2 border-input px-4 py-2 text-[#888]">
                 Certification
               </td>
               <td className="border-2 border-input px-4 py-2 italic">
@@ -113,15 +113,15 @@ function DiamondDetail({ diamondDetails }: { diamondDetails: IDiamond }) {
               </td>
             </tr>
             <tr>
-              <td className="border-2 border-input bg-slate-100 px-4 py-2 ">
+              <td className="border-2 border-input bg-slate-50 px-4 py-2 text-[#888]">
                 Size
               </td>
-              <td className="border-2 border-input bg-slate-100 px-4 py-2 italic">
+              <td className="border-2 border-input bg-slate-50 px-4 py-2 italic">
                 {diamondDetails.size}
               </td>
             </tr>
             <tr>
-              <td className="w-[300px] border-2 border-input px-4 py-2">
+              <td className="w-[300px] border-2 border-input px-4 py-2 text-[#888]">
                 Fluorescence
               </td>
               <td className="border-2 border-input px-4 py-2 italic">
@@ -129,10 +129,10 @@ function DiamondDetail({ diamondDetails }: { diamondDetails: IDiamond }) {
               </td>
             </tr>
             <tr>
-              <td className="border-2 border-input bg-slate-100 px-4 py-2">
+              <td className="border-2 border-input bg-slate-50 px-4 py-2 text-[#888]">
                 Quality of Cut
               </td>
-              <td className="border-2 border-input bg-slate-100 px-4 py-2 italic">
+              <td className="border-2 border-input bg-slate-50 px-4 py-2 italic">
                 {diamondDetails.qualityOfCut}
               </td>
             </tr>

@@ -25,6 +25,7 @@ function DiamondPage() {
   const [selectedClarity, setSelectedClarity] = useState("");
 
   const [filteredDiamonds, setFilteredDiamonds] = useState(diamondData);
+  const [rowsToShow, setRowsToShow] = useState(5);
 
   // Handlers for each filter
   const handlePriceSelection = (price: string) =>
@@ -35,6 +36,10 @@ function DiamondPage() {
   const handleColorSelection = (color: string) => setSelectedColor(color);
   const handleClaritySelection = (clarity: string) =>
     setSelectedClarity(clarity);
+
+  const handleShowMore = () => {
+    setRowsToShow((prev) => prev + 5);
+  };
 
   // Function to parse price range
   const parsePriceRange = (range: string) => {
@@ -102,6 +107,7 @@ function DiamondPage() {
     });
 
     setFilteredDiamonds(filteredData);
+    setRowsToShow(5);
   };
 
   // Function to reset all filters
@@ -115,6 +121,7 @@ function DiamondPage() {
     setSelectedClarity("");
 
     setFilteredDiamonds(diamondData);
+    setRowsToShow(5);
 
     setTimeout(() => {
       setIsReset(false);
@@ -189,7 +196,20 @@ function DiamondPage() {
             ))}
           </div>
 
-          <DataTable columns={columns} data={filteredDiamonds} />
+          <DataTable
+            columns={columns}
+            data={filteredDiamonds.slice(0, rowsToShow)}
+          />
+
+          {filteredDiamonds.length > rowsToShow && (
+            <div className="mt-4 flex items-center justify-center gap-4">
+              <p className="text-sm text-[#888]">
+                Showing {Math.min(rowsToShow, filteredDiamonds.length)} of{" "}
+                {filteredDiamonds.length}
+              </p>
+              <Button onClick={handleShowMore}>Show More</Button>
+            </div>
+          )}
         </div>
       </div>
     </div>

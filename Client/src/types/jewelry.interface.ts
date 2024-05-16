@@ -6,6 +6,7 @@ export interface IJewelry {
   jewelryCategory: string;
   jewelryName: string;
   image: string;
+  image2: string;
   price: number;
   mainStoneSize: string;
   sideStoneType: string;

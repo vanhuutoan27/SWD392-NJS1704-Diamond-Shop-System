@@ -41,7 +41,7 @@ export const cartJewelryColumns: ColumnDef<ICart>[] = [
     accessorKey: "jewelryName",
     header: () => {
       return (
-        <div className="flex cursor-pointer justify-center text-white">
+        <div className="flex cursor-pointer justify-center text-xs text-white">
           Jewelry Name
         </div>
       );
@@ -67,7 +67,7 @@ export const cartJewelryColumns: ColumnDef<ICart>[] = [
     accessorKey: "mainStoneSize",
     header: () => {
       return (
-        <div className="flex cursor-pointer justify-center text-white">
+        <div className="flex cursor-pointer justify-center text-xs text-white">
           Main Stone Size
         </div>
       );
@@ -81,7 +81,7 @@ export const cartJewelryColumns: ColumnDef<ICart>[] = [
     accessorKey: "sideStoneType",
     header: () => {
       return (
-        <div className="flex cursor-pointer justify-center text-white">
+        <div className="flex cursor-pointer justify-center text-xs text-white">
           Side Stone Type
         </div>
       );
@@ -95,7 +95,7 @@ export const cartJewelryColumns: ColumnDef<ICart>[] = [
     accessorKey: "sideStoneQuantity",
     header: () => {
       return (
-        <div className="flex cursor-pointer justify-center text-white">
+        <div className="flex cursor-pointer justify-center text-xs text-white">
           Side Stone Quantity
         </div>
       );
@@ -109,7 +109,7 @@ export const cartJewelryColumns: ColumnDef<ICart>[] = [
     accessorKey: "sideStoneWeight",
     header: () => {
       return (
-        <div className="flex cursor-pointer justify-center text-white">
+        <div className="flex cursor-pointer justify-center text-xs text-white">
           Side Stone Weight
         </div>
       );
@@ -123,7 +123,7 @@ export const cartJewelryColumns: ColumnDef<ICart>[] = [
     accessorKey: "goldType",
     header: () => {
       return (
-        <div className="flex cursor-pointer justify-center text-white">
+        <div className="flex cursor-pointer justify-center text-xs text-white">
           Gold Type
         </div>
       );
@@ -137,7 +137,7 @@ export const cartJewelryColumns: ColumnDef<ICart>[] = [
     accessorKey: "goldKarat",
     header: () => {
       return (
-        <div className="flex cursor-pointer justify-center text-white">
+        <div className="flex cursor-pointer justify-center text-xs text-white">
           Gold Karat
         </div>
       );
@@ -151,7 +151,7 @@ export const cartJewelryColumns: ColumnDef<ICart>[] = [
     accessorKey: "goldWeight",
     header: () => {
       return (
-        <div className="flex cursor-pointer justify-center text-white">
+        <div className="flex cursor-pointer justify-center text-xs text-white">
           Gold Weight
         </div>
       );

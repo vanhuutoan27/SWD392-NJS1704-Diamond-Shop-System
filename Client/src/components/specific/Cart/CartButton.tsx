@@ -44,10 +44,10 @@ function CartButton() {
                       src={cartItem.image}
                       alt={
                         cartItem.productType === "Diamond"
-                          ? `KIM CƯƠNG TỰ NHIÊN x ${cartItem.size}`
+                          ? `Natural Diamond x ${cartItem.size}mm`
                           : cartItem.jewelryName
                       }
-                      className="rounded-md object-cover"
+                      className="rounded-md object-cover uppercase"
                     />
                   </Link>
                 </div>
@@ -57,10 +57,10 @@ function CartButton() {
                     <div>
                       <Link
                         to={`/product/${cartItem.productId}`}
-                        className="mr-2 text-base font-semibold transition-all duration-300 hover:text-[#888]"
+                        className="mr-2 text-base font-semibold uppercase transition-all duration-300 hover:text-[#888]"
                       >
                         {cartItem.productType === "Diamond"
-                          ? `KIM CƯƠNG TỰ NHIÊN x ${cartItem.size}`
+                          ? `Natural Diamond x ${cartItem.size}mm`
                           : cartItem.jewelryName}
                       </Link>
                       <span>x {cartItem.quantity}</span>

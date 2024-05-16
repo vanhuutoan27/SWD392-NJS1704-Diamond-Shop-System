@@ -6,7 +6,6 @@ import {
   Mail,
   MapPin,
   Phone,
-  Twitter,
   Youtube,
 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -14,7 +13,7 @@ import { Link } from "react-router-dom";
 function Footer() {
   const aboutInfos = [
     {
-      name: "Address: 123 Pall Mall, London England",
+      name: "Address: Long Thanh My, Thu Duc City, Ho Chi Minh City, Vietnam",
       link: "#",
       icon: <MapPin size={20} />,
     },
@@ -23,28 +22,25 @@ function Footer() {
       link: "#",
       icon: <Mail size={20} />,
     },
-    { name: "Phone: (84) 012 345 6789", link: "#", icon: <Phone size={20} /> },
+    { name: "Phone: (84) 098 765 321", link: "#", icon: <Phone size={20} /> },
   ];
 
   const quickLinks = [
-    { name: "New Brands", link: "#", icon: <Circle size={6} /> },
-    { name: "News & Blog", link: "#", icon: <Circle size={6} /> },
-    { name: "Our Office", link: "#", icon: <Circle size={6} /> },
-    { name: "Our Story", link: "#", icon: <Circle size={6} /> },
-    { name: "Return Policy", link: "#", icon: <Circle size={6} /> },
+    { name: "Home", link: "/", icon: <Circle size={6} /> },
+    { name: "Diamond", link: "/diamond", icon: <Circle size={6} /> },
+    { name: "Jewelry", link: "/jewelry", icon: <Circle size={6} /> },
+    { name: "News & Blog ", link: "/blog", icon: <Circle size={6} /> },
   ];
 
   const Informations = [
-    { name: "Best Value", link: "#", icon: <Circle size={6} /> },
-    { name: "Your Order", link: "#", icon: <Circle size={6} /> },
+    { name: "About Us", link: "/about", icon: <Circle size={6} /> },
+    { name: "Contact us", link: "/contact", icon: <Circle size={6} /> },
+    { name: "Promotion", link: "/promotion", icon: <Circle size={6} /> },
     { name: "Terms & Condition", link: "#", icon: <Circle size={6} /> },
-    { name: "Contact us", link: "#", icon: <Circle size={6} /> },
-    { name: "Manufactures", link: "#", icon: <Circle size={6} /> },
   ];
 
   const socialMedias = [
     { name: "Facebook", link: "#", icon: <Facebook /> },
-    { name: "Twitter", link: "#", icon: <Twitter /> },
     { name: "Instagram", link: "#", icon: <Instagram /> },
     { name: "Youtube", link: "#", icon: <Youtube /> },
   ];
@@ -65,7 +61,7 @@ function Footer() {
             <li key={aboutInfo.name}>
               <Link
                 to={aboutInfo.link}
-                className="flex items-center gap-2 text-sm leading-10 transition-all duration-300"
+                className="flex items-center gap-2 text-sm leading-8 transition-all duration-300"
               >
                 {aboutInfo.icon}
                 <span className="mt-1">{aboutInfo.name}</span>
@@ -107,7 +103,7 @@ function Footer() {
             <li key={socialMedia.name}>
               <Link
                 to={socialMedia.link}
-                className="flex items-center gap-2 text-sm leading-10 transition-all duration-300 hover:text-[#888]"
+                className="flex items-center gap-2 text-sm leading-[45px] transition-all duration-300 hover:text-[#888]"
               >
                 {socialMedia.icon}
 

@@ -53,7 +53,7 @@ export const cartDiamondColumns: ColumnDef<ICart>[] = [
     header: ({ column }) => {
       return (
         <div
-          className="flex cursor-pointer justify-center text-white"
+          className="flex cursor-pointer text-xs justify-center text-white"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Weight (cts)
@@ -123,7 +123,7 @@ export const cartDiamondColumns: ColumnDef<ICart>[] = [
     header: ({ column }) => {
       return (
         <div
-          className="flex cursor-pointer justify-center text-white"
+          className="flex cursor-pointer text-xs justify-center text-white"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Size (mm)
@@ -157,7 +157,7 @@ export const cartDiamondColumns: ColumnDef<ICart>[] = [
     header: ({ column }) => {
       return (
         <div
-          className="flex cursor-pointer justify-center text-white"
+          className="flex cursor-pointer text-xs justify-center text-white"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Quality Of Cut

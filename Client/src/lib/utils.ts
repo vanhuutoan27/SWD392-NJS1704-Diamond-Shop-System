@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge";
 import { ICart, ICartType } from "@/types/cart.interface";
 import { diamondData } from "@/constants/diamond";
 import { jewelryData } from "@/constants/jewelry";
+import { IUserRole, IUserStatus } from "@/types/user.interface";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -27,5 +28,35 @@ export function getProductData(cartItem: ICart) {
       return jewelryData.find((item) => item.jewelryId === cartItem.productId);
     default:
       return null;
+  }
+}
+
+export function getUserRole(role: IUserRole): string {
+  switch (role) {
+    case IUserRole.Customer:
+      return "Customer";
+    case IUserRole.SalesStaff:
+      return "Sales Staff";
+    case IUserRole.DeliveryStaff:
+      return "Delivery Staff";
+    case IUserRole.Manager:
+      return "Manager";
+    case IUserRole.Admin:
+      return "Admin";
+    default:
+      return "Unknown";
+  }
+}
+
+export function getUserStatus(status: IUserStatus): string {
+  switch (status) {
+    case IUserStatus.Active:
+      return "Active";
+    case IUserStatus.Inactive:
+      return "Inactive";
+    case IUserStatus.Suspended:
+      return "Suspended";
+    default:
+      return "Unknown";
   }
 }

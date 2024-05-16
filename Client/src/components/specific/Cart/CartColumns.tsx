@@ -46,11 +46,11 @@ export const cartColumns: ColumnDef<ICart>[] = [
 
       const productName =
         row.productType === ICartType.Diamond
-          ? `KIM CƯƠNG TỰ NHIÊN x ${(row as IDiamondCart).size}`
+          ? `Natural Diamond x ${(row as IDiamondCart).size}mm`
           : (row as IJewelryCart).jewelryName;
 
       return (
-        <div className="text-center font-semibold transition-all duration-300 hover:text-[#888]">
+        <div className="text-center font-semibold uppercase transition-all duration-300 hover:text-[#888]">
           {row.productType === ICartType.Diamond ? (
             <Link
               to={`/diamond/${row.productId}`}
