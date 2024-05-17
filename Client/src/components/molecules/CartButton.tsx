@@ -67,15 +67,15 @@ function CartButton() {
                             ? `/diamond/${cartItem.productId}`
                             : `/jewelry/${cartItem.productId}`
                         }
-                        className="mr-2 text-base font-semibold uppercase transition-all duration-300 hover:text-[#888]"
+                        className="mr-2 text-sm font-semibold uppercase transition-all duration-300 hover:text-[#888]"
                       >
                         {cartItem.productType === "Diamond"
                           ? `Natural Diamond x ${cartItem.size}mm`
                           : cartItem.jewelryName}
                       </Link>
-                      <span>x {cartItem.quantity}</span>
+                      <span className="text-sm">x {cartItem.quantity}</span>
                     </div>
-                    <span className="text-sm font-medium">
+                    <span className="text-[12px] font-medium">
                       {formatCurrency(cartItem.price)}
                     </span>
                   </div>
@@ -91,7 +91,7 @@ function CartButton() {
 
             <Separator className="bg-gray-900/20" />
 
-            <div className="text-md my-2 flex w-full flex-col gap-3 pl-2 font-medium">
+            <div className="my-2 flex w-full flex-col gap-3 pl-2 text-sm font-medium">
               <div className="flex justify-between">
                 <span>Sub-Total:</span>
                 <span>{formatCurrency(subTotal)}</span>

@@ -9,13 +9,14 @@ import {
 } from "@/components/atoms/carousel";
 
 interface RelatedDiamondsProps {
+  pageName?: string;
   relatedDiamonds: IDiamond[];
 }
 
-function RelatedDiamonds({ relatedDiamonds }: RelatedDiamondsProps) {
+function RelatedDiamonds({ pageName, relatedDiamonds }: RelatedDiamondsProps) {
   return (
     <div className="mt-10">
-      <Section pageName={"Related Diamonds"} />
+      <Section pageName={pageName || "Related Diamonds"} />
 
       <Carousel
         opts={{

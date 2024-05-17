@@ -89,9 +89,9 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
         </div>
       </div>
 
-      <Section pageName={"Jewelry Details"} />
+      <div className="mt-4">
+        <Section pageName={"Jewelry Details"} />
 
-      <div className="w-full">
         <table className="w-full border-collapse">
           <tbody>
             <tr>

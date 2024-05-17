@@ -1,15 +1,21 @@
-import { Card, CardContent } from "@/components/atoms/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@/components/atoms/carousel";
+import { projectName } from "@/lib/constants";
 
 function CarouselSlider() {
-  const Slides = [
-    { title: "Toan", description: "Description 1" },
-    { title: "Dep", description: "Description 2" },
-    { title: "Trai", description: "Description 3" },
+  const slides = [
+    {
+      image: "../images/home_slider_1.jpg",
+    },
+    {
+      image: "../images/home_slider_2.jpg",
+    },
+    {
+      image: "../images/home_slider_3.jpg",
+    },
   ];
 
   return (
@@ -19,17 +25,17 @@ function CarouselSlider() {
           align: "start",
           loop: true,
         }}
-        className="container h-full"
       >
         <CarouselContent>
-          {Slides.map((slide, index) => (
+          {slides.map((slide, index) => (
             <CarouselItem key={index}>
-              <Card>
-                <CardContent className="flex h-screen flex-col items-center justify-center bg-slate-200 p-6">
-                  <h2 className="text-4xl font-semibold">{slide.title}</h2>
-                  <p className="text-xl">{slide.description}</p>
-                </CardContent>
-              </Card>
+              <div className="ml-4 flex h-full flex-col items-center justify-center overflow-hidden rounded-md bg-slate-200">
+                <img
+                  src={slide.image}
+                  alt={projectName}
+                  className="h-[600px] w-full object-cover"
+                />
+              </div>
             </CarouselItem>
           ))}
         </CarouselContent>

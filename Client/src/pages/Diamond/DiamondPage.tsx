@@ -143,7 +143,7 @@ function DiamondPage() {
         currentPage="Diamond"
       />
       <div>
-        <Section pageName={"Diamond"} />
+        <Section pageName={"Diamonds"} />
 
         <div className="flex flex-col gap-8">
           <div className="flex w-full justify-between gap-10">

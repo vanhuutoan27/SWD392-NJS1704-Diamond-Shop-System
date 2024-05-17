@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../organisms/Header";
 import Footer from "../organisms/Footer";
+import FloatingButton from "../organisms/FloatingButton";
 
 function RootLayout() {
   const [isSticky, setSticky] = useState(false);
@@ -17,10 +18,11 @@ function RootLayout() {
   }, []);
 
   return (
-    <div className="h-screen">
+    <div className="relative min-h-screen">
       <Header />
       <div className={`${isSticky ? "mt-24" : "mt-0"} flex min-h-full`}>
         <Outlet />
+        <FloatingButton />
       </div>
       <Footer />
     </div>

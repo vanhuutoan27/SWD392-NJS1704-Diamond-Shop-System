@@ -69,9 +69,9 @@ function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
         </div>
       </div>
 
-      <Section pageName={"Diamond Details"} />
+      <div className="mt-4">
+        <Section pageName={"Diamond Details"} />
 
-      <div className="w-full">
         <table className="w-full border-collapse">
           <tbody>
             <tr>

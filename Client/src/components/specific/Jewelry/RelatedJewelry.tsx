@@ -9,13 +9,14 @@ import {
 } from "@/components/atoms/carousel";
 
 interface RelatedJewelryProps {
-  relatedJewelry: IJewelry[];
+  pageName?: string;
+  relatedJewelries: IJewelry[];
 }
 
-function RelatedJewelry({ relatedJewelry }: RelatedJewelryProps) {
+function RelatedJewelry({ pageName, relatedJewelries }: RelatedJewelryProps) {
   return (
     <div className="mt-10">
-      <Section pageName={"Related Jewelry"} />
+      <Section pageName={pageName || "Related Jewelry"} />
 
       <Carousel
         opts={{
@@ -24,7 +25,7 @@ function RelatedJewelry({ relatedJewelry }: RelatedJewelryProps) {
         className="w-full"
       >
         <CarouselContent>
-          {relatedJewelry.map((jewelry) => (
+          {relatedJewelries.map((jewelry) => (
             <CarouselItem
               key={jewelry.jewelryId}
               className="p-2 md:basis-1/2 lg:basis-1/4"

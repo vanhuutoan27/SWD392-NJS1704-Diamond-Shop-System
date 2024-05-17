@@ -43,7 +43,7 @@ function JewelryDetailPage() {
 
       <DiamondBanner />
 
-      <RelatedJewelry relatedJewelry={relatedProducts} />
+      <RelatedJewelry relatedJewelries={relatedProducts} />
     </div>
   );
 }
