@@ -27,7 +27,7 @@ function CarouselSlider() {
                 <img
                   src={slide.image}
                   alt={projectName}
-                  className="h-[600px] w-full object-cover"
+                  className="h-[600px] w-full object-cover cursor-pointer"
                 />
               </div>
             </CarouselItem>
