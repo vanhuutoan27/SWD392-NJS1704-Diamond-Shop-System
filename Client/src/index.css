@@ -102,4 +102,23 @@
   .sticky-nav {
     @apply fixed left-0 right-0 top-0 z-50 bg-white shadow-md;
   }
+
+  .image-container {
+    overflow: hidden;
+    position: relative;
+    height: 400px;
+  }
+
+  .image-container img {
+    position: absolute;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(var(--zoom, 1));
+    transform-origin: var(--x, 50%) var(--y, 50%);
+    transition: transform 0.3s;
+  }
+
+  .image-container:hover img {
+    --zoom: 2.5;
+  }
 }

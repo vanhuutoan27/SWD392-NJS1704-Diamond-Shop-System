@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import NavigationMenu from "../molecules/NavigationMenu";
 import NavigationMobile from "./NavigationMobile";
-import CartButton from "../specific/Cart/CartButton";
+import CartButton from "../molecules/CartButton";
 
 function Navigation() {
   const [isMenuOpen, setMenuOpen] = useState(false);

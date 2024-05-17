@@ -1,31 +1,31 @@
-import { useState } from "react";
 import { IDiamond } from "@/types/diamond.interface";
 import { formatCurrency } from "@/lib/utils";
 import Section from "../../organisms/Section";
 import { Button } from "../../atoms/button";
-import { X } from "lucide-react";
 
-function DiamondDetail({ diamondDetails }: { diamondDetails: IDiamond }) {
-  const [isOpen, setIsOpen] = useState(false);
+function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
   const salePrice = 100000000;
 
-  const openModal = () => {
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    const container = event.currentTarget;
+    const rect = container.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    const y = ((event.clientY - rect.top) / rect.height) * 100;
+    container.style.setProperty("--x", `${x}%`);
+    container.style.setProperty("--y", `${y}%`);
   };
 
   return (
-    <div>
-      <div className="flex w-full">
-        <div className="w-1/2">
+    <>
+      <div className="flex w-full gap-10">
+        <div
+          className="image-container w-1/2 rounded-md"
+          onMouseMove={handleMouseMove}
+        >
           <img
             src="https://jemmia.vn/wp-content/uploads/2023/09/image-3-1.png"
             alt="Diamond"
             className="h-auto w-full cursor-pointer"
-            onClick={openModal}
           />
         </div>
 
@@ -141,25 +141,8 @@ function DiamondDetail({ diamondDetails }: { diamondDetails: IDiamond }) {
           </tbody>
         </table>
       </div>
-
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75">
-          <div className="relative">
-            <X
-              onClick={closeModal}
-              className="absolute right-0 top-0 mr-2 mt-2 cursor-pointer text-black transition-all duration-300 hover:text-[#888]"
-            />
-
-            <img
-              className="max-h-full max-w-full"
-              src={diamondDetails.image}
-              alt="Diamond"
-            />
-          </div>
-        </div>
-      )}
-    </div>
+    </>
   );
 }
 
-export default DiamondDetail;
+export default DiamondDetails;

@@ -2,7 +2,7 @@ import { ShieldCheck } from "lucide-react";
 import Section from "../../organisms/Section";
 import { projectName } from "@/lib/constants";
 
-function QualityCommitment() {
+function JewelryQualityCommitment() {
   return (
     <div className="mt-10">
       <Section pageName={"Quality Commitments"} />
@@ -41,4 +41,4 @@ function QualityCommitment() {
   );
 }
 
-export default QualityCommitment;
+export default JewelryQualityCommitment;

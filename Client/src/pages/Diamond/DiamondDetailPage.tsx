@@ -2,11 +2,11 @@ import { useParams } from "react-router-dom";
 import BreadcrumbComponent from "@/components/atoms/BreadcrumbComponent";
 import { diamondData } from "../../constants/diamond";
 import { Loader } from "@/components/atoms/Loader";
-import QualityCommitment from "@/components/specific/Diamond/QualityCommitment";
+import DiamondQualityCommitment from "@/components/specific/Diamond/DiamondQualityCommitment";
 import BuyingGuide from "@/components/specific/Diamond/BuyingGuide";
 import RelatedProducts from "@/components/specific/Diamond/RelatedDiamonds";
 import DiamondBanner from "@/components/specific/Diamond/DiamondBanner";
-import DiamondDetail from "@/components/specific/Diamond/DiamondDetail";
+import DiamondDetails from "@/components/specific/Diamond/DiamondDetails";
 
 function DiamondDetailPage() {
   const { diamondId } = useParams<{ diamondId: string }>();
@@ -32,9 +32,9 @@ function DiamondDetailPage() {
         currentDetailPage={diamondDetails.diamondId}
       />
 
-      <DiamondDetail diamondDetails={diamondDetails} />
+      <DiamondDetails diamondDetails={diamondDetails} />
 
-      <QualityCommitment />
+      <DiamondQualityCommitment />
 
       <BuyingGuide />
 

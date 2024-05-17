@@ -2,11 +2,12 @@ import { useParams } from "react-router-dom";
 import BreadcrumbComponent from "@/components/atoms/BreadcrumbComponent";
 import { jewelryData } from "../../constants/jewelry";
 import { Loader } from "@/components/atoms/Loader";
-import QualityCommitment from "@/components/specific/Diamond/QualityCommitment";
 import BuyingGuide from "@/components/specific/Diamond/BuyingGuide";
 import DiamondBanner from "@/components/specific/Diamond/DiamondBanner";
-import JewelryDetail from "@/components/specific/Jewelry/JewelryDetail";
+import JewelryDetails from "@/components/specific/Jewelry/JewelryDetails";
 import RelatedJewelry from "@/components/specific/Jewelry/RelatedJewelry";
+import JewelryFaqs from "@/components/specific/Jewelry/JewelryFaqs";
+import JewelryQualityCommitment from "@/components/specific/Jewelry/JewelryQualityCommitment";
 
 function JewelryDetailPage() {
   const { jewelryId } = useParams<{ jewelryId: string }>();
@@ -32,11 +33,13 @@ function JewelryDetailPage() {
         currentDetailPage={jewelryDetails.jewelryId}
       />
 
-      <JewelryDetail jewelryDetails={jewelryDetails} />
+      <JewelryDetails jewelryDetails={jewelryDetails} />
 
-      <QualityCommitment />
+      <JewelryQualityCommitment />
 
       <BuyingGuide />
+
+      <JewelryFaqs />
 
       <DiamondBanner />
 

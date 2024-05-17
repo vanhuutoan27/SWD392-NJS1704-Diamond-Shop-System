@@ -24,7 +24,7 @@ function BreadcrumbComponent({
   currentDetailPage,
 }: BreadcrumbComponentProps) {
   return (
-    <div className="flex py-3">
+    <div className="mb-2 flex py-2">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>

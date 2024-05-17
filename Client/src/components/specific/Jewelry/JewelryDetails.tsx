@@ -3,62 +3,52 @@ import { IJewelry } from "@/types/jewelry.interface";
 import { formatCurrency } from "@/lib/utils";
 import Section from "../../organisms/Section";
 import { Button } from "../../atoms/button";
-import { X } from "lucide-react";
 
-function JewelryDetail({ jewelryDetails }: { jewelryDetails: IJewelry }) {
-  const [isOpen, setIsOpen] = useState(false);
+function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
   const salePrice = 100000000;
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    const container = event.currentTarget;
+    const rect = container.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    const y = ((event.clientY - rect.top) / rect.height) * 100;
+    container.style.setProperty("--x", `${x}%`);
+    container.style.setProperty("--y", `${y}%`);
+  };
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = [jewelryDetails.image, jewelryDetails.image2];
-  const [isHovered, setIsHovered] = useState(false);
-  const openModal = () => {
-    setIsOpen(true);
-  };
 
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-
-  const nextImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
-
-  const prevImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1,
-    );
+  const selectImage = (index: number) => {
+    setCurrentImageIndex(index);
   };
 
   return (
-    <div>
-      <div className="flex w-full">
-        <div
-          className="relative w-1/2"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <img
-            src={images[currentImageIndex]}
-            alt="Jewelry"
-            className="h-auto w-full cursor-pointer"
-            onClick={openModal}
-          />
-          {images.length > 1 && isHovered && (
-            <>
-              <button
-                onClick={prevImage}
-                className="absolute left-5 top-1/2 h-full w-10 -translate-y-1/2 text-black"
-              >
-                <p className="text-3xl font-medium">{"<"}</p>
-              </button>
-              <button
-                onClick={nextImage}
-                className="absolute right-5 top-1/2 h-full w-10 -translate-y-1/2 text-black"
-              >
-                <p className="text-3xl font-medium">{">"}</p>
-              </button>
-            </>
-          )}
+    <>
+      <div className="flex w-full gap-10">
+        <div className="w-1/2">
+          <div
+            className="image-container rounded-md"
+            onMouseMove={handleMouseMove}
+          >
+            <img
+              src={images[currentImageIndex]}
+              alt="Jewelry"
+              className="h-auto w-full cursor-pointer"
+            />
+          </div>
+
+          <div className="flex w-full">
+            {images.map((image, index) => (
+              <img
+                key={index}
+                src={image}
+                alt={`Thumbnail ${index}`}
+                className={`h-auto w-28 cursor-pointer border-2 border-transparent transition-all duration-300 hover:border-primary ${currentImageIndex === index ? "opacity-100" : "opacity-50"}`}
+                onClick={() => selectImage(index)}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="flex w-1/2 flex-col gap-3">
@@ -171,42 +161,8 @@ function JewelryDetail({ jewelryDetails }: { jewelryDetails: IJewelry }) {
           </tbody>
         </table>
       </div>
-
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75">
-          <div className="relative">
-            <X
-              onClick={closeModal}
-              className="absolute right-0 top-0 mr-2 mt-2 cursor-pointer text-black transition-all duration-300 hover:text-[#888]"
-            />
-
-            <img
-              className="max-h-[596px]"
-              src={images[currentImageIndex]}
-              alt="Diamond"
-            />
-            {images.length > 1 && (
-              <>
-                <button
-                  onClick={prevImage}
-                  className="absolute -left-20 top-1/2 h-10 w-10 -translate-y-1/2 rounded-full bg-slate-950 text-white"
-                >
-                  <p className=" text-center text-xl">{"<"}</p>
-                </button>
-
-                <button
-                  onClick={nextImage}
-                  className="absolute -right-20 top-1/2 h-10 w-10 -translate-y-1/2 rounded-full bg-slate-950 text-white"
-                >
-                  <p className=" text-center text-xl">{">"}</p>
-                </button>
-              </>
-            )}
-          </div>
-        </div>
-      )}
-    </div>
+    </>
   );
 }
 
-export default JewelryDetail;
+export default JewelryDetails;
