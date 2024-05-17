@@ -10,9 +10,12 @@ import { Separator } from "@/components/atoms/separator";
 import { cartData } from "@/constants/cart";
 import { calculateCartTotal, formatCurrency, scrollToTop } from "@/lib/utils";
 import { ShoppingCart, X } from "lucide-react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function CartButton() {
+  const [isOpen, setIsOpen] = useState(false);
+
   const cartItems = cartData.filter((item) => item.quantity > 0);
   const vatPercentage = 0.1;
 
@@ -20,8 +23,10 @@ function CartButton() {
   const vatAmount = subTotal * vatPercentage;
   const total = subTotal + vatAmount;
 
+  const handleClose = () => setIsOpen(false);
+
   return (
-    <DropdownMenu>
+    <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
         <div className="relative flex cursor-pointer select-none items-center gap-4 text-primary transition-all duration-300 hover:text-[#888]">
           <ShoppingCart strokeWidth={2.5} />
@@ -107,12 +112,24 @@ function CartButton() {
             </div>
 
             <div className="flex w-full justify-end gap-4">
-              <Link to="/cart" onClick={scrollToTop}>
+              <Link
+                to="/cart"
+                onClick={() => {
+                  scrollToTop();
+                  handleClose();
+                }}
+              >
                 <Button type="button" variant={"secondary"}>
                   View Cart
                 </Button>
               </Link>
-              <Link to="/checkout" onClick={scrollToTop}>
+              <Link
+                to="/checkout"
+                onClick={() => {
+                  scrollToTop();
+                  handleClose();
+                }}
+              >
                 <Button type="button">Checkout</Button>
               </Link>
             </div>

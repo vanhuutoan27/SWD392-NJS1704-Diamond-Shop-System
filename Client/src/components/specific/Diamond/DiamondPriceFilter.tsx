@@ -4,6 +4,7 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/atoms/select";
@@ -39,6 +40,7 @@ function DiamondPriceFilter({
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
+            <SelectLabel>Price Range</SelectLabel>
             <SelectItem value="Under 100">Under 100 Millions Dong</SelectItem>
             <SelectItem value="100-250">
               From 100 - 250 Millions Dong

@@ -23,7 +23,7 @@ function ProductCard({
   const [isHover, setIsHover] = useState(false);
 
   return (
-    <div className="ml-4 rounded-md border-2 border-input p-4 shadow-md">
+    <div className="ml-4 rounded-lg border-2 border-input p-4 shadow-md">
       {size ? (
         <Link
           to={`/diamond/${productId}`}
