@@ -6,6 +6,7 @@ import AuthLayout from "./components/templates/AuthLayout";
 import NotFound from "./pages/NotFound/NotFoundPage";
 
 function App() {
+  // Public Routes
   const Home = lazy(() => import("./pages/Home/HomePage"));
   const Login = lazy(() => import("./pages/Login/LoginPage"));
   const Register = lazy(() => import("./pages/Register/RegisterPage"));
@@ -18,6 +19,9 @@ function App() {
   const Blog = lazy(() => import("./pages/Blog/BlogPage"));
   const BlogDetail = lazy(() => import("./pages/Blog/BlogDetailPage"));
   const Contact = lazy(() => import("./pages/Contact/ContactPage"));
+
+  // Authenticated Routes
+  const Dashboard = lazy(() => import("./pages/Dashboard/DashboardPage"));
 
   return (
     <Routes>
@@ -131,7 +135,16 @@ function App() {
         />
       </Route>
 
-      <Route element={<AuthLayout />}></Route>
+      <Route element={<AuthLayout />}>
+        <Route
+          path="/dashboard"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Dashboard />
+            </Suspense>
+          }
+        />
+      </Route>
 
       <Route path="/not-found" element={<NotFound />} />
       <Route path="*" element={<NotFound />} />

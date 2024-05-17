@@ -62,13 +62,10 @@ function Footer() {
           </div>
           {aboutInfos.map((aboutInfo) => (
             <li key={aboutInfo.name}>
-              <Link
-                to={aboutInfo.link}
-                className="flex items-center gap-2 text-sm leading-8 transition-all duration-300"
-              >
+              <span className="flex items-center gap-2 text-sm leading-8 transition-all duration-300">
                 {aboutInfo.icon}
                 <span className="mt-1">{aboutInfo.name}</span>
-              </Link>
+              </span>
             </li>
           ))}
         </ul>

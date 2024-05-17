@@ -24,7 +24,7 @@ function RegisterPage() {
 
   return (
     <div className="flex w-full items-center justify-center">
-      <div className="w-96 rounded border bg-white px-7 py-10 shadow-md">
+      <div className="w-96 rounded border bg-white px-7 py-16 shadow-md">
         <form onSubmit={handleSubmit(onSubmit)}>
           <h2 className="mb-7 text-center text-2xl font-semibold text-gray-800">
             Register
@@ -55,7 +55,7 @@ function RegisterPage() {
             {errors.password?.message}
           </p>
 
-          <Button type="button" className="w-full py-6">
+          <Button type="submit" className="mt-3 w-full py-6">
             Register
           </Button>
 

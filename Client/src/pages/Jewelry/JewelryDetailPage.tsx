@@ -30,6 +30,7 @@ function JewelryDetailPage() {
         lastPage="Home"
         lastPageUrl="/"
         currentPage="Jewelry"
+        currentPageUrl="/jewelry"
         currentDetailPage={jewelryDetails.jewelryId}
       />
 

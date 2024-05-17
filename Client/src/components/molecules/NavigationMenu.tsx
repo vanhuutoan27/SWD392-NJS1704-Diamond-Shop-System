@@ -22,9 +22,8 @@ function NavigationMenu() {
         {Menus.map((menu, index) => (
           <Link to={menu.link} key={index} onClick={scrollToTop}>
             <li
-              key={index}
-              className={`text-md mt-1 flex cursor-pointer items-center text-[14px] font-semibold uppercase text-primary transition-all duration-300 hover:text-[#888] ${
-                menu.link === currentUrl ? "text-primary " : "text-gray-800"
+              className={`text-md mt-1 flex cursor-pointer items-center text-[14px] font-semibold uppercase transition-all duration-300 hover:text-[#888] ${
+                menu.link === currentUrl ? "text-[#888]" : "text-primary"
               }`}
             >
               <span className="float-left block">{menu.title}</span>

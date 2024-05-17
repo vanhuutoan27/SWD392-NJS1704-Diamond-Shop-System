@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate } from "react-router-dom";
-import { loginSchema } from "@/schemas/LoginForm";
 import { IUser } from "@/types/user.interface";
 import { Button } from "@/components/atoms/button";
 import PasswordInput from "@/components/molecules/PasswordInput";
+import { loginSchema } from "@/schemas/LoginForm";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ function LoginPage() {
 
   return (
     <div className="flex w-full items-center justify-center">
-      <div className="w-96 rounded-xl border bg-white px-7 py-10 shadow-md">
+      <div className="w-96 rounded-xl border bg-white px-7 py-16 shadow-md">
         <form onSubmit={handleSubmit(onSubmit)}>
           <h2 className="mb-7 text-center text-2xl font-semibold text-primary">
             Login
@@ -43,7 +43,7 @@ function LoginPage() {
           <p className="ml-2 pb-2 text-xs text-red-500">
             {errors.password?.message}
           </p>
-          <Button type="button" className="w-full py-6">
+          <Button type="submit" className="mt-3 w-full py-6">
             Login
           </Button>
           <p className="mt-4 text-center text-sm">

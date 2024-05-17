@@ -7,15 +7,9 @@ import { projectName } from "@/lib/constants";
 
 function CarouselSlider() {
   const slides = [
-    {
-      image: "../images/home_slider_1.jpg",
-    },
-    {
-      image: "../images/home_slider_2.jpg",
-    },
-    {
-      image: "../images/home_slider_3.jpg",
-    },
+    { image: "../images/home_slider_2.jpg" },
+    { image: "../images/home_slider_1.jpg" },
+    { image: "../images/home_slider_3.jpg" },
   ];
 
   return (
