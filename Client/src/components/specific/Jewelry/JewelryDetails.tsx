@@ -44,7 +44,7 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
                 key={index}
                 src={image}
                 alt={`Thumbnail ${index}`}
-                className={`h-auto w-28  cursor-pointer border-2 border-transparent transition-all duration-300 ${currentImageIndex === index ? "border-2 border-gray-300 duration-300  hover:border-black" : "opacity-40 hover:border-primary"}`}
+                className={`h-auto w-28  cursor-pointer border-2 border-transparent transition-all duration-300 ${currentImageIndex === index ? "border-3 border-gray-800 duration-300 " : "opacity-30 hover:border-gray-400"}`}
                 onClick={() => selectImage(index)}
               />
             ))}
