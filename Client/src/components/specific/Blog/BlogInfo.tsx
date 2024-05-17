@@ -32,8 +32,10 @@ function BlogInfo() {
               </span>
               <span className="text-[#888]">By: {blog.createdBy}</span>
             </div>
-            <div className="mb-2 border-b-2 border-neutral-100">
-              <p className="text-xl font-medium">{blog.title}</p>
+            <div className="mb-2 border-b-2 border-neutral-100 flex flex-fit">
+              <Link to={`/blog/${blog.blogId}`}>
+                <p className="text-xl font-medium hover:text-[#c69967]">{blog.title}</p>
+              </Link>
             </div>
             <p className="flex justify-self-start text-sm text-gray-800">
               {blog.intro}

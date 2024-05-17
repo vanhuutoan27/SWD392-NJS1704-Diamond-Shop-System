@@ -28,13 +28,13 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
       <div className="flex w-full gap-10">
         <div className="w-1/2">
           <div
-            className="image-container rounded-md"
+            className="image-container h-[550px] rounded-md"
             onMouseMove={handleMouseMove}
           >
             <img
               src={images[currentImageIndex]}
               alt="Jewelry"
-              className="h-auto w-full cursor-pointer"
+              className="w-full cursor-pointer"
             />
           </div>
 
@@ -44,14 +44,14 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
                 key={index}
                 src={image}
                 alt={`Thumbnail ${index}`}
-                className={`h-auto w-28 cursor-pointer border-2 border-transparent transition-all duration-300 hover:border-primary ${currentImageIndex === index ? "opacity-100" : "opacity-50"}`}
+                className={`h-auto w-28  cursor-pointer border-2 border-transparent transition-all duration-300 ${currentImageIndex === index ? "border-2 border-gray-300 duration-300  hover:border-black" : "opacity-40 hover:border-primary"}`}
                 onClick={() => selectImage(index)}
               />
             ))}
           </div>
         </div>
 
-        <div className="flex w-1/2 flex-col gap-3">
+        <div className="mt-5 flex w-1/2 flex-col gap-4">
           <h2 className="text-xl uppercase">{jewelryDetails.jewelryName}</h2>
 
           {salePrice ? (
