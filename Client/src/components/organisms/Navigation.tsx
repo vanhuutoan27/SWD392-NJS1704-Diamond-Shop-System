@@ -27,7 +27,7 @@ function Navigation() {
       className={`flex items-center justify-between bg-white py-4 ${isSticky ? "sticky-nav px-8 lg:py-2 xl:px-48" : ""}`}
     >
       <div
-        className={`${isSticky ? "hidden lg:flex" : ""} ${isMenuOpen ? "top-[20%]" : "-top-[100%]"} absolute left-0 z-10 flex min-h-[40vh] w-full items-center bg-white shadow-md duration-300 ease-in-out lg:static lg:min-h-fit lg:w-auto lg:shadow-none`}
+        className={`${isSticky ? "hidden md:flex" : ""} ${isMenuOpen ? "top-[150px]" : "-top-[100%]"} absolute left-0 z-10 flex min-h-[40vh] w-full items-center bg-white shadow-md duration-300 ease-in-out md:static md:min-h-fit md:w-auto md:shadow-none`}
       >
         <NavigationMenu />
       </div>
@@ -35,23 +35,22 @@ function Navigation() {
       <div className="flex w-full flex-row-reverse items-center justify-between lg:w-fit">
         <CartButton />
 
-        {isMenuOpen ? (
-          <div
-            className="flex cursor-pointer select-none gap-4 font-semibold uppercase text-gray-800 lg:hidden"
-            onClick={toggleMenu}
-          >
-            <X />
-            <span>Menu</span>
-          </div>
-        ) : (
-          <div
-            className="flex cursor-pointer select-none gap-4 font-semibold uppercase text-gray-800 lg:hidden"
-            onClick={toggleMenu}
-          >
-            <Menu />
-            <span>Menu</span>
-          </div>
-        )}
+        <div
+          className="flex cursor-pointer select-none gap-4 font-semibold uppercase text-gray-800 md:hidden"
+          onClick={toggleMenu}
+        >
+          {isMenuOpen ? (
+            <>
+              <X />
+              <span>Menu</span>
+            </>
+          ) : (
+            <>
+              <Menu />
+              <span>Menu</span>
+            </>
+          )}
+        </div>
       </div>
 
       <NavigationMobile isMenuOpen={isMenuOpen} />

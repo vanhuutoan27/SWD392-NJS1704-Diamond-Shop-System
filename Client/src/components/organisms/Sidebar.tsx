@@ -1,6 +1,13 @@
 import { projectName } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-import { Bomb, ChevronDown, LayoutDashboard } from "lucide-react";
+import {
+  ChevronDown,
+  Gem,
+  LayoutDashboard,
+  LogOut,
+  Package,
+  User,
+} from "lucide-react";
 import { useRef, useState, useEffect, useLayoutEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -8,12 +15,23 @@ function SidebarHeader() {
   return (
     <div className="h-18 mb-4 mt-2 flex flex-col uppercase text-white">
       <h2 className="cursor-pointer select-none text-center text-4xl font-bold md:text-left">
-        {projectName}
+        <Link to="/">{projectName}</Link>
       </h2>
       <h4 className="select-none font-semibold tracking-widest text-[#888]">
         Diamond Shop System
       </h4>
     </div>
+  );
+}
+
+function SidebarFooter() {
+  return (
+    <Link to="/login">
+      <span className="mt-2 flex h-12 w-full items-center gap-4 rounded-md bg-red-500/70 px-4 text-white transition-colors duration-300">
+        <LogOut />
+        <span>Logout</span>
+      </span>
+    </Link>
   );
 }
 
@@ -35,11 +53,11 @@ function SidebarItem({
   hasSubNav,
 }: SidebarItemProps) {
   return (
-    <Link to={link || "#"} className="mt-2 w-full">
+    <Link to={link || "#"}>
       <span
         onClick={() => onClick(title)}
         className={cn(
-          "relative flex h-12 w-full items-center gap-4 rounded-md bg-gray-800 px-4 text-white transition-colors duration-300",
+          "relative mt-2 flex h-12 w-full items-center gap-4 rounded-md bg-gray-800 px-4 text-white transition-colors duration-300",
           isActive ? "bg-blue-600" : "hover:bg-blue-600",
         )}
       >
@@ -70,7 +88,7 @@ function SubSidebarItem({ item, isActive, handleClick }: SubSidebarItemProps) {
 
   useLayoutEffect(() => {
     if (sidebarRef.current) {
-      const height = sidebarRef.current.clientHeight + 8;
+      const height = sidebarRef.current.clientHeight + 4;
       setSubMenuHeight(height);
     }
   }, [isActive]);
@@ -124,52 +142,63 @@ function Sidebar() {
   const menuItems = [
     {
       title: "Dashboard",
-      link: "/dashboard",
+      link: "/admin/dashboard",
       icon: <LayoutDashboard />,
     },
+
     {
-      title: "More",
+      title: "Jewelry",
+      link: "/admin/jewelry-list",
+      icon: <Gem />,
+    },
+    {
+      title: "Diamond",
+      link: "/admin/diamond-list",
+      icon: <Gem />,
+    },
+    {
+      title: "User",
       link: "#",
-      icon: <Bomb />,
+      icon: <User />,
       items: [
-        { title: "View More", link: "/view-more" },
-        { title: "Edit More", link: "/edit-more" },
+        { title: "User List", link: "/admin/user-list" },
+        { title: "User Permission", link: "/admin/user-permission" },
       ],
     },
     {
-      title: "Bomb",
-      link: "#",
-      icon: <Bomb />,
-      items: [
-        { title: "View Bomb", link: "/view-bomb" },
-        { title: "Edit Bomb", link: "/edit-bomb" },
-      ],
+      title: "Order",
+      link: "/admin/order-list",
+      icon: <Package />,
     },
   ];
 
   return (
-    <div className="fixed left-0 top-0 flex h-full w-72 flex-col gap-2 bg-gray-900 p-4 transition-all duration-300">
-      <SidebarHeader />
+    <div className="fixed left-0 top-0 flex h-full w-72 flex-col justify-between gap-2 bg-gray-900 px-6 py-8 transition-all duration-300">
+      <div>
+        <SidebarHeader />
 
-      {menuItems.map((item) => (
-        <div key={item.title}>
-          <SidebarItem
-            onClick={handleClick}
-            title={item.title}
-            link={item.link}
-            icon={item.icon}
-            isActive={isActive === item.link}
-            hasSubNav={!!item.items}
-          />
-          {item.items && (
-            <SubSidebarItem
-              isActive={isActive}
-              handleClick={handleClick}
-              item={item}
+        {menuItems.map((item) => (
+          <div key={item.title}>
+            <SidebarItem
+              onClick={handleClick}
+              title={item.title}
+              link={item.link}
+              icon={item.icon}
+              isActive={isActive === item.link}
+              hasSubNav={!!item.items}
             />
-          )}
-        </div>
-      ))}
+            {item.items && (
+              <SubSidebarItem
+                isActive={isActive}
+                handleClick={handleClick}
+                item={item}
+              />
+            )}
+          </div>
+        ))}
+      </div>
+
+      <SidebarFooter />
     </div>
   );
 }

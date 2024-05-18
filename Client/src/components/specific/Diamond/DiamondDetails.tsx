@@ -19,13 +19,13 @@ function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
     <>
       <div className="flex w-full gap-10">
         <div
-          className="image-container w-1/2 rounded-md"
+          className="image-container h-[500px] w-1/2 rounded-md border-2 border-input"
           onMouseMove={handleMouseMove}
         >
           <img
             src="https://jemmia.vn/wp-content/uploads/2023/09/image-3-1.png"
             alt="Diamond"
-            className="h-auto w-full cursor-pointer"
+            className="w-full cursor-pointer"
           />
         </div>
 
@@ -72,7 +72,7 @@ function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
       <div className="mt-4">
         <Section pageName={"Diamond Details"} />
 
-        <table className="w-full border-collapse">
+        <table className="w-full border-collapse rounded-md">
           <tbody>
             <tr>
               <td className="w-[300px] border-2 border-input px-4 py-2 text-[#888]">

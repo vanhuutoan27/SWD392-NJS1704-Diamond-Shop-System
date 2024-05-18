@@ -137,17 +137,19 @@ function App() {
 
       <Route element={<AuthLayout />}>
         <Route
-          path="/dashboard"
+          path="/admin/dashboard"
           element={
             <Suspense fallback={<Loader />}>
               <Dashboard />
             </Suspense>
           }
         />
+
+        <Route path="/admin/*" element={<NotFound />} />
       </Route>
 
+      <Route path="/*" element={<NotFound />} />
       <Route path="/not-found" element={<NotFound />} />
-      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

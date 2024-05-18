@@ -20,7 +20,7 @@ function RootLayout() {
   return (
     <div className="relative min-h-screen">
       <Header />
-      <div className={`${isSticky ? "mt-24" : "mt-0"} flex min-h-[600px]`}>
+      <div className={`${isSticky ? "mt-20" : "mt-0"} flex min-h-[600px]`}>
         <Outlet />
         <FloatingButton />
       </div>

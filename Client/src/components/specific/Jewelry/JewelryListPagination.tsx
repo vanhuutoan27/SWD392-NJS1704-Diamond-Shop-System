@@ -41,11 +41,11 @@ function JewelryListPagination({
           <PaginationItem>
             <PaginationPrevious
               onClick={handlePrevious}
-              className="cursor-pointer"
+              className="cursor-pointer select-none"
             />
           </PaginationItem>
           {Array.from({ length: totalPages }, (_, index) => (
-            <PaginationItem key={index} className="cursor-pointer">
+            <PaginationItem key={index} className="cursor-pointer select-none">
               <PaginationLink
                 isActive={currentPage === index + 1}
                 onClick={() => handlePageClick(index + 1)}
@@ -55,7 +55,10 @@ function JewelryListPagination({
             </PaginationItem>
           ))}
           <PaginationItem>
-            <PaginationNext onClick={handleNext} className="cursor-pointer" />
+            <PaginationNext
+              onClick={handleNext}
+              className="cursor-pointer select-none"
+            />
           </PaginationItem>
         </PaginationContent>
       </Pagination>
