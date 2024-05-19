@@ -27,10 +27,10 @@ function BlogInfo() {
           </Link>
           <div className="p-4">
             <div className="mb-2 flex justify-between text-sm text-gray-600">
-              <span className="text-[#888]">
+              <span className="text-[#908e9b]">
                 Created on: {formatDate(blog.createdOn)}
               </span>
-              <span className="text-[#888]">By: {blog.createdBy}</span>
+              <span className="text-[#908e9b]">By: {blog.createdBy}</span>
             </div>
             <div className="mb-2 border-b-2 border-neutral-100 flex flex-fit">
               <Link to={`/blog/${blog.blogId}`}>

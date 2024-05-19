@@ -7,7 +7,7 @@ function BuyingGuide() {
       <Section pageName={"Buying Guide"} />
 
       <ul className="space-y-4">
-        <li className="flex items-start text-[#888]">
+        <li className="flex items-start text-[#908e9b]">
           <CircleCheckBig className="text-red-500" />
           <span className="ml-5">
             <span className="font-semibold">Method 1:</span> Please click the
@@ -16,7 +16,7 @@ function BuyingGuide() {
             with a customer care specialist for advice and to order products.
           </span>
         </li>
-        <li className="flex items-start text-[#888]">
+        <li className="flex items-start text-[#908e9b]">
           <CircleCheckBig className="text-red-500" />
           <span className="ml-5">
             <span className="font-semibold">Method 2:</span> Please click the

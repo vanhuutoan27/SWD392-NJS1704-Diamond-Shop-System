@@ -1,4 +1,4 @@
-import { TabsContent } from "@/components/atoms/tabs";
+import { TabsContent } from "@/pages/Cart/tabs";
 import { cartColumns } from "@/components/specific/Cart/CartColumns";
 import { cartJewelryColumns } from "@/components/specific/Cart/CartJewelryColumns";
 import { cartDiamondColumns } from "@/components/specific/Cart/CartDiamondColumns";

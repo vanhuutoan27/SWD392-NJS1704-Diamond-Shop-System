@@ -51,7 +51,7 @@ export const cartJewelryColumns: ColumnDef<ICart>[] = [
       const row = info.row.original as IJewelryCart;
 
       return (
-        <div className="text-center font-semibold transition-all duration-300 hover:text-[#888]">
+        <div className="text-center font-semibold slow hover:text-[#908e9b]">
           <Link
             to={`/jewelry/${row.productId}`}
             target="_blank"
@@ -207,7 +207,7 @@ export const cartJewelryColumns: ColumnDef<ICart>[] = [
         <div className="flex justify-center">
           <X
             size={20}
-            className="cursor-pointer text-red-800 transition-all duration-300 hover:text-red-800/80"
+            className="cursor-pointer text-red-800 slow hover:text-red-800/80"
           />
         </div>
       );

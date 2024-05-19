@@ -1,13 +1,6 @@
 import { projectName } from "@/lib/constants";
 import { cn } from "@/lib/utils";
-import {
-  ChevronDown,
-  Gem,
-  LayoutDashboard,
-  LogOut,
-  Package,
-  User,
-} from "lucide-react";
+import { ChevronDown, Gem, LayoutDashboard, Package, User } from "lucide-react";
 import { useRef, useState, useEffect, useLayoutEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
@@ -17,21 +10,10 @@ function SidebarHeader() {
       <h2 className="cursor-pointer select-none text-center text-4xl font-bold md:text-left">
         <Link to="/">{projectName}</Link>
       </h2>
-      <h4 className="select-none font-semibold tracking-widest text-[#888]">
+      <h4 className="select-none font-semibold tracking-widest text-[#908e9b]">
         Diamond Shop System
       </h4>
     </div>
-  );
-}
-
-function SidebarFooter() {
-  return (
-    <Link to="/login">
-      <span className="mt-2 flex h-12 w-full items-center gap-4 rounded-md bg-red-500/70 px-4 text-white transition-colors duration-300">
-        <LogOut />
-        <span>Logout</span>
-      </span>
-    </Link>
   );
 }
 
@@ -173,7 +155,7 @@ function Sidebar() {
   ];
 
   return (
-    <div className="fixed left-0 top-0 flex h-full w-72 flex-col justify-between gap-2 bg-gray-900 px-6 py-8 transition-all duration-300">
+    <div className="fixed left-0 top-0 flex h-full w-72 flex-col justify-between gap-2 bg-gray-900 px-6 py-8 shadow-md slow">
       <div>
         <SidebarHeader />
 
@@ -197,8 +179,6 @@ function Sidebar() {
           </div>
         ))}
       </div>
-
-      <SidebarFooter />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { Tabs } from "@/components/atoms/tabs";
+import { Tabs } from "@/pages/Cart/tabs";
 import Section from "@/components/organisms/Section";
 import CartCategories from "@/components/specific/Cart/CartCategories";
 import CartTable from "@/components/specific/Cart/CartTable";

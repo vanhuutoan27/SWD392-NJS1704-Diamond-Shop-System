@@ -75,7 +75,7 @@ function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
         <table className="w-full border-collapse rounded-md">
           <tbody>
             <tr>
-              <td className="w-[300px] border-2 border-input px-4 py-2 text-[#888]">
+              <td className="w-[300px] border-2 border-input px-4 py-2 text-[#908e9b]">
                 Shape
               </td>
               <td className="border-2 border-input px-4 py-2 italic">
@@ -83,7 +83,7 @@ function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
               </td>
             </tr>
             <tr>
-              <td className="border-2 border-input bg-slate-50 px-4 py-2 text-[#888]">
+              <td className="border-2 border-input bg-slate-50 px-4 py-2 text-[#908e9b]">
                 Weight
               </td>
               <td className="border-2 border-input bg-slate-50 px-4 py-2 italic">
@@ -91,7 +91,7 @@ function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
               </td>
             </tr>
             <tr>
-              <td className="w-[300px] border-2 border-input px-4 py-2 text-[#888]">
+              <td className="w-[300px] border-2 border-input px-4 py-2 text-[#908e9b]">
                 Color
               </td>
               <td className="border-2 border-input px-4 py-2 italic">
@@ -99,7 +99,7 @@ function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
               </td>
             </tr>
             <tr>
-              <td className="border-2 border-input bg-slate-50 px-4 py-2 text-[#888]">
+              <td className="border-2 border-input bg-slate-50 px-4 py-2 text-[#908e9b]">
                 Clarity
               </td>
               <td className="border-2 border-input bg-slate-50 px-4 py-2 italic">
@@ -107,7 +107,7 @@ function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
               </td>
             </tr>
             <tr>
-              <td className="w-[300px] border-2 border-input px-4 py-2 text-[#888]">
+              <td className="w-[300px] border-2 border-input px-4 py-2 text-[#908e9b]">
                 Certification
               </td>
               <td className="border-2 border-input px-4 py-2 italic">
@@ -115,7 +115,7 @@ function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
               </td>
             </tr>
             <tr>
-              <td className="border-2 border-input bg-slate-50 px-4 py-2 text-[#888]">
+              <td className="border-2 border-input bg-slate-50 px-4 py-2 text-[#908e9b]">
                 Size
               </td>
               <td className="border-2 border-input bg-slate-50 px-4 py-2 italic">
@@ -123,7 +123,7 @@ function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
               </td>
             </tr>
             <tr>
-              <td className="w-[300px] border-2 border-input px-4 py-2 text-[#888]">
+              <td className="w-[300px] border-2 border-input px-4 py-2 text-[#908e9b]">
                 Fluorescence
               </td>
               <td className="border-2 border-input px-4 py-2 italic">
@@ -131,7 +131,7 @@ function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
               </td>
             </tr>
             <tr>
-              <td className="border-2 border-input bg-slate-50 px-4 py-2 text-[#888]">
+              <td className="border-2 border-input bg-slate-50 px-4 py-2 text-[#908e9b]">
                 Quality of Cut
               </td>
               <td className="border-2 border-input bg-slate-50 px-4 py-2 italic">

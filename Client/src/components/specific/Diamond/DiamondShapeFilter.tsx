@@ -37,7 +37,7 @@ function DiamondShapeFilter({
         {shapes.map((shape, index) => (
           <div
             key={index}
-            className={`cursor-pointer overflow-hidden rounded-full border-2 p-1 transition-all duration-300 ${
+            className={`cursor-pointer overflow-hidden rounded-full border-2 p-1 slow ${
               selectedShapes.includes(shape.shapeName)
                 ? "border-primary"
                 : "border-input"

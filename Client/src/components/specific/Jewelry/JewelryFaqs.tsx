@@ -22,23 +22,23 @@ function JewelryFaqs() {
               <h4 className="mb-1 text-base font-semibold">
                 Diamond Jewelry At {projectName}
               </h4>
-              <li className="text-[#888]">
+              <li className="text-[#908e9b]">
                 Diverse Jewelry Designs, Personalized Design.
               </li>
-              <li className="text-[#888]">
+              <li className="text-[#908e9b]">
                 The Most Modern Inspection Technology Equipment.
               </li>
-              <li className="text-[#888]">
+              <li className="text-[#908e9b]">
                 Experience High-Class Diamond Service.
               </li>
             </ul>
             <ul className="mt-4 list-disc pl-5">
               <h4 className="mb-1 font-semibold">Diamonds At {projectName}</h4>
-              <li className="text-[#888]">
+              <li className="text-[#908e9b]">
                 Have GIA Accreditation certificate
               </li>
-              <li className="text-[#888]">VAT Invoice issued</li>
-              <li className="text-[#888]">Official Customs Import</li>
+              <li className="text-[#908e9b]">VAT Invoice issued</li>
+              <li className="text-[#908e9b]">Official Customs Import</li>
             </ul>
           </AccordionContent>
         </AccordionItem>
@@ -46,29 +46,29 @@ function JewelryFaqs() {
           <AccordionTrigger>Post-purchase service</AccordionTrigger>
           <AccordionContent>
             <ul className="list-disc pl-5">
-              <li className="text-[#888]">
+              <li className="text-[#908e9b]">
                 Free lifetime product polishing and renewing service.
               </li>
-              <li className="text-[#888]">
+              <li className="text-[#908e9b]">
                 Free 6-month warranty for technical errors and polish.
               </li>
-              <li className="text-[#888]">
+              <li className="text-[#908e9b]">
                 Free natural diamond testing service with advanced equipment
                 from GIA.
               </li>
-              <li className="text-[#888]">
+              <li className="text-[#908e9b]">
                 Free adjustment of jewelry size (in case you need to compensate
                 for additional gold for the product, you will bear the
                 additional costs calculated based on the listed gold price)
               </li>
-              <li className="text-[#888]">
+              <li className="text-[#908e9b]">
                 Attractive purchasing and exchange policies.
               </li>
-              <li className="text-[#888]">
+              <li className="text-[#908e9b]">
                 Attractive preferential policies exclusively for member
                 customers, VIP/VVIP.
               </li>
-              <li className="text-[#888]">
+              <li className="text-[#908e9b]">
                 Customer referral program with high discounts and exclusive
                 incentives for referred customers.
               </li>
@@ -83,7 +83,7 @@ function JewelryFaqs() {
                 What if I receive the goods and the product is not of good
                 quality?
               </h4>
-              <li className="text-[#888]">
+              <li className="text-[#908e9b]">
                 Customers please contact the consultant within 24 HOURS of
                 receiving the product. {projectName} will support completely
                 free exchange in case the product is defective due to
@@ -96,7 +96,7 @@ function JewelryFaqs() {
                 When shopping online, how do you know which ring size fits your
                 hand?
               </h4>
-              <li className="text-[#888]">
+              <li className="text-[#908e9b]">
                 {projectName} will send a hand-measuring kit to your home
                 completely free of charge. You just need to choose the right
                 ring and notify our consultant. In addition, {projectName}{" "}
@@ -109,7 +109,7 @@ function JewelryFaqs() {
               <h4 className="mb-1 font-semibold">
                 Is there anything to prove I bought a {projectName} product?
               </h4>
-              <li className="text-[#888]">
+              <li className="text-[#908e9b]">
                 {projectName} products are guaranteed legal through the
                 following 3 types of documents: sales invoice, sales contract
                 and VAT invoice to ensure all customer rights.
@@ -120,7 +120,7 @@ function JewelryFaqs() {
               <h4 className="mb-1 font-semibold">
                 Does {projectName} design products upon request?
               </h4>
-              <li className="text-[#888]">
+              <li className="text-[#908e9b]">
                 {projectName} is pleased to create unique jewelry designs with
                 you. We are ready to listen to your ideas, sketch, complete and
                 process according to your individual requirements.

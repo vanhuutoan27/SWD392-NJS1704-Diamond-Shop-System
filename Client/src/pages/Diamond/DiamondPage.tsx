@@ -203,7 +203,7 @@ function DiamondPage() {
 
           {filteredDiamonds.length > rowsToShow && (
             <div className="mt-8 flex items-center justify-center gap-4">
-              <p className="text-sm text-[#888]">
+              <p className="text-sm text-[#908e9b]">
                 Showing {Math.min(rowsToShow, filteredDiamonds.length)} of{" "}
                 {filteredDiamonds.length}
               </p>

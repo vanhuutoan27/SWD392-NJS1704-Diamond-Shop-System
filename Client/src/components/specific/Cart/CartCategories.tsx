@@ -1,4 +1,4 @@
-import { TabsList, TabsTrigger } from "@/components/atoms/tabs";
+import { TabsList, TabsTrigger } from "@/pages/Cart/tabs";
 
 function CartCategories() {
   return (

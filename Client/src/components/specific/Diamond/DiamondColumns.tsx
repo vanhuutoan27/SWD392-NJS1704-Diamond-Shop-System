@@ -195,7 +195,7 @@ export const columns: ColumnDef<IDiamond>[] = [
           to={`/diamond/${diamondId}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center font-semibold text-red-500 transition-all duration-300 hover:translate-x-1"
+          className="flex items-center font-semibold text-red-500 slow hover:translate-x-1"
         >
           Details <ChevronRight size={20} />
         </Link>

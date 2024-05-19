@@ -35,10 +35,10 @@ function AboutPage() {
                 className="w-full cursor-pointer object-cover"
               />
               <div className="px-6 py-4">
-                <h4 className="mb-1 cursor-pointer text-sm font-semibold transition-all duration-300 hover:text-[#888]">
+                <h4 className="mb-1 cursor-pointer text-sm font-semibold slow hover:text-[#908e9b]">
                   {member.name}
                 </h4>
-                <p className="text-sm text-[#888]">
+                <p className="text-sm text-[#908e9b]">
                   {getUserRole(member.role)}
                 </p>
               </div>

@@ -42,7 +42,7 @@ function ProductCard({
             to={`/diamond/${productId}`}
             target="_blank"
             rel="noopener noreferrer"
-            className={`${isHover ? "opacity-1 -bottom-4" : "-bottom-6 opacity-0"} absolute left-1/2 -translate-x-1/2 transition-all duration-300`}
+            className={`${isHover ? "opacity-1 -bottom-4" : "-bottom-6 opacity-0"} absolute left-1/2 -translate-x-1/2 slow`}
           >
             <Button variant={"secondary"} className="bg-white/80">
               View Details
@@ -67,7 +67,7 @@ function ProductCard({
             to={`/jewelry/${productId}`}
             target="_blank"
             rel="noopener noreferrer"
-            className={`${isHover ? "opacity-1" : "opacity-0"} absolute -bottom-4 left-1/2 -translate-x-1/2 transition-all duration-300`}
+            className={`${isHover ? "opacity-1" : "opacity-0"} absolute -bottom-4 left-1/2 -translate-x-1/2 slow`}
           >
             <Button variant={"secondary"} className="bg-white/80">
               View Details
@@ -83,7 +83,7 @@ function ProductCard({
               to={`/diamond/${productId}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 text-[14px] font-medium uppercase transition-all duration-300 hover:text-[#c69967]"
+              className="mt-2 text-[14px] font-medium uppercase slow hover:text-[#c69967]"
             >
               Natural Diamond - {size}mm
             </Link>
@@ -92,7 +92,7 @@ function ProductCard({
               to={`/jewelry/${productId}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 text-[14px] font-medium uppercase transition-all duration-300 hover:text-[#c69967]"
+              className="mt-2 text-[14px] font-medium uppercase slow hover:text-[#c69967]"
             >
               {jewelryName}
             </Link>

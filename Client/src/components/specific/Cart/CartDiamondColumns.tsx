@@ -215,7 +215,7 @@ export const cartDiamondColumns: ColumnDef<ICart>[] = [
         <div className="flex justify-center">
           <X
             size={20}
-            className="cursor-pointer text-red-800 transition-all duration-300 hover:text-red-800/80"
+            className="cursor-pointer text-red-800 slow hover:text-red-800/80"
           />
         </div>
       );
