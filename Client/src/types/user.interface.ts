@@ -11,6 +11,13 @@ export interface IUser {
   status: IUserStatus;
 }
 
+export interface IJwtPayload {
+  userId: string;
+  email: string;
+  sub: string;
+  role: IUserRole;
+}
+
 export enum IUserRole {
   Customer = 0,
   SalesStaff = 1,

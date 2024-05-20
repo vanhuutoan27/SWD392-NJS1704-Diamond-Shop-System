@@ -62,8 +62,14 @@ function ContactForm() {
     } catch (error) {
       if (error instanceof z.ZodError) {
         const fieldErrors = error.flatten().fieldErrors;
-        setErrors(fieldErrors);
-        console.error("Validation errors:", fieldErrors);
+        const formattedErrors: Errors = {};
+        for (const key in fieldErrors) {
+          if (fieldErrors.hasOwnProperty(key)) {
+            formattedErrors[key as keyof Errors] = fieldErrors[key]?.join(" ");
+          }
+        }
+        setErrors(formattedErrors);
+        console.error("Validation errors:", formattedErrors);
       } else {
         console.error("Error submitting form:", error);
       }
@@ -91,7 +97,6 @@ function ContactForm() {
         break;
     }
 
-    // Clear the error for the field being changed
     setErrors((prevErrors) => ({
       ...prevErrors,
       [name]: undefined,
