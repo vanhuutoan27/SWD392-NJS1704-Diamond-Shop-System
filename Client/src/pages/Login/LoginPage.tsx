@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate } from "react-router-dom";
@@ -5,9 +6,14 @@ import { IUser } from "@/types/user.interface";
 import { Button } from "@/components/atoms/button";
 import PasswordInput from "@/components/molecules/PasswordInput";
 import { loginSchema } from "@/schemas/LoginForm";
+import axios from "axios";
+import { toast } from "sonner";
+import { useAuthContext } from "@/contexts/AuthContext";
 
 function LoginPage() {
   const navigate = useNavigate();
+  const { login } = useAuthContext();
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -18,8 +24,25 @@ function LoginPage() {
   });
 
   const onSubmit = async (data: IUser) => {
-    console.log(JSON.stringify(data, null, 2));
-    navigate("/");
+    try {
+      setIsLoading(true);
+      const response = await axios.post(
+        `http://localhost:5084/login?Email=${data.email}&Password=${data.password}`,
+      );
+      const { accessToken, refreshToken } = response.data.data;
+      if (accessToken && refreshToken) {
+        login(accessToken, refreshToken);
+        toast.success("Login successfully");
+        navigate("/");
+      } else {
+        console.error("Tokens are missing in the response");
+      }
+    } catch (error) {
+      toast.error("Email or password is incorrect");
+      console.error("Login failed:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -44,7 +67,7 @@ function LoginPage() {
             {errors.password?.message}
           </p>
           <Button type="submit" className="mt-3 w-full py-6">
-            Login
+            {isLoading ? "Login" : "Login"}
           </Button>
           <p className="mt-4 text-center text-sm">
             Not registered yet?{" "}

@@ -1,5 +1,5 @@
 import { LogOut, Settings, User } from "lucide-react";
-import { Button } from "@/components/atoms/button";
+import { Avatar, AvatarImage } from "@/components/atoms/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,8 +10,15 @@ import {
 } from "@/components/atoms/dropdown-menu";
 import { Link } from "react-router-dom";
 import { scrollToTop } from "@/lib/utils";
+import { Loader } from "../atoms/Loader";
+import { IJwtPayload } from "@/types/user.interface";
 
-function UserProfile() {
+interface UserProfileProps {
+  userData: IJwtPayload | null;
+  onLogout: () => void;
+}
+
+function UserProfile({ userData, onLogout }: UserProfileProps) {
   const menuItems = [
     {
       icon: User,
@@ -28,21 +35,41 @@ function UserProfile() {
     {
       icon: LogOut,
       label: "Log out",
-      link: "/login",
+      link: "#",
       hoverColor: "group-hover:text-red-600",
       separator: true,
+      onClick: onLogout,
     },
   ];
 
+  if (!userData) return <Loader />;
+
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline">Open</Button>
+      <DropdownMenuTrigger asChild className="cursor-pointer select-none">
+        <div className="flex items-center gap-4">
+          <span className="hidden text-right lg:block">
+            <span className="block text-sm font-medium text-black dark:text-white">
+              {userData.sub}
+            </span>
+            <span className="block text-xs">{userData.role}</span>
+          </span>
+          <Avatar>
+            <AvatarImage src="https://github.com/shadcn.png" />
+          </Avatar>
+        </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="mr-5 mt-2 w-60 p-4">
+      <DropdownMenuContent className="mr-36 mt-2 w-60 p-4">
         <DropdownMenuGroup>
           {menuItems.map((item, index) => (
-            <Link key={index} to={item.link} onClick={scrollToTop}>
+            <Link
+              key={index}
+              to={item.link}
+              onClick={() => {
+                scrollToTop();
+                if (item.onClick) item.onClick();
+              }}
+            >
               {item.separator && <DropdownMenuSeparator />}
               <DropdownMenuItem
                 className={`group mb-2 cursor-pointer ${item.separator ? "mt-2" : ""}`}

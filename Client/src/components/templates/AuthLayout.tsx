@@ -8,7 +8,9 @@ function AuthLayout() {
       <Sidebar />
       <div className="ml-72 flex min-h-full flex-col bg-slate-200">
         <Toolbar />
-        <Outlet />
+        <div className="p-5">
+          <Outlet />
+        </div>
       </div>
     </div>
   );
