@@ -12,7 +12,7 @@ export interface IUser {
 }
 
 export interface IJwtPayload {
-  userId: string;
+  sid: string;
   email: string;
   name: string;
   role: IUserRole;

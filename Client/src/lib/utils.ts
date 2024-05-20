@@ -4,6 +4,7 @@ import { ICart, ICartType } from "@/types/cart.interface";
 import { diamondData } from "@/constants/diamond";
 import { jewelryData } from "@/constants/jewelry";
 import { IUserRole, IUserStatus } from "@/types/user.interface";
+import { useLocation } from "react-router-dom";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -82,3 +83,8 @@ export function getUserStatus(status: IUserStatus): string {
       return "Unknown";
   }
 }
+
+export const useIsAdminRoute = (): boolean => {
+  const location = useLocation();
+  return location.pathname.startsWith("/admin");
+};

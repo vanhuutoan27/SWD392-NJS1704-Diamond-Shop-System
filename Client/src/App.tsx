@@ -19,6 +19,9 @@ function App() {
   const Blog = lazy(() => import("./pages/Blog/BlogPage"));
   const BlogDetail = lazy(() => import("./pages/Blog/BlogDetailPage"));
   const Contact = lazy(() => import("./pages/Contact/ContactPage"));
+  const CheckOut = lazy(() => import("./pages/CheckOut/CheckOutPage"));
+  const Profile = lazy(() => import("./pages/Profile/ProfilePage"));
+  const Setting = lazy(() => import("./pages/Setting/SettingPage"));
 
   // Authenticated Routes
   const Dashboard = lazy(() => import("./pages/Dashboard/DashboardPage"));
@@ -133,6 +136,33 @@ function App() {
             </Suspense>
           }
         />
+
+        <Route
+          path="/checkout"
+          element={
+            <Suspense fallback={<Loader />}>
+              <CheckOut />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/profile/:userId"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Profile />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/setting/:userId"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Setting />
+            </Suspense>
+          }
+        />
       </Route>
 
       <Route element={<AuthLayout />}>
@@ -141,6 +171,24 @@ function App() {
           element={
             <Suspense fallback={<Loader />}>
               <Dashboard />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/admin/profile/:userId"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Profile />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/admin/setting/:userId"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Setting />
             </Suspense>
           }
         />

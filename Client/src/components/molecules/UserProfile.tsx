@@ -1,4 +1,4 @@
-import { LogOut, Settings, User } from "lucide-react";
+import { LogOut, LayoutDashboard, Settings, User } from "lucide-react";
 import { Avatar, AvatarImage } from "@/components/atoms/avatar";
 import {
   DropdownMenu,
@@ -8,7 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/atoms/dropdown-menu";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { scrollToTop } from "@/lib/utils";
 import { IJwtPayload } from "@/types/user.interface";
 import { Skeleton } from "../atoms/skeleton";
@@ -19,17 +19,28 @@ interface UserProfileProps {
 }
 
 function UserProfile({ userData, onLogout }: UserProfileProps) {
+  const userId = userData?.sid;
+
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith("/admin");
+
   const menuItems = [
+    {
+      icon: LayoutDashboard,
+      label: "Admin",
+      link: "/admin/dashboard",
+      hoverColor: "group-hover:text-blue-600",
+    },
     {
       icon: User,
       label: "Profile",
-      link: "/profile",
+      link: isAdminRoute ? `/admin/profile/${userId}` : `/profile/${userId}`,
       hoverColor: "group-hover:text-blue-600",
     },
     {
       icon: Settings,
       label: "Settings",
-      link: "/setting",
+      link: isAdminRoute ? `/admin/setting/${userId}` : `/setting/${userId}`,
       hoverColor: "group-hover:text-blue-600",
     },
     {
