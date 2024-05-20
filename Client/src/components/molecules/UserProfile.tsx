@@ -10,8 +10,8 @@ import {
 } from "@/components/atoms/dropdown-menu";
 import { Link } from "react-router-dom";
 import { scrollToTop } from "@/lib/utils";
-import { Loader } from "../atoms/Loader";
 import { IJwtPayload } from "@/types/user.interface";
+import { Skeleton } from "../atoms/skeleton";
 
 interface UserProfileProps {
   userData: IJwtPayload | null;
@@ -42,11 +42,20 @@ function UserProfile({ userData, onLogout }: UserProfileProps) {
     },
   ];
 
-  if (!userData) return <Loader />;
+  if (!userData)
+    return (
+      <div className="flex gap-4">
+        <div className="flex flex-col items-end gap-1">
+          <Skeleton className="h-5 w-20 rounded-md" />
+          <Skeleton className="h-4 w-24 rounded-md" />
+        </div>
+        <Skeleton className="h-10 w-10 rounded-full" />
+      </div>
+    );
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild className="relativeselect-none">
+      <DropdownMenuTrigger asChild className="relative select-none">
         <div className="flex items-center gap-4">
           <span className="hidden text-right md:block">
             <span className="block cursor-pointer text-sm font-medium transition-all duration-300 hover:text-secondary">
