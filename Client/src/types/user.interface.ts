@@ -14,7 +14,7 @@ export interface IUser {
 export interface IJwtPayload {
   userId: string;
   email: string;
-  sub: string;
+  name: string;
   role: IUserRole;
 }
 

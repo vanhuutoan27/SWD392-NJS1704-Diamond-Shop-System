@@ -8,7 +8,6 @@ import {
 import { useCookies } from "react-cookie";
 import { jwtDecode } from "jwt-decode";
 import { IJwtPayload } from "@/types/user.interface";
-import { useNavigate } from "react-router-dom";
 
 interface AuthContextProps {
   user: IJwtPayload | null;
@@ -28,7 +27,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     "refreshToken",
   ]);
   const [user, setUser] = useState<IJwtPayload | null>(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const accessToken = cookies.accessToken;
@@ -54,7 +52,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     removeCookie("accessToken", { path: "/" });
     removeCookie("refreshToken", { path: "/" });
     setUser(null);
-    navigate("/login");
   };
 
   return (

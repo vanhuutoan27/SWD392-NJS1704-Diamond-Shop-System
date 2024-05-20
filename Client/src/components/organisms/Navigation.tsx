@@ -3,8 +3,11 @@ import { Menu, X } from "lucide-react";
 import NavigationMenu from "../molecules/NavigationMenu";
 import NavigationMobile from "./NavigationMobile";
 import CartButton from "../molecules/CartButton";
+import { useAuthContext } from "@/contexts/AuthContext";
 
 function Navigation() {
+  const { user } = useAuthContext();
+
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isSticky, setSticky] = useState(false);
 
@@ -33,7 +36,7 @@ function Navigation() {
       </div>
 
       <div className="flex w-full flex-row-reverse items-center justify-between lg:w-fit">
-        <CartButton />
+        <div>{user && <CartButton />}</div>
 
         <div
           className="flex cursor-pointer select-none gap-4 font-semibold uppercase text-gray-800 md:hidden"

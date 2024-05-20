@@ -28,7 +28,7 @@ function CartButton() {
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
-        <div className="relative flex cursor-pointer select-none items-center gap-4 text-primary slow hover:text-[#908e9b]">
+        <div className="relative flex cursor-pointer select-none items-center gap-4 text-primary slow hover:text-secondary">
           <ShoppingCart strokeWidth={2.5} />
           <span className="mt-1 text-sm font-medium">
             Cart ({cartItems.length})
@@ -72,7 +72,7 @@ function CartButton() {
                             ? `/diamond/${cartItem.productId}`
                             : `/jewelry/${cartItem.productId}`
                         }
-                        className="mr-2 text-sm font-semibold uppercase slow hover:text-[#908e9b]"
+                        className="mr-2 text-sm font-semibold uppercase slow hover:text-secondary"
                       >
                         {cartItem.productType === "Diamond"
                           ? `Natural Diamond x ${cartItem.size}mm`

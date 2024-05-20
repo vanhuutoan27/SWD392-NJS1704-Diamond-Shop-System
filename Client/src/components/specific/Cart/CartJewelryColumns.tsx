@@ -51,7 +51,7 @@ export const cartJewelryColumns: ColumnDef<ICart>[] = [
       const row = info.row.original as IJewelryCart;
 
       return (
-        <div className="text-center font-semibold slow hover:text-[#908e9b]">
+        <div className="text-center font-semibold slow hover:text-secondary">
           <Link
             to={`/jewelry/${row.productId}`}
             target="_blank"

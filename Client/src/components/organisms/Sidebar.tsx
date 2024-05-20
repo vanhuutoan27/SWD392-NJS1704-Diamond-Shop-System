@@ -10,7 +10,7 @@ function SidebarHeader() {
       <h2 className="cursor-pointer select-none text-center text-4xl font-bold md:text-left">
         <Link to="/">{projectName}</Link>
       </h2>
-      <h4 className="select-none font-semibold tracking-widest text-[#908e9b]">
+      <h4 className="select-none font-semibold tracking-widest text-secondary">
         Diamond Shop System
       </h4>
     </div>

@@ -1,31 +1,12 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Navigation from "./Navigation";
 import { Button } from "../atoms/button";
 import { projectName } from "@/lib/constants";
 import UserProfile from "../molecules/UserProfile";
-import { useCookies } from "react-cookie";
-import { jwtDecode } from "jwt-decode";
-import { IJwtPayload } from "@/types/user.interface";
+import { useAuthContext } from "@/contexts/AuthContext";
 
 function Header() {
-  const navigate = useNavigate();
-  const [cookies, removeCookie] = useCookies(["accessToken", "refreshToken"]);
-  const accessToken = cookies.accessToken;
-
-  let user: IJwtPayload | null = null;
-  if (accessToken) {
-    try {
-      user = jwtDecode<IJwtPayload>(accessToken);
-    } catch (error) {
-      console.error("Invalid token:", error);
-    }
-  }
-
-  const logout = () => {
-    removeCookie("accessToken", { path: "/" });
-    removeCookie("refreshToken", { path: "/" });
-    navigate("/login");
-  };
+  const { user, logout } = useAuthContext();
 
   return (
     <div className="container bg-white pt-8">

@@ -30,7 +30,7 @@ function BreadcrumbComponent({
           <BreadcrumbItem>
             <BreadcrumbLink
               href={lastPageUrl}
-              className="text-gray-800 slow hover:text-[#908e9b]"
+              className="text-gray-800 slow hover:text-secondary"
             >
               {lastPage}
             </BreadcrumbLink>
@@ -43,7 +43,7 @@ function BreadcrumbComponent({
               <BreadcrumbItem>
                 <BreadcrumbLink
                   href={currentPageUrl}
-                  className={`text-primary ${currentDetailPage ? "cursor-pointer text-gray-800 slow hover:text-[#908e9b]" : ""}`}
+                  className={`text-primary ${currentDetailPage ? "cursor-pointer text-gray-800 slow hover:text-secondary" : ""}`}
                 >
                   {currentPage}
                 </BreadcrumbLink>

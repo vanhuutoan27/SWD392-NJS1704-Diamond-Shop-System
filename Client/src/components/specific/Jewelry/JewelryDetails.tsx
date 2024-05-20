@@ -95,7 +95,7 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
         <table className="w-full border-collapse">
           <tbody>
             <tr>
-              <td className="border-2 border-input px-4 py-2 text-[#908e9b]">
+              <td className="border-2 border-input px-4 py-2 text-secondary">
                 Jewelry Category
               </td>
               <td className="border-2 border-input px-4 py-2 italic">
@@ -103,7 +103,7 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
               </td>
             </tr>
             <tr>
-              <td className="w-[300px] border-2  border-input bg-slate-50 px-4 py-2 text-[#908e9b]">
+              <td className="w-[300px] border-2  border-input bg-slate-50 px-4 py-2 text-secondary">
                 Main Store Size
               </td>
               <td className="border-2 border-input  bg-slate-50 px-4 py-2 italic">
@@ -111,7 +111,7 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
               </td>
             </tr>
             <tr>
-              <td className="border-2 border-input px-4 py-2 text-[#908e9b]">
+              <td className="border-2 border-input px-4 py-2 text-secondary">
                 Side Stone Type
               </td>
               <td className="border-2 border-input px-4 py-2 italic">
@@ -119,7 +119,7 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
               </td>
             </tr>
             <tr>
-              <td className="w-[300px] border-2  border-input bg-slate-50 px-4 py-2 text-[#908e9b]">
+              <td className="w-[300px] border-2  border-input bg-slate-50 px-4 py-2 text-secondary">
                 Side Stone Quantity
               </td>
               <td className="border-2 border-input bg-slate-50 px-4 py-2 italic">
@@ -127,7 +127,7 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
               </td>
             </tr>
             <tr>
-              <td className="border-2 border-input px-4 py-2 text-[#908e9b]">
+              <td className="border-2 border-input px-4 py-2 text-secondary">
                 Side Stone Weight
               </td>
               <td className="border-2 border-input px-4 py-2 italic">
@@ -135,7 +135,7 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
               </td>
             </tr>
             <tr>
-              <td className="w-[300px] border-2  border-input bg-slate-50 px-4 py-2 text-[#908e9b]">
+              <td className="w-[300px] border-2  border-input bg-slate-50 px-4 py-2 text-secondary">
                 Gold Type
               </td>
               <td className="border-2 border-input  bg-slate-50 px-4 py-2 italic">
@@ -143,7 +143,7 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
               </td>
             </tr>
             <tr>
-              <td className="border-2 border-input px-4 py-2 text-[#908e9b]">
+              <td className="border-2 border-input px-4 py-2 text-secondary">
                 Gold Karat
               </td>
               <td className="border-2 border-input px-4 py-2 italic">
@@ -151,7 +151,7 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
               </td>
             </tr>
             <tr>
-              <td className="w-[300px] border-2  border-input bg-slate-50 px-4 py-2 text-[#908e9b]">
+              <td className="w-[300px] border-2  border-input bg-slate-50 px-4 py-2 text-secondary">
                 Gold Weight
               </td>
               <td className="border-2 border-input  bg-slate-50 px-4 py-2 italic">

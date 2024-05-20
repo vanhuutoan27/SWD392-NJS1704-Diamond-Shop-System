@@ -48,7 +48,7 @@ function KPICards() {
             </div>
 
             <div className="flex justify-between">
-              <div className="text-sm text-[#908e9b]">{card.title}</div>
+              <div className="text-sm text-secondary">{card.title}</div>
 
               <div
                 className={`font-semibold ${card.trend === "up" ? "text-green-500" : "text-red-500"}`}

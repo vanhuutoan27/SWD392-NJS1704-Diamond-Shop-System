@@ -50,7 +50,7 @@ export const cartColumns: ColumnDef<ICart>[] = [
           : (row as IJewelryCart).jewelryName;
 
       return (
-        <div className="text-center font-semibold uppercase slow hover:text-[#908e9b]">
+        <div className="text-center font-semibold uppercase slow hover:text-secondary">
           {row.productType === ICartType.Diamond ? (
             <Link
               to={`/diamond/${row.productId}`}

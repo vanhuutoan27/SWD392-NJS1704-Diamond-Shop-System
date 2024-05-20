@@ -27,7 +27,7 @@ namespace PROJECT_SWD.Controllers
         }
 
         [HttpGet]
-        [Route("getuserbyid")]
+        [Route("getUserById")]
         [Authorize]
         public async Task<ActionResult<LoginResponee>> GetUserById(GetUserByIdRequest getUserByIdRequest)
         {

@@ -6,9 +6,9 @@ import { IUser } from "@/types/user.interface";
 import { Button } from "@/components/atoms/button";
 import PasswordInput from "@/components/molecules/PasswordInput";
 import { loginSchema } from "@/schemas/LoginForm";
-import axios from "axios";
 import { toast } from "sonner";
 import { useAuthContext } from "@/contexts/AuthContext";
+import diamoonAPI from "@/lib/diamoonAPI";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -26,8 +26,8 @@ function LoginPage() {
   const onSubmit = async (data: IUser) => {
     try {
       setIsLoading(true);
-      const response = await axios.post(
-        `http://localhost:5084/login?Email=${data.email}&Password=${data.password}`,
+      const response = await diamoonAPI.post(
+        `/login?Email=${data.email}&Password=${data.password}`,
       );
       const { accessToken, refreshToken } = response.data.data;
       if (accessToken && refreshToken) {

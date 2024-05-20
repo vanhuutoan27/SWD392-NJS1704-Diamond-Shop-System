@@ -76,7 +76,7 @@ function Footer() {
               <Link
                 onClick={scrollToTop}
                 to={quickLink.link}
-                className="flex items-center gap-2 text-sm leading-8 slow hover:text-[#908e9b]"
+                className="flex items-center gap-2 text-sm leading-8 slow hover:text-secondary"
               >
                 {quickLink.icon}
                 {quickLink.name}
@@ -91,7 +91,7 @@ function Footer() {
               <Link
                 onClick={scrollToTop}
                 to={Information.link}
-                className="flex items-center gap-2 text-sm leading-8 slow hover:text-[#908e9b]"
+                className="flex items-center gap-2 text-sm leading-8 slow hover:text-secondary"
               >
                 {Information.icon}
                 {Information.name}
@@ -106,7 +106,7 @@ function Footer() {
               <Link
                 onClick={scrollToTop}
                 to={socialMedia.link}
-                className="flex items-center gap-2 text-sm leading-[45px] slow hover:text-[#908e9b]"
+                className="flex items-center gap-2 text-sm leading-[45px] slow hover:text-secondary"
               >
                 {socialMedia.icon}
 
@@ -127,7 +127,7 @@ function Footer() {
               onClick={scrollToTop}
               to={socialMedia.link}
               key={socialMedia.name}
-              className="mx-2 inline-flex items-center rounded-full bg-primary p-2 text-[#908e9b] slow hover:bg-gray-800 hover:text-slate-100"
+              className="mx-2 inline-flex items-center rounded-full bg-primary p-2 text-secondary slow hover:bg-gray-800 hover:text-slate-100"
             >
               {socialMedia.icon}
             </Link>

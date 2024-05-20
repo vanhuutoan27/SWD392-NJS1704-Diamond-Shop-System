@@ -4826,7 +4826,6 @@
       "AutoMapper >= 12.0.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 12.0.1",
       "BussinessLogic >= 1.0.0",
-      "Data_Access >= 1.0.0",
       "Microsoft.AspNet.Mvc >= 5.3.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.5",
       "Microsoft.AspNetCore.Cors >= 2.2.0",
@@ -4838,24 +4837,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Lenovo\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\swdasd\\SWD392-NJS1704-Diamond-Shop-System\\Server\\PROJECT_SWD\\PROJECT_SWD.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Desktop\\ZotaeusS7\\Diamoon\\Server\\PROJECT_SWD\\PROJECT_SWD.csproj",
       "projectName": "PROJECT_SWD",
-      "projectPath": "D:\\swdasd\\SWD392-NJS1704-Diamond-Shop-System\\Server\\PROJECT_SWD\\PROJECT_SWD.csproj",
-      "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "D:\\swdasd\\SWD392-NJS1704-Diamond-Shop-System\\Server\\PROJECT_SWD\\obj\\",
+      "projectPath": "C:\\Users\\Admin\\Desktop\\ZotaeusS7\\Diamoon\\Server\\PROJECT_SWD\\PROJECT_SWD.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Admin\\Desktop\\ZotaeusS7\\Diamoon\\Server\\PROJECT_SWD\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4869,11 +4863,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\swdasd\\SWD392-NJS1704-Diamond-Shop-System\\Server\\BussinessLogic\\BussinessLogic.csproj": {
-              "projectPath": "D:\\swdasd\\SWD392-NJS1704-Diamond-Shop-System\\Server\\BussinessLogic\\BussinessLogic.csproj"
-            },
-            "D:\\swdasd\\SWD392-NJS1704-Diamond-Shop-System\\Server\\Data_Access\\Data_Access.csproj": {
-              "projectPath": "D:\\swdasd\\SWD392-NJS1704-Diamond-Shop-System\\Server\\Data_Access\\Data_Access.csproj"
+            "C:\\Users\\Admin\\Desktop\\ZotaeusS7\\Diamoon\\Server\\BussinessLogic\\BussinessLogic.csproj": {
+              "projectPath": "C:\\Users\\Admin\\Desktop\\ZotaeusS7\\Diamoon\\Server\\BussinessLogic\\BussinessLogic.csproj"
             }
           }
         }
@@ -4882,11 +4873,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -4957,7 +4943,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   },

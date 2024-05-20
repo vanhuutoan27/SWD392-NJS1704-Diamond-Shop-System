@@ -23,13 +23,13 @@ function UserProfile({ userData, onLogout }: UserProfileProps) {
     {
       icon: User,
       label: "Profile",
-      link: "/admin/profile",
+      link: "/profile",
       hoverColor: "group-hover:text-blue-600",
     },
     {
       icon: Settings,
       label: "Settings",
-      link: "/admin/setting",
+      link: "/setting",
       hoverColor: "group-hover:text-blue-600",
     },
     {
@@ -46,20 +46,22 @@ function UserProfile({ userData, onLogout }: UserProfileProps) {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild className="cursor-pointer select-none">
+      <DropdownMenuTrigger asChild className="relativeselect-none">
         <div className="flex items-center gap-4">
-          <span className="hidden text-right lg:block">
-            <span className="block text-sm font-medium text-black dark:text-white">
-              {userData.sub}
+          <span className="hidden text-right md:block">
+            <span className="block cursor-pointer text-sm font-medium transition-all duration-300 hover:text-secondary">
+              {userData.name}
             </span>
-            <span className="block text-xs">{userData.role}</span>
+            <span className="block text-xs text-secondary">
+              {userData.email}
+            </span>
           </span>
-          <Avatar>
+          <Avatar className="cursor-pointer">
             <AvatarImage src="https://github.com/shadcn.png" />
           </Avatar>
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="mr-36 mt-2 w-60 p-4">
+      <DropdownMenuContent className="absolute -right-20 mt-2 w-60 p-2">
         <DropdownMenuGroup>
           {menuItems.map((item, index) => (
             <Link
@@ -72,13 +74,13 @@ function UserProfile({ userData, onLogout }: UserProfileProps) {
             >
               {item.separator && <DropdownMenuSeparator />}
               <DropdownMenuItem
-                className={`group mb-2 cursor-pointer ${item.separator ? "mt-2" : ""}`}
+                className={`group mb-2 cursor-pointer ${item.separator ? "mb-0 mt-2" : ""}`}
               >
                 <item.icon
                   className={`slow mr-4 ${item.hoverColor}`}
                   size={20}
                 />
-                <span className={`slow text-base ${item.hoverColor}`}>
+                <span className={`slow text-sm ${item.hoverColor}`}>
                   {item.label}
                 </span>
               </DropdownMenuItem>
