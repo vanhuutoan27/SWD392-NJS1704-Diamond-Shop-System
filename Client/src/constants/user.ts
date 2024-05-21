@@ -17,7 +17,7 @@ export const userData: IUser[] = [
   {
     userId: "U002",
     name: "Phan Van Khai",
-    email: "",
+    email: "khaipvse171817@fpt.edu.vn",
     password: "123@",
     avatar:
       "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -30,7 +30,7 @@ export const userData: IUser[] = [
   {
     userId: "U003",
     name: "Pham Hoai Duy",
-    email: "",
+    email: "duyphse160496@fpt.edu.vn",
     password: "123@",
     avatar:
       "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -43,7 +43,7 @@ export const userData: IUser[] = [
   {
     userId: "U004",
     name: "Nguyen Quoc Dai",
-    email: "",
+    email: "dainqse160959@fpt.edu.vn",
     password: "123@",
     avatar:
       "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -56,7 +56,7 @@ export const userData: IUser[] = [
   {
     userId: "U005",
     name: "Nguyen Pham Khanh",
-    email: "",
+    email: "khanhnpse160945@fpt.edu.vn",
     password: "123@",
     avatar:
       "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",

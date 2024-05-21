@@ -84,7 +84,23 @@ export function getUserStatus(status: IUserStatus): string {
   }
 }
 
+// Check if the current route is an admin route
 export const useIsAdminRoute = (): boolean => {
   const location = useLocation();
   return location.pathname.startsWith("/admin");
+};
+
+// Add item to cart
+export const addToCart = (cartItems: ICart[], newItem: ICart) => {
+  const existingItem = cartItems.find(
+    (item) => item.productId === newItem.productId,
+  );
+  if (existingItem) {
+    return cartItems.map((item) =>
+      item.productId === newItem.productId
+        ? { ...item, quantity: item.quantity + newItem.quantity }
+        : item,
+    );
+  }
+  return [...cartItems, newItem];
 };

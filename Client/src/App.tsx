@@ -1,30 +1,41 @@
 import { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import { Loader } from "./components/atoms/Loader";
-import RootLayout from "./components/templates/RootLayout";
-import AuthLayout from "./components/templates/AuthLayout";
-import NotFound from "./pages/NotFound/NotFoundPage";
+import { Loader } from "./components/global/atoms/Loader";
+import RootLayout from "./components/global/templates/RootLayout";
+import AuthLayout from "./components/global/templates/AuthLayout";
+import NotFound from "./pages/Guest/NotFound/NotFoundPage";
 
 function App() {
   // Public Routes
-  const Home = lazy(() => import("./pages/Home/HomePage"));
-  const Login = lazy(() => import("./pages/Login/LoginPage"));
-  const Register = lazy(() => import("./pages/Register/RegisterPage"));
-  const About = lazy(() => import("./pages/About/AboutPage"));
-  const Jewelry = lazy(() => import("./pages/Jewelry/JewelryPage"));
-  const JewelryDetail = lazy(() => import("./pages/Jewelry/JewelryDetailPage"));
-  const Diamond = lazy(() => import("./pages/Diamond/DiamondPage"));
-  const DiamondDetail = lazy(() => import("./pages/Diamond/DiamondDetailPage"));
-  const Cart = lazy(() => import("./pages/Cart/CartPage"));
-  const Blog = lazy(() => import("./pages/Blog/BlogPage"));
-  const BlogDetail = lazy(() => import("./pages/Blog/BlogDetailPage"));
-  const Contact = lazy(() => import("./pages/Contact/ContactPage"));
-  const CheckOut = lazy(() => import("./pages/CheckOut/CheckOutPage"));
-  const Profile = lazy(() => import("./pages/Profile/ProfilePage"));
-  const Setting = lazy(() => import("./pages/Setting/SettingPage"));
+  const Home = lazy(() => import("./pages/Guest/Home/HomePage"));
+  const Login = lazy(() => import("./pages/Guest/Login/LoginPage"));
+  const Register = lazy(() => import("./pages/Guest/Register/RegisterPage"));
+  const About = lazy(() => import("./pages/Guest/About/AboutPage"));
+  const Jewelry = lazy(() => import("./pages/Guest/Jewelry/JewelryPage"));
+  const JewelryDetail = lazy(
+    () => import("./pages/Guest/Jewelry/JewelryDetailPage"),
+  );
+  const Diamond = lazy(() => import("./pages/Guest/Diamond/DiamondPage"));
+  const DiamondDetail = lazy(
+    () => import("./pages/Guest/Diamond/DiamondDetailPage"),
+  );
+  const Cart = lazy(() => import("./pages/Customer/Cart/CartPage"));
+  const Blog = lazy(() => import("./pages/Guest/Blog/BlogPage"));
+  const BlogDetail = lazy(() => import("./pages/Guest/Blog/BlogDetailPage"));
+  const Contact = lazy(() => import("./pages/Guest/Contact/ContactPage"));
+  const Order = lazy(() => import("./pages/Customer/Order/OrderPage"));
+  const Profile = lazy(() => import("./pages/Customer/Profile/ProfilePage"));
+  const Setting = lazy(() => import("./pages/Customer/Setting/SettingPage"));
 
   // Authenticated Routes
-  const Dashboard = lazy(() => import("./pages/Dashboard/DashboardPage"));
+  const Dashboard = lazy(() => import("./pages/Admin/Dashboard/DashboardPage"));
+  const UserList = lazy(() => import("./pages/Manager/User/UserListPage"));
+  const JewelryList = lazy(
+    () => import("./pages/Manager/Jewelry/JewelryListPage"),
+  );
+  const DiamondList = lazy(
+    () => import("./pages/Manager/Diamond/DiamondListPage"),
+  );
 
   return (
     <Routes>
@@ -138,10 +149,10 @@ function App() {
         />
 
         <Route
-          path="/checkout"
+          path="/order"
           element={
             <Suspense fallback={<Loader />}>
-              <CheckOut />
+              <Order />
             </Suspense>
           }
         />
@@ -189,6 +200,33 @@ function App() {
           element={
             <Suspense fallback={<Loader />}>
               <Setting />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/admin/jewelry-list"
+          element={
+            <Suspense fallback={<Loader />}>
+              <JewelryList />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/admin/diamond-list"
+          element={
+            <Suspense fallback={<Loader />}>
+              <DiamondList />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/admin/user-list"
+          element={
+            <Suspense fallback={<Loader />}>
+              <UserList />
             </Suspense>
           }
         />
