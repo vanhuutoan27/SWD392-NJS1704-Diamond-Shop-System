@@ -7,6 +7,7 @@ const userSchema = z.object({
   name: z.string().nonempty("Name is required"),
   email: z.string().nonempty("Email is required").email("Email is invalid"),
   phone: z.string().nonempty("Phone number is required"),
+  username: z.string().nonempty("Username is required"),
 });
 
 interface EditUserFormProps {
@@ -55,54 +56,52 @@ const EditUserForm: React.FC<EditUserFormProps> = ({ user, onSave }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex max-h-[800px] flex-col justify-between space-y-5 border-2 border-gray-100 bg-white shadow-md pb-8"
+      className="flex max-h-[800px] flex-col justify-between space-y-5 border-2 border-gray-100 bg-white pb-8 shadow-md"
     >
       <div className="border-b-2 border-gray-100 p-3">
         <p className="ml-3">Personal Information</p>{" "}
       </div>
-      <div className="flex justify-between gap-4 p-5">
-      <div className="w-full">
-        <label
-          htmlFor="name"
-          className="block text-sm font-medium text-gray-700"
-        >
-          Full Name
-        </label>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          value={formData.name}
-          onChange={handleChange}
-          className="mt-1 w-full rounded-sm border border-gray-300 bg-blue-100 p-2  shadow-sm"
-        />
-        {errors.name && (
-          <div className="text-sm text-red-600">{errors.name}</div>
-        )}
-      </div>
+      <div className="flex justify-between gap-4 pl-5 pr-5">
+        <div className="w-full">
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Full Name
+          </label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            value={formData.name}
+            onChange={handleChange}
+            className="mt-1 w-full rounded-sm border border-gray-300 bg-blue-50 p-2  shadow-sm"
+          />
+          {errors.name && (
+            <div className="text-sm text-red-600">{errors.name}</div>
+          )}
+        </div>
 
-      <div className="w-full">
-        <label
-          htmlFor="phone"
-          className="block text-sm font-medium text-gray-700 "
-        >
-          Phone
-        </label>
-        <input
-          id="phone"
-          name="phone"
-          type="text"
-          value={formData.phone}
-          onChange={handleChange}
-          className="mt-1 w-full rounded-sm border border-gray-300 bg-blue-100 p-2  shadow-sm"
-        />
-        {errors.phone && (
-          <div className="text-sm text-red-600">{errors.phone}</div>
-        )}
+        <div className="w-full">
+          <label
+            htmlFor="phone"
+            className="block text-sm font-medium text-gray-700 "
+          >
+            Phone
+          </label>
+          <input
+            id="phone"
+            name="phone"
+            type="text"
+            value={formData.phone}
+            onChange={handleChange}
+            className="mt-1 w-full rounded-sm border border-gray-300 bg-blue-50 p-2  shadow-sm"
+          />
+          {errors.phone && (
+            <div className="text-sm text-red-600">{errors.phone}</div>
+          )}
+        </div>
       </div>
-
-      </div>
-     
 
       <div className="ml-5 w-full pr-10">
         <div>
@@ -118,10 +117,32 @@ const EditUserForm: React.FC<EditUserFormProps> = ({ user, onSave }) => {
             type="email"
             value={formData.email}
             onChange={handleChange}
-            className="mt-1 w-full rounded-sm border border-gray-300 bg-blue-100 p-2  shadow-sm"
+            className="mt-1 w-full rounded-sm border border-gray-300 bg-blue-50 p-2  shadow-sm"
           />
           {errors.email && (
             <div className="text-sm text-red-600">{errors.email}</div>
+          )}
+        </div>
+      </div>
+
+      <div className="ml-5 w-full pr-10">
+        <div>
+          <label
+            htmlFor="username"
+            className="ml-1 block text-sm font-medium text-gray-700"
+          >
+            Username
+          </label>
+          <input
+            id="username"
+            name="username"
+            type="username"
+            value={formData.username}
+            onChange={handleChange}
+            className="mt-1 w-full rounded-sm border border-gray-300 bg-blue-50 p-2  shadow-sm"
+          />
+          {errors.username && (
+            <div className="text-sm text-red-600">{errors.username}</div>
           )}
         </div>
       </div>

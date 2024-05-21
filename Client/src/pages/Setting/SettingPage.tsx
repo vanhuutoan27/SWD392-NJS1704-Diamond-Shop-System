@@ -5,6 +5,7 @@ import { Loader } from "@/components/atoms/Loader";
 import EditUserForm from "@/components/specific/User/EditUserForm";
 import { IUser } from "@/types/user.interface";
 import BreadcrumbComponent from "@/components/atoms/BreadcrumbComponent";
+import EditImg from "@/components/specific/User/EditImg";
 
 function SettingPage() {
   const isAdminRoute = useIsAdminRoute();
@@ -30,9 +31,14 @@ function SettingPage() {
         currentPage="Settings"
       />
 
-      <h1 className="text-2xl font-semibold">Settings</h1>
-      <div className="mt-8 w-1/2">
-        <EditUserForm user={userDetail} onSave={handleSave} />
+      <h1 className="text-2xl font-medium">Settings</h1>
+      <div className="flex gap-6">
+        <div className="mt-8 w-2/3">
+          <EditUserForm user={userDetail} onSave={handleSave} />
+        </div>
+        <div className="mt-8 w-1/3">
+          <EditImg user={userDetail} onSave={handleSave} />
+        </div>
       </div>
     </div>
   );
