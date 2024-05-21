@@ -1,0 +1,13 @@
+F:\GitSource\Diamond-Shop-System\src\DiamonShopManagement\DiamonShop.Core\bin\Debug\net8.0\DiamonShop.Core.deps.json
+F:\GitSource\Diamond-Shop-System\src\DiamonShopManagement\DiamonShop.Core\bin\Debug\net8.0\DiamonShop.Core.dll
+F:\GitSource\Diamond-Shop-System\src\DiamonShopManagement\DiamonShop.Core\bin\Debug\net8.0\DiamonShop.Core.pdb
+F:\GitSource\Diamond-Shop-System\src\DiamonShopManagement\DiamonShop.Core\obj\Debug\net8.0\DiamonShop.Core.csproj.AssemblyReference.cache
+F:\GitSource\Diamond-Shop-System\src\DiamonShopManagement\DiamonShop.Core\obj\Debug\net8.0\DiamonShop.Core.GeneratedMSBuildEditorConfig.editorconfig
+F:\GitSource\Diamond-Shop-System\src\DiamonShopManagement\DiamonShop.Core\obj\Debug\net8.0\DiamonShop.Core.AssemblyInfoInputs.cache
+F:\GitSource\Diamond-Shop-System\src\DiamonShopManagement\DiamonShop.Core\obj\Debug\net8.0\DiamonShop.Core.AssemblyInfo.cs
+F:\GitSource\Diamond-Shop-System\src\DiamonShopManagement\DiamonShop.Core\obj\Debug\net8.0\DiamonShop.Core.csproj.CoreCompileInputs.cache
+F:\GitSource\Diamond-Shop-System\src\DiamonShopManagement\DiamonShop.Core\obj\Debug\net8.0\DiamonShop.Core.sourcelink.json
+F:\GitSource\Diamond-Shop-System\src\DiamonShopManagement\DiamonShop.Core\obj\Debug\net8.0\DiamonShop.Core.dll
+F:\GitSource\Diamond-Shop-System\src\DiamonShopManagement\DiamonShop.Core\obj\Debug\net8.0\refint\DiamonShop.Core.dll
+F:\GitSource\Diamond-Shop-System\src\DiamonShopManagement\DiamonShop.Core\obj\Debug\net8.0\DiamonShop.Core.pdb
+F:\GitSource\Diamond-Shop-System\src\DiamonShopManagement\DiamonShop.Core\obj\Debug\net8.0\ref\DiamonShop.Core.dll

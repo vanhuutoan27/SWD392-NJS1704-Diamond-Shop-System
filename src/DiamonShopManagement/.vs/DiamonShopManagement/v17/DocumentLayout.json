@@ -1,70 +1,82 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Udemy\\workspace\\DiamonShopManagement\\",
+  "WorkspaceRootPath": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|d:\\udemy\\workspace\\diamonshopmanagement\\diamonshop.data\\services\\diamondservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E8BB953D-A8BF-4A0C-A1B9-BDC57CF4F182}|DiamonShop.API\\DiamonShop.API.csproj|f:\\gitsource\\diamond-shop-system\\src\\diamonshopmanagement\\diamonshop.api\\controllers\\diamondcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8BB953D-A8BF-4A0C-A1B9-BDC57CF4F182}|DiamonShop.API\\DiamonShop.API.csproj|solutionrelative:diamonshop.api\\controllers\\diamondcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8BB953D-A8BF-4A0C-A1B9-BDC57CF4F182}|DiamonShop.API\\DiamonShop.API.csproj|f:\\gitsource\\diamond-shop-system\\src\\diamonshopmanagement\\diamonshop.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8BB953D-A8BF-4A0C-A1B9-BDC57CF4F182}|DiamonShop.API\\DiamonShop.API.csproj|solutionrelative:diamonshop.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8BB953D-A8BF-4A0C-A1B9-BDC57CF4F182}|DiamonShop.API\\DiamonShop.API.csproj|f:\\gitsource\\diamond-shop-system\\src\\diamonshopmanagement\\diamonshop.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8BB953D-A8BF-4A0C-A1B9-BDC57CF4F182}|DiamonShop.API\\DiamonShop.API.csproj|solutionrelative:diamonshop.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|f:\\gitsource\\diamond-shop-system\\src\\diamonshopmanagement\\diamonshop.data\\services\\servicemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|solutionrelative:diamonshop.data\\services\\servicemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|f:\\gitsource\\diamond-shop-system\\src\\diamonshopmanagement\\diamonshop.data\\services\\diamondservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|solutionrelative:diamonshop.data\\services\\diamondservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|d:\\udemy\\workspace\\diamonshopmanagement\\diamonshop.data\\seedworks\\repositorybase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|solutionrelative:diamonshop.data\\seedworks\\repositorybase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|d:\\udemy\\workspace\\diamonshopmanagement\\diamonshop.core\\seedworks\\irepositorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\seedworks\\irepositorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|d:\\udemy\\workspace\\diamonshopmanagement\\diamonshop.core\\services\\iservicemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\services\\iservicemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|d:\\udemy\\workspace\\diamonshopmanagement\\diamonshop.core\\services\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\services\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|d:\\udemy\\workspace\\diamonshopmanagement\\diamonshop.core\\services\\idiamondservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\services\\idiamondservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|d:\\udemy\\workspace\\diamonshopmanagement\\diamonshop.core\\models\\auth\\loginrequests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\models\\auth\\loginrequests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|d:\\udemy\\workspace\\diamonshopmanagement\\diamonshop.core\\models\\auth\\authenticatedresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\models\\auth\\authenticatedresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|d:\\udemy\\workspace\\diamonshopmanagement\\diamonshop.data\\diamondcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|solutionrelative:diamonshop.data\\diamondcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|d:\\udemy\\workspace\\diamonshopmanagement\\diamonshop.core\\domain\\content\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\domain\\content\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|d:\\udemy\\workspace\\diamonshopmanagement\\diamonshop.core\\domain\\identity\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\domain\\identity\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|d:\\udemy\\workspace\\diamonshopmanagement\\diamonshop.data\\repository\\diamondrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|solutionrelative:diamonshop.data\\repository\\diamondrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|d:\\udemy\\workspace\\diamonshopmanagement\\diamonshop.data\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|solutionrelative:diamonshop.data\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|d:\\udemy\\workspace\\diamonshopmanagement\\diamonshop.data\\seedworks\\repositorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|f:\\gitsource\\diamond-shop-system\\src\\diamonshopmanagement\\diamonshop.data\\seedworks\\repositorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|solutionrelative:diamonshop.data\\seedworks\\repositorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|d:\\udemy\\workspace\\diamonshopmanagement\\diamonshop.data\\repository\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|solutionrelative:diamonshop.data\\repository\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|f:\\gitsource\\diamond-shop-system\\src\\diamonshopmanagement\\diamonshop.core\\seedworks\\irepositorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\seedworks\\irepositorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|d:\\udemy\\workspace\\diamonshopmanagement\\diamonshop.data\\services\\servicemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|solutionrelative:diamonshop.data\\services\\servicemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|f:\\gitsource\\diamond-shop-system\\src\\diamonshopmanagement\\diamonshop.data\\seedworks\\repositorybase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|solutionrelative:diamonshop.data\\seedworks\\repositorybase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|f:\\gitsource\\diamond-shop-system\\src\\diamonshopmanagement\\diamonshop.core\\models\\auth\\authenticatedresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\models\\auth\\authenticatedresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|f:\\gitsource\\diamond-shop-system\\src\\diamonshopmanagement\\diamonshop.core\\models\\auth\\loginrequests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\models\\auth\\loginrequests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|f:\\gitsource\\diamond-shop-system\\src\\diamonshopmanagement\\diamonshop.core\\services\\iservicemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\services\\iservicemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|f:\\gitsource\\diamond-shop-system\\src\\diamonshopmanagement\\diamonshop.core\\services\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\services\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|f:\\gitsource\\diamond-shop-system\\src\\diamonshopmanagement\\diamonshop.core\\services\\idiamondservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\services\\idiamondservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|f:\\gitsource\\diamond-shop-system\\src\\diamonshopmanagement\\diamonshop.data\\diamondcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|solutionrelative:diamonshop.data\\diamondcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|f:\\gitsource\\diamond-shop-system\\src\\diamonshopmanagement\\diamonshop.core\\domain\\content\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\domain\\content\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|f:\\gitsource\\diamond-shop-system\\src\\diamonshopmanagement\\diamonshop.core\\domain\\identity\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\domain\\identity\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|f:\\gitsource\\diamond-shop-system\\src\\diamonshopmanagement\\diamonshop.data\\repository\\diamondrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|solutionrelative:diamonshop.data\\repository\\diamondrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|f:\\gitsource\\diamond-shop-system\\src\\diamonshopmanagement\\diamonshop.data\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|solutionrelative:diamonshop.data\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|f:\\gitsource\\diamond-shop-system\\src\\diamonshopmanagement\\diamonshop.data\\repository\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|solutionrelative:diamonshop.data\\repository\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -74,34 +86,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 162,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 5,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IProductService.cs",
-              "DocumentMoniker": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Core\\services\\IProductService.cs",
-              "RelativeDocumentMoniker": "DiamonShop.Core\\services\\IProductService.cs",
-              "ToolTip": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Core\\services\\IProductService.cs",
-              "RelativeToolTip": "DiamonShop.Core\\services\\IProductService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T08:57:42.508Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "IDiamondService.cs",
-              "DocumentMoniker": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Core\\services\\IDiamondService.cs",
-              "RelativeDocumentMoniker": "DiamonShop.Core\\services\\IDiamondService.cs",
-              "ToolTip": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Core\\services\\IDiamondService.cs",
-              "RelativeToolTip": "DiamonShop.Core\\services\\IDiamondService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T08:57:39.033Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -124,11 +110,76 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
+              "Title": "DiamondController.cs",
+              "DocumentMoniker": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.API\\Controllers\\DiamondController.cs",
+              "RelativeDocumentMoniker": "DiamonShop.API\\Controllers\\DiamondController.cs",
+              "ToolTip": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.API\\Controllers\\DiamondController.cs",
+              "RelativeToolTip": "DiamonShop.API\\Controllers\\DiamondController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-21T06:45:07.567Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.API\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "DiamonShop.API\\Controllers\\AuthController.cs",
+              "ToolTip": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.API\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "DiamonShop.API\\Controllers\\AuthController.cs",
+              "ViewState": "AQIAABkAAAAAAAAAAAAQwBwAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-21T06:45:06.556Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.API\\Program.cs",
+              "RelativeDocumentMoniker": "DiamonShop.API\\Program.cs",
+              "ToolTip": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.API\\Program.cs",
+              "RelativeToolTip": "DiamonShop.API\\Program.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAAB4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-21T06:43:52.465Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IProductService.cs",
+              "DocumentMoniker": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\services\\IProductService.cs",
+              "RelativeDocumentMoniker": "DiamonShop.Core\\services\\IProductService.cs",
+              "ToolTip": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\services\\IProductService.cs",
+              "RelativeToolTip": "DiamonShop.Core\\services\\IProductService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-20T08:57:42.508Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IDiamondService.cs",
+              "DocumentMoniker": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\services\\IDiamondService.cs",
+              "RelativeDocumentMoniker": "DiamonShop.Core\\services\\IDiamondService.cs",
+              "ToolTip": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\services\\IDiamondService.cs",
+              "RelativeToolTip": "DiamonShop.Core\\services\\IDiamondService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-20T08:57:39.033Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "IServiceManager.cs",
-              "DocumentMoniker": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Core\\services\\IServiceManager.cs",
+              "DocumentMoniker": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\services\\IServiceManager.cs",
               "RelativeDocumentMoniker": "DiamonShop.Core\\services\\IServiceManager.cs",
-              "ToolTip": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Core\\services\\IServiceManager.cs",
+              "ToolTip": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\services\\IServiceManager.cs",
               "RelativeToolTip": "DiamonShop.Core\\services\\IServiceManager.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -137,63 +188,63 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "DiamondService.cs",
-              "DocumentMoniker": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Data\\Services\\DiamondService.cs",
+              "DocumentMoniker": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\Services\\DiamondService.cs",
               "RelativeDocumentMoniker": "DiamonShop.Data\\Services\\DiamondService.cs",
-              "ToolTip": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Data\\Services\\DiamondService.cs",
+              "ToolTip": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\Services\\DiamondService.cs",
               "RelativeToolTip": "DiamonShop.Data\\Services\\DiamondService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAgAAAAVAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-20T07:45:06.708Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "IRepositoryManager.cs",
-              "DocumentMoniker": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Core\\SeedWorks\\IRepositoryManager.cs",
+              "DocumentMoniker": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\SeedWorks\\IRepositoryManager.cs",
               "RelativeDocumentMoniker": "DiamonShop.Core\\SeedWorks\\IRepositoryManager.cs",
-              "ToolTip": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Core\\SeedWorks\\IRepositoryManager.cs",
+              "ToolTip": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\SeedWorks\\IRepositoryManager.cs",
               "RelativeToolTip": "DiamonShop.Core\\SeedWorks\\IRepositoryManager.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAARAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-20T07:46:08.497Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "RepositoryBase.cs",
-              "DocumentMoniker": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Data\\SeedWorks\\RepositoryBase.cs",
+              "DocumentMoniker": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\SeedWorks\\RepositoryBase.cs",
               "RelativeDocumentMoniker": "DiamonShop.Data\\SeedWorks\\RepositoryBase.cs",
-              "ToolTip": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Data\\SeedWorks\\RepositoryBase.cs",
+              "ToolTip": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\SeedWorks\\RepositoryBase.cs",
               "RelativeToolTip": "DiamonShop.Data\\SeedWorks\\RepositoryBase.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAA1wAgAAAApAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-20T07:47:54.479Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "LoginRequests.cs",
-              "DocumentMoniker": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Core\\Models\\auth\\LoginRequests.cs",
+              "DocumentMoniker": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\Models\\auth\\LoginRequests.cs",
               "RelativeDocumentMoniker": "DiamonShop.Core\\Models\\auth\\LoginRequests.cs",
-              "ToolTip": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Core\\Models\\auth\\LoginRequests.cs",
+              "ToolTip": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\Models\\auth\\LoginRequests.cs",
               "RelativeToolTip": "DiamonShop.Core\\Models\\auth\\LoginRequests.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-20T08:57:27.929Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "AuthenticatedResult.cs",
-              "DocumentMoniker": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Core\\Models\\auth\\AuthenticatedResult.cs",
+              "DocumentMoniker": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\Models\\auth\\AuthenticatedResult.cs",
               "RelativeDocumentMoniker": "DiamonShop.Core\\Models\\auth\\AuthenticatedResult.cs",
-              "ToolTip": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Core\\Models\\auth\\AuthenticatedResult.cs",
+              "ToolTip": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\Models\\auth\\AuthenticatedResult.cs",
               "RelativeToolTip": "DiamonShop.Core\\Models\\auth\\AuthenticatedResult.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -202,11 +253,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 13,
               "Title": "DiamondContext.cs",
-              "DocumentMoniker": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Data\\DiamondContext.cs",
+              "DocumentMoniker": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\DiamondContext.cs",
               "RelativeDocumentMoniker": "DiamonShop.Data\\DiamondContext.cs",
-              "ToolTip": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Data\\DiamondContext.cs",
+              "ToolTip": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\DiamondContext.cs",
               "RelativeToolTip": "DiamonShop.Data\\DiamondContext.cs",
               "ViewState": "AQIAADAAAAAAAAAAAAAiwC8AAAAUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -215,24 +266,24 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 14,
               "Title": "Category.cs",
-              "DocumentMoniker": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Core\\Domain\\Content\\Category.cs",
+              "DocumentMoniker": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\Domain\\Content\\Category.cs",
               "RelativeDocumentMoniker": "DiamonShop.Core\\Domain\\Content\\Category.cs",
-              "ToolTip": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Core\\Domain\\Content\\Category.cs",
+              "ToolTip": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\Domain\\Content\\Category.cs",
               "RelativeToolTip": "DiamonShop.Core\\Domain\\Content\\Category.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAwAAAAyAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAIBJwAwAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-20T08:50:16.116Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 15,
               "Title": "AppUser.cs",
-              "DocumentMoniker": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Core\\Domain\\Identity\\AppUser.cs",
+              "DocumentMoniker": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\Domain\\Identity\\AppUser.cs",
               "RelativeDocumentMoniker": "DiamonShop.Core\\Domain\\Identity\\AppUser.cs",
-              "ToolTip": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Core\\Domain\\Identity\\AppUser.cs",
+              "ToolTip": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\Domain\\Identity\\AppUser.cs",
               "RelativeToolTip": "DiamonShop.Core\\Domain\\Identity\\AppUser.cs",
               "ViewState": "AQIAAAoAAAAAAAAAAAAQwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -241,64 +292,68 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 16,
               "Title": "DiamondRepository.cs",
-              "DocumentMoniker": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Data\\Repository\\DiamondRepository.cs",
+              "DocumentMoniker": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\Repository\\DiamondRepository.cs",
               "RelativeDocumentMoniker": "DiamonShop.Data\\Repository\\DiamondRepository.cs",
-              "ToolTip": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Data\\Repository\\DiamondRepository.cs",
+              "ToolTip": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\Repository\\DiamondRepository.cs",
               "RelativeToolTip": "DiamonShop.Data\\Repository\\DiamondRepository.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAIBJwAoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-20T07:48:20.063Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 18,
               "Title": "ProductRepository.cs",
-              "DocumentMoniker": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Data\\Repository\\ProductRepository.cs",
+              "DocumentMoniker": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\Repository\\ProductRepository.cs",
               "RelativeDocumentMoniker": "DiamonShop.Data\\Repository\\ProductRepository.cs",
-              "ToolTip": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Data\\Repository\\ProductRepository.cs",
+              "ToolTip": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\Repository\\ProductRepository.cs",
               "RelativeToolTip": "DiamonShop.Data\\Repository\\ProductRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAABWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T07:48:12.884Z"
+              "WhenOpened": "2024-05-20T07:48:12.884Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 17,
               "Title": "ProductService.cs",
-              "DocumentMoniker": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Data\\Services\\ProductService.cs",
+              "DocumentMoniker": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\Services\\ProductService.cs",
               "RelativeDocumentMoniker": "DiamonShop.Data\\Services\\ProductService.cs",
-              "ToolTip": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Data\\Services\\ProductService.cs",
+              "ToolTip": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\Services\\ProductService.cs",
               "RelativeToolTip": "DiamonShop.Data\\Services\\ProductService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T07:44:55.305Z"
+              "WhenOpened": "2024-05-20T07:44:55.305Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 3,
               "Title": "ServiceManager.cs",
-              "DocumentMoniker": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Data\\Services\\ServiceManager.cs",
+              "DocumentMoniker": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\Services\\ServiceManager.cs",
               "RelativeDocumentMoniker": "DiamonShop.Data\\Services\\ServiceManager.cs",
-              "ToolTip": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Data\\Services\\ServiceManager.cs",
+              "ToolTip": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\Services\\ServiceManager.cs",
               "RelativeToolTip": "DiamonShop.Data\\Services\\ServiceManager.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T07:44:47.054Z"
+              "WhenOpened": "2024-05-20T07:44:47.054Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 5,
               "Title": "RepositoryManager.cs",
-              "DocumentMoniker": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Data\\SeedWorks\\RepositoryManager.cs",
+              "DocumentMoniker": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\SeedWorks\\RepositoryManager.cs",
               "RelativeDocumentMoniker": "DiamonShop.Data\\SeedWorks\\RepositoryManager.cs",
-              "ToolTip": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Data\\SeedWorks\\RepositoryManager.cs",
+              "ToolTip": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\SeedWorks\\RepositoryManager.cs",
               "RelativeToolTip": "DiamonShop.Data\\SeedWorks\\RepositoryManager.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABcAAAAaAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA8AAABZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-20T07:44:38.985Z"
+              "WhenOpened": "2024-05-20T07:44:38.985Z",
+              "EditorCaption": ""
             }
           ]
         },

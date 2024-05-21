@@ -6,6 +6,10 @@ namespace DiamonShop.API.Controllers
     [ApiController]
     public class DiamondController : ControllerBase
     {
-
+        //[HttpGet]
+        //public async Task<IActionResult> GetAll()
+        //{
+        //    var diamonds = 
+        //}
     }
 }
