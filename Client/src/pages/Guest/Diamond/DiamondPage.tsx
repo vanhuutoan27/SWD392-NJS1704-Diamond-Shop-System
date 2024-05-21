@@ -11,7 +11,6 @@ import { DataTable } from "@/components/local/Guest/Diamond/DiamondDataTable";
 import { diamondData } from "@/constants/diamond";
 import { columns } from "@/components/local/Guest/Diamond/DiamondColumns";
 import Section from "@/components/global/organisms/Section";
-import Chip from "@/components/global/atoms/Chip";
 
 function DiamondPage() {
   const [isReset, setIsReset] = useState(false);
