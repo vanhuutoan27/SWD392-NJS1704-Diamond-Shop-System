@@ -31,7 +31,7 @@ function SettingPage() {
       />
 
       <h1 className="text-2xl font-semibold">Settings</h1>
-      <div className="mt-8 w-1/3">
+      <div className="mt-8 w-1/2">
         <EditUserForm user={userDetail} onSave={handleSave} />
       </div>
     </div>

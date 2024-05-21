@@ -48,18 +48,20 @@ const EditUserForm: React.FC<EditUserFormProps> = ({ user, onSave }) => {
   };
 
   const handleCancel = () => {
-    window.location.reload(); // Refresh the page
+    setFormData(user); // Reset form data to the initial user prop
+    setErrors({}); // Clear any existing errors
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex max-h-screen flex-col justify-between space-y-5 border-2 border-gray-100 bg-white shadow-md"
+      className="flex max-h-[800px] flex-col justify-between space-y-5 border-2 border-gray-100 bg-white shadow-md pb-8"
     >
       <div className="border-b-2 border-gray-100 p-3">
         <p className="ml-3">Personal Information</p>{" "}
       </div>
-      <div className="ml-5 w-full pr-10">
+      <div className="flex justify-between gap-4 p-5">
+      <div className="w-full">
         <label
           htmlFor="name"
           className="block text-sm font-medium text-gray-700"
@@ -79,7 +81,7 @@ const EditUserForm: React.FC<EditUserFormProps> = ({ user, onSave }) => {
         )}
       </div>
 
-      <div className="ml-5 w-full pr-10">
+      <div className="w-full">
         <label
           htmlFor="phone"
           className="block text-sm font-medium text-gray-700 "
@@ -98,6 +100,9 @@ const EditUserForm: React.FC<EditUserFormProps> = ({ user, onSave }) => {
           <div className="text-sm text-red-600">{errors.phone}</div>
         )}
       </div>
+
+      </div>
+     
 
       <div className="ml-5 w-full pr-10">
         <div>
@@ -125,13 +130,13 @@ const EditUserForm: React.FC<EditUserFormProps> = ({ user, onSave }) => {
         <button
           type="button"
           onClick={handleCancel}
-          className="rounded-md border-2 bg-white px-2 py-2 text-sm font-medium text-black hover:border-red-600 hover:bg-red-600"
+          className="rounded-md border-2 bg-white px-2 py-2 text-sm font-medium text-black hover:border-red-600 hover:bg-red-600 hover:text-white"
         >
           Cancel
         </button>
         <button
           type="submit"
-          className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+          className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800"
         >
           Save
         </button>
