@@ -1,6 +1,6 @@
 import { ShieldCheck } from "lucide-react";
-import Section from "../../organisms/Section";
 import { projectName } from "@/lib/constants";
+import Section from "@/components/global/organisms/Section";
 
 function JewelryQualityCommitment() {
   return (

@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
 import BreadcrumbComponent from "@/components/global/atoms/BreadcrumbComponent";
-import { diamondData } from "../../constants/diamond";
 import { Loader } from "@/components/global/atoms/Loader";
 import DiamondQualityCommitment from "@/components/local/Guest/Diamond/DiamondQualityCommitment";
 import BuyingGuide from "@/components/local/Guest/Diamond/BuyingGuide";
 import RelatedProducts from "@/components/local/Guest/Diamond/RelatedDiamonds";
 import DiamondBanner from "@/components/local/Guest/Diamond/DiamondBanner";
 import DiamondDetails from "@/components/local/Guest/Diamond/DiamondDetails";
+import { diamondData } from "@/constants/diamond";
 
 function DiamondDetailPage() {
   const { diamondId } = useParams<{ diamondId: string }>();

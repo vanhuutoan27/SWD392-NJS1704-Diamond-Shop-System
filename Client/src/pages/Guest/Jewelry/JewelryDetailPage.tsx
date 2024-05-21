@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import BreadcrumbComponent from "@/components/global/atoms/BreadcrumbComponent";
-import { jewelryData } from "../../constants/jewelry";
 import { Loader } from "@/components/global/atoms/Loader";
 import BuyingGuide from "@/components/local/Guest/Diamond/BuyingGuide";
 import DiamondBanner from "@/components/local/Guest/Diamond/DiamondBanner";
@@ -8,6 +7,7 @@ import JewelryDetails from "@/components/local/Guest/Jewelry/JewelryDetails";
 import RelatedJewelry from "@/components/local/Guest/Jewelry/RelatedJewelry";
 import JewelryFaqs from "@/components/local/Guest/Jewelry/JewelryFaqs";
 import JewelryQualityCommitment from "@/components/local/Guest/Jewelry/JewelryQualityCommitment";
+import { jewelryData } from "@/constants/jewelry";
 
 function JewelryDetailPage() {
   const { jewelryId } = useParams<{ jewelryId: string }>();

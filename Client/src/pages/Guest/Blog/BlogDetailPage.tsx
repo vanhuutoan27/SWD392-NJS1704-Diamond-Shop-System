@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
-import { blogData } from "../../constants/blog";
 import BreadcrumbComponent from "@/components/global/atoms/BreadcrumbComponent";
 import { Loader } from "@/components/global/atoms/Loader";
 import { formatDate } from "@/lib/utils";
+import { blogData } from "@/constants/blog";
 
 function BlogDetailPage() {
   const { blogId } = useParams<{ blogId: string }>();

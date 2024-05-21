@@ -192,7 +192,12 @@ function DiamondPage() {
 
           <div className="mb-4 flex gap-2">
             {suggestedProducts.map((product, index) => (
-              <Chip key={index} content={product} />
+              <div
+                key={index}
+                className="slow cursor-pointer rounded-md border-[1px] border-slate-700 px-4 py-1 text-sm font-medium hover:bg-primary hover:text-white"
+              >
+                {product}
+              </div>
             ))}
           </div>
 

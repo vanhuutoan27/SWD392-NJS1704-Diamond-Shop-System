@@ -1,4 +1,4 @@
-import { TabsList, TabsTrigger } from "@/pages/Cart/tabs";
+import { TabsList, TabsTrigger } from "./CartTabs";
 
 function CartCategories() {
   return (

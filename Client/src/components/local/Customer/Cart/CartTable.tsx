@@ -1,4 +1,3 @@
-import { TabsContent } from "@/pages/Cart/tabs";
 import { cartColumns } from "@/components/local/Customer/Cart/CartColumns";
 import { cartJewelryColumns } from "@/components/local/Customer/Cart/CartJewelryColumns";
 import { cartDiamondColumns } from "@/components/local/Customer/Cart/CartDiamondColumns";
@@ -11,6 +10,7 @@ import { ScrollArea, ScrollBar } from "@/components/global/atoms/scroll-area";
 import { useEffect, useState } from "react";
 import { diamondData } from "@/constants/diamond";
 import { jewelryData } from "@/constants/jewelry";
+import { TabsContent } from "./CartTabs";
 
 interface renderTabContentProps {
   type: string;
