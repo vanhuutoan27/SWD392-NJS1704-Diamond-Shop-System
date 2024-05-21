@@ -25,8 +25,8 @@ function ProfilePage() {
         lastPageUrl="/"
         currentPage="Profile"
       />
-
-      <div className="h-[600px] w-full border-2">
+      <h1 className="text-2xl font-medium">Profile</h1>
+      <div className="border-1 mt-4 h-[600px] w-full shadow-md">
         <div className="h-1/3">
           <img
             src="https://t4.ftcdn.net/jpg/03/26/59/69/360_F_326596944_m7WkrlErKIg1W2HAIzuOWUwGZ5R54v4h.jpg"
@@ -34,7 +34,7 @@ function ProfilePage() {
           />
         </div>
 
-        <div className="absolute left-1/2 top-[360px] -translate-x-1/2 transform">
+        <div className="absolute left-1/2 top-[390px] -translate-x-1/2 transform">
           <div className=" flex flex-col items-center">
             <img
               src={userDetail.avatar}
