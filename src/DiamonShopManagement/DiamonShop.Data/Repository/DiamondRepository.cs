@@ -10,9 +10,9 @@ namespace DiamonShop.Data.Repository
         {
 
         }
-        //public async Task<IEnumerable<Diamond>> GetAllAsync()
-        //{
-        //    return await GetAllAsync();
-        //}
+
+
+
+       
     }
 }
