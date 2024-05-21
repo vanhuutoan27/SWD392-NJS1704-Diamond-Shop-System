@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Data\\DiamonShop.Data.csproj": {}
+    "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\DiamonShop.Data.csproj": {}
   },
   "projects": {
-    "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj": {
+    "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj",
+        "projectUniqueName": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj",
         "projectName": "DiamonShop.Core",
-        "projectPath": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj",
+        "projectPath": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj",
         "packagesPath": "C:\\Users\\quocd\\.nuget\\packages\\",
-        "outputPath": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Core\\obj\\",
+        "outputPath": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\quocd\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -74,14 +74,14 @@
         }
       }
     },
-    "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Data\\DiamonShop.Data.csproj": {
+    "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\DiamonShop.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Data\\DiamonShop.Data.csproj",
+        "projectUniqueName": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\DiamonShop.Data.csproj",
         "projectName": "DiamonShop.Data",
-        "projectPath": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Data\\DiamonShop.Data.csproj",
+        "projectPath": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\DiamonShop.Data.csproj",
         "packagesPath": "C:\\Users\\quocd\\.nuget\\packages\\",
-        "outputPath": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Data\\obj\\",
+        "outputPath": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\quocd\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -98,8 +98,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj": {
-                "projectPath": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj"
+              "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj": {
+                "projectPath": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj"
               }
             }
           }

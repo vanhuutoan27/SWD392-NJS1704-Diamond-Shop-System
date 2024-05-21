@@ -3484,11 +3484,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.API\\DiamonShop.API.csproj",
+      "projectUniqueName": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.API\\DiamonShop.API.csproj",
       "projectName": "DiamonShop.API",
-      "projectPath": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.API\\DiamonShop.API.csproj",
+      "projectPath": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.API\\DiamonShop.API.csproj",
       "packagesPath": "C:\\Users\\quocd\\.nuget\\packages\\",
-      "outputPath": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.API\\obj\\",
+      "outputPath": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\quocd\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3505,11 +3505,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj": {
-              "projectPath": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj"
+            "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj": {
+              "projectPath": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj"
             },
-            "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Data\\DiamonShop.Data.csproj": {
-              "projectPath": "D:\\Udemy\\workspace\\DiamonShopManagement\\DiamonShop.Data\\DiamonShop.Data.csproj"
+            "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\DiamonShop.Data.csproj": {
+              "projectPath": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\DiamonShop.Data.csproj"
             }
           }
         }
