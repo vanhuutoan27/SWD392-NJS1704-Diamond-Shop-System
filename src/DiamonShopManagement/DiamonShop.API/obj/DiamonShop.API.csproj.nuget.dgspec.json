@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.API\\DiamonShop.API.csproj": {}
+    "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.API\\DiamonShop.API.csproj": {}
   },
   "projects": {
-    "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.API\\DiamonShop.API.csproj": {
+    "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.API\\DiamonShop.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.API\\DiamonShop.API.csproj",
+        "projectUniqueName": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.API\\DiamonShop.API.csproj",
         "projectName": "DiamonShop.API",
-        "projectPath": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.API\\DiamonShop.API.csproj",
-        "packagesPath": "C:\\Users\\quocd\\.nuget\\packages\\",
-        "outputPath": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.API\\obj\\",
+        "projectPath": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.API\\DiamonShop.API.csproj",
+        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
+        "outputPath": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.API\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\quocd\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,11 +32,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj": {
-                "projectPath": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj"
+              "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj": {
+                "projectPath": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj"
               },
-              "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\DiamonShop.Data.csproj": {
-                "projectPath": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\DiamonShop.Data.csproj"
+              "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Data\\DiamonShop.Data.csproj": {
+                "projectPath": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Data\\DiamonShop.Data.csproj"
               }
             }
           }
@@ -84,21 +88,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj": {
+    "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj",
+        "projectUniqueName": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj",
         "projectName": "DiamonShop.Core",
-        "projectPath": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj",
-        "packagesPath": "C:\\Users\\quocd\\.nuget\\packages\\",
-        "outputPath": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\obj\\",
+        "projectPath": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj",
+        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
+        "outputPath": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\quocd\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -154,21 +162,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\DiamonShop.Data.csproj": {
+    "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Data\\DiamonShop.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\DiamonShop.Data.csproj",
+        "projectUniqueName": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Data\\DiamonShop.Data.csproj",
         "projectName": "DiamonShop.Data",
-        "projectPath": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\DiamonShop.Data.csproj",
-        "packagesPath": "C:\\Users\\quocd\\.nuget\\packages\\",
-        "outputPath": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Data\\obj\\",
+        "projectPath": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Data\\DiamonShop.Data.csproj",
+        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
+        "outputPath": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Data\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\quocd\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -182,8 +194,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj": {
-                "projectPath": "F:\\GitSource\\Diamond-Shop-System\\src\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj"
+              "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj": {
+                "projectPath": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\DiamonShop.Core.csproj"
               }
             }
           }
@@ -242,7 +254,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files (x86)\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

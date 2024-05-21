@@ -16,16 +16,9 @@ namespace DiamonShop.Data.Services
         }
         public async Task<IEnumerable<Diamond>> GetAllDiamond()
         {
-            try
-            {
                 var diamonds = await _repositoryManager.Diamond.GetAllAsync();
                 return diamonds;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            
         }
     }
 }
