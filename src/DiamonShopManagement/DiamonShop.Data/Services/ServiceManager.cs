@@ -1,4 +1,5 @@
-﻿using DiamonShop.Core.SeedWorks;
+﻿using AutoMapper;
+using DiamonShop.Core.SeedWorks;
 using DiamonShop.Core.services;
 
 namespace DiamonShop.Data.Services
@@ -7,10 +8,10 @@ namespace DiamonShop.Data.Services
     {
         private readonly Lazy<IProductService> _productService;
         private readonly Lazy<IDiamondService> _diamondService;
-        public ServiceManager(IRepositoryManager repositoryManager)
+        public ServiceManager(IRepositoryManager repositoryManager, IMapper mapper)
         {
-            _productService = new Lazy<IProductService>(() => new ProductService(repositoryManager));
-            _diamondService = new Lazy<IDiamondService>(() => new DiamondService(repositoryManager));
+            _productService = new Lazy<IProductService>(() => new ProductService(repositoryManager, mapper));
+            _diamondService = new Lazy<IDiamondService>(() => new DiamondService(repositoryManager, mapper));
         }
         public IProductService ProductService => _productService.Value;
 

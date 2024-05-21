@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DiamonShop.Core.services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DiamonShop.API.Controllers
 {
@@ -6,10 +7,16 @@ namespace DiamonShop.API.Controllers
     [ApiController]
     public class DiamondController : ControllerBase
     {
-        //[HttpGet]
-        //public async Task<IActionResult> GetAll()
-        //{
-        //    var diamonds = 
-        //}
+        private readonly IServiceManager _services;
+        public DiamondController(IServiceManager services)
+        {
+            _services = services;
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var diamonds = await _services.DiamondService.GetAllDiamond();
+            return Ok(diamonds);
+        }
     }
 }

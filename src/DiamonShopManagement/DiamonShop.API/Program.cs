@@ -51,6 +51,8 @@ builder.Services.AddScoped<RoleManager<AppRole>, RoleManager<AppRole>>();
 builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
 builder.Services.AddScoped<IServiceManager, ServiceManager>();
 
+//Addautomaper 
+builder.Services.AddAutoMapper(typeof(Program));
 
 
 

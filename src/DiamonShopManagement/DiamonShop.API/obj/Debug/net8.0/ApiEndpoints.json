@@ -24,5 +24,15 @@
         "StatusCode": 200
       }
     ]
+  },
+  {
+    "ContainingType": "DiamonShop.API.Controllers.DiamondController",
+    "Method": "GetAll",
+    "RelativePath": "api/Diamond",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
   }
 ]
