@@ -7,6 +7,7 @@ using DiamonShop.Core.SeedWorks;
 using DiamonShop.Core.services;
 using DiamonShop.Core.Shared.Enum;
 using DiamonShop.Core.ViewModels;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace DiamonShop.Data.Services
@@ -131,6 +132,18 @@ namespace DiamonShop.Data.Services
 
 
 
+        public async Task RemoveDiamondById(Guid id)
+        {
+            var diamondid = _repositoryManager.Diamond.Findid(id);
+
+            if (diamondid == null)
+            {
+                throw new KeyNotFoundException($"Diamond with ID {id} not found.");
+            }
+
+            _repositoryManager.Diamond.Remove(diamondid);
+            await _repositoryManager.Save();
+        }
     }
 }
 

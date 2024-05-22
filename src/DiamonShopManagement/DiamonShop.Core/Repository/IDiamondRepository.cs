@@ -10,7 +10,9 @@ namespace DiamonShop.Core.Repository
     {
         Task<IEnumerable<Diamond>> GetAllAsync();
         Task<Diamond> GetByIdAsync(Guid id);
-        public void Update(Diamond diamond);
-        public void Add(Diamond diamond);
+        void Update(Diamond diamond);
+        void Add(Diamond diamond);
+        void Delete(Diamond diamond);
+        Diamond Findid(Guid id);
     }
 }

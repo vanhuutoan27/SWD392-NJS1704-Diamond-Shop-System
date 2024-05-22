@@ -4,5 +4,7 @@ using DiamonShop.Core.SeedWorks;
 namespace DiamonShop.Core.Repository
 {
     public interface IProductRepository : IRepository<Product, Guid> {
+        
     }
+    
 }

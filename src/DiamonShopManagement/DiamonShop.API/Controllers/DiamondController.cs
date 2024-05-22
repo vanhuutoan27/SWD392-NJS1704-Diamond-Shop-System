@@ -1,7 +1,9 @@
 ﻿using DiamonShop.Core.Domain.Content;
 using DiamonShop.Core.RequestModels;
+using DiamonShop.Core.Respone;
 using DiamonShop.Core.services;
 using DiamonShop.Data.Services;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DiamonShop.API.Controllers
@@ -20,6 +22,7 @@ namespace DiamonShop.API.Controllers
         [Route("All/Id")]
         public async Task<IActionResult> GetAll()
         {
+
             var diamonds = await _services.DiamondService.GetAllDiamond();
             if (diamonds == null)
             {
@@ -63,16 +66,13 @@ namespace DiamonShop.API.Controllers
 
         }
         [HttpPost]
-       
-        public async Task<IActionResult> CreateDiamond( CreateDiamondRequest createDiamondrequest)
+
+        public async Task<IActionResult> CreateDiamond(CreateDiamondRequest createDiamondrequest)
         {
-            if (createDiamondrequest == null)
-            {
-                return BadRequest("CreateDiamondRequest is null.");
-            }
+
 
             var response = await _services.DiamondService.AddDiamond(createDiamondrequest);
-            if(response != null)
+            if (response != null)
             {
                 return Ok(response);
             }
@@ -81,6 +81,18 @@ namespace DiamonShop.API.Controllers
                 return BadRequest(response);
             }
         }
-    }
-}
 
+        [HttpDelete]
+        public async Task<ActionResult<DiamondRespone>> RemoveDiamond(Guid id)
+        {
+            if (id != null)
+            {
+                _services.DiamondService.RemoveDiamondById(id);
+            }
+
+            return NoContent();
+
+        }
+    }
+
+}

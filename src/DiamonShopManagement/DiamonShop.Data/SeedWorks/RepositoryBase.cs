@@ -47,6 +47,6 @@ namespace DiamonShop.Data.SeedWorks
             _dbSet.Update(entity);
         }
 
-
+     
     }
 }
