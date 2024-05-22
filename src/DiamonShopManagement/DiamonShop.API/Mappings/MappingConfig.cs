@@ -10,6 +10,7 @@ namespace DiamonShop.API.Mappings
         public MappingConfig()
         {
             CreateMap<Diamond, UpdateDiamondRequest>().ReverseMap();
+            CreateMap<Diamond , CreateDiamondRequest>().ReverseMap();
         }
     }
 }

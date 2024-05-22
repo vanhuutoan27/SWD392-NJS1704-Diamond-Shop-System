@@ -11,5 +11,6 @@ namespace DiamonShop.Core.services
         Task<IEnumerable<Diamond>> GetAllDiamond();
         Task<Diamond> GetDiamondbyId(Guid id);
         Task<DiamondRespone> UpdateById(Guid id, UpdateDiamondRequest updateadiamond);
+        Task<DiamondRespone> AddDiamond(CreateDiamondRequest createDiamondRequest);
     }
 }

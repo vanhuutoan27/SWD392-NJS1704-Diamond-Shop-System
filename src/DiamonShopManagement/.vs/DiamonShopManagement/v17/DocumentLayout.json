@@ -3,68 +3,56 @@
   "WorkspaceRootPath": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E8BB953D-A8BF-4A0C-A1B9-BDC57CF4F182}|DiamonShop.API\\DiamonShop.API.csproj|d:\\fork_git\\diamondshop_2\\src\\diamonshopmanagement\\diamonshop.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E8BB953D-A8BF-4A0C-A1B9-BDC57CF4F182}|DiamonShop.API\\DiamonShop.API.csproj|solutionrelative:diamonshop.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\diamonshop.data\\services\\diamondservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|solutionrelative:diamonshop.data\\services\\diamondservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|d:\\fork_git\\diamondshop_2\\src\\diamonshopmanagement\\diamonshop.data\\services\\diamondservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|solutionrelative:diamonshop.data\\services\\diamondservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E8BB953D-A8BF-4A0C-A1B9-BDC57CF4F182}|DiamonShop.API\\DiamonShop.API.csproj|d:\\fork_git\\diamondshop_2\\src\\diamonshopmanagement\\diamonshop.api\\controllers\\diamondcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8BB953D-A8BF-4A0C-A1B9-BDC57CF4F182}|DiamonShop.API\\DiamonShop.API.csproj|solutionrelative:diamonshop.api\\controllers\\diamondcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\diamonshop.core\\services\\idiamondservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\services\\idiamondservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E8BB953D-A8BF-4A0C-A1B9-BDC57CF4F182}|DiamonShop.API\\DiamonShop.API.csproj|D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\diamonshop.api\\mappings\\mappingconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E8BB953D-A8BF-4A0C-A1B9-BDC57CF4F182}|DiamonShop.API\\DiamonShop.API.csproj|solutionrelative:diamonshop.api\\mappings\\mappingconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\diamonshop.data\\repository\\diamondrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|d:\\fork_git\\diamondshop_2\\src\\diamonshopmanagement\\diamonshop.data\\repository\\diamondrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|solutionrelative:diamonshop.data\\repository\\diamondrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E8BB953D-A8BF-4A0C-A1B9-BDC57CF4F182}|DiamonShop.API\\DiamonShop.API.csproj|D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\diamonshop.api\\controllers\\diamondcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E8BB953D-A8BF-4A0C-A1B9-BDC57CF4F182}|DiamonShop.API\\DiamonShop.API.csproj|solutionrelative:diamonshop.api\\controllers\\diamondcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|d:\\fork_git\\diamondshop_2\\src\\diamonshopmanagement\\diamonshop.data\\seedworks\\repositorybase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|solutionrelative:diamonshop.data\\seedworks\\repositorybase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\diamonshop.core\\domain\\content\\diamond.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\domain\\content\\diamond.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|d:\\fork_git\\diamondshop_2\\src\\diamonshopmanagement\\diamonshop.data\\seedworks\\repositorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|solutionrelative:diamonshop.data\\seedworks\\repositorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|d:\\fork_git\\diamondshop_2\\src\\diamonshopmanagement\\diamonshop.core\\domain\\content\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\domain\\content\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|d:\\fork_git\\diamondshop_2\\src\\diamonshopmanagement\\diamonshop.core\\seedworks\\irepositorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\seedworks\\irepositorymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|d:\\fork_git\\diamondshop_2\\src\\diamonshopmanagement\\diamonshop.core\\repository\\idiamondrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\diamonshop.core\\repository\\idiamondrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\repository\\idiamondrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|d:\\fork_git\\diamondshop_2\\src\\diamonshopmanagement\\diamonshop.core\\seedworks\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\seedworks\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|d:\\fork_git\\diamondshop_2\\src\\diamonshopmanagement\\diamonshop.data\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|solutionrelative:diamonshop.data\\services\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|d:\\fork_git\\diamondshop_2\\src\\diamonshopmanagement\\diamonshop.data\\services\\servicemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|solutionrelative:diamonshop.data\\services\\servicemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|d:\\fork_git\\diamondshop_2\\src\\diamonshopmanagement\\diamonshop.data\\repository\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2FAD0FAA-CE26-4650-86C9-1036190D4BA8}|DiamonShop.Data\\DiamonShop.Data.csproj|solutionrelative:diamonshop.data\\repository\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\diamonshop.core\\requestmodels\\updatediamondrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\requestmodels\\updatediamondrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|d:\\fork_git\\diamondshop_2\\src\\diamonshopmanagement\\diamonshop.core\\repository\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\repository\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\diamonshop.core\\services\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\services\\iproductservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|d:\\fork_git\\diamondshop_2\\src\\diamonshopmanagement\\diamonshop.core\\respone\\diamondrespone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\respone\\diamondrespone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\diamonshop.core\\viewmodels\\diamondviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\viewmodels\\diamondviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\diamonshop.core\\requestmodels\\creatediamondrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B1B9DBE6-73ED-440D-97F9-A6865486AA35}|DiamonShop.Core\\DiamonShop.Core.csproj|solutionrelative:diamonshop.core\\requestmodels\\creatediamondrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8BB953D-A8BF-4A0C-A1B9-BDC57CF4F182}|DiamonShop.API\\DiamonShop.API.csproj|D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\diamonshop.api\\mappings\\mappingconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8BB953D-A8BF-4A0C-A1B9-BDC57CF4F182}|DiamonShop.API\\DiamonShop.API.csproj|solutionrelative:diamonshop.api\\mappings\\mappingconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -74,7 +62,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 162,
-          "SelectedChildIndex": 17,
+          "SelectedChildIndex": 29,
           "Children": [
             {
               "$type": "Bookmark",
@@ -146,132 +134,80 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.API\\Program.cs",
-              "RelativeDocumentMoniker": "DiamonShop.API\\Program.cs",
-              "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.API\\Program.cs",
-              "RelativeToolTip": "DiamonShop.API\\Program.cs",
-              "ViewState": "AQIAADYAAAAAAAAAAAAAAEkAAAABAAAA",
+              "DocumentIndex": 5,
+              "Title": "Product.cs",
+              "DocumentMoniker": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\Domain\\Content\\Product.cs",
+              "RelativeDocumentMoniker": "DiamonShop.Core\\Domain\\Content\\Product.cs",
+              "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\Domain\\Content\\Product.cs",
+              "RelativeToolTip": "DiamonShop.Core\\Domain\\Content\\Product.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAA5wBYAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-21T17:05:16.123Z",
+              "WhenOpened": "2024-05-22T03:14:15.97Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ProductService.cs",
+              "DocumentMoniker": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Data\\Services\\ProductService.cs",
+              "RelativeDocumentMoniker": "DiamonShop.Data\\Services\\ProductService.cs",
+              "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Data\\Services\\ProductService.cs",
+              "RelativeToolTip": "DiamonShop.Data\\Services\\ProductService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-22T03:11:56.736Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DiamondRepository.cs",
+              "DocumentMoniker": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Data\\Repository\\DiamondRepository.cs",
+              "RelativeDocumentMoniker": "DiamonShop.Data\\Repository\\DiamondRepository.cs",
+              "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Data\\Repository\\DiamondRepository.cs",
+              "RelativeToolTip": "DiamonShop.Data\\Repository\\DiamondRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-22T03:11:50.029Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "IRepositoryManager.cs",
-              "DocumentMoniker": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\SeedWorks\\IRepositoryManager.cs",
-              "RelativeDocumentMoniker": "DiamonShop.Core\\SeedWorks\\IRepositoryManager.cs",
-              "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\SeedWorks\\IRepositoryManager.cs",
-              "RelativeToolTip": "DiamonShop.Core\\SeedWorks\\IRepositoryManager.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAFAAAA",
+              "Title": "IProductRepository.cs",
+              "DocumentMoniker": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\Repository\\IProductRepository.cs",
+              "RelativeDocumentMoniker": "DiamonShop.Core\\Repository\\IProductRepository.cs",
+              "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\Repository\\IProductRepository.cs",
+              "RelativeToolTip": "DiamonShop.Core\\Repository\\IProductRepository.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAAAAYAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-21T15:10:53.49Z",
+              "WhenOpened": "2024-05-22T03:09:43.704Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "RepositoryManager.cs",
-              "DocumentMoniker": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Data\\SeedWorks\\RepositoryManager.cs",
-              "RelativeDocumentMoniker": "DiamonShop.Data\\SeedWorks\\RepositoryManager.cs",
-              "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Data\\SeedWorks\\RepositoryManager.cs",
-              "RelativeToolTip": "DiamonShop.Data\\SeedWorks\\RepositoryManager.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAhwBsAAAAFAAAA",
+              "Title": "ProductRepository.cs",
+              "DocumentMoniker": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Data\\Repository\\ProductRepository.cs",
+              "RelativeDocumentMoniker": "DiamonShop.Data\\Repository\\ProductRepository.cs",
+              "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Data\\Repository\\ProductRepository.cs",
+              "RelativeToolTip": "DiamonShop.Data\\Repository\\ProductRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-21T15:08:12.133Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "ServiceManager.cs",
-              "DocumentMoniker": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Data\\Services\\ServiceManager.cs",
-              "RelativeDocumentMoniker": "DiamonShop.Data\\Services\\ServiceManager.cs",
-              "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Data\\Services\\ServiceManager.cs",
-              "RelativeToolTip": "DiamonShop.Data\\Services\\ServiceManager.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAIwAgAAAA/AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-21T14:14:06.247Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "RepositoryBase.cs",
-              "DocumentMoniker": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Data\\SeedWorks\\RepositoryBase.cs",
-              "RelativeDocumentMoniker": "DiamonShop.Data\\SeedWorks\\RepositoryBase.cs",
-              "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Data\\SeedWorks\\RepositoryBase.cs",
-              "RelativeToolTip": "DiamonShop.Data\\SeedWorks\\RepositoryBase.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAArwB4AAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-21T13:41:03.185Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "IRepository.cs",
-              "DocumentMoniker": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\SeedWorks\\IRepository.cs",
-              "RelativeDocumentMoniker": "DiamonShop.Core\\SeedWorks\\IRepository.cs",
-              "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\SeedWorks\\IRepository.cs",
-              "RelativeToolTip": "DiamonShop.Core\\SeedWorks\\IRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-21T13:35:20.12Z",
+              "WhenOpened": "2024-05-22T03:09:29.215Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "IDiamondRepository.cs",
-              "DocumentMoniker": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\Repository\\IDiamondRepository.cs",
-              "RelativeDocumentMoniker": "DiamonShop.Core\\Repository\\IDiamondRepository.cs",
-              "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\Repository\\IDiamondRepository.cs",
-              "RelativeToolTip": "DiamonShop.Core\\Repository\\IDiamondRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwA0AAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-21T13:34:57.824Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "UpdateDiamondRequest.cs",
-              "DocumentMoniker": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\RequestModels\\UpdateDiamondRequest.cs",
-              "RelativeDocumentMoniker": "DiamonShop.Core\\RequestModels\\UpdateDiamondRequest.cs",
-              "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\RequestModels\\UpdateDiamondRequest.cs",
-              "RelativeToolTip": "DiamonShop.Core\\RequestModels\\UpdateDiamondRequest.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAA3wAcAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-21T11:13:54.96Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "IProductService.cs",
-              "DocumentMoniker": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\services\\IProductService.cs",
-              "RelativeDocumentMoniker": "DiamonShop.Core\\services\\IProductService.cs",
-              "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\services\\IProductService.cs",
-              "RelativeToolTip": "DiamonShop.Core\\services\\IProductService.cs",
+              "Title": "DiamondRespone.cs",
+              "DocumentMoniker": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\Respone\\DiamondRespone.cs",
+              "RelativeDocumentMoniker": "DiamonShop.Core\\Respone\\DiamondRespone.cs",
+              "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\Respone\\DiamondRespone.cs",
+              "RelativeToolTip": "DiamonShop.Core\\Respone\\DiamondRespone.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-21T10:51:50.9Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DiamondService.cs",
-              "DocumentMoniker": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Data\\Services\\DiamondService.cs",
-              "RelativeDocumentMoniker": "DiamonShop.Data\\Services\\DiamondService.cs",
-              "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Data\\Services\\DiamondService.cs",
-              "RelativeToolTip": "DiamonShop.Data\\Services\\DiamondService.cs",
-              "ViewState": "AQIAAC8AAAAAAAAAAAAowC4AAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-21T10:46:53.437Z",
+              "WhenOpened": "2024-05-22T03:09:22.953Z",
               "EditorCaption": ""
             },
             {
@@ -282,74 +218,88 @@
               "RelativeDocumentMoniker": "DiamonShop.Core\\services\\IDiamondService.cs",
               "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\services\\IDiamondService.cs",
               "RelativeToolTip": "DiamonShop.Core\\services\\IDiamondService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAgAAAAkAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAkAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-21T10:46:48.045Z",
+              "WhenOpened": "2024-05-22T01:47:38.025Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 12,
               "Title": "MappingConfig.cs",
               "DocumentMoniker": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.API\\Mappings\\MappingConfig.cs",
               "RelativeDocumentMoniker": "DiamonShop.API\\Mappings\\MappingConfig.cs",
               "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.API\\Mappings\\MappingConfig.cs",
               "RelativeToolTip": "DiamonShop.API\\Mappings\\MappingConfig.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAeAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAABFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-21T08:05:00.819Z",
+              "WhenOpened": "2024-05-22T00:48:49.182Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DiamondRepository.cs",
-              "DocumentMoniker": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Data\\Repository\\DiamondRepository.cs",
-              "RelativeDocumentMoniker": "DiamonShop.Data\\Repository\\DiamondRepository.cs",
-              "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Data\\Repository\\DiamondRepository.cs",
-              "RelativeToolTip": "DiamonShop.Data\\Repository\\DiamondRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAkAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-21T07:59:01.684Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "DiamondController.cs",
               "DocumentMoniker": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.API\\Controllers\\DiamondController.cs",
               "RelativeDocumentMoniker": "DiamonShop.API\\Controllers\\DiamondController.cs",
               "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.API\\Controllers\\DiamondController.cs",
               "RelativeToolTip": "DiamonShop.API\\Controllers\\DiamondController.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAApwA0AAAAAAAAA",
+              "ViewState": "AQIAAEMAAAAAAAAAAAAAAEMAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-21T07:57:54.55Z",
+              "WhenOpened": "2024-05-22T00:38:24.277Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 4,
               "Title": "Diamond.cs",
               "DocumentMoniker": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\Domain\\Content\\Diamond.cs",
               "RelativeDocumentMoniker": "DiamonShop.Core\\Domain\\Content\\Diamond.cs",
               "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\Domain\\Content\\Diamond.cs",
               "RelativeToolTip": "DiamonShop.Core\\Domain\\Content\\Diamond.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAAAAAA",
+              "ViewState": "AQIAABUAAAAAAAAAAAAuwBsAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-21T07:45:40.215Z",
+              "WhenOpened": "2024-05-22T00:20:08.703Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "DiamondViewModel.cs",
-              "DocumentMoniker": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\ViewModels\\DiamondViewModel.cs",
-              "RelativeDocumentMoniker": "DiamonShop.Core\\ViewModels\\DiamondViewModel.cs",
-              "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\ViewModels\\DiamondViewModel.cs",
-              "RelativeToolTip": "DiamonShop.Core\\ViewModels\\DiamondViewModel.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAxwAgAAAAAAAAA",
+              "DocumentIndex": 11,
+              "Title": "CreateDiamondRequest.cs",
+              "DocumentMoniker": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\RequestModels\\CreateDiamondRequest.cs",
+              "RelativeDocumentMoniker": "DiamonShop.Core\\RequestModels\\CreateDiamondRequest.cs",
+              "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\RequestModels\\CreateDiamondRequest.cs",
+              "RelativeToolTip": "DiamonShop.Core\\RequestModels\\CreateDiamondRequest.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-21T07:44:41.496Z"
+              "WhenOpened": "2024-05-22T00:19:58.439Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IDiamondRepository.cs",
+              "DocumentMoniker": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\Repository\\IDiamondRepository.cs",
+              "RelativeDocumentMoniker": "DiamonShop.Core\\Repository\\IDiamondRepository.cs",
+              "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Core\\Repository\\IDiamondRepository.cs",
+              "RelativeToolTip": "DiamonShop.Core\\Repository\\IDiamondRepository.cs",
+              "ViewState": "AQIAAAIAAAAAAAAAAAAAAAwAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-22T00:17:46.433Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DiamondService.cs",
+              "DocumentMoniker": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Data\\Services\\DiamondService.cs",
+              "RelativeDocumentMoniker": "DiamonShop.Data\\Services\\DiamondService.cs",
+              "ToolTip": "D:\\Fork_Git\\DiamondShop_2\\src\\DiamonShopManagement\\DiamonShop.Data\\Services\\DiamondService.cs",
+              "RelativeToolTip": "DiamonShop.Data\\Services\\DiamondService.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAAYwDYAAAAyAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-22T00:16:30.566Z",
+              "EditorCaption": ""
             }
           ]
         },

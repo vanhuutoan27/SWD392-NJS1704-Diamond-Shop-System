@@ -62,6 +62,25 @@ namespace DiamonShop.API.Controllers
 
 
         }
+        [HttpPost]
+       
+        public async Task<IActionResult> CreateDiamond( CreateDiamondRequest createDiamondrequest)
+        {
+            if (createDiamondrequest == null)
+            {
+                return BadRequest("CreateDiamondRequest is null.");
+            }
+
+            var response = await _services.DiamondService.AddDiamond(createDiamondrequest);
+            if(response != null)
+            {
+                return Ok(response);
+            }
+            else
+            {
+                return BadRequest(response);
+            }
+        }
     }
 }
 

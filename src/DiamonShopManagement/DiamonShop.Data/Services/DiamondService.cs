@@ -5,7 +5,9 @@ using DiamonShop.Core.RequestModels;
 using DiamonShop.Core.Respone;
 using DiamonShop.Core.SeedWorks;
 using DiamonShop.Core.services;
+using DiamonShop.Core.Shared.Enum;
 using DiamonShop.Core.ViewModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace DiamonShop.Data.Services
 {
@@ -20,6 +22,51 @@ namespace DiamonShop.Data.Services
             _mapper = mapper;
 
         }
+
+        public async Task<DiamondRespone> AddDiamond(CreateDiamondRequest createDiamondRequest)
+        {
+
+            var createDiamond = _mapper.Map<Diamond>(createDiamondRequest);
+            var productID = Guid.NewGuid();
+            var model = new Diamond()
+            {
+
+                DiamondId = productID,
+                Shape = createDiamond.Shape,
+                Weight = createDiamond.Weight,
+                ColorLevel = createDiamond.ColorLevel,
+                Clarity = createDiamond.Clarity,
+                Certification = createDiamond.Certification,
+                Size = createDiamond.Size,
+                Fluorescence =  createDiamond.Fluorescence,
+                QualityOfCut =  createDiamond.QualityOfCut,
+                Price = createDiamond.Price,
+                DateCreated = DateTime.Now,
+                DateModified = DateTime.Now,
+            };
+            _repositoryManager.Diamond.Add(model);
+            var product = new Product()
+            {
+                ProductId = productID,
+                Name = "dai",
+                Description = "sdfsdfdsfsdf",
+                Price = 100000,
+                CategoryId = new Guid("816F2393-683E-428C-A4BB-2BA6E2E3F791"),
+                Status = EnumStatus.Status.Active,
+                DateCreated = DateTime.Now,
+                DateModified = DateTime.Now
+            };
+            _repositoryManager.Product.Add(product);
+            await _repositoryManager.Save();
+            return new DiamondRespone
+            {
+                Message = "Create Diamond Successfully",
+                Status = true,
+                Data = model,
+            };
+        }
+
+
         public async Task<IEnumerable<Diamond>> GetAllDiamond()
         {
             var diamonds = await _repositoryManager.Diamond.GetAllAsync();
@@ -47,7 +94,7 @@ namespace DiamonShop.Data.Services
         {
 
             var existingDiamond = await _repositoryManager.Diamond.GetByIdAsync(id);
-          
+
             if (existingDiamond != null)
             {
                 existingDiamond.Shape = updateadiamond.Shape;
@@ -80,6 +127,10 @@ namespace DiamonShop.Data.Services
                 Data = existingDiamond,
             };
         }
+
+
+
+
     }
 }
 
