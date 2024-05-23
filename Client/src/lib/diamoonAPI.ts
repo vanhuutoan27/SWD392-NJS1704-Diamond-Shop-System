@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const diamoonAPI = axios.create({
-  baseURL: "http://localhost:5084",
+  baseURL: "https://localhost:7212/api/v1",
   timeout: 3000,
   headers: {
     "Content-Type": "application/json",
@@ -13,7 +13,7 @@ diamoonAPI.interceptors.request.use(
     return config;
   },
   (error) => {
-    return Promise.reject(error);
+  return Promise.reject(error);
   },
 );
 

@@ -12,10 +12,12 @@ export interface IUser {
 }
 
 export interface IJwtPayload {
-  sid: string;
+  id: string;
   email: string;
-  name: string;
+  fullname: string;
   role: IUserRole;
+
+  avatar: string;
 }
 
 export enum IUserRole {

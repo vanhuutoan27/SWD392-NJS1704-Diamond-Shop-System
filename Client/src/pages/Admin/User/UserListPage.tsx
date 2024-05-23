@@ -1,5 +1,5 @@
-import { columns } from "@/components/local/Manager/User/UserListColumns";
-import { DataTable } from "@/components/local/Manager/User/UserListDataTable";
+import { columns } from "@/components/local/Admin/User/UserListColumns";
+import { DataTable } from "@/components/local/Admin/User/UserListDataTable";
 import { userData } from "@/constants/user";
 
 function UserListPage() {

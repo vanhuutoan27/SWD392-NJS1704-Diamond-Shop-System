@@ -151,7 +151,7 @@ export const columns: ColumnDef<IJewelry>[] = [
               className="text-sm"
             >
               <Copy size={16} className="mr-2" />
-              <span>Copy User ID</span>
+              <span>Copy ID</span>
             </DropdownMenuItem>
             <DropdownMenuItem className="text-sm">
               <Eye size={16} className="mr-2" />

@@ -1,13 +1,43 @@
+import { Loader } from "@/components/global/atoms/Loader";
 import { columns } from "@/components/local/Manager/Diamond/DiamondListColumns";
 import { DataTable } from "@/components/local/Manager/Diamond/DiamondListDataTable";
-import { diamondData } from "@/constants/diamond";
+import diamoonAPI from "@/lib/diamoonAPI";
+import NotFoundPage from "@/pages/Guest/NotFound/NotFoundPage";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 function UserListPage() {
-  const diamonds = diamondData;
+  const [diamondData, setDiamondData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const getAllDiamonds = async () => {
+      try {
+        const response = await diamoonAPI.get("/Diamond/All");
+        setDiamondData(response.data);
+        setIsLoading(false);
+      } catch (error: any) {
+        setError(error?.message || "An unknown error occurred");
+        setIsLoading(false);
+        toast.error("Failed to fetch diamonds");
+      }
+    };
+
+    getAllDiamonds();
+  }, []);
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    return <NotFoundPage />;
+  }
 
   return (
     <div className="p-5">
-      <DataTable columns={columns} data={diamonds} />
+      <DataTable columns={columns} data={diamondData} />
     </div>
   );
 }

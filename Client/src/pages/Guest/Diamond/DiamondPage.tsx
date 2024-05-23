@@ -100,7 +100,7 @@ function DiamondPage() {
           ? parseFloat(diamond.size) >= minSize &&
             parseFloat(diamond.size) <= maxSize
           : true) &&
-        (selectedColor ? diamond.color === selectedColor : true) &&
+        (selectedColor ? diamond.colorLevel === selectedColor : true) &&
         (selectedClarity ? diamond.clarity === selectedClarity : true)
       );
     });

@@ -6,7 +6,7 @@ export interface IDiamond {
   image: string;
   shape: string;
   weight: string;
-  color: string;
+  colorLevel: string;
   clarity: string;
   certification: string;
   size: string;

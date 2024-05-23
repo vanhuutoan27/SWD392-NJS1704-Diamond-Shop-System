@@ -15,8 +15,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/global/atoms/dropdown-menu";
-import { Link, useLocation } from "react-router-dom";
-import { scrollToTop } from "@/lib/utils";
+import { Link } from "react-router-dom";
+import { scrollToTop, useIsAdminRoute } from "@/lib/utils";
 import { IJwtPayload } from "@/types/user.interface";
 import { Skeleton } from "../atoms/skeleton";
 
@@ -26,10 +26,9 @@ interface UserProfileProps {
 }
 
 function UserProfile({ userData, onLogout }: UserProfileProps) {
-  const userId = userData?.sid;
+  const userId = userData?.id;
 
-  const location = useLocation();
-  const isAdminRoute = location.pathname.startsWith("/admin");
+  const isAdminRoute = useIsAdminRoute();
 
   const menuItems = [
     !isAdminRoute && {
@@ -75,7 +74,7 @@ function UserProfile({ userData, onLogout }: UserProfileProps) {
     {
       icon: LogOut,
       label: "Log out",
-      link: "#",
+      link: "/login",
       hoverColor: "group-hover:text-red-600",
       separator: true,
       onClick: onLogout,
@@ -95,21 +94,30 @@ function UserProfile({ userData, onLogout }: UserProfileProps) {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild className="relative select-none">
-        <div className="flex items-center gap-4">
-          <span className="hidden text-right md:block">
-            <span className="block cursor-pointer text-sm font-medium transition-all duration-300 hover:text-secondary">
-              {userData.name}
-            </span>
-            <span className="block text-xs text-secondary">
-              {userData.email}
-            </span>
+      <div className="flex items-center gap-4">
+        <span className="hidden text-right md:block">
+          <span
+            className={`slow block cursor-pointer text-sm font-medium ${isAdminRoute ? "text-slate-300 hover:text-white" : "text-primary hover:text-secondary"}`}
+          >
+            {userData.fullname}
           </span>
+          <span
+            className={`block text-xs ${isAdminRoute ? "text-white" : "text-secondary"}`}
+          >
+            {userData.email}
+          </span>
+        </span>
+        <DropdownMenuTrigger asChild className="relative select-none">
           <Avatar className="cursor-pointer">
-            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarImage
+              src={
+                userData.avatar ||
+                "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Test%2F3fab077cc8865e75354d5fbf20b35488.jpg?alt=media&token=fa6a539e-1f0f-4a6f-83f6-d03ad9b39eea"
+              }
+            />
           </Avatar>
-        </div>
-      </DropdownMenuTrigger>
+        </DropdownMenuTrigger>
+      </div>
       <DropdownMenuContent className="absolute -right-20 mt-2 w-60 p-2">
         <DropdownMenuGroup>
           {menuItems.map(

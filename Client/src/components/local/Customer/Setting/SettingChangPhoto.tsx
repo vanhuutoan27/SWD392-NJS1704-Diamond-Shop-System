@@ -19,7 +19,7 @@ const SettingChangPhoto: React.FC<SettingChangPhotoProps> = ({
 
   const handleSubmit = () => {
     onSave(formData);
-    toast.success("Photo updated successfully!");
+    toast.success("Photo updated successfully");
   };
 
   const handleChangePhoto = () => {
@@ -50,12 +50,7 @@ const SettingChangPhoto: React.FC<SettingChangPhotoProps> = ({
           </div>
 
           <div className="flex flex-col justify-center gap-2">
-            <span
-              className="slow cursor-pointer text-primary hover:text-secondary"
-              onClick={handleChangePhoto}
-            >
-              Change Photo
-            </span>
+            <span>Update Your Avatar</span>
             <span className="slow flex w-fit cursor-pointer text-sm text-red-600 hover:underline">
               Delete
             </span>
@@ -103,7 +98,7 @@ const SettingChangPhoto: React.FC<SettingChangPhotoProps> = ({
           onUpload={(newPhoto) => {
             setFormData({ ...formData, avatar: newPhoto });
             setShowUploadPhotoDialog(false);
-            toast.success("Avatar updated successfully!");
+            toast.success("Avatar updated successfully");
           }}
         />
       )}

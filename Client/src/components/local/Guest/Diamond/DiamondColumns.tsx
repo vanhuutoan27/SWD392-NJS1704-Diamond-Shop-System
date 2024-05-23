@@ -58,7 +58,7 @@ export const columns: ColumnDef<IDiamond>[] = [
     },
   },
   {
-    accessorKey: "color",
+    accessorKey: "colorLevel",  
     header: ({ column }) => {
       return (
         <div
@@ -195,7 +195,7 @@ export const columns: ColumnDef<IDiamond>[] = [
           to={`/diamond/${diamondId}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center font-semibold text-red-500 slow hover:translate-x-1"
+          className="slow flex items-center font-semibold text-red-500 hover:translate-x-1"
         >
           Details <ChevronRight size={20} />
         </Link>

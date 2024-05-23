@@ -29,7 +29,7 @@ function App() {
 
   // Authenticated Routes
   const Dashboard = lazy(() => import("./pages/Admin/Dashboard/DashboardPage"));
-  const UserList = lazy(() => import("./pages/Manager/User/UserListPage"));
+  const UserList = lazy(() => import("./pages/Admin/User/UserListPage"));
   const JewelryList = lazy(
     () => import("./pages/Manager/Jewelry/JewelryListPage"),
   );

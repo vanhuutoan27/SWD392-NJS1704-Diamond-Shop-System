@@ -19,7 +19,7 @@ export const columns: ColumnDef<IDiamond>[] = [
     header: ({ column }) => {
       return (
         <div
-          className="flex select-none items-center"
+          className="flex select-none items-center justify-center"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           <span className="flex cursor-pointer text-white">ID</span>
@@ -29,7 +29,8 @@ export const columns: ColumnDef<IDiamond>[] = [
     },
     cell: (info) => {
       const value: string = info.getValue() as string;
-      return <span className="font-semibold">{value}</span>;
+      const shortId = value.split("-")[0];
+      return <span className="font-semibold">{shortId}</span>;
     },
   },
   {
@@ -37,7 +38,7 @@ export const columns: ColumnDef<IDiamond>[] = [
     header: ({ column }) => {
       return (
         <div
-          className="flex select-none items-center"
+          className="flex select-none items-center justify-center"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           <span className="flex cursor-pointer text-white">Shape</span>
@@ -55,7 +56,7 @@ export const columns: ColumnDef<IDiamond>[] = [
     header: ({ column }) => {
       return (
         <div
-          className="flex select-none items-center"
+          className="flex select-none items-center justify-center"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           <span className="flex cursor-pointer text-white">Weight</span>
@@ -69,11 +70,11 @@ export const columns: ColumnDef<IDiamond>[] = [
     },
   },
   {
-    accessorKey: "color",
+    accessorKey: "colorLevel",
     header: ({ column }) => {
       return (
         <div
-          className="flex select-none items-center"
+          className="flex select-none items-center justify-center"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           <span className="flex cursor-pointer text-white">Color</span>
@@ -91,7 +92,7 @@ export const columns: ColumnDef<IDiamond>[] = [
     header: ({ column }) => {
       return (
         <div
-          className="flex select-none items-center"
+          className="flex select-none items-center justify-center"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           <span className="flex cursor-pointer text-white">Clarity</span>
@@ -109,7 +110,7 @@ export const columns: ColumnDef<IDiamond>[] = [
     header: ({ column }) => {
       return (
         <div
-          className="flex select-none items-center"
+          className="flex select-none items-center justify-center"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           <span className="flex cursor-pointer text-white">Certification</span>
@@ -127,7 +128,7 @@ export const columns: ColumnDef<IDiamond>[] = [
     header: ({ column }) => {
       return (
         <div
-          className="flex select-none items-center"
+          className="flex select-none items-center justify-center"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           <span className="flex cursor-pointer text-white">Size</span>
@@ -145,7 +146,7 @@ export const columns: ColumnDef<IDiamond>[] = [
     header: ({ column }) => {
       return (
         <div
-          className="flex select-none items-center"
+          className="flex select-none items-center justify-center"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           <span className="flex cursor-pointer text-white">Fluorescence</span>
@@ -163,7 +164,7 @@ export const columns: ColumnDef<IDiamond>[] = [
     header: ({ column }) => {
       return (
         <div
-          className="flex select-none items-center"
+          className="flex select-none items-center justify-center"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           <span className="flex cursor-pointer text-white">Quality Of Cut</span>
@@ -201,7 +202,7 @@ export const columns: ColumnDef<IDiamond>[] = [
               className="text-sm"
             >
               <Copy size={16} className="mr-2" />
-              <span>Copy User ID</span>
+              <span>Copy ID</span>
             </DropdownMenuItem>
             <DropdownMenuItem className="text-sm">
               <Eye size={16} className="mr-2" />

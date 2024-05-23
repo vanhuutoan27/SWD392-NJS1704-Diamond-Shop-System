@@ -22,8 +22,9 @@ import {
   TableRow,
 } from "@/components/global/atoms/table";
 import { Input } from "@/components/global/atoms/input";
-import { Search } from "lucide-react";
+import { Plus, Search } from "lucide-react";
 import ListPagination from "@/components/global/molecules/ListPagination";
+import { Button } from "@/components/global/atoms/button";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -65,18 +66,30 @@ export function DataTable<TData, TValue>({
   const totalPages = Math.ceil(data.length / itemsPerPage);
 
   return (
-    <div>
-      <div className="relative flex items-center py-4">
-        <Search className="absolute left-3 mb-1" size={16} />
-        <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm border border-secondary bg-white pl-10"
-        />
+    <>
+      <div className="mb-4 flex items-center justify-between">
+        <div className="relative flex w-full items-center py-4">
+          <Search className="absolute left-3 mb-1" size={16} />
+          <Input
+            placeholder="Filter emails..."
+            value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+            onChange={(event) =>
+              table.getColumn("email")?.setFilterValue(event.target.value)
+            }
+            className="max-w-sm border border-secondary bg-white pl-10"
+          />
+        </div>
+
+        <div className="flex gap-4">
+          {/* <Button className="flex gap-2" variant={"destructive"}>
+            <Import size={20} /> Import
+          </Button> */}
+          <Button className="flex gap-2 pl-5">
+            <Plus size={20} /> Add User
+          </Button>
+        </div>
       </div>
+
       <div className="overflow-hidden rounded-md border bg-white shadow-md">
         <Table>
           <TableHeader>
@@ -132,6 +145,6 @@ export function DataTable<TData, TValue>({
         totalPages={totalPages}
         setCurrentPage={setCurrentPage}
       />
-    </div>
+    </>
   );
 }

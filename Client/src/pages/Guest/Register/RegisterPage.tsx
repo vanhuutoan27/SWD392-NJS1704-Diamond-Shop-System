@@ -1,13 +1,17 @@
 import { Button } from "@/components/global/atoms/button";
 import PasswordInput from "@/components/global/molecules/PasswordInput";
+import diamoonAPI from "@/lib/diamoonAPI";
 import { registerSchema } from "@/schemas/RegisterForm";
 import { IUser } from "@/types/user.interface";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 function RegisterPage() {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     register,
@@ -18,13 +22,26 @@ function RegisterPage() {
   });
 
   const onSubmit = async (data: IUser) => {
-    console.log(JSON.stringify(data, null, 2));
-    navigate("/");
+    try {
+      setIsLoading(true);
+      await diamoonAPI.post("/Auth/register", {
+        fullName: data.name,
+        email: data.email,
+        password: data.password,
+      });
+      toast.success("Registration successful. Please login");
+      navigate("/login");
+    } catch (error) {
+      toast.error("Registration failed. Please try again");
+      console.error("Registration failed:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="flex w-full items-center justify-center">
-      <div className="w-96 rounded border bg-white px-7 py-16 shadow-md">
+      <div className="w-96 rounded border-2 border-input bg-white px-7 py-16 shadow-md">
         <form onSubmit={handleSubmit(onSubmit)}>
           <h2 className="mb-7 text-center text-2xl font-semibold text-gray-800">
             Register
@@ -56,7 +73,7 @@ function RegisterPage() {
           </p>
 
           <Button type="submit" className="mt-3 w-full py-6">
-            Register
+            {isLoading ? "Register" : "Register"}
           </Button>
 
           <p className="mt-4 text-center text-sm">

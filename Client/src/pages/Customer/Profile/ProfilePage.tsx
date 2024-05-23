@@ -2,7 +2,6 @@ import { cn, useIsAdminRoute } from "@/lib/utils";
 import { userData } from "@/constants/user";
 import { useParams } from "react-router-dom";
 import { IUserRole } from "@/types/user.interface";
-import { Camera } from "lucide-react";
 import { Loader } from "@/components/global/atoms/Loader";
 import ProfileInfo from "@/components/local/Customer/Profile/ProfileInfo";
 import ProfileSocial from "@/components/local/Customer/Profile/ProfileSocial";
@@ -43,9 +42,6 @@ function ProfilePage() {
               src={userDetail.avatar}
               className="h-[160px] w-[160px] cursor-pointer rounded-full border-8 object-cover shadow-md"
             />
-            <div className="absolute bottom-1 right-1 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-primary">
-              <Camera size={20} className="text-white" />
-            </div>
           </div>
         </div>
 

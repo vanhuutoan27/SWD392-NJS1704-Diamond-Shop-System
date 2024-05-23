@@ -26,12 +26,14 @@ function LoginPage() {
   const onSubmit = async (data: IUser) => {
     try {
       setIsLoading(true);
-      const response = await diamoonAPI.post(
-        `/login?Email=${data.email}&Password=${data.password}`,
-      );
-      const { accessToken, refreshToken } = response.data.data;
-      if (accessToken && refreshToken) {
-        login(accessToken, refreshToken);
+      const response = await diamoonAPI.post("/Auth/login", {
+        email: data.email,
+        password: data.password,
+      });
+
+      const { token, refreshToken } = response.data;
+      if (token && refreshToken) {
+        login(token, refreshToken);
         toast.success("Login successfully");
         navigate("/");
       } else {
@@ -47,7 +49,7 @@ function LoginPage() {
 
   return (
     <div className="flex w-full items-center justify-center">
-      <div className="w-96 rounded-xl border bg-white px-7 py-16 shadow-md">
+      <div className="w-96 rounded-xl border-2 border-input bg-white px-7 py-16 shadow-md">
         <form onSubmit={handleSubmit(onSubmit)}>
           <h2 className="mb-7 text-center text-2xl font-semibold text-primary">
             Login

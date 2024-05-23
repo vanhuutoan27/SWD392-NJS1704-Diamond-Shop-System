@@ -128,7 +128,7 @@ function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
                 Color
               </td>
               <td className="border-2 border-input px-4 py-2 italic">
-                {diamondDetails.color}
+                {diamondDetails.colorLevel}
               </td>
             </tr>
             <tr>
