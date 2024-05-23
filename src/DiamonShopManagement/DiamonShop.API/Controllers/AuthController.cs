@@ -13,7 +13,7 @@ using System.Text.Json;
 
 namespace DiamonShop.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -30,18 +30,19 @@ namespace DiamonShop.API.Controllers
             this._roleManager = roleManager;
         }
         [HttpPost]
+        [Route("login")]
         public async Task<ActionResult<AuthenticatedResult>> Login([FromBody] LoginRequests request)
         {
             if (request == null)
             {
                 return BadRequest("Invalid request");
             }
-            var user = await _userManager.FindByNameAsync(request.UserName);
+            var user = await _userManager.FindByEmailAsync(request.Email);
             if (user == null || user.IsActive == false || user.LockoutEnabled)
             {
                 return Unauthorized();
             }
-            var result = await _signInManager.PasswordSignInAsync(request.UserName, request.Password, false, true);
+            var result = await _signInManager.PasswordSignInAsync(user, request.Password, false, true);
             if (!result.Succeeded)
             {
                 return Unauthorized("Invalid Password");
@@ -55,8 +56,7 @@ namespace DiamonShop.API.Controllers
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                  new Claim(UserClaims.Id, user.Id.ToString()),
                  new Claim(ClaimTypes.NameIdentifier, user.UserName),
-                 new Claim(ClaimTypes.Name, user.UserName),
-                    new Claim(UserClaims.FirstName, user.FirstName),
+                 new Claim(ClaimTypes.Name, user.FullName),
                     new Claim(UserClaims.Roles, string.Join(";", roles)),
                     new Claim(UserClaims.Permissions, JsonSerializer.Serialize(permissions)),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
@@ -69,7 +69,7 @@ namespace DiamonShop.API.Controllers
             user.RefreshTokenExpiryTime = DateTime.Now.AddDays(30);
             await _userManager.UpdateAsync(user);
 
-            return Ok(new AuthenticatedResult() { Token = accessToken, RefreshToken = refreshToken, ExpiryTime = user.RefreshTokenExpiryTime.ToString() });
+            return Ok(new AuthenticatedResult() { Token = accessToken, RefreshToken = refreshToken, ExpiryTime = user.RefreshTokenExpiryTime });
         }
 
         [HttpPost]
@@ -82,10 +82,8 @@ namespace DiamonShop.API.Controllers
             }
             var users = new AppUser
             {
-                FirstName = request.FirstName,
-                LastName = request.LastName,
+                FullName = request.FullName,
                 Email = request.Email,
-                UserName = request.UserName,
                 IsActive = true,
                 SecurityStamp = Guid.NewGuid().ToString(),
                 LockoutEnabled = false,

@@ -28,8 +28,7 @@ namespace DiamonShop.Data
                 var user = new AppUser()
                 {
                     Id = userId,
-                    FirstName = "Quoc",
-                    LastName = "Dai",
+                    FullName = "QuocDai",
                     Email = "admin@gmail.com",
                     NormalizedEmail = "ADMIN@GMAIL.COM",
                     UserName = "admin",

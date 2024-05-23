@@ -1,14 +1,10 @@
 ﻿using AutoMapper;
 using DiamonShop.Core.Domain.Content;
-using DiamonShop.Core.Repository;
 using DiamonShop.Core.RequestModels;
 using DiamonShop.Core.Respone;
 using DiamonShop.Core.SeedWorks;
 using DiamonShop.Core.services;
 using DiamonShop.Core.Shared.Enum;
-using DiamonShop.Core.ViewModels;
-using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
 
 namespace DiamonShop.Data.Services
 {
@@ -39,8 +35,8 @@ namespace DiamonShop.Data.Services
                 Clarity = createDiamond.Clarity,
                 Certification = createDiamond.Certification,
                 Size = createDiamond.Size,
-                Fluorescence =  createDiamond.Fluorescence,
-                QualityOfCut =  createDiamond.QualityOfCut,
+                Fluorescence = createDiamond.Fluorescence,
+                QualityOfCut = createDiamond.QualityOfCut,
                 Price = createDiamond.Price,
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now,
@@ -99,16 +95,16 @@ namespace DiamonShop.Data.Services
             if (existingDiamond != null)
             {
                 existingDiamond.Shape = updateadiamond.Shape;
-                existingDiamond.Weight =   updateadiamond.Weight;
+                existingDiamond.Weight = updateadiamond.Weight;
                 existingDiamond.ColorLevel = updateadiamond.ColorLevel;
                 existingDiamond.Clarity = updateadiamond.Clarity;
-                existingDiamond.Certification   = updateadiamond.Certification;
+                existingDiamond.Certification = updateadiamond.Certification;
                 existingDiamond.Size = updateadiamond.Size;
                 existingDiamond.Fluorescence = updateadiamond.Fluorescence;
                 existingDiamond.QualityOfCut = updateadiamond.QualityOfCut;
-                existingDiamond.Price =  updateadiamond.Price;
+                existingDiamond.Price = updateadiamond.Price;
                 existingDiamond.DateCreated = DateTime.Now;
-                existingDiamond.DateModified= DateTime.Now;
+                existingDiamond.DateModified = DateTime.Now;
             }
             else
             {
@@ -124,7 +120,7 @@ namespace DiamonShop.Data.Services
             return new DiamondRespone
             {
                 Message = "Update Successfully!",
-                Status  = true,
+                Status = true,
                 Data = existingDiamond,
             };
         }
