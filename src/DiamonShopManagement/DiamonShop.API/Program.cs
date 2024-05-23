@@ -59,6 +59,9 @@ builder.Services.AddAutoMapper(typeof(Program));
 //add Cors
 builder.Services.ConfigureCors();
 
+//Add authentication
+builder.Services.AddAuthen();
+
 
 //defalt config
 builder.Services.AddControllers();
