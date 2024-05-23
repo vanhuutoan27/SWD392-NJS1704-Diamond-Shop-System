@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { userSchema } from "@/schemas/UserForm";
 import AlertDialogComponent from "@/components/global/molecules/AlertDialogComponent";
+import { toast } from "sonner";
 
 interface SettingFormProps {
   user: IUser;
@@ -58,8 +59,11 @@ function SettingForm({ user, onSave }: SettingFormProps) {
     const newErrors = validate();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
+      toast.error("Incorrect information entered !");
     } else {
       onSave(formData);
+      setErrors({});
+      toast.success("Information updated successfully");
     }
   };
 
@@ -225,10 +229,11 @@ function SettingForm({ user, onSave }: SettingFormProps) {
             name="bio"
             rows={5}
             value={
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque posuere fermentum urna, eu condimentum mauris tempus ut. Donec fermentum blandit aliquet."
+              "Diamond buyers are often discerning individuals who seek the highest quality gems. They prioritize clarity, cut, and carat weight, aiming for stones with exceptional brilliance and rarity. Their investment reflects a blend of luxury and timeless elegance."
             }
             placeholder="Bio"
             className="mb-1 w-full resize-none rounded-md border-[1.5px] bg-slate-100 py-3 pl-10 pr-5 text-sm outline-none"
+            readOnly
           />
           <Info
             size={20}

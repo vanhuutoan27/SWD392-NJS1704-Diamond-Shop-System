@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IUser } from "@/types/user.interface";
-import { Camera, Upload } from "lucide-react";
+import { Upload } from "lucide-react";
 import AlertDialogComponent from "@/components/global/molecules/AlertDialogComponent";
 import UploadPhotoDialog from "./UploadPhotoDialog";
 import { toast } from "sonner";
@@ -19,7 +19,7 @@ const SettingChangPhoto: React.FC<SettingChangPhotoProps> = ({
 
   const handleSubmit = () => {
     onSave(formData);
-    toast.success("Photo updated successfully!");
+    toast.success("Photo updated successfully");
   };
 
   const handleChangePhoto = () => {
@@ -39,22 +39,18 @@ const SettingChangPhoto: React.FC<SettingChangPhotoProps> = ({
       <form className="flex flex-col gap-4 rounded-md border-2 border-input bg-white p-5 shadow-md">
         <h4 className="mb-2 ml-2 text-lg font-medium">Your Avatar</h4>
         <div className="flex gap-4">
-          <div className="group relative cursor-pointer">
+          <div className="group relative">
             <img
               src={formData.avatar}
               className="h-16 w-16 rounded-full object-cover"
             />
-            <div className="slow absolute inset-0 flex items-center justify-center rounded-full bg-black/30 opacity-0 group-hover:opacity-100">
-              <Camera className="text-white" />
-            </div>
           </div>
 
           <div className="flex flex-col justify-center gap-2">
             <span
-              className="slow cursor-pointer text-primary hover:text-secondary"
-              onClick={handleChangePhoto}
+              className="text-secondary"
             >
-              Change Photo
+              Update Your Avatar
             </span>
             <span className="slow flex w-fit cursor-pointer text-sm text-red-600 hover:underline">
               Delete
@@ -103,7 +99,7 @@ const SettingChangPhoto: React.FC<SettingChangPhotoProps> = ({
           onUpload={(newPhoto) => {
             setFormData({ ...formData, avatar: newPhoto });
             setShowUploadPhotoDialog(false);
-            toast.success("Avatar updated successfully!");
+            toast.success("Avatar updated successfully");
           }}
         />
       )}
