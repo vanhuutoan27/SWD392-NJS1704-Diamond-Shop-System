@@ -72,6 +72,38 @@ namespace DiamonShop.API.Controllers
             return Ok(new AuthenticatedResult() { Token = accessToken, RefreshToken = refreshToken, ExpiryTime = user.RefreshTokenExpiryTime.ToString() });
         }
 
+        [HttpPost]
+        [Route("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var users = new AppUser
+            {
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                Email = request.Email,
+                UserName = request.UserName,
+                IsActive = true,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                LockoutEnabled = false,
+                DateCreated = DateTime.Now
+            };
+            var result = await _userManager.CreateAsync(users, request.Password);
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(users, Roles.Customer);
+                return Ok(new { Message = "Register Succesfull!" });
+            }
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+            return BadRequest(ModelState);
+        }
+
         private async Task<List<string>> GetPermissionsByUserIdAsync(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
