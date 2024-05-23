@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
 using System.Security.Claims;
+using System.Text.Json;
 
 namespace DiamonShop.API.Controllers
 {
@@ -57,7 +58,7 @@ namespace DiamonShop.API.Controllers
                  new Claim(ClaimTypes.Name, user.UserName),
                     new Claim(UserClaims.FirstName, user.FirstName),
                     new Claim(UserClaims.Roles, string.Join(";", roles)),
-                    //new Claim(UserClaims.Permissions, JsonSerializer.Serialize(permissions)),
+                    new Claim(UserClaims.Permissions, JsonSerializer.Serialize(permissions)),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
@@ -68,8 +69,9 @@ namespace DiamonShop.API.Controllers
             user.RefreshTokenExpiryTime = DateTime.Now.AddDays(30);
             await _userManager.UpdateAsync(user);
 
-            return Ok(new AuthenticatedResult() { Token = accessToken, RefreshToken = refreshToken });
+            return Ok(new AuthenticatedResult() { Token = accessToken, RefreshToken = refreshToken, ExpiryTime = user.RefreshTokenExpiryTime.ToString() });
         }
+
         private async Task<List<string>> GetPermissionsByUserIdAsync(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);

@@ -18,11 +18,13 @@ namespace DiamonShop.Data.Services
         {
             try
             {
+
                 var diamonds = await _repositoryManager.Diamond.GetAllAsync();
                 return diamonds;
             }
             catch (Exception)
             {
+
 
                 throw;
             }

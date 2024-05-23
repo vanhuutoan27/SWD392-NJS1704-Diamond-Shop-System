@@ -53,8 +53,8 @@ namespace DiamonShop.Data.Migrations
                         new
                         {
                             CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 5, 20, 14, 7, 16, 678, DateTimeKind.Local).AddTicks(9789),
-                            DateModified = new DateTime(2024, 5, 20, 14, 7, 16, 678, DateTimeKind.Local).AddTicks(9805),
+                            DateCreated = new DateTime(2024, 5, 23, 11, 17, 15, 901, DateTimeKind.Local).AddTicks(9059),
+                            DateModified = new DateTime(2024, 5, 23, 11, 17, 15, 901, DateTimeKind.Local).AddTicks(9070),
                             Description = "Kim Cuong vien nhap khau ",
                             Name = "Kim Cương Viên"
                         });
@@ -115,8 +115,8 @@ namespace DiamonShop.Data.Migrations
                             Certification = "GIA",
                             Clarity = "VVS2",
                             ColorLevel = "F",
-                            DateCreated = new DateTime(2024, 5, 20, 14, 7, 16, 679, DateTimeKind.Local).AddTicks(63),
-                            DateModified = new DateTime(2024, 5, 20, 14, 7, 16, 679, DateTimeKind.Local).AddTicks(63),
+                            DateCreated = new DateTime(2024, 5, 23, 11, 17, 15, 901, DateTimeKind.Local).AddTicks(9443),
+                            DateModified = new DateTime(2024, 5, 23, 11, 17, 15, 901, DateTimeKind.Local).AddTicks(9443),
                             Fluorescence = "MEDIUM",
                             Price = 535790600.0,
                             QualityOfCut = "Excellent",
@@ -130,8 +130,8 @@ namespace DiamonShop.Data.Migrations
                             Certification = "GIA",
                             Clarity = "VS3",
                             ColorLevel = "D",
-                            DateCreated = new DateTime(2024, 5, 20, 14, 7, 16, 679, DateTimeKind.Local).AddTicks(66),
-                            DateModified = new DateTime(2024, 5, 20, 14, 7, 16, 679, DateTimeKind.Local).AddTicks(67),
+                            DateCreated = new DateTime(2024, 5, 23, 11, 17, 15, 901, DateTimeKind.Local).AddTicks(9446),
+                            DateModified = new DateTime(2024, 5, 23, 11, 17, 15, 901, DateTimeKind.Local).AddTicks(9447),
                             Fluorescence = "MEDIUM",
                             Price = 21924560.0,
                             QualityOfCut = "Excellent",
@@ -145,8 +145,8 @@ namespace DiamonShop.Data.Migrations
                             Certification = "GIA",
                             Clarity = "IF",
                             ColorLevel = "D",
-                            DateCreated = new DateTime(2024, 5, 20, 14, 7, 16, 679, DateTimeKind.Local).AddTicks(69),
-                            DateModified = new DateTime(2024, 5, 20, 14, 7, 16, 679, DateTimeKind.Local).AddTicks(69),
+                            DateCreated = new DateTime(2024, 5, 23, 11, 17, 15, 901, DateTimeKind.Local).AddTicks(9449),
+                            DateModified = new DateTime(2024, 5, 23, 11, 17, 15, 901, DateTimeKind.Local).AddTicks(9450),
                             Fluorescence = "MEDIUM",
                             Price = 32422800.0,
                             QualityOfCut = "Excellent",
@@ -377,8 +377,8 @@ namespace DiamonShop.Data.Migrations
                         {
                             ProductId = new Guid("e655174b-f444-4ab8-baa8-71ac382d73df"),
                             CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 5, 20, 14, 7, 16, 678, DateTimeKind.Local).AddTicks(9976),
-                            DateModified = new DateTime(2024, 5, 20, 14, 7, 16, 678, DateTimeKind.Local).AddTicks(9977),
+                            DateCreated = new DateTime(2024, 5, 23, 11, 17, 15, 901, DateTimeKind.Local).AddTicks(9163),
+                            DateModified = new DateTime(2024, 5, 23, 11, 17, 15, 901, DateTimeKind.Local).AddTicks(9164),
                             Description = "Kinh cương tự nhiên 100%",
                             Name = "Kim Cương Viên",
                             Price = 535790600.0,
@@ -388,8 +388,8 @@ namespace DiamonShop.Data.Migrations
                         {
                             ProductId = new Guid("4f5cbe8a-a04a-484f-978d-4b26d2979063"),
                             CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 5, 20, 14, 7, 16, 678, DateTimeKind.Local).AddTicks(9979),
-                            DateModified = new DateTime(2024, 5, 20, 14, 7, 16, 678, DateTimeKind.Local).AddTicks(9980),
+                            DateCreated = new DateTime(2024, 5, 23, 11, 17, 15, 901, DateTimeKind.Local).AddTicks(9167),
+                            DateModified = new DateTime(2024, 5, 23, 11, 17, 15, 901, DateTimeKind.Local).AddTicks(9168),
                             Description = "Kinh cương tự nhiên 99%",
                             Name = "Kim Cương Viên",
                             Price = 21924560.0,
@@ -399,8 +399,8 @@ namespace DiamonShop.Data.Migrations
                         {
                             ProductId = new Guid("005da949-dd83-438b-9ee9-aea012d87068"),
                             CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 5, 20, 14, 7, 16, 678, DateTimeKind.Local).AddTicks(9989),
-                            DateModified = new DateTime(2024, 5, 20, 14, 7, 16, 678, DateTimeKind.Local).AddTicks(9989),
+                            DateCreated = new DateTime(2024, 5, 23, 11, 17, 15, 901, DateTimeKind.Local).AddTicks(9170),
+                            DateModified = new DateTime(2024, 5, 23, 11, 17, 15, 901, DateTimeKind.Local).AddTicks(9171),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Kim Cương Viên",
                             Price = 32422800.0,
@@ -431,6 +431,29 @@ namespace DiamonShop.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("322488f9-7aa9-49b0-b2b8-fd98b7b260fc"),
+                            DisplayName = "Khách Hàng",
+                            Name = "Customer",
+                            NormalizedName = "CUSTOMER"
+                        },
+                        new
+                        {
+                            Id = new Guid("c0278115-8549-4fad-890a-44f8e8fcc022"),
+                            DisplayName = "Quản Lí",
+                            Name = "Manager",
+                            NormalizedName = "MANAGER"
+                        },
+                        new
+                        {
+                            Id = new Guid("ab8e4032-2d95-45cc-89c1-c039e9e8bc39"),
+                            DisplayName = "Nhân Viên Giao Hàng",
+                            Name = "Delivery Staff",
+                            NormalizedName = "DELIVERYSTAFF"
+                        });
                 });
 
             modelBuilder.Entity("DiamonShop.Core.Domain.Identity.AppUser", b =>
