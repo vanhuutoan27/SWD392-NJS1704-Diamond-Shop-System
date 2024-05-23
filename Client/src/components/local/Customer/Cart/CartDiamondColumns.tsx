@@ -3,9 +3,9 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { ICart } from "@/types/cart.interface";
 import { formatCurrency } from "@/lib/utils";
-import { X } from "lucide-react";
+import { Minus, Plus } from "lucide-react";
+import { Button } from "@/components/global/atoms/button";
 
-// Helper function to format numbers conditionally
 const formatNumber = (num: number) => {
   const decimalPart = num.toString().split(".")[1];
   if (decimalPart) {
@@ -18,14 +18,16 @@ const formatNumber = (num: number) => {
   return num.toFixed(1);
 };
 
-export const cartDiamondColumns: ColumnDef<ICart>[] = [
+export const cartDiamondColumns = (
+  updateItemQuantity: (productId: string, newQuantity: number) => void,
+  incrementQuantity: (productId: string) => void,
+  decrementQuantity: (productId: string) => void,
+): ColumnDef<ICart>[] => [
   {
     accessorKey: "productId",
-    header: () => {
-      return (
-        <div className="flex cursor-pointer justify-center text-white">ID</div>
-      );
-    },
+    header: () => (
+      <div className="flex cursor-pointer justify-center text-white">ID</div>
+    ),
     cell: (info) => {
       const value: string = info.getValue() as string;
       return <div className="text-center">{value}</div>;
@@ -33,16 +35,14 @@ export const cartDiamondColumns: ColumnDef<ICart>[] = [
   },
   {
     accessorKey: "shape",
-    header: ({ column }) => {
-      return (
-        <div
-          className="flex cursor-pointer justify-center text-white"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Shape
-        </div>
-      );
-    },
+    header: ({ column }) => (
+      <div
+        className="flex cursor-pointer justify-center text-white"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Shape
+      </div>
+    ),
     cell: (info) => {
       const value: string = info.getValue() as string;
       return <div className="text-center">{value}</div>;
@@ -50,16 +50,14 @@ export const cartDiamondColumns: ColumnDef<ICart>[] = [
   },
   {
     accessorKey: "weight",
-    header: ({ column }) => {
-      return (
-        <div
-          className="flex cursor-pointer text-xs justify-center text-white"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Weight (cts)
-        </div>
-      );
-    },
+    header: ({ column }) => (
+      <div
+        className="flex cursor-pointer justify-center text-xs text-white"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Weight (cts)
+      </div>
+    ),
     cell: (info) => {
       const value: number = parseFloat(info.getValue() as string);
       return <div className="text-center">{formatNumber(value)}</div>;
@@ -67,16 +65,14 @@ export const cartDiamondColumns: ColumnDef<ICart>[] = [
   },
   {
     accessorKey: "color",
-    header: ({ column }) => {
-      return (
-        <div
-          className="flex cursor-pointer justify-center text-white"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Color
-        </div>
-      );
-    },
+    header: ({ column }) => (
+      <div
+        className="flex cursor-pointer justify-center text-white"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Color
+      </div>
+    ),
     cell: (info) => {
       const value: string = info.getValue() as string;
       return <div className="text-center">{value}</div>;
@@ -84,16 +80,14 @@ export const cartDiamondColumns: ColumnDef<ICart>[] = [
   },
   {
     accessorKey: "clarity",
-    header: ({ column }) => {
-      return (
-        <div
-          className="flex cursor-pointer justify-center text-white"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Clarity
-        </div>
-      );
-    },
+    header: ({ column }) => (
+      <div
+        className="flex cursor-pointer justify-center text-white"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Clarity
+      </div>
+    ),
     cell: (info) => {
       const value: string = info.getValue() as string;
       return <div className="text-center">{value}</div>;
@@ -101,16 +95,14 @@ export const cartDiamondColumns: ColumnDef<ICart>[] = [
   },
   {
     accessorKey: "certification",
-    header: ({ column }) => {
-      return (
-        <div
-          className="flex cursor-pointer justify-center text-white"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Certification
-        </div>
-      );
-    },
+    header: ({ column }) => (
+      <div
+        className="flex cursor-pointer justify-center text-white"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Certification
+      </div>
+    ),
     cell: (info) => {
       const value: string = info.getValue() as string;
       return (
@@ -120,16 +112,14 @@ export const cartDiamondColumns: ColumnDef<ICart>[] = [
   },
   {
     accessorKey: "size",
-    header: ({ column }) => {
-      return (
-        <div
-          className="flex cursor-pointer text-xs justify-center text-white"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Size (mm)
-        </div>
-      );
-    },
+    header: ({ column }) => (
+      <div
+        className="flex cursor-pointer justify-center text-xs text-white"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Size (mm)
+      </div>
+    ),
     cell: (info) => {
       const value: string = info.getValue() as string;
       return <div className="text-center">{value}</div>;
@@ -137,16 +127,14 @@ export const cartDiamondColumns: ColumnDef<ICart>[] = [
   },
   {
     accessorKey: "fluorescence",
-    header: ({ column }) => {
-      return (
-        <div
-          className="flex cursor-pointer justify-center text-white"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Fluorescence
-        </div>
-      );
-    },
+    header: ({ column }) => (
+      <div
+        className="flex cursor-pointer justify-center text-white"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Fluorescence
+      </div>
+    ),
     cell: (info) => {
       const value: string = info.getValue() as string;
       return <div className="text-center">{value}</div>;
@@ -154,16 +142,14 @@ export const cartDiamondColumns: ColumnDef<ICart>[] = [
   },
   {
     accessorKey: "qualityOfCut",
-    header: ({ column }) => {
-      return (
-        <div
-          className="flex cursor-pointer text-xs justify-center text-white"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Quality Of Cut
-        </div>
-      );
-    },
+    header: ({ column }) => (
+      <div
+        className="flex cursor-pointer justify-center text-xs text-white"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Quality Of Cut
+      </div>
+    ),
     cell: (info) => {
       const value: string = info.getValue() as string;
       return <div className="text-center">{value}</div>;
@@ -171,52 +157,54 @@ export const cartDiamondColumns: ColumnDef<ICart>[] = [
   },
   {
     accessorKey: "quantity",
-    header: () => {
+    header: () => (
+      <div className="flex cursor-pointer justify-center text-white">
+        Quantity
+      </div>
+    ),
+    cell: (info) => {
+      const row = info.row.original;
+      const value: number = info.getValue() as number;
       return (
-        <div className="flex cursor-pointer justify-center text-white">
-          Quantity
+        <div className="flex items-center justify-center gap-2">
+          <Button
+            type="button"
+            variant={"secondary"}
+            className="h-8 w-8 border-input p-0"
+            onClick={() => decrementQuantity(row.productId)}
+          >
+            <Minus size={12} strokeWidth={3} />
+          </Button>
+          <input
+            type="text"
+            value={value}
+            className="w-10 rounded-md border-[1.5px] bg-transparent py-2 text-center text-sm outline-none"
+            onChange={(e) =>
+              updateItemQuantity(row.productId, parseInt(e.target.value, 10))
+            }
+          />
+          <Button
+            type="button"
+            variant={"secondary"}
+            className="h-8 w-8 border-input p-0"
+            onClick={() => incrementQuantity(row.productId)}
+          >
+            <Plus size={12} strokeWidth={3} />
+          </Button>
         </div>
       );
-    },
-    cell: (info) => {
-      const value: number = info.getValue() as number;
-      return <div className="text-center">{value}</div>;
     },
   },
   {
     accessorKey: "price",
-    header: () => {
-      return (
-        <div className="flex cursor-pointer justify-center text-white">
-          Price
-        </div>
-      );
-    },
+    header: () => (
+      <div className="flex cursor-pointer justify-center text-white">Price</div>
+    ),
     cell: (info) => {
       const value: number = info.getValue() as number;
       return (
         <div className="text-center font-semibold text-red-500">
           {formatCurrency(value)}
-        </div>
-      );
-    },
-  },
-  {
-    accessorKey: "action",
-    header: () => {
-      return (
-        <div className="flex cursor-pointer justify-center text-white">
-          Actions
-        </div>
-      );
-    },
-    cell: () => {
-      return (
-        <div className="flex justify-center">
-          <X
-            size={20}
-            className="cursor-pointer text-red-800 slow hover:text-red-800/80"
-          />
         </div>
       );
     },

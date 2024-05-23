@@ -1,4 +1,4 @@
-import BreadcrumbComponent from "@/components/global/atoms/BreadcrumbComponent";
+import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
 import Section from "@/components/global/organisms/Section";
 import ContactForm from "@/components/local/Guest/Contact/ContactForm";
 import { projectName } from "@/lib/constants";

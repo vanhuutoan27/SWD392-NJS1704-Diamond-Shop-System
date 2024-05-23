@@ -154,7 +154,7 @@ function CartButton() {
                 </Button>
               </Link>
               <Link
-                to="/checkout"
+                to="/order"
                 onClick={() => {
                   scrollToTop();
                   handleClose();

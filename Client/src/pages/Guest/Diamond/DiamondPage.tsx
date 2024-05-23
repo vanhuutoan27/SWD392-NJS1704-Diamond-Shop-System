@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/global/atoms/button";
-import BreadcrumbComponent from "@/components/global/atoms/BreadcrumbComponent";
+import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
 import DiamondClarityFilter from "@/components/local/Guest/Diamond/DiamondClarityFilter";
 import DiamondColorFilter from "@/components/local/Guest/Diamond/DiamondColorFilter";
 import DiamondPriceFilter from "@/components/local/Guest/Diamond/DiamondPriceFilter";

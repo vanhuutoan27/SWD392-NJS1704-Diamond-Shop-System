@@ -1,5 +1,5 @@
 import BlogInfo from "@/components/local/Guest/Blog/BlogInfo";
-import BreadcrumbComponent from "@/components/global/atoms/BreadcrumbComponent";
+import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
 import Section from "@/components/global/organisms/Section";
 
 function BlogPage() {

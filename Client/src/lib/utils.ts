@@ -104,3 +104,13 @@ export const addToCart = (cartItems: ICart[], newItem: ICart) => {
   }
   return [...cartItems, newItem];
 };
+
+// Get username from email
+export function getUsername(email: string) {
+  if (typeof email === "string" && email.includes("@")) {
+    const parts = email.split("@");
+    return parts[0];
+  } else {
+    return null;
+  }
+}

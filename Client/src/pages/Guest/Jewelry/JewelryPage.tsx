@@ -5,6 +5,7 @@ import { IJewelryStatus } from "@/types/jewelry.interface";
 import JewelryList from "@/components/local/Guest/Jewelry/JewelryList";
 import JewelryCategory from "@/components/local/Guest/Jewelry/JewelryCategory";
 import Section from "@/components/global/organisms/Section";
+import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
 
 function JewelryPage() {
   const [category, setCategory] = useState("");
@@ -66,6 +67,12 @@ function JewelryPage() {
 
   return (
     <div className="container">
+      <BreadcrumbComponent
+        lastPage={"Home"}
+        lastPageUrl="/"
+        currentPage="Jewelry"
+      />
+
       <img
         src="../images/home_slider_1.jpg"
         alt={projectName}

@@ -7,9 +7,14 @@ import {
 } from "@/types/cart.interface";
 import { formatCurrency } from "@/lib/utils";
 import { Link } from "react-router-dom";
-import { X } from "lucide-react";
+import { Minus, Plus } from "lucide-react";
+import { Button } from "@/components/global/atoms/button";
 
-export const cartColumns: ColumnDef<ICart>[] = [
+export const cartColumns = (
+  updateItemQuantity: (productId: string, newQuantity: number) => void,
+  incrementQuantity: (productId: string) => void,
+  decrementQuantity: (productId: string) => void,
+): ColumnDef<ICart>[] => [
   {
     accessorKey: "productId",
     header: () => (
@@ -50,7 +55,7 @@ export const cartColumns: ColumnDef<ICart>[] = [
           : (row as IJewelryCart).jewelryName;
 
       return (
-        <div className="text-center font-semibold uppercase slow hover:text-secondary">
+        <div className="slow text-center font-semibold uppercase hover:text-secondary">
           {row.productType === ICartType.Diamond ? (
             <Link
               to={`/diamond/${row.productId}`}
@@ -80,8 +85,36 @@ export const cartColumns: ColumnDef<ICart>[] = [
       </div>
     ),
     cell: (info) => {
+      const row = info.row.original;
       const value: number = info.getValue() as number;
-      return <div className="text-center">{value}</div>;
+      return (
+        <div className="flex items-center justify-center gap-2">
+          <Button
+            type="button"
+            variant={"secondary"}
+            className="h-8 w-8 border-input p-0"
+            onClick={() => decrementQuantity(row.productId)}
+          >
+            <Minus size={12} strokeWidth={3} />
+          </Button>
+          <input
+            type="text"
+            value={value}
+            className="w-10 rounded-md border-[1.5px] bg-transparent py-2 text-center text-sm outline-none"
+            onChange={(e) =>
+              updateItemQuantity(row.productId, parseInt(e.target.value, 10))
+            }
+          />
+          <Button
+            type="button"
+            variant={"secondary"}
+            className="h-8 w-8 border-input p-0"
+            onClick={() => incrementQuantity(row.productId)}
+          >
+            <Plus size={12} strokeWidth={3} />
+          </Button>
+        </div>
+      );
     },
   },
   {
@@ -97,21 +130,5 @@ export const cartColumns: ColumnDef<ICart>[] = [
         </div>
       );
     },
-  },
-  {
-    accessorKey: "action",
-    header: () => (
-      <div className="flex cursor-pointer justify-center text-white">
-        Actions
-      </div>
-    ),
-    cell: () => (
-      <div className="flex justify-center">
-        <X
-          size={20}
-          className="cursor-pointer text-red-800 slow hover:text-red-800/80"
-        />
-      </div>
-    ),
   },
 ];

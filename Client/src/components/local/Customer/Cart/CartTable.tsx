@@ -1,16 +1,17 @@
+import { useState, useEffect } from "react";
 import { cartColumns } from "@/components/local/Customer/Cart/CartColumns";
-import { cartJewelryColumns } from "@/components/local/Customer/Cart/CartJewelryColumns";
-import { cartDiamondColumns } from "@/components/local/Customer/Cart/CartDiamondColumns";
+import { cartJewelryColumns } from "./CartJewelryColumns";
 import { DataTable } from "@/components/local/Customer/Cart/CartDataTable";
 import { ICart, ICartType } from "@/types/cart.interface";
 import { Button } from "@/components/global/atoms/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { calculateCartTotal, formatCurrency, scrollToTop } from "@/lib/utils";
 import { ScrollArea, ScrollBar } from "@/components/global/atoms/scroll-area";
-import { useEffect, useState } from "react";
 import { diamondData } from "@/constants/diamond";
 import { jewelryData } from "@/constants/jewelry";
 import { TabsContent } from "./CartTabs";
+import { cartDiamondColumns } from "./CartDiamondColumns";
+import { toast } from "sonner";
 
 interface renderTabContentProps {
   type: string;
@@ -20,8 +21,13 @@ interface renderTabContentProps {
   subTotal: number;
 }
 
-function CartTable() {
+interface CartTableProps {
+  activeTab: string;
+}
+
+function CartTable({ activeTab }: CartTableProps) {
   const [cartItems, setCartItems] = useState<ICart[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedCartItems = localStorage.getItem("cartItems");
@@ -48,6 +54,36 @@ function CartTable() {
     });
   };
 
+  const updateItemQuantity = (productId: string, newQuantity: number) => {
+    if (newQuantity < 1) return;
+    const updatedCartItems = cartItems.map((item) =>
+      item.productId === productId ? { ...item, quantity: newQuantity } : item,
+    );
+    setCartItems(updatedCartItems);
+    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+
+    toast.success("Quantity updated successfully");
+  };
+
+  const incrementQuantity = (productId: string) => {
+    const item = cartItems.find((item) => item.productId === productId);
+    if (item) {
+      updateItemQuantity(productId, item.quantity + 1);
+    }
+  };
+
+  const decrementQuantity = (productId: string) => {
+    const item = cartItems.find((item) => item.productId === productId);
+    if (item && item.quantity > 1) {
+      updateItemQuantity(productId, item.quantity - 1);
+    }
+  };
+
+  const handleCheckout = () => {
+    navigate("/order", { state: { cartItems } });
+    scrollToTop();
+  };
+
   const allItemsInCart = cartItems.filter((item) => item.quantity > 0);
   const diamondsInCart = enrichCartItems(
     allItemsInCart.filter((item) => item.productType === ICartType.Diamond),
@@ -62,21 +98,33 @@ function CartTable() {
     {
       type: "all",
       title: `All products in the cart (${allItemsInCart.length})`,
-      columns: cartColumns,
+      columns: cartColumns(
+        updateItemQuantity,
+        incrementQuantity,
+        decrementQuantity,
+      ),
       data: allItemsInCart,
       subTotal: calculateCartTotal(allItemsInCart),
     },
     {
       type: "jewelry",
       title: `All Jewelries in the cart (${jewelriesInCart.length})`,
-      columns: cartJewelryColumns,
+      columns: cartJewelryColumns(
+        updateItemQuantity,
+        incrementQuantity,
+        decrementQuantity,
+      ),
       data: jewelriesInCart,
       subTotal: calculateCartTotal(jewelriesInCart),
     },
     {
       type: "diamond",
       title: `All Diamonds in the cart (${diamondsInCart.length})`,
-      columns: cartDiamondColumns,
+      columns: cartDiamondColumns(
+        updateItemQuantity,
+        incrementQuantity,
+        decrementQuantity,
+      ),
       data: diamondsInCart,
       subTotal: calculateCartTotal(diamondsInCart),
     },
@@ -91,6 +139,11 @@ function CartTable() {
   }: renderTabContentProps) => {
     const vatAmount = subTotal * vatPercentage;
     const total = subTotal + vatAmount;
+
+    // Log the data for the active tab
+    if (activeTab === type) {
+      console.log(type, data);
+    }
 
     return (
       <TabsContent value={type} key={type}>
@@ -124,14 +177,14 @@ function CartTable() {
       {tabData.map(renderTabContent)}
 
       <div className="flex w-full justify-end gap-4">
-        <Link to="/jewelry" onClick={scrollToTop}>
+        <Link to="/diamond" onClick={scrollToTop}>
           <Button type="button" variant={"secondary"}>
             Continue Shopping
           </Button>
         </Link>
-        <Link to="/checkout" onClick={scrollToTop}>
-          <Button type="button">Checkout</Button>
-        </Link>
+        <Button type="button" onClick={handleCheckout}>
+          Checkout
+        </Button>
       </div>
     </div>
   );

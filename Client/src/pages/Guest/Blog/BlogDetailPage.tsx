@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import BreadcrumbComponent from "@/components/global/atoms/BreadcrumbComponent";
+import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
 import { Loader } from "@/components/global/atoms/Loader";
 import { formatDate } from "@/lib/utils";
 import { blogData } from "@/constants/blog";

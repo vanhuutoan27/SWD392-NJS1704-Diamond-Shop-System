@@ -1,4 +1,4 @@
-import BreadcrumbComponent from "@/components/global/atoms/BreadcrumbComponent";
+import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
 import Section from "@/components/global/organisms/Section";
 import AboutInfo from "@/components/local/Guest/About/AboutInfo";
 import { userData } from "@/constants/user";

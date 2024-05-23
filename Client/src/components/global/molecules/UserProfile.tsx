@@ -1,4 +1,11 @@
-import { LogOut, LayoutDashboard, Settings, User } from "lucide-react";
+import {
+  LogOut,
+  LayoutDashboard,
+  Settings,
+  User,
+  ReceiptText,
+  PackageCheck,
+} from "lucide-react";
 import { Avatar, AvatarImage } from "@/components/global/atoms/avatar";
 import {
   DropdownMenu,
@@ -25,23 +32,45 @@ function UserProfile({ userData, onLogout }: UserProfileProps) {
   const isAdminRoute = location.pathname.startsWith("/admin");
 
   const menuItems = [
-    {
+    !isAdminRoute && {
       icon: LayoutDashboard,
       label: "Admin",
       link: "/admin/dashboard",
-      hoverColor: "group-hover:text-blue-600",
+      hoverColor: isAdminRoute
+        ? `group-hover:text-blue-600`
+        : `group-hover:text-secondary`,
     },
     {
       icon: User,
-      label: "Profile",
+      label: "My Profile",
       link: isAdminRoute ? `/admin/profile/${userId}` : `/profile/${userId}`,
-      hoverColor: "group-hover:text-blue-600",
+      hoverColor: isAdminRoute
+        ? `group-hover:text-blue-600`
+        : `group-hover:text-secondary`,
+    },
+    !isAdminRoute && {
+      icon: PackageCheck,
+      label: "My Order",
+      link: `/order/${userId}`,
+      hoverColor: isAdminRoute
+        ? `group-hover:text-blue-600`
+        : `group-hover:text-secondary`,
+    },
+    !isAdminRoute && {
+      icon: ReceiptText,
+      label: "Invoice",
+      link: `/invoice/${userId}`,
+      hoverColor: isAdminRoute
+        ? `group-hover:text-blue-600`
+        : `group-hover:text-secondary`,
     },
     {
       icon: Settings,
       label: "Settings",
       link: isAdminRoute ? `/admin/setting/${userId}` : `/setting/${userId}`,
-      hoverColor: "group-hover:text-blue-600",
+      hoverColor: isAdminRoute
+        ? `group-hover:text-blue-600`
+        : `group-hover:text-secondary`,
     },
     {
       icon: LogOut,
@@ -83,29 +112,32 @@ function UserProfile({ userData, onLogout }: UserProfileProps) {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="absolute -right-20 mt-2 w-60 p-2">
         <DropdownMenuGroup>
-          {menuItems.map((item, index) => (
-            <Link
-              key={index}
-              to={item.link}
-              onClick={() => {
-                scrollToTop();
-                if (item.onClick) item.onClick();
-              }}
-            >
-              {item.separator && <DropdownMenuSeparator />}
-              <DropdownMenuItem
-                className={`group mb-2 cursor-pointer ${item.separator ? "mb-0 mt-2" : ""}`}
-              >
-                <item.icon
-                  className={`slow mr-4 ${item.hoverColor}`}
-                  size={20}
-                />
-                <span className={`slow text-sm ${item.hoverColor}`}>
-                  {item.label}
-                </span>
-              </DropdownMenuItem>
-            </Link>
-          ))}
+          {menuItems.map(
+            (item, index) =>
+              item && (
+                <Link
+                  key={index}
+                  to={item.link}
+                  onClick={() => {
+                    scrollToTop();
+                    if (item.onClick) item.onClick();
+                  }}
+                >
+                  {item.separator && <DropdownMenuSeparator />}
+                  <DropdownMenuItem
+                    className={`group mb-2 cursor-pointer ${item.separator ? "mb-0 mt-2" : ""}`}
+                  >
+                    <item.icon
+                      className={`slow mr-4 ${item.hoverColor}`}
+                      size={20}
+                    />
+                    <span className={`slow text-sm ${item.hoverColor}`}>
+                      {item.label}
+                    </span>
+                  </DropdownMenuItem>
+                </Link>
+              ),
+          )}
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
