@@ -55,8 +55,9 @@ namespace DiamonShop.API.Controllers
             {
                 new Claim(JwtRegisteredClaimNames.Email, user.Email),
                  new Claim(UserClaims.Id, user.Id.ToString()),
-                 new Claim(ClaimTypes.NameIdentifier, user.UserName),
-                 new Claim(ClaimTypes.Name, user.FullName),
+                // new Claim(ClaimTypes.NameIdentifier, user.UserName),
+                new Claim(UserClaims.FullName, user.FullName),
+                 //new Claim(ClaimTypes.Name, user.FullName),
                     new Claim(UserClaims.Roles, string.Join(";", roles)),
                     new Claim(UserClaims.Permissions, JsonSerializer.Serialize(permissions)),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
@@ -83,6 +84,7 @@ namespace DiamonShop.API.Controllers
             var users = new AppUser
             {
                 FullName = request.FullName,
+                UserName = request.FullName.Replace(" ", ""),
                 Email = request.Email,
                 IsActive = true,
                 SecurityStamp = Guid.NewGuid().ToString(),
