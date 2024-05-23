@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using DiamonShop.Core.Domain.Content;
+using DiamonShop.Core.RequestModels;
+using DiamonShop.Core.ViewModels;
 
 namespace DiamonShop.API.Mappings
 {
@@ -6,7 +9,8 @@ namespace DiamonShop.API.Mappings
     {
         public MappingConfig()
         {
-
+            CreateMap<Diamond, UpdateDiamondRequest>().ReverseMap();
+            CreateMap<Diamond , CreateDiamondRequest>().ReverseMap();
         }
     }
 }

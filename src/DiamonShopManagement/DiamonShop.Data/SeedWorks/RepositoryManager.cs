@@ -21,9 +21,10 @@ namespace DiamonShop.Data.SeedWorks
 
         public IDiamondRepository Diamond => _diamondRepository.Value;
 
-        public Task Save()
+        public async Task<int> Save()
         {
-            throw new NotImplementedException();
+            return _context.SaveChanges();
         }
     }
 }
+ 

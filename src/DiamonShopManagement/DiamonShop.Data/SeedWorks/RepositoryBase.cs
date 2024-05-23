@@ -41,5 +41,12 @@ namespace DiamonShop.Data.SeedWorks
         {
             _dbSet.RemoveRange(entities);
         }
+
+        public void Update(T entity)
+        {
+            _dbSet.Update(entity);
+        }
+
+     
     }
 }

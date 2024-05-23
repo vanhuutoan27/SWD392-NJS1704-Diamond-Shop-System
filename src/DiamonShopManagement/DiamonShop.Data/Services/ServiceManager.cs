@@ -8,7 +8,7 @@ namespace DiamonShop.Data.Services
     {
         private readonly Lazy<IProductService> _productService;
         private readonly Lazy<IDiamondService> _diamondService;
-        public ServiceManager(IRepositoryManager repositoryManager, IMapper mapper)
+        public ServiceManager(IRepositoryManager repositoryManager, IMapper mapper )
         {
             _productService = new Lazy<IProductService>(() => new ProductService(repositoryManager, mapper));
             _diamondService = new Lazy<IDiamondService>(() => new DiamondService(repositoryManager, mapper));
