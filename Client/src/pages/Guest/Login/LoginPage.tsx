@@ -35,7 +35,7 @@ function LoginPage() {
       if (token && refreshToken) {
         login(token, refreshToken);
         toast.success("Login successfully");
-        navigate("/");
+        navigate("/redirect");
       } else {
         console.error("Tokens are missing in the response");
       }

@@ -4,6 +4,8 @@ import { Loader } from "./components/global/atoms/Loader";
 import RootLayout from "./components/global/templates/RootLayout";
 import AuthLayout from "./components/global/templates/AuthLayout";
 import NotFound from "./pages/Guest/NotFound/NotFoundPage";
+import RedirectPage from "./pages/Guest/Redirect/RedirectPage";
+import AccessDenied from "./pages/Guest/AccessDenied/AccessDenied";
 
 function App() {
   // Public Routes
@@ -235,7 +237,9 @@ function App() {
       </Route>
 
       <Route path="/*" element={<NotFound />} />
+      <Route path="/redirect" element={<RedirectPage />} />
       <Route path="/not-found" element={<NotFound />} />
+      <Route path="/access-denied" element={<AccessDenied />} />
     </Routes>
   );
 }

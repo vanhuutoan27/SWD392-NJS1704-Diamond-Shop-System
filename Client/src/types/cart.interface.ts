@@ -14,7 +14,7 @@ export interface ICartBase {
 
 export interface IDiamondCart extends ICartBase {
   productType: ICartType.Diamond;
-  size: string;
+  size: number;
 }
 
 export interface IJewelryCart extends ICartBase {

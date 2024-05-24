@@ -85,7 +85,7 @@ function UploadPhotoDialog({
             Cancel
           </Button>
           <Button type="button" onClick={handleSave}>
-            Save changes
+            Upload
           </Button>
         </DialogFooter>
       </DialogContent>

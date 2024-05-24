@@ -7,7 +7,7 @@ interface ProductCardProps {
   productId: string;
   image: string;
   image2?: string;
-  size?: string;
+  size?: number;
   price: number;
   jewelryName?: string;
 }
@@ -42,7 +42,7 @@ function ProductCard({
             to={`/diamond/${productId}`}
             target="_blank"
             rel="noopener noreferrer"
-            className={`${isHover ? "opacity-1" : "opacity-0"} slow -bottom-6 absolute left-1/2 -translate-x-1/2`}
+            className={`${isHover ? "opacity-1" : "opacity-0"} slow absolute -bottom-6 left-1/2 -translate-x-1/2`}
           >
             <Button variant={"secondary"} className="bg-white/80">
               View Details

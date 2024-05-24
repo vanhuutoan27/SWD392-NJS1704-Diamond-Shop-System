@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/global/atoms/button";
 import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
 import DiamondClarityFilter from "@/components/local/Guest/Diamond/DiamondClarityFilter";
@@ -8,11 +8,15 @@ import DiamondShapeFilter from "@/components/local/Guest/Diamond/DiamondShapeFil
 import DiamondSizeFilter from "@/components/local/Guest/Diamond/DiamondSizeFilter";
 import DiamondWeightFilter from "@/components/local/Guest/Diamond/DiamondWeightFilter";
 import { DataTable } from "@/components/local/Guest/Diamond/DiamondDataTable";
-import { diamondData } from "@/constants/diamond";
 import { columns } from "@/components/local/Guest/Diamond/DiamondColumns";
 import Section from "@/components/global/organisms/Section";
+import { toast } from "sonner";
+import { Loader } from "@/components/global/atoms/Loader";
+import { IDiamond } from "@/types/diamond.interface";
+import { useGetAllDiamonds } from "@/api/diamondApi";
 
 function DiamondPage() {
+  const { data: diamondData, error, isLoading } = useGetAllDiamonds();
   const [isReset, setIsReset] = useState(false);
 
   // States for each filter
@@ -23,12 +27,20 @@ function DiamondPage() {
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedClarity, setSelectedClarity] = useState("");
 
-  const [filteredDiamonds, setFilteredDiamonds] = useState(diamondData);
+  const [filteredDiamonds, setFilteredDiamonds] = useState<IDiamond[]>([]);
   const [rowsToShow, setRowsToShow] = useState(5);
 
-  // Handlers for each filter
-  const handlePriceSelection = (price: string) =>
-    setSelectedPrice(price.toString());
+  useEffect(() => {
+    if (diamondData) {
+      setFilteredDiamonds(diamondData);
+    }
+  }, [diamondData]);
+
+  if (error) {
+    toast.error("Failed to fetch diamonds");
+  }
+
+  const handlePriceSelection = (price: string) => setSelectedPrice(price);
   const handleShapeSelection = (shapes: string[]) => setSelectedShapes(shapes);
   const handleWeightSelection = (weight: string) => setSelectedWeight(weight);
   const handleSizeSelection = (size: string) => setSelectedSize(size);
@@ -74,7 +86,7 @@ function DiamondPage() {
 
   // Function to apply all filters
   const handleFilter = () => {
-    const filteredData = diamondData.filter((diamond) => {
+    const filteredData = diamondData?.filter((diamond: IDiamond) => {
       const { min: minPrice, max: maxPrice } = selectedPrice
         ? parsePriceRange(selectedPrice)
         : { min: -Infinity, max: Infinity };
@@ -93,19 +105,17 @@ function DiamondPage() {
           ? diamond.price >= minPrice && diamond.price <= maxPrice
           : true) &&
         (selectedWeight
-          ? parseFloat(diamond.weight) >= minWeight &&
-            parseFloat(diamond.weight) <= maxWeight
+          ? diamond.weight >= minWeight && diamond.weight <= maxWeight
           : true) &&
         (selectedSize
-          ? parseFloat(diamond.size) >= minSize &&
-            parseFloat(diamond.size) <= maxSize
+          ? diamond.size >= minSize && diamond.size <= maxSize
           : true) &&
         (selectedColor ? diamond.colorLevel === selectedColor : true) &&
         (selectedClarity ? diamond.clarity === selectedClarity : true)
       );
     });
 
-    setFilteredDiamonds(filteredData);
+    setFilteredDiamonds(filteredData || []);
     setRowsToShow(5);
   };
 
@@ -119,7 +129,7 @@ function DiamondPage() {
     setSelectedColor("");
     setSelectedClarity("");
 
-    setFilteredDiamonds(diamondData);
+    setFilteredDiamonds(diamondData || []);
     setRowsToShow(5);
 
     setTimeout(() => {
@@ -134,6 +144,10 @@ function DiamondPage() {
     "D-VS2-4.4",
   ];
 
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
     <div className="container">
       <BreadcrumbComponent
@@ -141,6 +155,7 @@ function DiamondPage() {
         lastPageUrl="/"
         currentPage="Diamond"
       />
+
       <div>
         <Section pageName={"Diamonds"} />
 
@@ -184,7 +199,6 @@ function DiamondPage() {
             </Button>
           </div>
         </div>
-        <div />
 
         <div>
           <Section pageName={"All diamonds are available"} />

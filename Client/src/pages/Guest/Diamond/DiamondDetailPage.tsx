@@ -7,21 +7,28 @@ import RelatedProducts from "@/components/local/Guest/Diamond/RelatedDiamonds";
 import DiamondBanner from "@/components/local/Guest/Diamond/DiamondBanner";
 import DiamondDetails from "@/components/local/Guest/Diamond/DiamondDetails";
 import { diamondData } from "@/constants/diamond";
+import { useGetDiamondById } from "@/api/diamondApi";
+import { toast } from "sonner";
 
 function DiamondDetailPage() {
   const { diamondId } = useParams<{ diamondId: string }>();
+  const {
+    data: diamondDetails,
+    error,
+    isLoading,
+  } = useGetDiamondById(diamondId || "");
 
-  const diamondDetails = diamondData.find(
-    (diamond) => diamond.diamondId === diamondId,
-  );
+  if (isLoading || !diamondDetails) {
+    return <Loader />;
+  }
+
+  if (error) {
+    toast.error("Failed to fetch diamond details data");
+  }
 
   const relatedProducts = diamondData.filter(
     (diamond) => diamond.diamondId !== diamondId,
   );
-
-  if (!diamondDetails) {
-    return <Loader />;
-  }
 
   return (
     <div className="container">
