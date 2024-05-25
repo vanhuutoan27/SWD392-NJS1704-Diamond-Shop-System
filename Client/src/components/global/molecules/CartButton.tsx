@@ -12,6 +12,7 @@ import { ICart } from "@/types/cart.interface";
 import { ShoppingCart, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
 
 function CartButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,6 +46,8 @@ function CartButton() {
     setCartItems(updatedCartItems);
     localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
     window.dispatchEvent(new CustomEvent("cartChanged"));
+
+    toast.success("Item removed from cart!");
   };
 
   const vatPercentage = 0.1;

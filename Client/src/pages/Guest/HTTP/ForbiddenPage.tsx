@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/global/atoms/button";
 import { cn, scrollToTop, useIsAdminRoute } from "@/lib/utils";
 
-function AccessDenied() {
+function ForbiddenPage() {
   const isAdminRoute = useIsAdminRoute();
 
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ function AccessDenied() {
       <div className="flex w-[700px] flex-col px-4 text-center font-medium">
         <h1 className="mb-2 text-9xl font-bold text-gray-200">403</h1>
         <p className="text-2xl font-bold tracking-tight text-gray-800 sm:text-4xl">
-          Access Denied
+          Forbidden
         </p>
         <p className="mt-4 text-gray-500">
           You don't have permission to access this page.
@@ -45,4 +45,4 @@ function AccessDenied() {
   );
 }
 
-export default AccessDenied;
+export default ForbiddenPage;
