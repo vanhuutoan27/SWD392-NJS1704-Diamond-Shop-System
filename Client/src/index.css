@@ -99,6 +99,10 @@
 }
 
 @layer components {
+  .input-field {
+    @apply mb-1 w-full rounded-md border-[1.5px] bg-transparent px-5 py-3 text-sm outline-none;
+  }
+
   .sticky-nav {
     @apply fixed left-0 right-0 top-0 z-50 bg-white shadow-md;
   }

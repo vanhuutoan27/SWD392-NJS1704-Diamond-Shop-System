@@ -4,40 +4,37 @@ import Section from "@/components/global/organisms/Section";
 import InformationForm from "@/components/local/Customer/Order/InformationForm";
 import ShippingForm from "@/components/local/Customer/Order/ShippingForm";
 import PaymentForm from "@/components/local/Customer/Order/PaymentForm";
-import ConfirmOrderPage from "@/components/local/Customer/Order/ConfirmOrderPage";
+import ConfirmOrder from "@/components/local/Customer/Order/ConfirmOrder";
 import OrderSummary from "@/components/local/Customer/Order/OrderSummary";
 import { Button } from "@/components/global/atoms/button";
 import { scrollToTop } from "@/lib/utils";
 import { useLocation } from "react-router-dom";
-import { diamondData } from "@/constants/diamond";
-import { jewelryData } from "@/constants/jewelry";
-import { ICart, ICartType } from "@/types/cart.interface";
 
 function OrderPage() {
   const location = useLocation();
   const { state } = location;
   const { cartItems } = state || { cartItems: [] };
 
-  const getProductDetails = (productId: string, type: ICartType) => {
-    if (type === ICartType.Diamond) {
-      return diamondData.find((diamond) => diamond.diamondId === productId);
-    } else if (type === ICartType.Jewelry) {
-      return jewelryData.find((jewelry) => jewelry.jewelryId === productId);
-    }
-  };
+  // const getProductDetails = (productId: string, type: ICartType) => {
+  //   if (type === ICartType.Diamond) {
+  //     return diamondData.find((diamond) => diamond.diamondId === productId);
+  //   } else if (type === ICartType.Jewelry) {
+  //     return jewelryData.find((jewelry) => jewelry.jewelryId === productId);
+  //   }
+  // };
 
-  const enrichedCartItems = cartItems.map((item: ICart) => ({
-    ...item,
-    ...getProductDetails(item.productId, item.productType),
-  }));
+  // const enrichedCartItems = cartItems.map((item: ICart) => ({
+  //   ...item,
+  //   ...getProductDetails(item.productId, item.productType),
+  // }));
 
-  console.log(enrichedCartItems);
+  // console.log(enrichedCartItems);
 
   const tabs = [
     { component: InformationForm, label: "Information" },
     { component: ShippingForm, label: "Shipping" },
     { component: PaymentForm, label: "Payment" },
-    { component: ConfirmOrderPage, label: "Done" },
+    { component: ConfirmOrder, label: "Done" },
   ];
   const [tab, setTab] = useState(0);
 
@@ -64,15 +61,15 @@ function OrderPage() {
     <div className="container">
       <Section pageName={"Check Out"} />
 
-      <div className="w-2/3 pr-8">
+      <div className="w-4/5 pr-8">
         <ProgressBar currentStep={tab + 1} />
       </div>
 
       <div className="mt-20 flex w-full gap-8">
-        <div className="w-2/3">
+        <div className="w-3/5 rounded-md border-2 border-input bg-white p-5 shadow-md">
           <CurrentForm />
         </div>
-        <div className="w-1/3">
+        <div className="w-2/5 rounded-md border-2 border-input bg-white p-5 shadow-md">
           <OrderSummary cartItems={cartItems} />
         </div>
       </div>

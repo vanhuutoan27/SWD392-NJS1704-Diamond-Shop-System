@@ -159,7 +159,7 @@ function InvoiceItem({
               </p>
               <p className="flex justify-between font-medium">
                 <span>
-                  Coupon Discount<span className="text-meta-3">(10%)</span>
+                  Coupon Discount <span className="text-meta-3">(10%)</span>
                 </span>
                 <span>{formattedInvoiceData.discount}</span>
               </p>
