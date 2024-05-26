@@ -2,7 +2,7 @@ import { Loader } from "@/components/global/atoms/Loader";
 import { columns } from "@/components/local/Manager/Diamond/DiamondListColumns";
 import { DataTable } from "@/components/local/Manager/Diamond/DiamondListDataTable";
 import diamoonAPI from "@/lib/diamoonAPI";
-import NotFoundPage from "@/pages/Guest/NotFound/NotFoundPage";
+import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 

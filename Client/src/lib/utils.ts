@@ -40,7 +40,7 @@ export const formatDate = (dateStr: string): string => {
   return `${month}/${day}/${year}`;
 };
 
-// Format date time
+// Get product data
 export function getProductData(cartItem: ICart) {
   switch (cartItem.productType) {
     case ICartType.Diamond:
@@ -114,3 +114,46 @@ export function getUsername(email: string) {
     return null;
   }
 }
+
+// Calc subtotal of invoice
+export const calculateSubtotal = (
+  items: { price: number; quantity: number }[],
+) => {
+  return items.reduce((total, item) => total + item.price * item.quantity, 0);
+};
+
+// Calculate VAT of invoice
+export const calculateVat = (subtotal: number, vatPercentage: number) => {
+  return subtotal * vatPercentage;
+};
+
+// Calculate total of invoice
+export const calculateTotal = (
+  subtotal: number,
+  vatAmount: number,
+  shippingCost: number,
+  discount: number,
+) => {
+  return subtotal + vatAmount + shippingCost - discount;
+};
+
+// Format invoice data
+export const formatInvoiceData = (
+  invoiceData: any,
+  vatPercentage: number,
+  shippingCost: number,
+) => {
+  const subtotal = calculateSubtotal(invoiceData.items);
+  const discount = subtotal * 0.1;
+  const vatAmount = calculateVat(subtotal, vatPercentage);
+  const total = calculateTotal(subtotal, vatAmount, shippingCost, discount);
+
+  return {
+    ...invoiceData,
+    subtotal: formatCurrency(subtotal),
+    discount: formatCurrency(discount),
+    vatAmount: formatCurrency(vatAmount),
+    shippingCost: formatCurrency(shippingCost),
+    total: formatCurrency(total),
+  };
+};
