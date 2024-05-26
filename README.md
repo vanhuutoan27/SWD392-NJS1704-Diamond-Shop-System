@@ -50,39 +50,42 @@ This project is a comprehensive diamond sales management system designed for an 
 ### Frontend
 
 1. Clone the repository:
-   \`\`\`bash
-   git clone [https://github.com/your-username/diamond-sales-management-system.git](https://github.com/vanhuutoan27/SWD392-NJS1704-Diamond-Shop-System.git)
+   ```sh
+   git clone https://github.com/vanhuutoan27/SWD392-NJS1704-Diamond-Shop-System.git
+   ```
+   
+ ```sh
    cd Client
-   \`\`\`
+   ```
 
 2. Install dependencies:
-   \`\`\`bash
+   ```sh
    npm install
-   \`\`\`
+   ```
 
 3. Run the development server:
-   \`\`\`bash
+   ```sh
    npm run dev
-   \`\`\`
+   ```
 
 ### Backend
 
 1. Navigate to the Backend directory:
-   \`\`\`bash
+   ```sh
    cd Server
-   \`\`\`
+   ```
 
 2. Restore packages:
-   \`\`\`bash
+   ```sh
    dotnet restore
-   \`\`\`
+   ```
 
 3. Update the connection string in \`appsettings.json\` to point to your SQL Server instance.
 
 4. Run the Backend server:
-   \`\`\`bash
+   ```sh
    dotnet run
-   \`\`\`
+   ```
 
 ## Usage
 
