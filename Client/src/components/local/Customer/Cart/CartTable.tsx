@@ -12,6 +12,7 @@ import { jewelryData } from "@/constants/jewelry";
 import { TabsContent } from "./CartTabs";
 import { cartDiamondColumns } from "./CartDiamondColumns";
 import { toast } from "sonner";
+import { vatPercentage } from "@/lib/constants";
 
 interface renderTabContentProps {
   type: string;
@@ -91,8 +92,6 @@ function CartTable({ activeTab }: CartTableProps) {
   const jewelriesInCart = enrichCartItems(
     allItemsInCart.filter((item) => item.productType === ICartType.Jewelry),
   );
-
-  const vatPercentage = 0.1;
 
   const tabData = [
     {

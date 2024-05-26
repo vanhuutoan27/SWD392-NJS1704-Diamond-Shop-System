@@ -131,29 +131,23 @@ export const calculateVat = (subtotal: number, vatPercentage: number) => {
 export const calculateTotal = (
   subtotal: number,
   vatAmount: number,
-  shippingCost: number,
   discount: number,
 ) => {
-  return subtotal + vatAmount + shippingCost - discount;
+  return subtotal + vatAmount - discount;
 };
 
 // Format invoice data
-export const formatInvoiceData = (
-  invoiceData: any,
-  vatPercentage: number,
-  shippingCost: number,
-) => {
+export const formatInvoiceData = (invoiceData: any, vatPercentage: number) => {
   const subtotal = calculateSubtotal(invoiceData.items);
   const discount = subtotal * 0.1;
   const vatAmount = calculateVat(subtotal, vatPercentage);
-  const total = calculateTotal(subtotal, vatAmount, shippingCost, discount);
+  const total = calculateTotal(subtotal, vatAmount, discount);
 
   return {
     ...invoiceData,
     subtotal: formatCurrency(subtotal),
     discount: formatCurrency(discount),
     vatAmount: formatCurrency(vatAmount),
-    shippingCost: formatCurrency(shippingCost),
     total: formatCurrency(total),
   };
 };

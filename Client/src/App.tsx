@@ -208,7 +208,7 @@ function App() {
         />
 
         <Route
-          path="/admin/setting/:userId"
+          path="/admin/settings/:userId"
           element={
             <Suspense fallback={<Loader />}>
               <Setting />
@@ -249,7 +249,7 @@ function App() {
       <Route path="/*" element={<NotFoundPage />} />
       <Route path="/redirect" element={<RedirectPage />} />
       <Route path="/not-found" element={<NotFoundPage />} />
-      <Route path="/access-denied" element={<ForbiddenPage />} />
+      <Route path="/forbidden" element={<ForbiddenPage />} />
     </Routes>
   );
 }

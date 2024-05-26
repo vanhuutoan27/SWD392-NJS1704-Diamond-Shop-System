@@ -1,6 +1,5 @@
 import {
   LogOut,
-  LayoutDashboard,
   Settings,
   User,
   ReceiptText,
@@ -31,14 +30,6 @@ function UserProfile({ userData, onLogout }: UserProfileProps) {
   const isAdminRoute = useIsAdminRoute();
 
   const menuItems = [
-    !isAdminRoute && {
-      icon: LayoutDashboard,
-      label: "Admin",
-      link: "/admin/dashboard",
-      hoverColor: isAdminRoute
-        ? `group-hover:text-blue-600`
-        : `group-hover:text-secondary`,
-    },
     {
       icon: User,
       label: "My Profile",
@@ -50,7 +41,7 @@ function UserProfile({ userData, onLogout }: UserProfileProps) {
     !isAdminRoute && {
       icon: PackageCheck,
       label: "My Order",
-      link: `/order/${userId}`,
+      link: `/orders/${userId}`,
       hoverColor: isAdminRoute
         ? `group-hover:text-blue-600`
         : `group-hover:text-secondary`,
@@ -58,7 +49,7 @@ function UserProfile({ userData, onLogout }: UserProfileProps) {
     !isAdminRoute && {
       icon: ReceiptText,
       label: "Invoice",
-      link: `/invoice/${userId}`,
+      link: `/invoices/${userId}`,
       hoverColor: isAdminRoute
         ? `group-hover:text-blue-600`
         : `group-hover:text-secondary`,
@@ -66,7 +57,7 @@ function UserProfile({ userData, onLogout }: UserProfileProps) {
     {
       icon: Settings,
       label: "Settings",
-      link: isAdminRoute ? `/admin/setting/${userId}` : `/setting/${userId}`,
+      link: isAdminRoute ? `/admin/settings/${userId}` : `/settings/${userId}`,
       hoverColor: isAdminRoute
         ? `group-hover:text-blue-600`
         : `group-hover:text-secondary`,

@@ -3,7 +3,7 @@ function InvoiceCard({ formattedInvoiceData }: { formattedInvoiceData: any }) {
     <div className="flex w-full justify-between text-base">
       <span>#{formattedInvoiceData.invoiceId}</span>
       <span className="mr-4 font-medium">
-        {formattedInvoiceData.dateIssued}
+        {formattedInvoiceData.dateCreated}
       </span>
     </div>
   );

@@ -11,7 +11,7 @@ import { userData } from "@/constants/user";
 import { formatInvoiceData, getProductData } from "@/lib/utils";
 import { ICart, ICartType } from "@/types/cart.interface";
 import { useParams } from "react-router-dom";
-import { vatPercentage, shippingCost } from "@/lib/constants";
+import { vatPercentage } from "@/lib/constants";
 import InvoiceCard from "@/components/local/Customer/Invoice/InvoiceCard";
 import InvoiceItem from "@/components/local/Customer/Invoice/InvoiceItem";
 
@@ -22,8 +22,8 @@ function InvoicePage() {
 
   const invoiceData = {
     invoiceId: "DIAMOON27082003",
-    dateIssued: "25 May 2024",
-    dueDate: "25 Jun 2024",
+    dateCreated: "25 May 2024",
+    paymentDate: "25 May 2024",
     billingTo: billingToUser,
     items: [
       {
@@ -52,7 +52,7 @@ function InvoicePage() {
       description: productData
         ? "jewelryName" in productData
           ? productData.jewelryName
-          : `KIM CƯƠNG TỰ NHIÊN x ${productData.size}MM`
+          : `NATURAL DIAMOND x ${productData.size}MM`
         : "",
       price: productData?.price || 0,
       total: (productData?.price || 0) * item.quantity,
@@ -62,7 +62,6 @@ function InvoicePage() {
   const formattedInvoiceData = formatInvoiceData(
     { ...invoiceData, items: mappedItems },
     vatPercentage,
-    shippingCost,
   );
 
   return (

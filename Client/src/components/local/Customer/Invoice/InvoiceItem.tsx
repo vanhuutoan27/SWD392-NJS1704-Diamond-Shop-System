@@ -83,15 +83,15 @@ function InvoiceItem({
             </span>
           </div>
           <div className="border-r-2 border-input px-5 py-4">
-            <h5 className="mb-1.5 font-semibold">Date Issued:</h5>
+            <h5 className="mb-1.5 font-semibold">Date Created:</h5>
             <span className="text-sm font-medium">
-              {formattedInvoiceData.dateIssued}
+              {formattedInvoiceData.dateCreated}
             </span>
           </div>
           <div className="border-input px-5 py-4">
-            <h5 className="mb-1.5 font-semibold">Due Date:</h5>
+            <h5 className="mb-1.5 font-semibold">Date of Payment:</h5>
             <span className="text-sm font-medium">
-              {formattedInvoiceData.dueDate}
+              {formattedInvoiceData.paymentDate}
             </span>
           </div>
         </div>
@@ -156,10 +156,6 @@ function InvoiceItem({
               <p className="flex justify-between font-medium">
                 <span>Subtotal</span>
                 <span>{formattedInvoiceData.subtotal}</span>
-              </p>
-              <p className="flex justify-between font-medium">
-                <span>Shipping Cost (+)</span>
-                <span>{formattedInvoiceData.shippingCost}</span>
               </p>
               <p className="flex justify-between font-medium">
                 <span>

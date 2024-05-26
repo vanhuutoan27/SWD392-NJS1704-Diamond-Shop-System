@@ -7,6 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/global/atoms/dropdown-menu";
 import { Separator } from "@/components/global/atoms/separator";
+import { vatPercentage } from "@/lib/constants";
 import { calculateCartTotal, formatCurrency, scrollToTop } from "@/lib/utils";
 import { ICart } from "@/types/cart.interface";
 import { ShoppingCart, X } from "lucide-react";
@@ -50,7 +51,6 @@ function CartButton() {
     toast.success("Item removed from cart!");
   };
 
-  const vatPercentage = 0.1;
   const subTotal = calculateCartTotal(cartItems);
   const vatAmount = subTotal * vatPercentage;
   const total = subTotal + vatAmount;
@@ -152,18 +152,7 @@ function CartButton() {
                   handleClose();
                 }}
               >
-                <Button type="button" variant={"secondary"}>
-                  View Cart
-                </Button>
-              </Link>
-              <Link
-                to="/order"
-                onClick={() => {
-                  scrollToTop();
-                  handleClose();
-                }}
-              >
-                <Button type="button">Checkout</Button>
+                <Button type="button">View Cart</Button>
               </Link>
             </div>
           </>

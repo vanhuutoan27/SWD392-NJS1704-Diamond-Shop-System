@@ -5,8 +5,11 @@ import { ICart, ICartType, IJewelryCart } from "@/types/cart.interface";
 import { toast } from "sonner";
 import { Button } from "@/components/global/atoms/button";
 import Section from "@/components/global/organisms/Section";
+import { useAuthContext } from "@/contexts/AuthContext";
 
 function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
+  const { user } = useAuthContext();
+
   const salePrice = null;
 
   const [cartItems, setCartItems] = useState<ICart[]>([]);
@@ -35,22 +38,27 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
   };
 
   const handleAddToCart = () => {
-    const newItem: IJewelryCart = {
-      cartId: `C${jewelryDetails.jewelryId}`,
-      productType: ICartType.Jewelry,
-      productId: jewelryDetails.jewelryId,
-      quantity: 1,
-      price: jewelryDetails.price,
-      image: jewelryDetails.image,
-      jewelryName: jewelryDetails.jewelryName,
-    };
-    const updatedCart = addToCart(cartItems, newItem);
-    setCartItems(updatedCart);
-    localStorage.setItem("cartItems", JSON.stringify(updatedCart));
+    if (!user) {
+      toast.error("Please login to add to cart");
+      return;
+    } else {
+      const newItem: IJewelryCart = {
+        cartId: `C${jewelryDetails.jewelryId}`,
+        productType: ICartType.Jewelry,
+        productId: jewelryDetails.jewelryId,
+        quantity: 1,
+        price: jewelryDetails.price,
+        image: jewelryDetails.image,
+        jewelryName: jewelryDetails.jewelryName,
+      };
+      const updatedCart = addToCart(cartItems, newItem);
+      setCartItems(updatedCart);
+      localStorage.setItem("cartItems", JSON.stringify(updatedCart));
 
-    toast.success("Add to cart successfully");
+      toast.success("Add to cart successfully");
 
-    window.dispatchEvent(new CustomEvent("cartChanged"));
+      window.dispatchEvent(new CustomEvent("cartChanged"));
+    }
   };
 
   return (

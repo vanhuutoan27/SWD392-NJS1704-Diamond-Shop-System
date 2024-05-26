@@ -1,5 +1,6 @@
 import { ICart } from "@/types/cart.interface";
 import { formatCurrency } from "@/lib/utils";
+import { vatPercentage } from "@/lib/constants";
 
 interface OrderSummaryProps {
   cartItems: ICart[];
@@ -10,7 +11,6 @@ function OrderSummary({ cartItems }: OrderSummaryProps) {
     (sum, item) => sum + item.price * item.quantity,
     0,
   );
-  const vatPercentage = 0.1;
   const vatAmount = subTotal * vatPercentage;
   const total = subTotal + vatAmount;
 

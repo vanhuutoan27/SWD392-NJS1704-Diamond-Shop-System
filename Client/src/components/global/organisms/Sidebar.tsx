@@ -119,8 +119,6 @@ function Sidebar() {
     setIsActive(location.pathname);
   }, [location.pathname]);
 
-  console.log(isActive, location.pathname);
-
   const menuItems = [
     {
       title: "Dashboard",
@@ -155,7 +153,7 @@ function Sidebar() {
   ];
 
   return (
-    <div className="fixed left-0 top-0 flex h-full w-72 flex-col justify-between gap-2 bg-gray-900 px-6 py-8 shadow-md slow">
+    <div className="slow fixed left-0 top-0 flex h-full w-72 flex-col justify-between gap-2 bg-gray-900 px-6 py-8 shadow-md">
       <div>
         <SidebarHeader />
 
