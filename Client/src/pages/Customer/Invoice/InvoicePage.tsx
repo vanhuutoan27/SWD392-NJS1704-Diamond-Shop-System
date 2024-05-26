@@ -21,7 +21,7 @@ function InvoicePage() {
   const billingToUser = userData.find((u) => u.userId === userId);
 
   const invoiceData = {
-    invoiceId: "#DIAMOON27082003",
+    invoiceId: "DIAMOON27082003",
     dateIssued: "25 May 2024",
     dueDate: "25 Jun 2024",
     billingTo: billingToUser,

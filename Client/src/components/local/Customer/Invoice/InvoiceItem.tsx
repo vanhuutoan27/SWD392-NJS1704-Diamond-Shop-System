@@ -28,7 +28,7 @@ function InvoiceItem({
           const imgProps = pdf.getImageProperties(dataUrl);
           const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
           pdf.addImage(dataUrl, "PNG", 0, 0, pdfWidth, pdfHeight);
-          pdf.save("invoice.pdf");
+          pdf.save(`INVOICE-${formattedInvoiceData.invoiceId}.pdf`);
         })
         .catch((error) => {
           console.error("Error generating PDF: ", error);
@@ -79,7 +79,7 @@ function InvoiceItem({
           <div className="border-r-2 border-input px-5 py-4">
             <h5 className="mb-1.5 font-semibold">Invoice ID:</h5>
             <span className="text-sm font-medium">
-              {formattedInvoiceData.invoiceId}
+              #{formattedInvoiceData.invoiceId}
             </span>
           </div>
           <div className="border-r-2 border-input px-5 py-4">
