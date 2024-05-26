@@ -54,7 +54,7 @@ This project is a comprehensive diamond sales management system designed for an 
    git clone https://github.com/vanhuutoan27/SWD392-NJS1704-Diamond-Shop-System.git
    ```
    
- ```sh
+   ```sh
    cd Client
    ```
 
