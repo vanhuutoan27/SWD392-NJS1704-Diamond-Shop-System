@@ -84,7 +84,7 @@ export function DataTable<TData, TValue>({
           {/* <Button className="flex gap-2" variant={"destructive"}>
             <Import size={20} /> Import
           </Button> */}
-          <Button className="flex gap-2 pl-5">
+          <Button className="flex gap-2 pl-5 bg-gray-800 hover:bg-gray-900">
             <Plus size={20} /> Add User
           </Button>
         </div>
@@ -92,7 +92,7 @@ export function DataTable<TData, TValue>({
 
       <div className="overflow-hidden rounded-md border bg-white shadow-md">
         <Table>
-          <TableHeader>
+          <TableHeader className="bg-gray-800 hover:bg-gray-900">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {

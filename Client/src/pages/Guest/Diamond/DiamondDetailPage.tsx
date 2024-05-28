@@ -7,7 +7,6 @@ import RelatedProducts from "@/components/local/Guest/Diamond/RelatedDiamonds";
 import DiamondBanner from "@/components/local/Guest/Diamond/DiamondBanner";
 import DiamondDetails from "@/components/local/Guest/Diamond/DiamondDetails";
 import { useGetAllDiamonds, useGetDiamondById } from "@/api/diamondApi";
-import { toast } from "sonner";
 import { IDiamond } from "@/types/diamond.interface";
 import NotFoundPage from "../HTTP/NotFoundPage";
 
@@ -31,7 +30,6 @@ function DiamondDetailPage() {
   }
 
   if (diamondDetailsError || allDiamondsError) {
-    toast.error("Failed to fetch diamond data");
     return <NotFoundPage />;
   }
 

@@ -27,10 +27,7 @@ function ProductCard({
   return (
     <div className="ml-4 rounded-lg border-2 border-input p-4 shadow-md">
       {size ? (
-        <Link
-          to={`/diamond/${productId}`}
-          target="_blank"
-          rel="noopener noreferrer"
+        <div
           className="group relative"
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
@@ -46,13 +43,13 @@ function ProductCard({
             to={`/diamond/${productId}`}
             target="_blank"
             rel="noopener noreferrer"
-            className={`${isHover ? "opacity-1" : "opacity-0"} slow absolute -bottom-6 left-1/2 -translate-x-1/2`}
+            className={`${isHover ? "opacity-1" : "opacity-0"} duration-400 slow absolute -bottom-6 left-1/2 -translate-x-1/2`}
           >
             <Button variant={"secondary"} className="bg-white/80">
               View Details
             </Button>
           </Link>
-        </Link>
+        </div>
       ) : (
         <div
           className="group relative cursor-pointer"
@@ -78,7 +75,7 @@ function ProductCard({
       )}
       <div className="mt-8 text-center">
         <p className="mb-1 text-xs text-gray-500">{shortProductId}</p>
-        <p className="h-12">
+        <p className="h-7">
           {size ? (
             <Link
               to={`/diamond/${productId}`}

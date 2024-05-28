@@ -37,7 +37,7 @@ function KPICards() {
       {kpiCards.map((card, index) => (
         <div
           key={index}
-          className={`flex flex-col gap-4 rounded-md bg-white p-4 shadow-md`}
+          className={`flex flex-col gap-4 rounded-md border-2 border-input bg-white p-4 shadow-md`}
         >
           <div className="w-fit rounded-full bg-slate-200 p-3 text-blue-600">
             {card.icon}

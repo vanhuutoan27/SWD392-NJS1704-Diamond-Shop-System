@@ -3,7 +3,6 @@ import { Loader } from "@/components/global/atoms/Loader";
 import { columns } from "@/components/local/Manager/Diamond/DiamondListColumns";
 import { DataTable } from "@/components/local/Manager/Diamond/DiamondListDataTable";
 import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage";
-import { toast } from "sonner";
 
 function UserListPage() {
   const { data: diamondData, error, isLoading } = useGetAllDiamonds();
@@ -13,7 +12,6 @@ function UserListPage() {
   }
 
   if (error) {
-    toast.error("Failed to fetch diamonds");
     return <NotFoundPage />;
   }
 

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import Sidebar from "../organisms/Sidebar";
-import Toolbar from "../organisms/Toolbar";
 import { useAuthContext } from "@/contexts/AuthContext";
 import { Loader } from "../atoms/Loader";
 
@@ -12,7 +11,7 @@ function AuthLayout() {
   useEffect(() => {
     if (user) {
       setIsLoading(false);
-      console.log(user.roles);
+      // console.log(user.roles);
     }
   }, [user]);
 
@@ -27,8 +26,7 @@ function AuthLayout() {
   return (
     <div className="h-screen">
       <Sidebar />
-      <div className="ml-72 flex min-h-full flex-col bg-slate-100">
-        <Toolbar />
+      <div className="ml-72 min-h-full bg-slate-100">
         <Outlet />
       </div>
     </div>

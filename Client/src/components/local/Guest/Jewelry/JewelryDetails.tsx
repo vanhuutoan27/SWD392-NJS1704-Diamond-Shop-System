@@ -66,7 +66,7 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
       <div className="flex w-full gap-10">
         <div className="w-1/2">
           <div
-            className="image-container h-[550px] rounded-md border-2 border-input"
+            className="image-container h-[500px] rounded-md border-2 border-input"
             onMouseMove={handleMouseMove}
           >
             <img

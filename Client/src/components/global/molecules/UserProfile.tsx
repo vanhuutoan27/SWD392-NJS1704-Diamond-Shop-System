@@ -15,7 +15,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/global/atoms/dropdown-menu";
 import { Link } from "react-router-dom";
-import { scrollToTop, useIsAdminRoute } from "@/lib/utils";
+import { scrollToTop } from "@/lib/utils";
 import { IJwtPayload } from "@/types/user.interface";
 import { Skeleton } from "../atoms/skeleton";
 
@@ -27,40 +27,30 @@ interface UserProfileProps {
 function UserProfile({ userData, onLogout }: UserProfileProps) {
   const userId = userData?.id;
 
-  const isAdminRoute = useIsAdminRoute();
-
   const menuItems = [
     {
       icon: User,
       label: "My Profile",
-      link: isAdminRoute ? `/admin/profile/${userId}` : `/profile/${userId}`,
-      hoverColor: isAdminRoute
-        ? `group-hover:text-blue-600`
-        : `group-hover:text-secondary`,
+      link: `/profile/${userId}`,
+      hoverColor: "group-hover:text-secondary",
     },
-    !isAdminRoute && {
+    {
       icon: PackageCheck,
       label: "My Order",
       link: `/orders/${userId}`,
-      hoverColor: isAdminRoute
-        ? `group-hover:text-blue-600`
-        : `group-hover:text-secondary`,
+      hoverColor: "group-hover:text-secondary",
     },
-    !isAdminRoute && {
+    {
       icon: ReceiptText,
       label: "Invoices",
       link: `/invoices/${userId}`,
-      hoverColor: isAdminRoute
-        ? `group-hover:text-blue-600`
-        : `group-hover:text-secondary`,
+      hoverColor: "group-hover:text-secondary",
     },
     {
       icon: Settings,
       label: "Settings",
-      link: isAdminRoute ? `/admin/settings/${userId}` : `/settings/${userId}`,
-      hoverColor: isAdminRoute
-        ? `group-hover:text-blue-600`
-        : `group-hover:text-secondary`,
+      link: `/settings/${userId}`,
+      hoverColor: "group-hover:text-secondary",
     },
     {
       icon: LogOut,
@@ -87,16 +77,10 @@ function UserProfile({ userData, onLogout }: UserProfileProps) {
     <DropdownMenu>
       <div className="flex items-center gap-4">
         <span className="hidden text-right md:block">
-          <span
-            className={`slow block cursor-pointer text-sm font-medium ${isAdminRoute ? "text-slate-300 hover:text-white" : "text-primary hover:text-secondary"}`}
-          >
+          <span className="slow block cursor-pointer text-sm font-medium text-primary hover:text-secondary">
             {userData.fullname}
           </span>
-          <span
-            className={`block text-xs ${isAdminRoute ? "text-white" : "text-secondary"}`}
-          >
-            {userData.email}
-          </span>
+          <span className="block text-xs text-secondary">{userData.email}</span>
         </span>
         <DropdownMenuTrigger asChild className="relative select-none">
           <Avatar className="cursor-pointer">
@@ -109,7 +93,7 @@ function UserProfile({ userData, onLogout }: UserProfileProps) {
           </Avatar>
         </DropdownMenuTrigger>
       </div>
-      <DropdownMenuContent className="absolute -right-20 mt-2 w-60 p-2">
+      <DropdownMenuContent className="absolute -right-5 mt-2 w-60 p-2">
         <DropdownMenuGroup>
           {menuItems.map(
             (item, index) =>

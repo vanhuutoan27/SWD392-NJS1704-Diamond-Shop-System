@@ -1,8 +1,59 @@
+import { useEffect, useRef, useState } from "react";
+import {
+  Gem,
+  LayoutDashboard,
+  Package,
+  User,
+  ChevronDown,
+  ChevronsUpDown,
+  Settings,
+  LogOut,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 import { projectName } from "@/lib/constants";
-import { cn } from "@/lib/utils";
-import { ChevronDown, Gem, LayoutDashboard, Package, User } from "lucide-react";
-import { useRef, useState, useEffect, useLayoutEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Avatar, AvatarImage } from "../atoms/avatar";
+import { useAuthContext } from "@/contexts/AuthContext";
+
+const menuItems = [
+  {
+    title: "Dashboard",
+    link: "/admin/dashboard",
+    icon: <LayoutDashboard />,
+  },
+  {
+    title: "Jewelry",
+    link: "/admin/jewelry-list",
+    icon: <Gem />,
+    items: [{ title: "Add Jewelry", link: "/admin/jewelry-new" }],
+  },
+  {
+    title: "Diamond",
+    link: "/admin/diamond-list",
+    icon: <Gem />,
+    items: [{ title: "Add Diamond", link: "/admin/diamond-new" }],
+  },
+  {
+    title: "User",
+    link: "#",
+    icon: <User />,
+    items: [
+      { title: "User List", link: "/admin/user-list" },
+      { title: "User Permission", link: "/admin/user-permission" },
+    ],
+  },
+  {
+    title: "Order",
+    link: "/admin/order-list",
+    icon: <Package />,
+  },
+];
+
+interface Item {
+  title: string;
+  link: string;
+  icon: JSX.Element;
+  items?: { title: string; link: string }[];
+}
 
 function SidebarHeader() {
   return (
@@ -17,89 +68,169 @@ function SidebarHeader() {
   );
 }
 
-type SidebarItemProps = {
-  onClick: (title: string) => void;
+function SidebarFooter() {
+  const { user, logout } = useAuthContext();
+  const accountMenuRef = useRef<HTMLDivElement>(null);
+
+  const accountMenus = [
+    {
+      title: "My Profile",
+      link: `/admin/profile/${user?.id}`,
+      icon: <User />,
+    },
+    {
+      title: "Settings",
+      link: `/admin/setting/${user?.id}`,
+      icon: <Settings />,
+    },
+    {
+      title: "Log out",
+      link: "/login",
+      icon: <LogOut />,
+      onClick: logout,
+    },
+  ];
+
+  const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
+
+  const handleToggleAccountMenu = () => {
+    setIsAccountMenuOpen(!isAccountMenuOpen);
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      accountMenuRef.current &&
+      !accountMenuRef.current.contains(event.target as Node)
+    ) {
+      setIsAccountMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isAccountMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isAccountMenuOpen]);
+
+  return (
+    <div className="relative" ref={accountMenuRef}>
+      <div
+        className="slow flex w-full cursor-pointer select-none items-center gap-4 rounded-md bg-gray-800 p-3 text-slate-200 hover:bg-blue-700"
+        onClick={handleToggleAccountMenu}
+      >
+        <Avatar className="cursor-pointer">
+          <AvatarImage
+            src={
+              user?.avatar ||
+              "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Test%2F3fab077cc8865e75354d5fbf20b35488.jpg?alt=media&token=fa6a539e-1f0f-4a6f-83f6-d03ad9b39eea"
+            }
+          />
+        </Avatar>
+        <div className="flex w-full items-center justify-between">
+          <div className="flex flex-col justify-center gap-1">
+            <span className="text-sm font-medium">{user?.fullname}</span>
+            <span className="text-xs text-secondary">Admin</span>
+          </div>
+          <ChevronsUpDown size={20} />
+        </div>
+      </div>
+      {isAccountMenuOpen && (
+        <div className="absolute bottom-[72px] w-full overflow-hidden rounded-md">
+          {accountMenus.map((item) => (
+            <Link key={item.title} to={item.link}>
+              <SidebarItem
+                onClick={item.onClick || (() => {})}
+                title={item.title}
+                icon={item.icon}
+                isActive={false}
+                className={`slow rounded-none ${item.title === "Log out" ? "hover:bg-red-600" : ""}`}
+              />
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+interface SidebarItemProps {
+  onClick: (item: string) => void;
   title: string;
-  link?: string;
-  icon?: React.ReactNode;
+  icon?: JSX.Element;
   isActive: boolean;
   hasSubNav?: boolean;
-};
+  link?: string;
+  className?: string;
+}
 
 function SidebarItem({
   onClick,
   title,
-  link,
   icon,
   isActive,
   hasSubNav,
+  className = "",
 }: SidebarItemProps) {
   return (
-    <Link to={link || "#"}>
-      <span
-        onClick={() => onClick(title)}
-        className={cn(
-          "relative mt-2 flex h-12 w-full items-center gap-4 rounded-md bg-gray-800 px-4 text-white transition-colors duration-300",
-          isActive ? "bg-blue-600" : "hover:bg-blue-600",
-        )}
-      >
-        {icon && <span>{icon}</span>}
+    <span
+      onClick={() => onClick(title)}
+      className={`slow flex w-full cursor-pointer items-center rounded-md p-3 text-slate-200 ${
+        isActive ? "bg-blue-700" : "bg-gray-800 hover:bg-blue-700"
+      } ${className}`}
+    >
+      {icon && <span className="mr-4">{icon}</span>}
+      <span className="flex w-full items-center justify-between">
         <span>{title}</span>
-        {hasSubNav && <ChevronDown size={20} className="ml-auto" />}
+        {hasSubNav && (
+          <ChevronDown
+            className={`slow ${isActive ? "rotate-180" : "rotate-0"}`}
+            size={20}
+          />
+        )}
       </span>
-    </Link>
+    </span>
   );
 }
 
-type SubSidebarItemProps = {
-  item: {
-    title: string;
-    link: string;
-    items?: { title: string; link: string }[];
-  };
-  isActive: string;
-  handleClick: (title: string) => void;
-};
+interface SubMenuProps {
+  item: Item;
+  activeItem: string;
+  handleClick: (item: string) => void;
+}
 
-function SubSidebarItem({ item, isActive, handleClick }: SubSidebarItemProps) {
-  const sidebarRef = useRef<HTMLDivElement>(null);
-  const [subMenuHeight, setSubMenuHeight] = useState<number>(0);
+function SubMenu({ item, activeItem, handleClick }: SubMenuProps) {
+  const navRef = useRef<HTMLDivElement>(null);
 
-  const isSubSidebarItemOpen = (item: string, items: string[] = []) =>
-    items.some((i) => i === isActive) || item === isActive;
-
-  useLayoutEffect(() => {
-    if (sidebarRef.current) {
-      const height = sidebarRef.current.clientHeight + 4;
-      setSubMenuHeight(height);
-    }
-  }, [isActive]);
+  const isSubNavOpen = (item: string, items?: { title: string }[]) =>
+    items?.some((i) => i.title === activeItem) || item === activeItem;
 
   return (
     <div
-      className={`overflow-hidden transition-all duration-500 ${
-        isSubSidebarItemOpen(item.title, item.items?.map((i) => i.title) || [])
-          ? "h-auto"
-          : "h-0"
+      className={`transition-height overflow-hidden duration-500 ${
+        isSubNavOpen(item.title, item.items) ? "h-auto" : "h-0"
       }`}
       style={{
-        height: !isSubSidebarItemOpen(
-          item.title,
-          item.items?.map((i) => i.title) || [],
-        )
+        height: !isSubNavOpen(item.title, item.items)
           ? 0
-          : subMenuHeight,
+          : (navRef.current?.clientHeight ?? 0) + 12,
       }}
     >
-      <div ref={sidebarRef} className="flex flex-col">
-        {item?.items?.map((subItem) => (
-          <SidebarItem
-            key={subItem.title}
-            onClick={handleClick}
-            title={subItem.title}
-            link={subItem.link}
-            isActive={isActive === subItem.title}
-          />
+      <div ref={navRef} className="my-2 flex flex-col gap-2">
+        {item.items?.map((subItem) => (
+          <Link key={subItem.title} to={subItem.link}>
+            <SidebarItem
+              onClick={handleClick}
+              title={subItem.title}
+              isActive={activeItem === subItem.title}
+              className="pl-[52px]"
+            />
+          </Link>
         ))}
       </div>
     </div>
@@ -107,76 +238,49 @@ function SubSidebarItem({ item, isActive, handleClick }: SubSidebarItemProps) {
 }
 
 function Sidebar() {
-  const location = useLocation();
-
-  const [isActive, setIsActive] = useState<string>(location.pathname);
+  const [activeItem, setActiveItem] = useState<string>("");
 
   const handleClick = (item: string) => {
-    setIsActive(item !== isActive ? item : "");
+    setActiveItem(item !== activeItem ? item : "");
   };
 
-  useEffect(() => {
-    setIsActive(location.pathname);
-  }, [location.pathname]);
-
-  const menuItems = [
-    {
-      title: "Dashboard",
-      link: "/admin/dashboard",
-      icon: <LayoutDashboard />,
-    },
-
-    {
-      title: "Jewelry",
-      link: "/admin/jewelry-list",
-      icon: <Gem />,
-    },
-    {
-      title: "Diamond",
-      link: "/admin/diamond-list",
-      icon: <Gem />,
-    },
-    {
-      title: "User",
-      link: "#",
-      icon: <User />,
-      items: [
-        { title: "User List", link: "/admin/user-list" },
-        { title: "User Permission", link: "/admin/user-permission" },
-      ],
-    },
-    {
-      title: "Order",
-      link: "/admin/order-list",
-      icon: <Package />,
-    },
-  ];
-
   return (
-    <div className="slow fixed left-0 top-0 flex h-full w-72 flex-col justify-between gap-2 bg-gray-900 px-6 py-8 shadow-md">
-      <div>
+    <div className="fixed left-0 top-0 flex h-full w-72 flex-col justify-between bg-gray-900 p-6 shadow-md">
+      <div className="flex flex-col gap-2">
         <SidebarHeader />
 
         {menuItems.map((item) => (
           <div key={item.title}>
-            <SidebarItem
-              onClick={handleClick}
-              title={item.title}
-              link={item.link}
-              icon={item.icon}
-              isActive={isActive === item.link}
-              hasSubNav={!!item.items}
-            />
-            {item.items && (
-              <SubSidebarItem
-                isActive={isActive}
-                handleClick={handleClick}
-                item={item}
-              />
+            {!item.items ? (
+              <Link to={item.link}>
+                <SidebarItem
+                  onClick={handleClick}
+                  title={item.title}
+                  icon={item.icon}
+                  isActive={activeItem === item.title}
+                />
+              </Link>
+            ) : (
+              <>
+                <SidebarItem
+                  onClick={handleClick}
+                  title={item.title}
+                  icon={item.icon}
+                  isActive={activeItem === item.title}
+                  hasSubNav={!!item.items}
+                />
+                <SubMenu
+                  activeItem={activeItem}
+                  handleClick={handleClick}
+                  item={item}
+                />
+              </>
             )}
           </div>
         ))}
       </div>
+
+      <SidebarFooter />
     </div>
   );
 }
