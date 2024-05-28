@@ -107,7 +107,7 @@ function ContactForm() {
     <div className="flex h-full">
       <div className="w-full rounded-xl border-input bg-white px-7 py-10 shadow-md">
         <form className="flex flex-col" onSubmit={handleSubmit}>
-          <h3 className="mb-4 text-3xl font-semibold">Message for us!</h3>
+          <h3 className="mb-4 text-3xl font-semibold">Message for us</h3>
 
           <input
             type="text"

@@ -109,9 +109,10 @@ export const jewelryData: IJewelry[] = [
     jewelryId: "J007",
     jewelryCategory: "Ring",
     jewelryName: "18K DIAMOND RING",
-    image: "https://jemmia.vn/wp-content/uploads/2024/03/1_cam_03-copy-1-2.jpg",
+    image:
+      "https://jemmia.vn/wp-content/uploads/2024/02/nhan-kim-cuong-nu-18k-VNF2022102914-2.jpg",
     image2:
-      "https://jemmia.vn/wp-content/uploads/2024/03/1_cam_02-copy-1-2.jpg",
+      "https://jemmia.vn/wp-content/uploads/2024/02/nhan-kim-cuong-nu-18k-VNF2022102914-4.jpg",
     mainStoneSize: "Round 5ly",
     sideStoneType: "Diamond",
     sideStoneQuantity: 48,

@@ -32,7 +32,7 @@ function AboutPage() {
               <img
                 src={member.avatar}
                 alt={member.name}
-                className="h-64 w-full cursor-pointer object-cover"
+                className="h-72 w-full cursor-pointer object-cover"
               />
               <div className="px-6 py-4">
                 <h4 className="slow mb-1 cursor-pointer text-sm font-semibold hover:text-secondary">

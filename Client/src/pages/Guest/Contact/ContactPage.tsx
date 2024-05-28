@@ -21,7 +21,7 @@ function ContactPage() {
           className="hidden w-full rounded-md shadow-md lg:block"
         />
 
-        <div className="absolute right-0 top-0 w-full p-4 lg:w-1/2">
+        <div className="absolute right-0 top-8 w-full justify-center p-4 max-sm:top-[-35px] max-lg:top-[-30px] lg:w-1/2">
           <ContactForm />
         </div>
       </div>
