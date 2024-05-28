@@ -1,0 +1,6 @@
+@DiamonShop.API_HostAddress = http://localhost:5080
+
+GET {{DiamonShop.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
