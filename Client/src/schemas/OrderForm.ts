@@ -1,7 +1,10 @@
 import { z } from "zod";
 
 export const informationSchema = z.object({
-  email: z.string().nonempty({ message: "Email is required" }).email(),
+  email: z
+    .string()
+    .nonempty({ message: "Email is required" })
+    .email({ message: "Invalid email" }),
   fullName: z.string().nonempty({ message: "Full name is required" }),
   streetAddress: z.string().nonempty({ message: "Street address is required" }),
   city: z.string().nonempty({ message: "City is required" }),

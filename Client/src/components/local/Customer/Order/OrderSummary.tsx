@@ -4,6 +4,7 @@ import { vatPercentage } from "@/lib/constants";
 import { Button } from "@/components/global/atoms/button";
 import { useState } from "react";
 import { toast } from "sonner";
+import { X } from "lucide-react";
 
 interface OrderSummaryProps {
   cartItems: ICart[];
@@ -59,19 +60,22 @@ function OrderSummary({ cartItems }: OrderSummaryProps) {
         ))}
       </div>
 
-      <div className="relative mt-8 w-full">
-        <input
-          type="text"
-          placeholder="Coupon Code"
-          value={couponCode}
-          onChange={(e) => setCouponCode(e.target.value)}
-          className="input-field"
-        />
-        <Button
-          type="button"
-          className="absolute right-0 h-11"
-          onClick={handleApplyCoupon}
-        >
+      <div className="mt-8 flex">
+        <div className="relative w-full">
+          <input
+            type="text"
+            placeholder="Coupon Code"
+            value={couponCode}
+            onChange={(e) => setCouponCode(e.target.value)}
+            className="input-field w-full"
+          />
+          <X
+            size={16}
+            className="absolute right-4 top-1/2 -translate-y-1/2 transform cursor-pointer text-secondary"
+            onClick={() => setCouponCode("")}
+          />
+        </div>
+        <Button type="button" className="ml-4 h-11" onClick={handleApplyCoupon}>
           Apply
         </Button>
       </div>
