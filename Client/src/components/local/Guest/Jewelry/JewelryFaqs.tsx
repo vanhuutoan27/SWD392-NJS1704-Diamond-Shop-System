@@ -14,7 +14,7 @@ function JewelryFaqs() {
 
       <Accordion type="multiple">
         <AccordionItem value="item-1">
-          <AccordionTrigger>
+          <AccordionTrigger className="text-base">
             Why should you choose {projectName}?
           </AccordionTrigger>
           <AccordionContent>
@@ -43,7 +43,9 @@ function JewelryFaqs() {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-2">
-          <AccordionTrigger>Post-purchase service</AccordionTrigger>
+          <AccordionTrigger className="text-base">
+            Post-purchase service
+          </AccordionTrigger>
           <AccordionContent>
             <ul className="list-disc pl-5">
               <li className="text-secondary">
@@ -76,7 +78,9 @@ function JewelryFaqs() {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-3">
-          <AccordionTrigger>Frequently asked questions</AccordionTrigger>
+          <AccordionTrigger className="text-base">
+            Frequently asked questions
+          </AccordionTrigger>
           <AccordionContent>
             <ul className="list-disc pl-5">
               <h4 className="mb-1 font-semibold">
@@ -129,7 +133,9 @@ function JewelryFaqs() {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-4">
-          <AccordionTrigger>Comments & reviews</AccordionTrigger>
+          <AccordionTrigger className="text-base">
+            Comments & reviews
+          </AccordionTrigger>
           <AccordionContent>
             <ul className="mt-4 list-disc pl-5">
               <h4 className="mb-1 font-semibold">No comment</h4>

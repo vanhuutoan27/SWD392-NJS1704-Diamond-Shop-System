@@ -22,6 +22,8 @@ function ProductCard({
 }: ProductCardProps) {
   const [isHover, setIsHover] = useState(false);
 
+  const shortProductId = productId.split("-")[0];
+
   return (
     <div className="ml-4 rounded-lg border-2 border-input p-4 shadow-md">
       {size ? (
@@ -33,11 +35,13 @@ function ProductCard({
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
-          {image2 && isHover ? (
-            <img src={image2} className="h-48 w-full rounded object-cover" />
-          ) : (
-            <img src={image} className="h-48 w-full rounded object-cover" />
-          )}
+          <img
+            src={
+              image ||
+              "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FDiamond%2Fdiamond.png?alt=media&token=0a3f7a6f-6f7d-45b3-99b9-f4717fb440f6"
+            }
+            className="h-48 w-full rounded object-cover"
+          />
           <Link
             to={`/diamond/${productId}`}
             target="_blank"
@@ -55,7 +59,7 @@ function ProductCard({
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
         >
-          {image2 && isHover ? (
+          {isHover ? (
             <img src={image2} className="h-48 w-full rounded object-cover" />
           ) : (
             <img src={image} className="h-48 w-full rounded object-cover" />
@@ -73,7 +77,7 @@ function ProductCard({
         </div>
       )}
       <div className="mt-8 text-center">
-        <p className="mb-1 text-xs text-gray-500">{productId}</p>
+        <p className="mb-1 text-xs text-gray-500">{shortProductId}</p>
         <p className="h-12">
           {size ? (
             <Link

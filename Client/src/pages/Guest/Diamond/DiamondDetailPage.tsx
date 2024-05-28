@@ -6,29 +6,39 @@ import BuyingGuide from "@/components/local/Guest/Diamond/BuyingGuide";
 import RelatedProducts from "@/components/local/Guest/Diamond/RelatedDiamonds";
 import DiamondBanner from "@/components/local/Guest/Diamond/DiamondBanner";
 import DiamondDetails from "@/components/local/Guest/Diamond/DiamondDetails";
-import { diamondData } from "@/constants/diamond";
-import { useGetDiamondById } from "@/api/diamondApi";
+import { useGetAllDiamonds, useGetDiamondById } from "@/api/diamondApi";
 import { toast } from "sonner";
+import { IDiamond } from "@/types/diamond.interface";
+import NotFoundPage from "../HTTP/NotFoundPage";
 
 function DiamondDetailPage() {
   const { diamondId } = useParams<{ diamondId: string }>();
+
   const {
     data: diamondDetails,
-    error,
-    isLoading,
+    error: diamondDetailsError,
+    isLoading: isDiamondDetailsLoading,
   } = useGetDiamondById(diamondId || "");
 
-  if (isLoading || !diamondDetails) {
+  const {
+    data: diamondData,
+    error: allDiamondsError,
+    isLoading: isAllDiamondsLoading,
+  } = useGetAllDiamonds();
+
+  if (isDiamondDetailsLoading || isAllDiamondsLoading) {
     return <Loader />;
   }
 
-  if (error) {
-    toast.error("Failed to fetch diamond details data");
+  if (diamondDetailsError || allDiamondsError) {
+    toast.error("Failed to fetch diamond data");
+    return <NotFoundPage />;
   }
 
-  const relatedProducts = diamondData.filter(
-    (diamond) => diamond.diamondId !== diamondId,
-  );
+  const relatedProducts =
+    diamondData?.filter(
+      (diamond: IDiamond) => diamond.diamondId !== diamondId,
+    ) || [];
 
   return (
     <div className="container">
@@ -36,7 +46,7 @@ function DiamondDetailPage() {
         lastPage="Home"
         lastPageUrl="/"
         currentPage="Diamond"
-        currentDetailPage={diamondDetails.diamondId}
+        currentDetailPage={diamondDetails?.diamondId}
       />
 
       <DiamondDetails diamondDetails={diamondDetails} />

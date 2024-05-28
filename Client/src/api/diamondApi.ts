@@ -2,7 +2,7 @@ import { useQuery } from "react-query";
 import diamoonAPI from "../lib/diamoonAPI";
 
 const getAllDiamonds = async () => {
-  const response = await diamoonAPI.get("/Diamond/All");
+  const response = await diamoonAPI.get("/Diamond");
   return response.data;
 };
 

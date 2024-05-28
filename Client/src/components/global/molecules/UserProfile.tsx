@@ -48,7 +48,7 @@ function UserProfile({ userData, onLogout }: UserProfileProps) {
     },
     !isAdminRoute && {
       icon: ReceiptText,
-      label: "Invoice",
+      label: "Invoices",
       link: `/invoices/${userId}`,
       hoverColor: isAdminRoute
         ? `group-hover:text-blue-600`
