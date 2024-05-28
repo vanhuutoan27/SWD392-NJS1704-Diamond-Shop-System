@@ -4,6 +4,7 @@ using DiamonShop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DiamonShop.Data.Migrations
 {
     [DbContext(typeof(DiamondContext))]
-    partial class DiamondContextModelSnapshot : ModelSnapshot
+    [Migration("20240528140416_DiamoonDB1")]
+    partial class DiamoonDB1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,8 +56,8 @@ namespace DiamonShop.Data.Migrations
                         new
                         {
                             CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 5, 28, 21, 5, 51, 902, DateTimeKind.Local).AddTicks(7525),
-                            DateModified = new DateTime(2024, 5, 28, 21, 5, 51, 902, DateTimeKind.Local).AddTicks(7539),
+                            DateCreated = new DateTime(2024, 5, 28, 21, 4, 15, 545, DateTimeKind.Local).AddTicks(7730),
+                            DateModified = new DateTime(2024, 5, 28, 21, 4, 15, 545, DateTimeKind.Local).AddTicks(7742),
                             Description = "Kim Cuong vien nhap khau ",
                             Name = "Kim Cương Viên"
                         });
@@ -115,8 +118,8 @@ namespace DiamonShop.Data.Migrations
                             Certification = "GIA",
                             Clarity = "VVS2",
                             ColorLevel = "F",
-                            DateCreated = new DateTime(2024, 5, 28, 21, 5, 51, 902, DateTimeKind.Local).AddTicks(7820),
-                            DateModified = new DateTime(2024, 5, 28, 21, 5, 51, 902, DateTimeKind.Local).AddTicks(7821),
+                            DateCreated = new DateTime(2024, 5, 28, 21, 4, 15, 545, DateTimeKind.Local).AddTicks(8097),
+                            DateModified = new DateTime(2024, 5, 28, 21, 4, 15, 545, DateTimeKind.Local).AddTicks(8099),
                             Fluorescence = "MEDIUM",
                             Price = 535790600.0,
                             QualityOfCut = "Excellent",
@@ -130,8 +133,8 @@ namespace DiamonShop.Data.Migrations
                             Certification = "GIA",
                             Clarity = "VS3",
                             ColorLevel = "D",
-                            DateCreated = new DateTime(2024, 5, 28, 21, 5, 51, 902, DateTimeKind.Local).AddTicks(7825),
-                            DateModified = new DateTime(2024, 5, 28, 21, 5, 51, 902, DateTimeKind.Local).AddTicks(7826),
+                            DateCreated = new DateTime(2024, 5, 28, 21, 4, 15, 545, DateTimeKind.Local).AddTicks(8104),
+                            DateModified = new DateTime(2024, 5, 28, 21, 4, 15, 545, DateTimeKind.Local).AddTicks(8104),
                             Fluorescence = "MEDIUM",
                             Price = 21924560.0,
                             QualityOfCut = "Excellent",
@@ -145,8 +148,8 @@ namespace DiamonShop.Data.Migrations
                             Certification = "GIA",
                             Clarity = "IF",
                             ColorLevel = "D",
-                            DateCreated = new DateTime(2024, 5, 28, 21, 5, 51, 902, DateTimeKind.Local).AddTicks(7829),
-                            DateModified = new DateTime(2024, 5, 28, 21, 5, 51, 902, DateTimeKind.Local).AddTicks(7830),
+                            DateCreated = new DateTime(2024, 5, 28, 21, 4, 15, 545, DateTimeKind.Local).AddTicks(8107),
+                            DateModified = new DateTime(2024, 5, 28, 21, 4, 15, 545, DateTimeKind.Local).AddTicks(8108),
                             Fluorescence = "MEDIUM",
                             Price = 32422800.0,
                             QualityOfCut = "Excellent",
@@ -377,8 +380,8 @@ namespace DiamonShop.Data.Migrations
                         {
                             ProductId = new Guid("e655174b-f444-4ab8-baa8-71ac382d73df"),
                             CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 5, 28, 21, 5, 51, 902, DateTimeKind.Local).AddTicks(7704),
-                            DateModified = new DateTime(2024, 5, 28, 21, 5, 51, 902, DateTimeKind.Local).AddTicks(7705),
+                            DateCreated = new DateTime(2024, 5, 28, 21, 4, 15, 545, DateTimeKind.Local).AddTicks(7858),
+                            DateModified = new DateTime(2024, 5, 28, 21, 4, 15, 545, DateTimeKind.Local).AddTicks(7859),
                             Description = "Kinh cương tự nhiên 100%",
                             Name = "Kim Cương Viên",
                             Price = 535790600.0,
@@ -388,8 +391,8 @@ namespace DiamonShop.Data.Migrations
                         {
                             ProductId = new Guid("4f5cbe8a-a04a-484f-978d-4b26d2979063"),
                             CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 5, 28, 21, 5, 51, 902, DateTimeKind.Local).AddTicks(7709),
-                            DateModified = new DateTime(2024, 5, 28, 21, 5, 51, 902, DateTimeKind.Local).AddTicks(7710),
+                            DateCreated = new DateTime(2024, 5, 28, 21, 4, 15, 545, DateTimeKind.Local).AddTicks(7863),
+                            DateModified = new DateTime(2024, 5, 28, 21, 4, 15, 545, DateTimeKind.Local).AddTicks(7865),
                             Description = "Kinh cương tự nhiên 99%",
                             Name = "Kim Cương Viên",
                             Price = 21924560.0,
@@ -399,8 +402,8 @@ namespace DiamonShop.Data.Migrations
                         {
                             ProductId = new Guid("005da949-dd83-438b-9ee9-aea012d87068"),
                             CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 5, 28, 21, 5, 51, 902, DateTimeKind.Local).AddTicks(7714),
-                            DateModified = new DateTime(2024, 5, 28, 21, 5, 51, 902, DateTimeKind.Local).AddTicks(7714),
+                            DateCreated = new DateTime(2024, 5, 28, 21, 4, 15, 545, DateTimeKind.Local).AddTicks(7868),
+                            DateModified = new DateTime(2024, 5, 28, 21, 4, 15, 545, DateTimeKind.Local).AddTicks(7869),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Kim Cương Viên",
                             Price = 32422800.0,

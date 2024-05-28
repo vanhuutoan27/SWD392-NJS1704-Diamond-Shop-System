@@ -22,9 +22,9 @@ import {
   TableRow,
 } from "@/components/global/atoms/table";
 import { Input } from "@/components/global/atoms/input";
-import { Plus, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import ListPagination from "@/components/global/molecules/ListPagination";
-import { Button } from "@/components/global/atoms/button";
+import { AddUser } from "./AddUser";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -80,13 +80,8 @@ export function DataTable<TData, TValue>({
           />
         </div>
 
-        <div className="flex gap-4">
-          {/* <Button className="flex gap-2" variant={"destructive"}>
-            <Import size={20} /> Import
-          </Button> */}
-          <Button className="flex gap-2 pl-5">
-            <Plus size={20} /> Add User
-          </Button>
+        <div className="flex">
+          <AddUser />
         </div>
       </div>
 

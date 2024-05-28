@@ -129,4 +129,9 @@
   .image-container:hover img {
     --zoom: 1.5;
   }
+
+  input[type="password"]::-ms-reveal,
+  input[type="password"]::-ms-clear {
+    display: none;
+  }
 }
