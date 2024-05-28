@@ -1,9 +1,6 @@
-﻿using DiamonShop.Core.Domain.Content;
-using DiamonShop.Core.RequestModels;
-using DiamonShop.Core.Respone;
+﻿using DiamonShop.Core.Models.content.RequestModels;
+using DiamonShop.Core.Models.content.Respone;
 using DiamonShop.Core.services;
-using DiamonShop.Data.Services;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DiamonShop.API.Controllers
@@ -19,7 +16,6 @@ namespace DiamonShop.API.Controllers
             _services = services;
         }
         [HttpGet]
-        [Route("All/Id")]
         public async Task<IActionResult> GetAll()
         {
 

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using DiamonShop.Core.Domain.Content;
-using DiamonShop.Core.RequestModels;
-using DiamonShop.Core.Respone;
+using DiamonShop.Core.Models.content.RequestModels;
+using DiamonShop.Core.Models.content.Respone;
 using DiamonShop.Core.SeedWorks;
 using DiamonShop.Core.services;
 using DiamonShop.Core.Shared.Enum;

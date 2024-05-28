@@ -1,8 +1,5 @@
 ﻿using DiamonShop.Core.Domain.Content;
-using DiamonShop.Core.RequestModels;
-using DiamonShop.Core.Respone;
 using DiamonShop.Core.SeedWorks;
-using DiamonShop.Core.ViewModels;
 
 namespace DiamonShop.Core.Repository
 {

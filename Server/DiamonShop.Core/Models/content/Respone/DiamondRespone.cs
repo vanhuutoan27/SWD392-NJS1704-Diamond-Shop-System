@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DiamonShop.Core.Respone
+namespace DiamonShop.Core.Models.content.Respone
 {
     public class DiamondRespone
     {

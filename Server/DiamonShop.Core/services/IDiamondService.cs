@@ -1,7 +1,6 @@
 ﻿using DiamonShop.Core.Domain.Content;
-using DiamonShop.Core.RequestModels;
-using DiamonShop.Core.Respone;
-
+using DiamonShop.Core.Models.content.RequestModels;
+using DiamonShop.Core.Models.content.Respone;
 using DiamonShop.Core.ViewModels;
 
 namespace DiamonShop.Core.services

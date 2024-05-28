@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using DiamonShop.Core.Domain.Content;
-using DiamonShop.Core.RequestModels;
+using DiamonShop.Core.Models.content.RequestModels;
 using DiamonShop.Core.ViewModels;
 
 namespace DiamonShop.API.Mappings

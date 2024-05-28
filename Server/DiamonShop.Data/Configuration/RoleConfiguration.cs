@@ -26,10 +26,17 @@ namespace DiamonShop.Data.Configuration
                        new AppRole
                        {
                            Id = new Guid("AB8E4032-2D95-45CC-89C1-C039E9E8BC39"),
-                           Name = "Delivery Staff",
+                           Name = "DeliveryStaff",
                            NormalizedName = "DELIVERYSTAFF",
                            DisplayName = "Nhân Viên Giao Hàng"
-                       }
+                       },
+                        new AppRole
+                        {
+                            Id = new Guid("1401744D-0421-41EB-B9D6-F888AACCCA91"),
+                            Name = "SaleStaff",
+                            NormalizedName = "DELIVERYSTAFF",
+                            DisplayName = "Nhân Viên Giao Hàng"
+                        }
                 );
         }
     }

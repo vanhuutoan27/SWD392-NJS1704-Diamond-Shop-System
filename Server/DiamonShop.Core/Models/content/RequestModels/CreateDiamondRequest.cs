@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DiamonShop.Core.RequestModels
+namespace DiamonShop.Core.Models.content.RequestModels
 {
     public class CreateDiamondRequest
     {
 
-   
- 
+
+
         public string Shape { get; set; }
 
         public double Weight { get; set; }
@@ -25,9 +25,9 @@ namespace DiamonShop.Core.RequestModels
         public string Certification { get; set; }
 
         public double Size { get; set; }
-     
+
         public string Fluorescence { get; set; }
- 
+
         public string QualityOfCut { get; set; }
 
         public double Price { get; set; }

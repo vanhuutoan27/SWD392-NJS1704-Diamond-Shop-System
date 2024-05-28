@@ -8,9 +8,9 @@ namespace DiamonShop.Data
         public async Task SeedAsync(DiamondContext context)
         {
             var passwordHasher = new PasswordHasher<AppUser>();
-
             var rootAdminRoleId = Guid.NewGuid();
-            if (!context.Roles.Any())
+
+            if (!context.Roles.Any(r => r.Name.Equals("Admin")))
             {
                 await context.Roles.AddAsync(new AppRole()
                 {
@@ -48,6 +48,8 @@ namespace DiamonShop.Data
                 });
                 await context.SaveChangesAsync();
             }
+
         }
     }
 }
+

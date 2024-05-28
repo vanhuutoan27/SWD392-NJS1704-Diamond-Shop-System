@@ -13,6 +13,7 @@ namespace DiamonShop.API
                 {
                     context.Database.Migrate();
                     new DataSeeder().SeedAsync(context).Wait();
+
                 }
             }
             return app;
