@@ -24,7 +24,7 @@ import {
 import { Input } from "@/components/global/atoms/input";
 import { Search } from "lucide-react";
 import ListPagination from "@/components/global/molecules/ListPagination";
-import { AddUser } from "./AddUser";
+import AddUserDialog from "./AddUserDialog";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -80,8 +80,11 @@ export function DataTable<TData, TValue>({
           />
         </div>
 
-        <div className="flex">
-          <AddUser />
+        <div className="flex gap-4">
+          {/* <Button className="flex gap-2" variant={"destructive"}>
+            <Import size={20} /> Import
+          </Button> */}
+          <AddUserDialog />
         </div>
       </div>
 

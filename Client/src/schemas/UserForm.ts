@@ -34,5 +34,4 @@ export const userSchema = z.object({
     .string()
     .nonempty({ message: "Address is required" })
     .min(20, { message: "Address must be at least 20 characters long" }),
-  role: z.string().nonempty({ message: "Role is required" }),
 });
