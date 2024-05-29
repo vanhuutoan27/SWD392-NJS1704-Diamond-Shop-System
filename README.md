@@ -3,15 +3,6 @@
 
 This project is a comprehensive diamond sales management system designed for an online diamond trading company. The system is built using modern technologies including ReactJS, TypeScript, TailwindCSS, ShadCN for the Frontend, and ASP.NET Core Web API with SQL Server for the Backend.
 
-## Table of Contents
-
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## Features
 
 - **Home Page:** Introduction to the store, product collections, diamond price list, jewelry knowledge, diamond selection guide, FAQ, and more.
