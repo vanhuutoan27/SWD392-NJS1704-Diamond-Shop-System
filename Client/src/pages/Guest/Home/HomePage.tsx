@@ -49,7 +49,7 @@ function HomePage() {
 
       <RelatedDiamonds
         pageName={"Natural Diamond"}
-        relatedDiamonds={allDiamonds}
+        relatedDiamonds={allDiamonds || []}
       />
     </div>
   );

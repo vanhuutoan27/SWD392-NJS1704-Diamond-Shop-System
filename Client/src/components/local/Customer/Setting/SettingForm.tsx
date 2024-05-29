@@ -89,7 +89,7 @@ function SettingForm({ user, onSave }: SettingFormProps) {
             <input
               name="name"
               type="text"
-              value={formData.name}
+              value={formData.fullName}
               placeholder="Full Name"
               onChange={handleChange}
               className="mb-1 w-full rounded-md border-[1.5px] bg-slate-100 py-3 pl-10 pr-5 text-sm outline-none"

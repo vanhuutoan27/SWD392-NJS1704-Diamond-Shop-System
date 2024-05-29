@@ -62,7 +62,7 @@ function InvoiceItem({
           <div className="w-1/2">
             <p className="mb-1.5 font-medium">Billing To:</p>
             <h4 className="mb-3 text-xl font-semibold text-primary">
-              {billingToUser?.name}
+              {billingToUser?.fullName}
             </h4>
             <p className="text-sm text-secondary">
               <span className="font-medium text-primary">Email: </span>

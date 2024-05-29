@@ -3,7 +3,7 @@ import { IUser, IUserRole, IUserStatus } from "@/types/user.interface";
 export const userData: IUser[] = [
   {
     userId: "U001",
-    name: "Van Huu Toan",
+    fullName: "Van Huu Toan",
     email: "toanvhse171981@fpt.edu.vn",
     password: "123As@",
     avatar:
@@ -16,7 +16,7 @@ export const userData: IUser[] = [
   },
   {
     userId: "U002",
-    name: "Phan Van Khai",
+    fullName: "Phan Van Khai",
     email: "khaipvse171817@fpt.edu.vn",
     password: "Khai123@",
     avatar:
@@ -29,7 +29,7 @@ export const userData: IUser[] = [
   },
   {
     userId: "U003",
-    name: "Pham Hoai Duy",
+    fullName: "Pham Hoai Duy",
     email: "duyphse160496@fpt.edu.vn",
     password: "123As@",
     avatar:
@@ -42,7 +42,7 @@ export const userData: IUser[] = [
   },
   {
     userId: "U004",
-    name: "Nguyen Quoc Dai",
+    fullName: "Nguyen Quoc Dai",
     email: "dainqse160959@fpt.edu.vn",
     password: "123As@",
     avatar:
@@ -55,7 +55,7 @@ export const userData: IUser[] = [
   },
   {
     userId: "U005",
-    name: "Nguyen Pham Khanh",
+    fullName: "Nguyen Pham Khanh",
     email: "khanhnpse160945@fpt.edu.vn",
     password: "123As@",
     avatar:

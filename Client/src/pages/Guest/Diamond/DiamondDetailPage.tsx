@@ -29,7 +29,7 @@ function DiamondDetailPage() {
     return <Loader />;
   }
 
-  if (diamondDetailsError || allDiamondsError) {
+  if (diamondDetailsError || allDiamondsError || !diamondDetails) {
     return <NotFoundPage />;
   }
 
@@ -44,10 +44,10 @@ function DiamondDetailPage() {
         lastPage="Home"
         lastPageUrl="/"
         currentPage="Diamond"
-        currentDetailPage={diamondDetails?.diamondId}
+        currentDetailPage={diamondDetails.diamondId}
       />
 
-      <DiamondDetails diamondDetails={diamondDetails} />
+      {diamondDetails && <DiamondDetails diamondDetails={diamondDetails} />}
 
       <DiamondQualityCommitment />
 

@@ -46,7 +46,7 @@ function ProfilePage() {
         </div>
 
         <div className="mt-20 flex flex-col items-center">
-          <h3 className="text-2xl font-semibold">{userDetail.name}</h3>
+          <h3 className="text-2xl font-semibold">{userDetail.fullName}</h3>
           <p className="flex justify-center text-base font-medium text-secondary">
             {IUserRole[userDetail.role]}
           </p>

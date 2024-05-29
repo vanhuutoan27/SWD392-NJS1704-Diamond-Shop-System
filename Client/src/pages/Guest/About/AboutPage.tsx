@@ -31,12 +31,12 @@ function AboutPage() {
             <div className="overflow-hidden rounded-md text-center shadow-md">
               <img
                 src={member.avatar}
-                alt={member.name}
+                alt={member.fullName}
                 className="h-72 w-full cursor-pointer object-cover"
               />
               <div className="px-6 py-4">
                 <h4 className="slow mb-1 cursor-pointer text-sm font-semibold hover:text-secondary">
-                  {member.name}
+                  {member.fullName}
                 </h4>
                 <p className="text-sm text-secondary">
                   {getUserRole(member.role)}
