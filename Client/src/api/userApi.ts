@@ -1,11 +1,41 @@
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import diamoonAPI from "../lib/diamoonAPI";
-
-export const useUsers = async () => {
-  const response = await diamoonAPI.get("/User/All");
-  return response.data;
-};
+import { INewUser, IUser } from "@/types/user.interface";
 
 export const useGetAllUsers = () => {
-  return useQuery("users", useUsers);
+  return useQuery<IUser[]>({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const { data } = await diamoonAPI.get("/User");
+      return data.data;
+    },
+  });
+};
+
+export const useGetUserById = (id: string) => {
+  return useQuery<IUser>({
+    queryKey: ["user", id],
+    queryFn: async () => {
+      const { data } = await diamoonAPI.get(`/User/Detail/Id`, {
+        params: { id },
+      });
+      return data;
+    },
+  });
+};
+
+export const usePostUser = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation(
+    async (newUserData: INewUser) => {
+      const { data } = await diamoonAPI.post("/User/create", newUserData);
+      return data;
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("users");
+      },
+    },
+  );
 };

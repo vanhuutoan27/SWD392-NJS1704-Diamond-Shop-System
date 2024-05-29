@@ -17,7 +17,7 @@ function UserListPage() {
 
   return (
     <div className="p-5">
-      <DataTable columns={columns} data={diamondData} />
+      <DataTable columns={columns} data={diamondData ?? []} />
     </div>
   );
 }

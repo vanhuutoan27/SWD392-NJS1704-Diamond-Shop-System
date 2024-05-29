@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/global/atoms/button";
 import PasswordInput from "@/components/global/molecules/PasswordInput";
 import diamoonAPI from "@/lib/diamoonAPI";
@@ -26,7 +25,7 @@ function RegisterPage() {
     try {
       setIsLoading(true);
       await diamoonAPI.post("/Auth/register", {
-        fullName: data.name,
+        fullName: data.fullName,
         email: data.email,
         password: data.password,
       });
@@ -51,11 +50,11 @@ function RegisterPage() {
           <input
             type="text"
             placeholder="Full name"
-            {...register("name")}
+            {...register("fullName")}
             className="input-field"
           />
           <p className="ml-2 pb-2 text-xs text-red-500">
-            {errors.name?.message}
+            {errors.fullName?.message}
           </p>
 
           <input

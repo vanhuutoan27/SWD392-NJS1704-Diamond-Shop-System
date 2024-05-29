@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 
 export const columns: ColumnDef<IUser>[] = [
   {
-    accessorKey: "userId",
+    accessorKey: "id",
     header: ({ column }) => {
       return (
         <div
@@ -32,11 +32,12 @@ export const columns: ColumnDef<IUser>[] = [
     },
     cell: (info) => {
       const value: string = info.getValue() as string;
-      return <span className="font-semibold">{value}</span>;
+      const shortId = value.split("-")[0];
+      return <span className="font-semibold">{shortId}</span>;
     },
   },
   {
-    accessorKey: "name",
+    accessorKey: "fullName",
     header: ({ column }) => {
       return (
         <div
@@ -80,7 +81,7 @@ export const columns: ColumnDef<IUser>[] = [
     },
   },
   {
-    accessorKey: "createdOn",
+    accessorKey: "dateCreated",
     header: ({ column }) => {
       return (
         <div

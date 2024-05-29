@@ -1,5 +1,3 @@
-"use client";
-
 import * as React from "react";
 import {
   ColumnDef,
@@ -12,7 +10,6 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-
 import {
   Table,
   TableBody,
@@ -25,6 +22,8 @@ import { Input } from "@/components/global/atoms/input";
 import { Plus, Search } from "lucide-react";
 import ListPagination from "@/components/global/molecules/ListPagination";
 import { Button } from "@/components/global/atoms/button";
+import { Link } from "react-router-dom";
+import DiamondFilterButton from "./DiamondFilterButton";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -67,28 +66,32 @@ export function DataTable<TData, TValue>({
 
   return (
     <>
-      <div className="mb-4 flex items-center justify-between">
-        <div className="relative flex w-full items-center py-4">
-          <Search className="absolute left-3 mb-1" size={16} />
-          <Input
-            placeholder="Filter Diamond by ID..."
-            value={
-              (table.getColumn("diamondId")?.getFilterValue() as string) ?? ""
-            }
-            onChange={(event) =>
-              table.getColumn("diamondId")?.setFilterValue(event.target.value)
-            }
-            className="max-w-sm border border-secondary bg-white pl-10"
-          />
+      <div className="mb-4 flex items-center justify-between gap-4">
+        <div className="flex w-full items-center gap-4">
+          <div className="relative items-center">
+            <Search
+              className="absolute left-3 top-1/2 mb-1 -translate-y-1/2"
+              size={16}
+            />
+            <Input
+              placeholder="Filter Diamond by ID..."
+              value={
+                (table.getColumn("diamondId")?.getFilterValue() as string) ?? ""
+              }
+              onChange={(event) =>
+                table.getColumn("diamondId")?.setFilterValue(event.target.value)
+              }
+              className="w-[300px] max-w-sm border border-secondary bg-white pl-10"
+            />
+          </div>
+          <DiamondFilterButton setColumnFilters={setColumnFilters} />
         </div>
-
         <div className="flex gap-4">
-          {/* <Button className="flex gap-2" variant={"destructive"}>
-            <Import size={20} /> Import
-          </Button> */}
-          <Button className="flex gap-2 pl-5 bg-gray-800 hover:bg-gray-900">
-            <Plus size={20} /> Add Diamond
-          </Button>
+          <Link to="/admin/diamond-new">
+            <Button className="flex gap-2 bg-gray-800 pl-5 hover:bg-gray-900">
+              <Plus size={20} /> Add Diamond
+            </Button>
+          </Link>
         </div>
       </div>
       <div className="overflow-hidden rounded-md border bg-white shadow-md">

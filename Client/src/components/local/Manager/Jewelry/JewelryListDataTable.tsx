@@ -25,6 +25,7 @@ import { Input } from "@/components/global/atoms/input";
 import { Plus, Search } from "lucide-react";
 import ListPagination from "@/components/global/molecules/ListPagination";
 import { Button } from "@/components/global/atoms/button";
+import { Link } from "react-router-dom";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -67,7 +68,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <>
-      <div className="mb-4 flex items-center justify-between">
+      <div className="mb-4 flex items-center justify-between gap-4">
         <div className="relative flex w-full items-center py-4">
           <Search className="absolute left-3 mb-1" size={16} />
           <Input
@@ -86,9 +87,11 @@ export function DataTable<TData, TValue>({
           {/* <Button className="flex gap-2" variant={"destructive"}>
             <Import size={20} /> Import
           </Button> */}
-          <Button className="flex gap-2 pl-5 bg-gray-800 hover:bg-gray-900">
-            <Plus size={20} /> Add Jewelry
-          </Button>
+          <Link to="/admin/jewelry-new">
+            <Button className="flex gap-2 bg-gray-800 pl-5 hover:bg-gray-900">
+              <Plus size={20} /> Add Jewelry
+            </Button>
+          </Link>
         </div>
       </div>
 

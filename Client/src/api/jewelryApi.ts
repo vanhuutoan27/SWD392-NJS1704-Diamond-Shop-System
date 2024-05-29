@@ -1,24 +1,25 @@
 import { useQuery } from "react-query";
 import diamoonAPI from "../lib/diamoonAPI";
+import { IJewelry } from "./../types/jewelry.interface";
 
-const getAllJewelry = async () => {
-  const response = await diamoonAPI.get("/Jewelry/All");
-  return response.data;
-};
-
-const getJewelryById = async (id: string) => {
-  const response = await diamoonAPI.get(`/Jewelry/Detail/Id`, {
-    params: { id },
+export const useGetAllJewelries = () => {
+  return useQuery<IJewelry[]>({
+    queryKey: ["jewelries"],
+    queryFn: async () => {
+      const { data } = await diamoonAPI.get("/Jewelry");
+      return data;
+    },
   });
-  return response.data;
-};
-
-export const useGetAllJewelry = () => {
-  return useQuery("jewelries", getAllJewelry);
 };
 
 export const useGetJewelryById = (id: string) => {
-  return useQuery(["jewelry", id], () => getJewelryById(id), {
-    enabled: !!id,
+  return useQuery<IJewelry>({
+    queryKey: ["jewelry", id],
+    queryFn: async () => {
+      const { data } = await diamoonAPI.get(`/Jewelry/Detail/Id`, {
+        params: { id },
+      });
+      return data;
+    },
   });
 };

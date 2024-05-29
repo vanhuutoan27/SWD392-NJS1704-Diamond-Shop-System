@@ -1,24 +1,25 @@
 import { useQuery } from "react-query";
 import diamoonAPI from "../lib/diamoonAPI";
-
-const getAllDiamonds = async () => {
-  const response = await diamoonAPI.get("/Diamond");
-  return response.data;
-};
-
-const getDiamondById = async (id: string) => {
-  const response = await diamoonAPI.get(`/Diamond/Detail/Id`, {
-    params: { id },
-  });
-  return response.data;
-};
+import { IDiamond } from "@/types/diamond.interface";
 
 export const useGetAllDiamonds = () => {
-  return useQuery("diamonds", getAllDiamonds);
+  return useQuery<IDiamond[]>({
+    queryKey: ["diamonds"],
+    queryFn: async () => {
+      const { data } = await diamoonAPI.get("/Diamond");
+      return data;
+    },
+  });
 };
 
 export const useGetDiamondById = (id: string) => {
-  return useQuery(["diamond", id], () => getDiamondById(id), {
-    enabled: !!id,
+  return useQuery<IDiamond>({
+    queryKey: ["diamond", id],
+    queryFn: async () => {
+      const { data } = await diamoonAPI.get(`/Diamond/Detail/Id`, {
+        params: { id },
+      });
+      return data;
+    },
   });
 };

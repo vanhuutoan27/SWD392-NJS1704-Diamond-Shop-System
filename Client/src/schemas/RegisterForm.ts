@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const registerSchema = z.object({
-  name: z.string().nonempty({ message: "Full name is required" }),
+  fullName: z.string().nonempty({ message: "Full name is required" }),
   email: z
     .string()
     .nonempty({ message: "Email is required" })

@@ -9,7 +9,7 @@ import {
   Settings,
   LogOut,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { projectName } from "@/lib/constants";
 import { Avatar, AvatarImage } from "../atoms/avatar";
 import { useAuthContext } from "@/contexts/AuthContext";
@@ -22,15 +22,21 @@ const menuItems = [
   },
   {
     title: "Jewelry",
-    link: "/admin/jewelry-list",
+    link: "#",
     icon: <Gem />,
-    items: [{ title: "Add Jewelry", link: "/admin/jewelry-new" }],
+    items: [
+      { title: "Jewelry List", link: "/admin/jewelry-list" },
+      { title: "Add Jewelry", link: "/admin/jewelry-new" },
+    ],
   },
   {
     title: "Diamond",
-    link: "/admin/diamond-list",
+    link: "#",
     icon: <Gem />,
-    items: [{ title: "Add Diamond", link: "/admin/diamond-new" }],
+    items: [
+      { title: "Diamond List", link: "/admin/diamond-list" },
+      { title: "Add Diamond", link: "/admin/diamond-new" },
+    ],
   },
   {
     title: "User",
@@ -43,8 +49,9 @@ const menuItems = [
   },
   {
     title: "Order",
-    link: "/admin/order-list",
+    link: "#",
     icon: <Package />,
+    items: [{ title: "Order List", link: "/admin/order-list" }],
   },
 ];
 
@@ -149,7 +156,9 @@ function SidebarFooter() {
                 title={item.title}
                 icon={item.icon}
                 isActive={false}
-                className={`slow rounded-none ${item.title === "Log out" ? "hover:bg-red-600" : ""}`}
+                className={`slow rounded-none ${
+                  item.title === "Log out" ? "hover:bg-red-600" : ""
+                }`}
               />
             </Link>
           ))}
@@ -238,7 +247,22 @@ function SubMenu({ item, activeItem, handleClick }: SubMenuProps) {
 }
 
 function Sidebar() {
+  const location = useLocation();
   const [activeItem, setActiveItem] = useState<string>("");
+
+  useEffect(() => {
+    menuItems.forEach((item) => {
+      if (item.items) {
+        item.items.forEach((subItem) => {
+          if (location.pathname === subItem.link) {
+            setActiveItem(subItem.title);
+          }
+        });
+      } else if (location.pathname === item.link) {
+        setActiveItem(item.title);
+      }
+    });
+  }, [location.pathname]);
 
   const handleClick = (item: string) => {
     setActiveItem(item !== activeItem ? item : "");

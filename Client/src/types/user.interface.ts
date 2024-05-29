@@ -1,6 +1,6 @@
 export interface IUser {
   userId: string;
-  name: string;
+  fullName: string;
   email: string;
   password: string;
   avatar: string;
@@ -9,6 +9,15 @@ export interface IUser {
   createdOn: string;
   role: IUserRole;
   status: IUserStatus;
+}
+
+export interface INewUser {
+  role?: string;
+  email: string;
+  fullName: string;
+  password: string;
+  phone: string;
+  address: string;
 }
 
 export interface IJwtPayload {
