@@ -34,8 +34,8 @@ namespace DiamonShop.Data.Configuration
                         {
                             Id = new Guid("1401744D-0421-41EB-B9D6-F888AACCCA91"),
                             Name = "SaleStaff",
-                            NormalizedName = "DELIVERYSTAFF",
-                            DisplayName = "Nhân Viên Giao Hàng"
+                            NormalizedName = "SALESTAFF",
+                            DisplayName = "Nhân Viên Bán Hàng"
                         }
                 );
         }

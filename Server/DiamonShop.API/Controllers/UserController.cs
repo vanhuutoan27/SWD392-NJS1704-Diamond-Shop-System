@@ -1,6 +1,7 @@
 ﻿using DiamonShop.Core.Domain.Identity;
 using DiamonShop.Core.Models;
 using DiamonShop.Core.Models.content.RequestModels;
+using DiamonShop.Core.SeedWorks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -14,15 +15,18 @@ namespace DiamonShop.API.Controllers
         ResultModel resp;
 
         private readonly UserManager<AppUser> _userManager;
-        public UserController(UserManager<AppUser> userManager)
+        private readonly IRepositoryManager _repositoryManager;
+        public UserController(UserManager<AppUser> userManager,
+IRepositoryManager repositoryManager)
         {
             this._userManager = userManager;
             resp = new ResultModel();
+            _repositoryManager = repositoryManager;
         }
         [HttpGet(Name = "GetUsers")]
         public async Task<ActionResult<ResultModel>> GetUsers()
         {
-            var users = _userManager.Users.ToList();
+            var users = _userManager.Users.Where(u => u.IsActive == true);
             if (users is null)
             {
                 //resultModel.IsSuccess = false;
@@ -76,18 +80,23 @@ namespace DiamonShop.API.Controllers
             var UserToEdit = await _userManager.FindByIdAsync(id.ToString());
             if (UserToEdit == null) { return NotFound(ModelState); }
 
-
+            //string[] roleRequest = { request.Role };
             var roles = await _userManager.GetRolesAsync(UserToEdit);
-            var currenRole = roles.FirstOrDefault();
-            if (currenRole != request.Role && roles.Any())
+            if (roles.FirstOrDefault() != request.Role)
             {
-                var removeResult = await _userManager.RemoveFromRolesAsync(UserToEdit, roles);
-                if (!removeResult.Succeeded) return BadRequest($"Failed to remove role: {string.Join(", ", removeResult.Errors.Select(e => e.Description))}");
-
-                var currentRole = roles.FirstOrDefault().ToString();
-                var adddResult = await _userManager.AddToRoleAsync(UserToEdit, request.Role);
+                await _repositoryManager.User.RemoveUserFromRoleAsync(UserToEdit.Id, roles.ToArray());
+                _repositoryManager.Save();
+                //List<string> listRoles = [request.Role];
+                var addedResult = await _userManager.AddToRoleAsync(UserToEdit, request.Role);
+                if (!addedResult.Succeeded)
+                {
+                    foreach (var error in addedResult.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                    return BadRequest(ModelState);
+                }
             }
-
 
             if (UserToEdit.Email != request.Email)
                 UserToEdit.Email = request.Email;

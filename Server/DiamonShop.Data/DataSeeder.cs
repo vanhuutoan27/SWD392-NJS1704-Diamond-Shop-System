@@ -33,6 +33,7 @@ namespace DiamonShop.Data
                     NormalizedEmail = "ADMIN@GMAIL.COM",
                     UserName = "admin",
                     NormalizedUserName = "ADMIN",
+                    Address = "HCM",
                     IsActive = true,
                     SecurityStamp = Guid.NewGuid().ToString(),
                     LockoutEnabled = false,
