@@ -10,18 +10,21 @@ namespace DiamonShop.Data.SeedWorks
         private readonly DiamondContext _context;
         private readonly Lazy<IProductRepository> _productRepository;
         private readonly Lazy<IDiamondRepository> _diamondRepository;
+        private readonly Lazy<IJewelryRepository> _jewelryRepository;
         public RepositoryManager(DiamondContext context)
         {
             _context = context;
             _productRepository = new Lazy<IProductRepository>(() => new ProductRepository(context));
             _diamondRepository = new Lazy<IDiamondRepository>(() => new DiamondRepository(context));
-
+            _jewelryRepository = new Lazy<IJewelryRepository>(() => new JewelryRepository(context));
         }
         public IProductRepository Product => _productRepository.Value;
 
         public IDiamondRepository Diamond => _diamondRepository.Value;
 
-        public async Task<int> Save()
+        public IJewelryRepository Jewelry => _jewelryRepository.Value;
+
+        public async Task<int> SaveAsync()
         {
             return _context.SaveChanges();
         }

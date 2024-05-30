@@ -10,5 +10,15 @@ namespace DiamonShop.Data.Repository
         {
 
         }
+
+        public void UpdateProduct(Guid id, Product product)
+        {
+            var productFromDb = _context.Products.FirstOrDefault(u => u.ProductId == id);
+            if (productFromDb != null)
+            {
+                productFromDb.Name = product.Name;
+            }
+            _context.SaveChanges();
+        }
     }
 }

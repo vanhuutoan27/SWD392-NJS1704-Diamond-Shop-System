@@ -6,7 +6,9 @@ namespace DiamonShop.Core.SeedWorks
     {
         IProductRepository Product { get; }
         IDiamondRepository Diamond { get; }
-        Task<int> Save();
+        IJewelryRepository Jewelry { get; }
+
+        Task<int> SaveAsync();
 
     }
 }

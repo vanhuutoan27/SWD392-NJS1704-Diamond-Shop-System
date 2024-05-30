@@ -11,6 +11,7 @@ namespace DiamonShop.API.Mappings
         {
             CreateMap<Diamond, UpdateDiamondRequest>().ReverseMap();
             CreateMap<Diamond , CreateDiamondRequest>().ReverseMap();
+            CreateMap<Jewelry , CreateUpdateJewelryRequest>().ReverseMap();
         }
     }
 }
