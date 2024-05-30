@@ -28,6 +28,7 @@ namespace DiamonShop.Core.Domain.Content
         public DateTime DateCreated { get; set; }
         public DateTime? DateModified { get; set; }
 
+
         //naviagte 
         public Product Product { get; set; }
 

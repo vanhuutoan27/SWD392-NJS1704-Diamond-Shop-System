@@ -13,7 +13,6 @@ namespace DiamonShop.Data
 
 
 
-
             return services;
         }
     }

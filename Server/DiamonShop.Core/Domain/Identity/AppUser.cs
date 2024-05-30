@@ -14,7 +14,7 @@ namespace DiamonShop.Core.Domain.Identity
         public DateTime? RefreshTokenExpiryTime { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime? Dob { get; set; }
-
+        public string? Address { get; set; }
         [MaxLength(500)]
         public string? Avatar { get; set; }
         public DateTime? VipStartDate { get; set; }
