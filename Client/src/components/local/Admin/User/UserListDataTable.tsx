@@ -8,7 +8,6 @@ import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
-  getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
@@ -23,7 +22,7 @@ import {
 } from "@/components/global/atoms/table";
 import { Input } from "@/components/global/atoms/input";
 import { Search } from "lucide-react";
-import ListPagination from "@/components/global/molecules/ListPagination";
+import ListPagination from "@/components/global/molecules/DataTablePagination";
 import AddUserDialog from "./AddUserDialog";
 
 interface DataTableProps<TData, TValue> {
@@ -40,20 +39,13 @@ export function DataTable<TData, TValue>({
     [],
   );
   const [currentPage, setCurrentPage] = React.useState(1);
-  const itemsPerPage = 6;
-
-  const paginatedData = React.useMemo(() => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    return data.slice(startIndex, endIndex);
-  }, [data, currentPage]);
+  const itemsPerPage = 7;
 
   const table = useReactTable({
-    data: paginatedData,
+    data,
     columns,
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
@@ -63,7 +55,23 @@ export function DataTable<TData, TValue>({
     },
   });
 
-  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const filteredData = table
+    .getFilteredRowModel()
+    .rows.map((row) => row.original);
+
+  const paginatedData = React.useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return filteredData.slice(startIndex, endIndex);
+  }, [filteredData, currentPage]);
+
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+
+  React.useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(1);
+    }
+  }, [filteredData, currentPage, totalPages]);
 
   return (
     <>
@@ -81,9 +89,6 @@ export function DataTable<TData, TValue>({
         </div>
 
         <div className="flex gap-4">
-          {/* <Button className="flex gap-2" variant={"destructive"}>
-            <Import size={20} /> Import
-          </Button> */}
           <AddUserDialog />
         </div>
       </div>
@@ -109,20 +114,23 @@ export function DataTable<TData, TValue>({
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
-                    </TableCell>
-                  ))}
+            {paginatedData.length ? (
+              paginatedData.map((row, rowIndex) => (
+                <TableRow key={rowIndex}>
+                  {table
+                    .getRowModel()
+                    .rows[rowIndex]?.getVisibleCells()
+                    .map((cell) => (
+                      <TableCell key={cell.id}>
+                        {flexRender(cell.column.columnDef.cell, {
+                          ...cell.getContext(),
+                          row: {
+                            ...cell.getContext().row,
+                            original: row,
+                          },
+                        })}
+                      </TableCell>
+                    ))}
                 </TableRow>
               ))
             ) : (

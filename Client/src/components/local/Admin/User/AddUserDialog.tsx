@@ -108,9 +108,9 @@ function AddUserDialog() {
               Add User
             </DialogTitle>
           </DialogHeader>
-          <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 py-2">
+          <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 p-2">
             <div className="grid grid-cols-4 items-center">
-              <span className="text-sm">Role</span>
+              <span className="text-sm font-medium">Role</span>
               <Select value={role} onValueChange={handleRoleChange}>
                 <SelectTrigger className="col-span-3">
                   <SelectValue placeholder="Select Role" />
@@ -130,7 +130,7 @@ function AddUserDialog() {
             </div>
 
             <div className="grid grid-cols-4 items-center">
-              <span className="text-sm">Email</span>
+              <span className="text-sm font-medium">Email</span>
               <div className="col-span-3">
                 <input
                   {...register("email")}
@@ -146,7 +146,7 @@ function AddUserDialog() {
             </div>
 
             <div className="grid grid-cols-4 items-center">
-              <span className="text-sm">Full name</span>
+              <span className="text-sm font-medium">Full name</span>
               <div className="col-span-3">
                 <input
                   {...register("fullName")}
@@ -162,7 +162,7 @@ function AddUserDialog() {
             </div>
 
             <div className="grid grid-cols-4 items-center">
-              <span className="text-sm">Phone</span>
+              <span className="text-sm font-medium">Phone</span>
               <div className="col-span-3">
                 <input
                   {...register("phone")}
@@ -178,7 +178,7 @@ function AddUserDialog() {
             </div>
 
             <div className="grid grid-cols-4 items-center">
-              <span className="text-sm">Address</span>
+              <span className="text-sm font-medium">Address</span>
               <div className="col-span-3">
                 <input
                   {...register("address")}
@@ -194,7 +194,7 @@ function AddUserDialog() {
             </div>
 
             <div className="grid grid-cols-4 items-center">
-              <span className="text-sm">Password</span>
+              <span className="text-sm font-medium">Password</span>
               <div className="col-span-3">
                 <div className="relative mb-1 flex items-center rounded-md border-[1.5px] bg-transparent px-5">
                   <input

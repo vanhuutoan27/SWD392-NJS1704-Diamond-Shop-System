@@ -22,21 +22,13 @@ const menuItems = [
   },
   {
     title: "Jewelry",
-    link: "#",
+    link: "/admin/jewelry-list",
     icon: <Gem />,
-    items: [
-      { title: "Jewelry List", link: "/admin/jewelry-list" },
-      { title: "Add Jewelry", link: "/admin/jewelry-new" },
-    ],
   },
   {
     title: "Diamond",
-    link: "#",
+    link: "/admin/diamond-list",
     icon: <Gem />,
-    items: [
-      { title: "Diamond List", link: "/admin/diamond-list" },
-      { title: "Add Diamond", link: "/admin/diamond-new" },
-    ],
   },
   {
     title: "User",
@@ -49,9 +41,8 @@ const menuItems = [
   },
   {
     title: "Order",
-    link: "#",
+    link: "/admin/order-list",
     icon: <Package />,
-    items: [{ title: "Order List", link: "/admin/order-list" }],
   },
 ];
 

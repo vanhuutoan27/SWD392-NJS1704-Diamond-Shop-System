@@ -4,24 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @layer components {
-  .input-box {
-    @apply mb-4 w-full rounded border-[1.5px] bg-transparent px-5 py-3 text-sm outline-none;
-  }
-
-  .btn-primary {
-    @apply my-1 w-full select-none rounded bg-primary p-2 text-sm text-white slow hover:bg-blue-600;
-  }
-
-  .icon-btn {
-    @apply cursor-pointer text-slate-300 slow hover:text-primary;
-  }
-
-  .input-label {
-    @apply text-xs text-slate-400;
-  }
-} */
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -134,4 +116,14 @@
   input[type="password"]::-ms-clear {
     display: none;
   }
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }

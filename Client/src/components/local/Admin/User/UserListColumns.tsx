@@ -51,7 +51,7 @@ export const columns: ColumnDef<IUser>[] = [
     },
     cell: (info) => {
       const value: string = info.getValue() as string;
-      const userId = info.row.original.userId;
+      const userId = info.row.original.id;
       return (
         <Link
           to={`/admin/${userId}`}
@@ -137,7 +137,9 @@ export const columns: ColumnDef<IUser>[] = [
           <DropdownMenuContent align="end" className="p-2">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(user.userId)}
+              onClick={() => {
+                navigator.clipboard.writeText(user.id);
+              }}
               className="text-sm"
             >
               <Copy size={16} className="mr-2" />

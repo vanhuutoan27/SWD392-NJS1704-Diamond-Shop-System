@@ -7,17 +7,17 @@ import {
   PaginationPrevious,
 } from "@/components/global/atoms/pagination";
 
-interface ListPaginationProps {
+interface DataTablePaginationProps {
   currentPage: number;
   totalPages: number;
   setCurrentPage: (page: number) => void;
 }
 
-function ListPagination({
+function DataTablePagination({
   currentPage,
   totalPages,
   setCurrentPage,
-}: ListPaginationProps) {
+}: DataTablePaginationProps) {
   const handlePrevious = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -67,4 +67,4 @@ function ListPagination({
   );
 }
 
-export default ListPagination;
+export default DataTablePagination;

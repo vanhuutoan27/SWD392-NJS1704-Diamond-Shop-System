@@ -23,9 +23,8 @@ import {
 } from "@/components/global/atoms/table";
 import { Input } from "@/components/global/atoms/input";
 import { Plus, Search } from "lucide-react";
-import ListPagination from "@/components/global/molecules/ListPagination";
 import { Button } from "@/components/global/atoms/button";
-import { Link } from "react-router-dom";
+import DataTablePagination from "@/components/global/molecules/DataTablePagination";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -41,7 +40,7 @@ export function DataTable<TData, TValue>({
     [],
   );
   const [currentPage, setCurrentPage] = React.useState(1);
-  const itemsPerPage = 6;
+  const itemsPerPage = 7;
 
   const paginatedData = React.useMemo(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -79,7 +78,7 @@ export function DataTable<TData, TValue>({
             onChange={(event) =>
               table.getColumn("jewelryId")?.setFilterValue(event.target.value)
             }
-            className="max-w-sm border border-secondary bg-white pl-10"
+            className="w-[400px] max-w-sm border border-secondary bg-white pl-10"
           />
         </div>
 
@@ -87,11 +86,9 @@ export function DataTable<TData, TValue>({
           {/* <Button className="flex gap-2" variant={"destructive"}>
             <Import size={20} /> Import
           </Button> */}
-          <Link to="/admin/jewelry-new">
-            <Button className="flex gap-2 bg-gray-800 pl-5 hover:bg-gray-900">
-              <Plus size={20} /> Add Jewelry
-            </Button>
-          </Link>
+          <Button className="flex gap-2 bg-gray-800 pl-5 hover:bg-gray-900">
+            <Plus size={20} /> Add Jewelry
+          </Button>
         </div>
       </div>
 
@@ -145,7 +142,8 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <ListPagination
+
+      <DataTablePagination
         currentPage={currentPage}
         totalPages={totalPages}
         setCurrentPage={setCurrentPage}

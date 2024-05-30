@@ -38,9 +38,6 @@ function App() {
   const DiamondList = lazy(
     () => import("./pages/Manager/Diamond/DiamondListPage"),
   );
-  const AddDiamond = lazy(
-    () => import("./pages/Manager/Diamond/AddDiamondPage"),
-  );
   const UserList = lazy(() => import("./pages/Admin/User/UserListPage"));
 
   return (
@@ -233,15 +230,6 @@ function App() {
           element={
             <Suspense fallback={<Loader />}>
               <DiamondList />
-            </Suspense>
-          }
-        />
-
-        <Route
-          path="/admin/diamond-new"
-          element={
-            <Suspense fallback={<Loader />}>
-              <AddDiamond />
             </Suspense>
           }
         />

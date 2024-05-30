@@ -71,3 +71,15 @@ export const IDiamondSize = [
   "8.0 - 8.9",
   "Over 9.0",
 ];
+
+export const IDiamondCertification = ["GIA", "IGI", "HRD", "AGS", "EGL"];
+
+export const IDiamondFluorescence = ["None", "Faint", "Medium", "Strong"];
+
+export const IDiamondQualityOfCut = [
+  "Excellent",
+  "Very Good",
+  "Good",
+  "Fair",
+  "Poor",
+];

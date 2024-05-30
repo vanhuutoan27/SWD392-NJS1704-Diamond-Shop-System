@@ -19,11 +19,10 @@ import {
   TableRow,
 } from "@/components/global/atoms/table";
 import { Input } from "@/components/global/atoms/input";
-import { Plus, Search } from "lucide-react";
-import ListPagination from "@/components/global/molecules/ListPagination";
-import { Button } from "@/components/global/atoms/button";
-import { Link } from "react-router-dom";
+import { Search } from "lucide-react";
 import DiamondFilterButton from "./DiamondFilterButton";
+import AddDiamondDialog from "./AddDiamondDialog";
+import DataTablePagination from "@/components/global/molecules/DataTablePagination";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -39,7 +38,7 @@ export function DataTable<TData, TValue>({
     [],
   );
   const [currentPage, setCurrentPage] = React.useState(1);
-  const itemsPerPage = 6;
+  const itemsPerPage = 7;
 
   const paginatedData = React.useMemo(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -66,7 +65,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <>
-      <div className="mb-4 flex items-center justify-between gap-4">
+      <div className="mb-8 flex items-center justify-between gap-4">
         <div className="flex w-full items-center gap-4">
           <div className="relative items-center">
             <Search
@@ -81,17 +80,13 @@ export function DataTable<TData, TValue>({
               onChange={(event) =>
                 table.getColumn("diamondId")?.setFilterValue(event.target.value)
               }
-              className="w-[300px] max-w-sm border border-secondary bg-white pl-10"
+              className="w-[400px] max-w-sm border border-secondary bg-white pl-10"
             />
           </div>
           <DiamondFilterButton setColumnFilters={setColumnFilters} />
         </div>
         <div className="flex gap-4">
-          <Link to="/admin/diamond-new">
-            <Button className="flex gap-2 bg-gray-800 pl-5 hover:bg-gray-900">
-              <Plus size={20} /> Add Diamond
-            </Button>
-          </Link>
+          <AddDiamondDialog />
         </div>
       </div>
       <div className="overflow-hidden rounded-md border bg-white shadow-md">
@@ -144,7 +139,8 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <ListPagination
+
+      <DataTablePagination
         currentPage={currentPage}
         totalPages={totalPages}
         setCurrentPage={setCurrentPage}
