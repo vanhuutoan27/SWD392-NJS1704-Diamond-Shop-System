@@ -1,5 +1,8 @@
+using AutoMapper;
+using AutoMapper.Internal;
 using DiamonShop.API;
 using DiamonShop.API.Extensions;
+using DiamonShop.API.Mappings;
 using DiamonShop.API.Services;
 using DiamonShop.Core.ConfigOptions;
 using DiamonShop.Core.Domain.Identity;
@@ -55,7 +58,12 @@ builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
 builder.Services.AddScoped<IServiceManager, ServiceManager>();
 
 //Addautomaper 
-builder.Services.AddAutoMapper(typeof(Program));
+var mapperConfig = new MapperConfiguration(mc =>
+{
+    mc.Internal().MethodMappingEnabled = false;
+    mc.AddProfile(new MappingConfig());
+});
+builder.Services.AddAutoMapper(cfg => cfg.Internal().MethodMappingEnabled = false, typeof(MappingConfig).Assembly);
 
 //add Cors
 builder.Services.ConfigureCors();

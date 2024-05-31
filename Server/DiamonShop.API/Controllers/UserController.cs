@@ -1,6 +1,8 @@
-﻿using DiamonShop.Core.Domain.Identity;
+﻿using AutoMapper;
+using DiamonShop.Core.Domain.Identity;
 using DiamonShop.Core.Models;
 using DiamonShop.Core.Models.content.RequestModels;
+using DiamonShop.Core.Models.content.Respone;
 using DiamonShop.Core.SeedWorks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,26 +18,44 @@ namespace DiamonShop.API.Controllers
 
         private readonly UserManager<AppUser> _userManager;
         private readonly IRepositoryManager _repositoryManager;
+        private readonly IMapper _mapper;
         public UserController(UserManager<AppUser> userManager,
-IRepositoryManager repositoryManager)
+IRepositoryManager repositoryManager,
+IMapper mapper)
         {
             this._userManager = userManager;
             resp = new ResultModel();
             _repositoryManager = repositoryManager;
+            _mapper = mapper;
         }
+
         [HttpGet(Name = "GetUsers")]
         public async Task<ActionResult<ResultModel>> GetUsers()
         {
-            var users = _userManager.Users.Where(u => u.IsActive == true);
-            if (users is null)
+            var query = _userManager.Users;
+            query = query.OrderBy(u => u.FullName);
+            var userLists = _mapper.ProjectTo<UserResponse>(query).ToList();
+            foreach (var item in userLists)
             {
-                //resultModel.IsSuccess = false;
-                //resultModel.
+                var user = await _userManager.FindByIdAsync(item.id.ToString());
+                item.Roles = await _userManager.GetRolesAsync(user);
             }
             resp.IsSuccess = true;
             resp.Message = "Succesful";
             resp.Code = (int)HttpStatusCode.OK;
-            resp.Data = users;
+            resp.Data = userLists;
+            return resp;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ResultModel>> GetUserById(Guid id)
+        {
+            var user = await _userManager.FindByIdAsync(id.ToString());
+            if (user == null) { return NotFound(user); }
+            resp.IsSuccess = true;
+            resp.Message = "Succesful";
+            resp.Code = (int)HttpStatusCode.OK;
+            resp.Data = _mapper.Map<UserResponse>(user);
             return resp;
         }
 
@@ -80,13 +100,11 @@ IRepositoryManager repositoryManager)
             var UserToEdit = await _userManager.FindByIdAsync(id.ToString());
             if (UserToEdit == null) { return NotFound(ModelState); }
 
-            //string[] roleRequest = { request.Role };
             var roles = await _userManager.GetRolesAsync(UserToEdit);
             if (roles.FirstOrDefault() != request.Role)
             {
                 await _repositoryManager.User.RemoveUserFromRoleAsync(UserToEdit.Id, roles.ToArray());
                 _repositoryManager.Save();
-                //List<string> listRoles = [request.Role];
                 var addedResult = await _userManager.AddToRoleAsync(UserToEdit, request.Role);
                 if (!addedResult.Succeeded)
                 {
@@ -142,14 +160,22 @@ IRepositoryManager repositoryManager)
             return resp;
         }
 
-        [HttpPut("enable-user/{id}")]
+        [HttpPut("change-status/{id}")]
         public async Task<ActionResult<ResultModel>> EnableUser(Guid id)
         {
             if (id == null) return BadRequest(ModelState);
             var user = await _userManager.FindByIdAsync(id.ToString());
             if (user == null) return NotFound();
-            user.LockoutEnabled = false;
-            user.IsActive = true;
+            if (user.IsActive)
+            {
+                user.IsActive = false;
+                user.LockoutEnabled = true;
+            }
+            else
+            {
+                user.IsActive = true;
+                user.LockoutEnabled = false;
+            }
             var result = await _userManager.UpdateAsync(user);
             if (!result.Succeeded) { return BadRequest(result.Errors); }
             resp.IsSuccess = true;
