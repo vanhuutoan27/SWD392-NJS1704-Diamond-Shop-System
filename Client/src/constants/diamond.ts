@@ -1,3 +1,4 @@
+import { diamondImage } from "./../lib/constants";
 import { ICartType } from "@/types/cart.interface";
 import { IDiamond } from "@/types/diamond.interface";
 
@@ -5,8 +6,7 @@ export const diamondData: IDiamond[] = [
   {
     productType: ICartType.Diamond,
     diamondId: "D001",
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FDiamond%2Fdiamond.png?alt=media&token=0a3f7a6f-6f7d-45b3-99b9-f4717fb440f6",
+    image: diamondImage,
     shape: "Pear",
     weight: 1.5,
     colorLevel: "F",
@@ -22,8 +22,7 @@ export const diamondData: IDiamond[] = [
   {
     productType: ICartType.Diamond,
     diamondId: "D002",
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FDiamond%2Fdiamond.png?alt=media&token=0a3f7a6f-6f7d-45b3-99b9-f4717fb440f6",
+    image: diamondImage,
     shape: "Round",
     weight: 0.34,
     colorLevel: "D",
@@ -39,8 +38,7 @@ export const diamondData: IDiamond[] = [
   {
     productType: ICartType.Diamond,
     diamondId: "D003",
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FDiamond%2Fdiamond.png?alt=media&token=0a3f7a6f-6f7d-45b3-99b9-f4717fb440f6",
+    image: diamondImage,
     shape: "Round",
     weight: 0.34,
     colorLevel: "D",
@@ -56,8 +54,7 @@ export const diamondData: IDiamond[] = [
   {
     productType: ICartType.Diamond,
     diamondId: "D004",
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FDiamond%2Fdiamond.png?alt=media&token=0a3f7a6f-6f7d-45b3-99b9-f4717fb440f6",
+    image: diamondImage,
     shape: "Round",
     weight: 0.35,
     colorLevel: "D",
@@ -73,8 +70,7 @@ export const diamondData: IDiamond[] = [
   {
     productType: ICartType.Diamond,
     diamondId: "D005",
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FDiamond%2Fdiamond.png?alt=media&token=0a3f7a6f-6f7d-45b3-99b9-f4717fb440f6",
+    image: diamondImage,
     shape: "Round",
     weight: 0.35,
     colorLevel: "D",
@@ -90,8 +86,7 @@ export const diamondData: IDiamond[] = [
   {
     productType: ICartType.Diamond,
     diamondId: "D006",
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FDiamond%2Fdiamond.png?alt=media&token=0a3f7a6f-6f7d-45b3-99b9-f4717fb440f6",
+    image: diamondImage,
     shape: "Round",
     weight: 0.33,
     colorLevel: "D",
@@ -107,8 +102,7 @@ export const diamondData: IDiamond[] = [
   {
     productType: ICartType.Diamond,
     diamondId: "D007",
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FDiamond%2Fdiamond.png?alt=media&token=0a3f7a6f-6f7d-45b3-99b9-f4717fb440f6",
+    image: diamondImage,
     shape: "Round",
     weight: 0.46,
     colorLevel: "D",
@@ -124,8 +118,7 @@ export const diamondData: IDiamond[] = [
   {
     productType: ICartType.Diamond,
     diamondId: "D008",
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FDiamond%2Fdiamond.png?alt=media&token=0a3f7a6f-6f7d-45b3-99b9-f4717fb440f6",
+    image: diamondImage,
     shape: "Round",
     weight: 0.5,
     colorLevel: "D",
@@ -141,8 +134,7 @@ export const diamondData: IDiamond[] = [
   {
     productType: ICartType.Diamond,
     diamondId: "D009",
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FDiamond%2Fdiamond.png?alt=media&token=0a3f7a6f-6f7d-45b3-99b9-f4717fb440f6",
+    image: diamondImage,
     shape: "Round",
     weight: 0.5,
     colorLevel: "D",
@@ -158,8 +150,7 @@ export const diamondData: IDiamond[] = [
   {
     productType: ICartType.Diamond,
     diamondId: "D010",
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FDiamond%2Fdiamond.png?alt=media&token=0a3f7a6f-6f7d-45b3-99b9-f4717fb440f6",
+    image: diamondImage,
     shape: "Round",
     weight: 0.5,
     colorLevel: "D",

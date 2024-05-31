@@ -12,7 +12,7 @@ function ProfilePage() {
   const isAdminRoute = useIsAdminRoute();
   const { userId } = useParams<{ userId: string }>();
 
-  const userDetail = userData.find((user) => user.userId === userId);
+  const userDetail = userData.find((user) => user.id === userId);
 
   if (!userDetail) {
     return <Loader />;

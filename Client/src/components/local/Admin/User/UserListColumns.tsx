@@ -1,7 +1,7 @@
 "use client";
 
-import { formatDate, getUserStatus } from "@/lib/utils";
-import { IUser, IUserStatus } from "@/types/user.interface";
+import { formatDate } from "@/lib/utils";
+import { IUser } from "@/types/user.interface";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, Copy, Eye, MoreHorizontal } from "lucide-react";
 
@@ -75,10 +75,7 @@ export const columns: ColumnDef<IUser>[] = [
         </div>
       );
     },
-    cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <span>{value}</span>;
-    },
+    cell: (info) => <span>{info.getValue() as string}</span>,
   },
   {
     accessorKey: "dateCreated",
@@ -99,7 +96,7 @@ export const columns: ColumnDef<IUser>[] = [
     },
   },
   {
-    accessorKey: "status",
+    accessorKey: "isActive",
     header: ({ column }) => {
       return (
         <div
@@ -112,8 +109,15 @@ export const columns: ColumnDef<IUser>[] = [
       );
     },
     cell: (info) => {
-      const value: IUserStatus = info.getValue() as IUserStatus;
-      return <Chip content={getUserStatus(value)} color={"#16a34a"} />;
+      const value: boolean = info.getValue() as boolean;
+      console.log(value);
+
+      return (
+        <Chip
+          content={value === true ? "Active" : "Inactive"}
+          color={value === true ? "#16a34a" : "#f44336"}
+        />
+      );
     },
   },
   {

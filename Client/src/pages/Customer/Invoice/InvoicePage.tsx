@@ -18,7 +18,7 @@ import InvoiceItem from "@/components/local/Customer/Invoice/InvoiceItem";
 function InvoicePage() {
   const { userId } = useParams<{ userId: string }>();
 
-  const billingToUser = userData.find((u) => u.userId === userId);
+  const billingToUser = userData.find((u) => u.id === userId);
 
   const invoiceData = {
     invoiceId: "DIAMOON27082003",

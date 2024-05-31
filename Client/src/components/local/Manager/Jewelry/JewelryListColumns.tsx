@@ -27,10 +27,9 @@ export const columns: ColumnDef<IJewelry>[] = [
         </div>
       );
     },
-    cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <span className="font-semibold">{value}</span>;
-    },
+    cell: (info) => (
+      <span className="font-semibold">{info.getValue() as string}</span>
+    ),
   },
   {
     accessorKey: "jewelryCategory",
@@ -45,10 +44,7 @@ export const columns: ColumnDef<IJewelry>[] = [
         </div>
       );
     },
-    cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <span>{value}</span>;
-    },
+    cell: (info) => <span>{info.getValue() as string}</span>,
   },
   {
     accessorKey: "jewelryName",
@@ -63,10 +59,9 @@ export const columns: ColumnDef<IJewelry>[] = [
         </div>
       );
     },
-    cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <span className="font-semibold">{value}</span>;
-    },
+    cell: (info) => (
+      <span className="font-semibold">{info.getValue() as string}</span>
+    ),
   },
   {
     accessorKey: "mainStoneSize",
@@ -83,10 +78,7 @@ export const columns: ColumnDef<IJewelry>[] = [
         </div>
       );
     },
-    cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <span>{value}</span>;
-    },
+    cell: (info) => <span>{info.getValue() as string}</span>,
   },
   {
     accessorKey: "sideStoneType",
@@ -103,10 +95,7 @@ export const columns: ColumnDef<IJewelry>[] = [
         </div>
       );
     },
-    cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <span>{value}</span>;
-    },
+    cell: (info) => <span>{info.getValue() as string}</span>,
   },
   {
     accessorKey: "goldType",
@@ -121,10 +110,7 @@ export const columns: ColumnDef<IJewelry>[] = [
         </div>
       );
     },
-    cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <span>{value}</span>;
-    },
+    cell: (info) => <span>{info.getValue() as string}</span>,
   },
   {
     id: "actions",

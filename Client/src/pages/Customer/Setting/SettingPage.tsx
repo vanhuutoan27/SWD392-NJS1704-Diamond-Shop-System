@@ -13,7 +13,7 @@ function SettingPage() {
 
   const { userId } = useParams<{ userId: string }>();
 
-  const userDetails = userData.find((user) => user.userId === userId);
+  const userDetails = userData.find((user) => user.id === userId);
 
   const handleSave = (updatedUser: IUser) => {
     console.log("Updated user successfully!", updatedUser);
