@@ -9,7 +9,7 @@ function UserListPage() {
 
   // console.log(userData);
 
-  if (isLoading) {
+  if (!userData || isLoading) {
     return <Loader />;
   }
 

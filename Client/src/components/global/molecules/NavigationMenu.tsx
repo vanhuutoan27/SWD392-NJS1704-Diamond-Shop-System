@@ -22,7 +22,7 @@ function NavigationMenu() {
         {Menus.map((menu, index) => (
           <Link to={menu.link} key={index} onClick={scrollToTop}>
             <li
-              className={`text-md mt-1 flex cursor-pointer items-center text-[14px] font-semibold uppercase slow hover:text-secondary ${
+              className={`text-md slow mt-1 flex cursor-pointer items-center text-[14px] font-semibold uppercase hover:text-secondary ${
                 menu.link === currentUrl ? "text-secondary" : "text-primary"
               }`}
             >

@@ -170,7 +170,7 @@ function App() {
         />
 
         <Route
-          path="/setting/:userId"
+          path="/settings/:userId"
           element={
             <Suspense fallback={<Loader />}>
               <Setting />

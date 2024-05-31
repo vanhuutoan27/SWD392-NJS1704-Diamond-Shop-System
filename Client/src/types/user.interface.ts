@@ -7,7 +7,7 @@ export interface IUser {
   phoneNumber: string;
   address: string;
   createdOn: string;
-  role: IUserRole;
+  roles: string[];
   isActive: boolean;
 }
 
@@ -27,12 +27,4 @@ export interface IJwtPayload {
   roles: string;
 
   avatar: string;
-}
-
-export enum IUserRole {
-  Customer = 0,
-  SalesStaff = 1,
-  DeliveryStaff = 2,
-  Manager = 3,
-  Admin = 4,
 }

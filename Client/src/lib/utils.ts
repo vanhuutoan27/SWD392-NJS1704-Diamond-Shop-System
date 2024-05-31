@@ -52,24 +52,6 @@ export function getProductData(cartItem: ICart) {
   }
 }
 
-// Get user role
-export function getUserRole(role: IUserRole): string {
-  switch (role) {
-    case IUserRole.Customer:
-      return "Customer";
-    case IUserRole.SalesStaff:
-      return "Sales Staff";
-    case IUserRole.DeliveryStaff:
-      return "Delivery Staff";
-    case IUserRole.Manager:
-      return "Manager";
-    case IUserRole.Admin:
-      return "Admin";
-    default:
-      return "Unknown";
-  }
-}
-
 // Check if the current route is an admin route
 export const useIsAdminRoute = (): boolean => {
   const location = useLocation();

@@ -78,7 +78,7 @@ function SidebarFooter() {
     },
     {
       title: "Settings",
-      link: `/admin/setting/${user?.id}`,
+      link: `/admin/settings/${user?.id}`,
       icon: <Settings />,
     },
     {

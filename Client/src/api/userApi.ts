@@ -16,10 +16,8 @@ export const useGetUserById = (id: string) => {
   return useQuery<IUser>({
     queryKey: ["user", id],
     queryFn: async () => {
-      const { data } = await diamoonAPI.get(`/User/Detail/Id`, {
-        params: { id },
-      });
-      return data;
+      const { data } = await diamoonAPI.get(`/User/${id}`);
+      return data.data;
     },
   });
 };

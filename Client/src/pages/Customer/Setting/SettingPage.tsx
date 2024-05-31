@@ -1,5 +1,4 @@
 import { cn, useIsAdminRoute } from "@/lib/utils";
-import { userData } from "@/constants/user";
 import { useParams } from "react-router-dom";
 import { IUser } from "@/types/user.interface";
 import SettingChangPhoto from "@/components/local/Customer/Setting/SettingChangPhoto";
@@ -7,21 +6,26 @@ import SettingForm from "@/components/local/Customer/Setting/SettingForm";
 import { Loader } from "@/components/global/atoms/Loader";
 import Section from "@/components/global/organisms/Section";
 import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
+import { useGetUserById } from "@/api/userApi";
+import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage";
 
 function SettingPage() {
   const isAdminRoute = useIsAdminRoute();
-
   const { userId } = useParams<{ userId: string }>();
 
-  const userDetails = userData.find((user) => user.id === userId);
+  const { data: userDetails, isLoading, error } = useGetUserById(userId || "");
+
+  if (!userDetails || isLoading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    <NotFoundPage />;
+  }
 
   const handleSave = (updatedUser: IUser) => {
     console.log("Updated user successfully!", updatedUser);
   };
-
-  if (!userDetails) {
-    return <Loader />;
-  }
 
   return (
     <div className={cn("", isAdminRoute ? "p-10" : "container")}>

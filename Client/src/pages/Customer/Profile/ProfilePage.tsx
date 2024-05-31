@@ -1,21 +1,26 @@
 import { cn, useIsAdminRoute } from "@/lib/utils";
-import { userData } from "@/constants/user";
 import { useParams } from "react-router-dom";
-import { IUserRole } from "@/types/user.interface";
 import { Loader } from "@/components/global/atoms/Loader";
 import ProfileInfo from "@/components/local/Customer/Profile/ProfileInfo";
 import ProfileSocial from "@/components/local/Customer/Profile/ProfileSocial";
 import Section from "@/components/global/organisms/Section";
 import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
+import { useGetUserById } from "@/api/userApi";
+import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage";
+import { userAvatar } from "@/lib/constants";
 
 function ProfilePage() {
   const isAdminRoute = useIsAdminRoute();
   const { userId } = useParams<{ userId: string }>();
 
-  const userDetail = userData.find((user) => user.id === userId);
+  const { data: userDetails, isLoading, error } = useGetUserById(userId || "");
 
-  if (!userDetail) {
+  if (!userDetails || isLoading) {
     return <Loader />;
+  }
+
+  if (error) {
+    <NotFoundPage />;
   }
 
   return (
@@ -39,16 +44,16 @@ function ProfilePage() {
 
           <div className="absolute -bottom-16 left-1/2 flex -translate-x-1/2 transform flex-col items-center">
             <img
-              src={userDetail.avatar}
+              src={userDetails.avatar || userAvatar}
               className="h-[160px] w-[160px] cursor-pointer rounded-full border-8 object-cover shadow-md"
             />
           </div>
         </div>
 
         <div className="mt-20 flex flex-col items-center">
-          <h3 className="text-2xl font-semibold">{userDetail.fullName}</h3>
+          <h3 className="text-2xl font-semibold">{userDetails.fullName}</h3>
           <p className="flex justify-center text-base font-medium text-secondary">
-            {IUserRole[userDetail.role]}
+            {userDetails.roles}
           </p>
         </div>
 

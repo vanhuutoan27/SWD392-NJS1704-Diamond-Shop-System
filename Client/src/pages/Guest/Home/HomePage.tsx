@@ -10,7 +10,7 @@ function HomePage() {
   const { data: allDiamonds, error, isLoading } = useGetAllDiamonds();
   const allJewelries = jewelryData;
 
-  if (isLoading) {
+  if (!allDiamonds || isLoading) {
     return <Loader />;
   }
 

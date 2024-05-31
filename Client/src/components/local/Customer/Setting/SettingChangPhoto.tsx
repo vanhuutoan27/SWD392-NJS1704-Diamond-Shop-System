@@ -4,6 +4,7 @@ import { Camera, Upload } from "lucide-react";
 import AlertDialogComponent from "@/components/global/molecules/AlertDialogComponent";
 import UploadPhotoDialog from "./UploadPhotoDialog";
 import { toast } from "sonner";
+import { userAvatar } from "@/lib/constants";
 
 interface SettingChangPhotoProps {
   user: IUser;
@@ -41,7 +42,7 @@ const SettingChangPhoto: React.FC<SettingChangPhotoProps> = ({
         <div className="flex gap-4">
           <div className="group relative cursor-pointer">
             <img
-              src={formData.avatar}
+              src={formData.avatar || userAvatar}
               className="h-16 w-16 rounded-full object-cover"
             />
             <div className="slow absolute inset-0 flex items-center justify-center rounded-full bg-black/30 opacity-0 group-hover:opacity-100">

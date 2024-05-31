@@ -1,15 +1,17 @@
+import { useGetAllUsers } from "@/api/userApi";
+import { Loader } from "@/components/global/atoms/Loader";
 import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
 import Section from "@/components/global/organisms/Section";
 import AboutInfo from "@/components/local/Guest/About/AboutInfo";
-import { userData } from "@/constants/user";
-import { getUserRole } from "@/lib/utils";
-import { IUserRole, IUserStatus } from "@/types/user.interface";
 
 function AboutPage() {
-  const teamMemberData = userData.filter(
-    (item) =>
-      item.role === IUserRole.Admin && item.status === IUserStatus.Active,
-  );
+  const { data: userData, isLoading, error } = useGetAllUsers();
+
+  if (!userData || isLoading || error) {
+    return <Loader />;
+  }
+
+  const adminData = userData.filter((user) => user.roles.includes("Admin"));
 
   return (
     <div className="container">
@@ -27,8 +29,11 @@ function AboutPage() {
         <Section pageName="Team Member" />
 
         <div className="flex justify-between gap-4">
-          {teamMemberData.map((member) => (
-            <div className="overflow-hidden rounded-md text-center shadow-md">
+          {adminData.map((member) => (
+            <div
+              key={member.id}
+              className="overflow-hidden rounded-md text-center shadow-md"
+            >
               <img
                 src={member.avatar}
                 alt={member.fullName}
@@ -38,9 +43,7 @@ function AboutPage() {
                 <h4 className="slow mb-1 cursor-pointer text-sm font-semibold hover:text-secondary">
                   {member.fullName}
                 </h4>
-                <p className="text-sm text-secondary">
-                  {getUserRole(member.role)}
-                </p>
+                <p className="text-sm text-secondary">{member.roles}</p>
               </div>
             </div>
           ))}

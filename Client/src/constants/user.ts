@@ -1,4 +1,4 @@
-import { IUser, IUserRole } from "@/types/user.interface";
+import { IUser } from "@/types/user.interface";
 
 export const userData: IUser[] = [
   {
@@ -11,7 +11,7 @@ export const userData: IUser[] = [
     phoneNumber: "0987654321",
     address: "Cu Chi, Ho Chi Minh City, Vietnam",
     createdOn: "07-05-2024",
-    role: IUserRole.Admin,
+    roles: ["Admin"],
     isActive: true,
   },
   {
@@ -24,7 +24,7 @@ export const userData: IUser[] = [
     phoneNumber: "0987654321",
     address: "La Xuan Oai, Thu Duc, Ho Chi Minh City, Vietnam",
     createdOn: "07-05-2024",
-    role: IUserRole.Admin,
+    roles: ["Admin"],
     isActive: true,
   },
   {
@@ -37,7 +37,7 @@ export const userData: IUser[] = [
     phoneNumber: "0987654321",
     address: "Ho Chi Minh City, Vietnam",
     createdOn: "07-05-2024",
-    role: IUserRole.Admin,
+    roles: ["Admin"],
     isActive: true,
   },
   {
@@ -50,7 +50,7 @@ export const userData: IUser[] = [
     phoneNumber: "0987654321",
     address: "Ho Chi Minh City, Vietnam",
     createdOn: "07-05-2024",
-    role: IUserRole.Admin,
+    roles: ["Admin"],
     isActive: true,
   },
   {
@@ -63,7 +63,7 @@ export const userData: IUser[] = [
     phoneNumber: "0987654321",
     address: "Ho Chi Minh City, Vietnam",
     createdOn: "07-05-2024",
-    role: IUserRole.Admin,
+    roles: ["Admin"],
     isActive: true,
   },
 ];
