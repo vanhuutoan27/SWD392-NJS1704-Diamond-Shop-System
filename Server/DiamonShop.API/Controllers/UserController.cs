@@ -52,10 +52,13 @@ IMapper mapper)
         {
             var user = await _userManager.FindByIdAsync(id.ToString());
             if (user == null) { return NotFound(user); }
+            var roles = await _userManager.GetRolesAsync(user);
+            var userDto = _mapper.Map<UserResponse>(user); ;
+            userDto.Roles = roles;
             resp.IsSuccess = true;
             resp.Message = "Succesful";
             resp.Code = (int)HttpStatusCode.OK;
-            resp.Data = _mapper.Map<UserResponse>(user);
+            resp.Data = userDto;
             return resp;
         }
 
@@ -171,11 +174,8 @@ IMapper mapper)
                 user.IsActive = false;
                 user.LockoutEnabled = true;
             }
-            else
-            {
-                user.IsActive = true;
-                user.LockoutEnabled = false;
-            }
+            user.IsActive = true;
+            user.LockoutEnabled = false;
             var result = await _userManager.UpdateAsync(user);
             if (!result.Succeeded) { return BadRequest(result.Errors); }
             resp.IsSuccess = true;
