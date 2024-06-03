@@ -132,7 +132,7 @@ function SidebarFooter() {
         </Avatar>
         <div className="flex w-full items-center justify-between">
           <div className="flex flex-col justify-center gap-1">
-            <span className="text-sm font-medium">{user?.fullname}</span>
+            <span className="text-sm font-medium">{user?.fullName}</span>
             <span className="text-xs text-secondary">Admin</span>
           </div>
           <ChevronsUpDown size={20} />

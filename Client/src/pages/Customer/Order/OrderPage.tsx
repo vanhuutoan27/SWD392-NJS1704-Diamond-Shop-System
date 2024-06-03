@@ -10,6 +10,7 @@ import { Button } from "@/components/global/atoms/button";
 import { scrollToTop } from "@/lib/utils";
 import { useLocation } from "react-router-dom";
 import { FormData, Province, District, Ward } from "@/types/order.interface";
+import { informationSchema } from "@/schemas/OrderForm";
 
 function OrderPage() {
   const location = useLocation();
@@ -31,6 +32,9 @@ function OrderPage() {
   const [provinces, setProvinces] = useState<Province[]>([]);
   const [districts, setDistricts] = useState<District[]>([]);
   const [wards, setWards] = useState<Ward[]>([]);
+  const [errors, setErrors] = useState<any>({});
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
+  const [paymentError, setPaymentError] = useState("");
 
   const headerHeight = 200;
 
@@ -52,6 +56,25 @@ function OrderPage() {
 
   const nextStep = async () => {
     let output = true;
+
+    // Validate form data based on the current tab
+    if (tab === 0) {
+      const validation = informationSchema.safeParse(formData);
+      if (!validation.success) {
+        setErrors(validation.error.format());
+        output = false;
+      } else {
+        setErrors({});
+      }
+    }
+
+    // Validate payment method selection
+    if (tab === 1 && !selectedPaymentMethod) {
+      setPaymentError("Please select a payment method.");
+      output = false;
+    } else {
+      setPaymentError("");
+    }
 
     if (!output) return;
     if (tab < tabs.length - 1) {
@@ -106,6 +129,12 @@ function OrderPage() {
             setDistricts={setDistricts}
             wards={wards}
             setWards={setWards}
+            errors={errors}
+            setErrors={setErrors}
+            selectedPaymentMethod={selectedPaymentMethod}
+            setSelectedPaymentMethod={setSelectedPaymentMethod}
+            paymentError={paymentError}
+            setTab={setTab}
           />
         </div>
         <div

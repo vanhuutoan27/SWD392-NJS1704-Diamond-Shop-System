@@ -9,17 +9,17 @@ function RedirectPage() {
     return <Loader />;
   }
 
-  const role = user?.roles;
+  const roles = user?.roles || [];
 
-  if (role === "Admin") {
+  if (roles.includes("Admin")) {
     return <Navigate to="/admin/dashboard" />;
-  } else if (role === "Manager") {
+  } else if (roles.includes("Manager")) {
     return <Navigate to="/admin/jewelry-list" />;
-  } else if (role === "SalesStaff") {
+  } else if (roles.includes("SalesStaff")) {
     return <Navigate to="/sales-staff/dashboard" />;
-  } else if (role === "DeliveryStaff") {
+  } else if (roles.includes("DeliveryStaff")) {
     return <Navigate to="/delivery-staff/dashboard" />;
-  } else if (role === "Customer") {
+  } else if (roles.includes("Customer")) {
     return <Navigate to="/" />;
   }
 

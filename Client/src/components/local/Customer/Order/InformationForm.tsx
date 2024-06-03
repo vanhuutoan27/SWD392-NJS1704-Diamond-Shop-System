@@ -26,6 +26,8 @@ function InformationForm({
   setDistricts,
   wards,
   setWards,
+  errors,
+  setErrors,
 }: InformationFormProps) {
   useEffect(() => {
     axios
@@ -79,14 +81,22 @@ function InformationForm({
       const selectedWard = wards.find(
         (ward) => ward.id === formData.ward,
       )?.full_name;
+
       console.log(
         `${formData.address}, ${selectedWard}, ${selectedDistrict}, ${selectedProvince}`,
       );
     }
   }, [formData, provinces, districts, wards]);
 
+  const clearError = (field: string) => {
+    setErrors((prevErrors) => {
+      const { [field]: removedError, ...restErrors } = prevErrors as any;
+      return restErrors;
+    });
+  };
+
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-4">
       <div>
         <h4 className="mb-2 pl-4 font-semibold">Contact Information</h4>
         <input
@@ -94,110 +104,160 @@ function InformationForm({
           placeholder="Email"
           className="input-field"
           value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+          onChange={(e) => {
+            setFormData({ ...formData, email: e.target.value });
+            clearError("email");
+          }}
         />
+        {errors?.email && (
+          <p className="ml-2 pb-2 text-xs text-red-500">
+            {errors.email._errors[0]}
+          </p>
+        )}
       </div>
 
       <div>
         <h4 className="mb-2 pl-4 font-semibold">Order Information</h4>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col">
           <input
             type="text"
             placeholder="Full name"
             className="input-field"
             value={formData.fullName}
-            onChange={(e) =>
-              setFormData({ ...formData, fullName: e.target.value })
-            }
+            onChange={(e) => {
+              setFormData({ ...formData, fullName: e.target.value });
+              clearError("fullName");
+            }}
           />
+          {errors?.fullName && (
+            <p className="ml-2 pb-2 text-xs text-red-500">
+              {errors.fullName._errors[0]}
+            </p>
+          )}
           <input
             type="number"
             placeholder="Phone number"
-            className="input-field"
+            className="input-field mt-2"
             value={formData.phoneNumber}
-            onChange={(e) =>
-              setFormData({ ...formData, phoneNumber: e.target.value })
-            }
+            onChange={(e) => {
+              setFormData({ ...formData, phoneNumber: e.target.value });
+              clearError("phoneNumber");
+            }}
           />
+          {errors?.phoneNumber && (
+            <p className="ml-2 pb-2 text-xs text-red-500">
+              {errors.phoneNumber._errors[0]}
+            </p>
+          )}
           <input
             type="text"
             placeholder="Address"
-            className="input-field"
+            className="input-field mt-2"
             value={formData.address}
-            onChange={(e) =>
-              setFormData({ ...formData, address: e.target.value })
-            }
+            onChange={(e) => {
+              setFormData({ ...formData, address: e.target.value });
+              clearError("address");
+            }}
           />
+          {errors?.address && (
+            <p className="ml-2 pb-2 text-xs text-red-500">
+              {errors.address._errors[0]}
+            </p>
+          )}
 
-          <div className="flex justify-between gap-4">
-            <Select
-              onValueChange={(value) =>
-                setFormData({ ...formData, province: value })
-              }
-            >
-              <SelectTrigger className="input-field h-11">
-                <SelectValue placeholder="Province / City">
-                  {provinces.find(
-                    (province) => province.id === formData.province,
-                  )?.full_name || "Province / City"}
-                </SelectValue>
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  {provinces.map((province) => (
-                    <SelectItem key={province.id} value={province.id}>
-                      {province.full_name}
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
+          <div className="mt-2 flex w-full justify-between gap-4">
+            <div className="flex w-1/3 flex-col">
+              <Select
+                onValueChange={(value) => {
+                  setFormData({ ...formData, province: value });
+                  clearError("province");
+                }}
+              >
+                <SelectTrigger className="input-field h-11">
+                  <SelectValue placeholder="Province / City">
+                    {provinces.find(
+                      (province) => province.id === formData.province,
+                    )?.full_name || "Province / City"}
+                  </SelectValue>
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    {provinces.map((province) => (
+                      <SelectItem key={province.id} value={province.id}>
+                        {province.full_name}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+              {errors?.province && (
+                <p className="ml-2 pb-2 text-xs text-red-500">
+                  {errors.province._errors[0]}
+                </p>
+              )}
+            </div>
 
-            <Select
-              onValueChange={(value) =>
-                setFormData({ ...formData, district: value })
-              }
-            >
-              <SelectTrigger className="input-field h-11">
-                <SelectValue placeholder="District">
-                  {districts.find(
-                    (district) => district.id === formData.district,
-                  )?.full_name || "District"}
-                </SelectValue>
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  {districts.map((district) => (
-                    <SelectItem key={district.id} value={district.id}>
-                      {district.full_name}
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
+            <div className="flex w-1/3 flex-col">
+              <Select
+                onValueChange={(value) => {
+                  setFormData({ ...formData, district: value });
+                  clearError("district");
+                }}
+              >
+                <SelectTrigger className="input-field h-11">
+                  <SelectValue placeholder="District">
+                    {districts.find(
+                      (district) => district.id === formData.district,
+                    )?.full_name || "District"}
+                  </SelectValue>
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    {districts.map((district) => (
+                      <SelectItem key={district.id} value={district.id}>
+                        {district.full_name}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+              {errors?.district && (
+                <p className="ml-2 pb-2 text-xs text-red-500">
+                  {errors.district._errors[0]}
+                </p>
+              )}
+            </div>
 
-            <Select
-              onValueChange={(value) =>
-                setFormData({ ...formData, ward: value })
-              }
-            >
-              <SelectTrigger className="input-field h-11">
-                <SelectValue placeholder="Ward / Commune">
-                  {wards.find((ward) => ward.id === formData.ward)?.full_name ||
-                    "Ward / Commune"}
-                </SelectValue>
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  {wards.map((ward) => (
-                    <SelectItem key={ward.id} value={ward.id}>
-                      {ward.full_name}
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
+            <div className="flex w-1/3 flex-col">
+              <Select
+                onValueChange={(value) => {
+                  setFormData({ ...formData, ward: value });
+                  clearError("ward");
+                }}
+              >
+                <SelectTrigger className="input-field h-11">
+                  <SelectValue placeholder="Ward / Commune">
+                    {wards.find((ward) => ward.id === formData.ward)
+                      ?.full_name || "Ward / Commune"}
+                  </SelectValue>
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    {wards.map((ward) => (
+                      <SelectItem key={ward.id} value={ward.id}>
+                        {ward.full_name}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+              {errors?.ward && (
+                <p className="ml-2 pb-2 text-xs text-red-500">
+                  {errors.ward._errors[0]}
+                </p>
+              )}
+            </div>
           </div>
         </div>
       </div>

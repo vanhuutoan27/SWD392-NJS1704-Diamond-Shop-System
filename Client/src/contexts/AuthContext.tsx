@@ -7,11 +7,12 @@ import {
 } from "react";
 import { useCookies } from "react-cookie";
 import { jwtDecode } from "jwt-decode";
-import { IJwtPayload } from "@/types/user.interface";
+import { IJwtPayload, IUser } from "@/types/user.interface";
+import diamoonAPI from "@/lib/diamoonAPI";
 
 interface AuthContextProps {
-  user: IJwtPayload | null;
-  login: (accessToken: string, refreshToken: string) => void;
+  user: IUser | null;
+  login: (accessToken: string, refreshToken: string) => Promise<void>;
   logout: () => void;
 }
 
@@ -26,26 +27,50 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     "accessToken",
     "refreshToken",
   ]);
-  const [user, setUser] = useState<IJwtPayload | null>(null);
+  const [user, setUser] = useState<IUser | null>(null);
 
   useEffect(() => {
     const accessToken = cookies.accessToken;
 
     if (accessToken) {
       try {
-        const decodedUser = jwtDecode<IJwtPayload>(accessToken);
-        setUser(decodedUser);
+        const decodedToken = jwtDecode<IJwtPayload>(accessToken);
+        const userId = decodedToken.id;
+
+        const getAuthUser = async () => {
+          try {
+            const response = await diamoonAPI.get(`/User/${userId}`);
+            const { data } = response.data;
+            // console.log("User data fetched from API:", data); // Log data here
+            setUser(data);
+          } catch (error) {
+            // console.error("Failed to fetch user data:", error);
+            setUser(null);
+          }
+        };
+        getAuthUser();
       } catch (error) {
         console.error("Invalid token:", error);
       }
     }
   }, [cookies.accessToken]);
 
-  const login = (accessToken: string, refreshToken: string) => {
+  const login = async (accessToken: string, refreshToken: string) => {
     setCookie("accessToken", accessToken, { path: "/" });
     setCookie("refreshToken", refreshToken, { path: "/" });
-    const decodedUser = jwtDecode<IJwtPayload>(accessToken);
-    setUser(decodedUser);
+
+    const decodedToken = jwtDecode<IJwtPayload>(accessToken);
+    const userId = decodedToken.id;
+
+    try {
+      const response = await diamoonAPI.get(`/User/${userId}`);
+      const { data } = response.data;
+      // console.log("User data fetched from API:", data);
+      setUser(data);
+    } catch (error) {
+      // console.error("Failed to fetch user data:", error);
+      setUser(null);
+    }
   };
 
   const logout = () => {

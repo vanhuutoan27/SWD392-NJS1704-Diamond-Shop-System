@@ -6,9 +6,12 @@ export const informationSchema = z.object({
     .nonempty({ message: "Email is required" })
     .email({ message: "Invalid email" }),
   fullName: z.string().nonempty({ message: "Full name is required" }),
-  streetAddress: z.string().nonempty({ message: "Street address is required" }),
-  city: z.string().nonempty({ message: "City is required" }),
-  country: z.string().nonempty({ message: "Country is required" }),
-  state: z.string().nonempty({ message: "State is required" }),
-  zipCode: z.string().nonempty({ message: "ZIP code is required" }),
+  phoneNumber: z
+    .string()
+    .nonempty({ message: "Phone number is required" })
+    .regex(/^[0-9]+$/, { message: "Invalid phone number" }),
+  address: z.string().nonempty({ message: "Address is required" }),
+  province: z.string().nonempty({ message: "Province is required" }),
+  district: z.string().nonempty({ message: "District is required" }),
+  ward: z.string().nonempty({ message: "Ward is required" }),
 });

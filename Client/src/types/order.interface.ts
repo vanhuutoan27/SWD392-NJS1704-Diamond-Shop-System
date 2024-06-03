@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface Province {
   id: string;
   full_name: string;
@@ -32,6 +34,10 @@ export interface InformationFormProps {
   setDistricts: (districts: District[]) => void;
   wards: Ward[];
   setWards: (wards: Ward[]) => void;
+  errors: Partial<Record<keyof FormData, { _errors: string[] }>>;
+  setErrors: Dispatch<
+    SetStateAction<Partial<Record<keyof FormData, { _errors: string[] }>>>
+  >;
 }
 
 export interface ShippingFormProps {
@@ -39,4 +45,8 @@ export interface ShippingFormProps {
   provinces: Province[];
   districts: District[];
   wards: Ward[];
+  selectedPaymentMethod: string;
+  setSelectedPaymentMethod: Dispatch<SetStateAction<string>>;
+  paymentError: string;
+  setTab: Dispatch<SetStateAction<number>>;
 }
