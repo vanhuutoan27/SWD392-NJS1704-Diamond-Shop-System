@@ -107,7 +107,7 @@ IMapper mapper)
             if (roles.FirstOrDefault() != request.Role)
             {
                 await _repositoryManager.User.RemoveUserFromRoleAsync(UserToEdit.Id, roles.ToArray());
-                _repositoryManager.Save();
+                _repositoryManager.SaveAsync();
                 var addedResult = await _userManager.AddToRoleAsync(UserToEdit, request.Role);
                 if (!addedResult.Succeeded)
                 {

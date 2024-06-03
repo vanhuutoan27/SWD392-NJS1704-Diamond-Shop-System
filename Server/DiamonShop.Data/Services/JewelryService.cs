@@ -1,14 +1,10 @@
 ﻿using AutoMapper;
 using DiamonShop.Core.Domain.Content;
 using DiamonShop.Core.Models.content.RequestModels;
+using DiamonShop.Core.Models.content.Respone;
 using DiamonShop.Core.SeedWorks;
 using DiamonShop.Core.services;
 using DiamonShop.Core.Shared.Enum;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DiamonShop.Data.Services
 {
@@ -27,12 +23,12 @@ namespace DiamonShop.Data.Services
         {
             var productId = Guid.NewGuid();
             var productName = createJewelryDto.Name;
-
+            var skudId = await _repositoryManager.Jewelry.GenerateSkuAsync();
             var newJewelry = new Jewelry()
             {
                 JewelryId = productId,
                 Name = productName,
-                ProductType = createJewelryDto.ProductType,
+                SkuID = skudId,
                 MainStoneSize = createJewelryDto.MainStoneSize,
                 sideStoneType = createJewelryDto.SideStoneType,
                 sideStoneQuantity = createJewelryDto.SideStoneQuantity,
@@ -43,12 +39,14 @@ namespace DiamonShop.Data.Services
                 Price = createJewelryDto.Price
             };
             _repositoryManager.Jewelry.Add(newJewelry);
+            var category = await _repositoryManager.Category.GetByNameAsync(createJewelryDto.ProductType);
             Product product = new Product()
             {
                 ProductId = productId,
                 Name = productName,
                 Price = createJewelryDto.Price,
-                CategoryId = new Guid("816F2393-683E-428C-A4BB-2BA6E2E3F791"),
+                CategoryId = category != null ? category.CategoryId : throw new ArgumentNullException(nameof(category),
+                "Category cannot be null"),
                 Status = EnumStatus.Status.Active,
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now
@@ -78,10 +76,14 @@ namespace DiamonShop.Data.Services
             return true;
         }
 
-        public async Task<IEnumerable<Jewelry>> GetAllJewelries()
+
+
+        public async Task<IEnumerable<JewelryResponse>> GetAllJewelries()
         {
-            var listJewelry = await _repositoryManager.Jewelry.GetAllAsync();
-            return listJewelry;
+            var listJewelry = await _repositoryManager.Jewelry.GetAllJewelryAsync();
+            var listJewelryResponse = _mapper.Map<IEnumerable<JewelryResponse>>(listJewelry);
+
+            return listJewelryResponse;
         }
 
         public async Task<Jewelry> GetJewelryById(Guid id)
@@ -98,7 +100,6 @@ namespace DiamonShop.Data.Services
             }
 
             updateJewelry.Name = jewelryDto.Name;
-            updateJewelry.ProductType = jewelryDto.ProductType;
             updateJewelry.MainStoneSize = jewelryDto.MainStoneSize;
             updateJewelry.sideStoneType = jewelryDto.SideStoneType;
             updateJewelry.sideStoneQuantity = jewelryDto.SideStoneQuantity;

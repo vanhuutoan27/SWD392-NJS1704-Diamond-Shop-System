@@ -12,6 +12,7 @@ namespace DiamonShop.Data.SeedWorks
         private readonly Lazy<IDiamondRepository> _diamondRepository;
         private readonly Lazy<IUserRepository> _userRepository;
         private readonly Lazy<IJewelryRepository> _jewelryRepository;
+        private readonly Lazy<ICategoryRepository> _categoryRepository;
         public RepositoryManager(DiamondContext context)
         {
             _context = context;
@@ -19,6 +20,7 @@ namespace DiamonShop.Data.SeedWorks
             _diamondRepository = new Lazy<IDiamondRepository>(() => new DiamondRepository(context));
             _userRepository = new Lazy<IUserRepository>(() => new UserRepository(context));
             _jewelryRepository = new Lazy<IJewelryRepository>(() => new JewelryRepository(context));
+            _categoryRepository = new Lazy<ICategoryRepository>(() => new CategoryRepository(context));
         }
         public IProductRepository Product => _productRepository.Value;
 
@@ -29,6 +31,11 @@ namespace DiamonShop.Data.SeedWorks
 
         public IJewelryRepository Jewelry => _jewelryRepository.Value;
 
-        public async Task<int> SaveAsync()
+        public ICategoryRepository Category => _categoryRepository.Value;
+
+        public async Task SaveAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }

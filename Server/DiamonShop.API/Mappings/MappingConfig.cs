@@ -11,10 +11,13 @@ namespace DiamonShop.API.Mappings
         public MappingConfig()
         {
             CreateMap<Diamond, UpdateDiamondRequest>().ReverseMap();
-            CreateMap<Diamond , CreateDiamondRequest>().ReverseMap();
-            CreateMap<Jewelry , CreateUpdateJewelryRequest>().ReverseMap();
+            CreateMap<Diamond, CreateDiamondRequest>().ReverseMap();
+            CreateMap<Jewelry, CreateUpdateJewelryRequest>().ReverseMap();
+            CreateMap<Jewelry, JewelryResponse>()
+            .ForMember(dest => dest.ProductType, opt => opt.MapFrom(src => src.Product.Category.Name));
 
             CreateMap<AppUser, UserResponse>().ReverseMap();
+
         }
     }
 }

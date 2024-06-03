@@ -1,11 +1,7 @@
 ﻿using DiamonShop.Core.Domain.Content;
 using DiamonShop.Core.Repository;
 using DiamonShop.Data.SeedWorks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace DiamonShop.Data.Repository
 {
@@ -14,6 +10,28 @@ namespace DiamonShop.Data.Repository
         public JewelryRepository(DiamondContext context) : base(context)
         {
 
+        }
+
+
+        public async Task<string> GenerateSkuAsync()
+        {
+            var lastProduct = await _context.Jewelrys.OrderByDescending(p => p.SkuID).FirstOrDefaultAsync();
+            string newSku;
+            if (lastProduct == null || string.IsNullOrEmpty(lastProduct.SkuID))
+            {
+                newSku = "J001";
+            }
+            else
+            {
+                var lastNumber = int.Parse(lastProduct.SkuID.Substring(1));
+                newSku = "J" + (lastNumber + 1).ToString("D3");
+            }
+            return newSku;
+        }
+
+        public async Task<IEnumerable<Jewelry>> GetAllJewelryAsync()
+        {
+            return await _context.Jewelrys.Include(j => j.Product).ThenInclude(p => p.Category).ToListAsync();
         }
 
         public void UpdateJewelry(Guid id, Jewelry jewelry)

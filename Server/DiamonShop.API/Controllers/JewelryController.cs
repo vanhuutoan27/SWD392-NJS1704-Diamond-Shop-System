@@ -2,7 +2,6 @@
 using DiamonShop.Core.Models;
 using DiamonShop.Core.Models.content.RequestModels;
 using DiamonShop.Core.services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -73,7 +72,7 @@ namespace DiamonShop.API.Controllers
             {
                 res = new ResultModel
                 {
-                    IsSuccess= false,
+                    IsSuccess = false,
                     Code = (int)HttpStatusCode.BadRequest,
                 };
             }
@@ -91,7 +90,7 @@ namespace DiamonShop.API.Controllers
             {
                 IsSuccess = true,
                 Code = (int)HttpStatusCode.OK,
-                Message =  "Create succesfully."
+                Message = "Create succesfully."
             };
             return res;
         }
@@ -121,16 +120,16 @@ namespace DiamonShop.API.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<ResultModel>> Update(Guid id, CreateUpdateJewelryRequest jewelryDto)
         {
-            if (id != jewelryDto.JewelryId)
-            {
-                res = new ResultModel
-                {
-                    IsSuccess = false,
-                    Code = (int)HttpStatusCode.BadRequest,
-                    Message = "Jewelry isn't exist"
-                };
-                return res;
-            }
+            //if (id != jewelryDto.JewelryId)
+            //{
+            //    res = new ResultModel
+            //    {
+            //        IsSuccess = false,
+            //        Code = (int)HttpStatusCode.BadRequest,
+            //        Message = "Jewelry isn't exist"
+            //    };
+            //    return res;
+            //}
             var update = await _service.JewelryService.UpdateJewelry(id, jewelryDto);
             if (!update)
             {
