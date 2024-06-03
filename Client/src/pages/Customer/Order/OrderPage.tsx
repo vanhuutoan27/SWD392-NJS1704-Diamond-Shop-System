@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProgressBar from "@/components/global/molecules/ProgressBar";
 import Section from "@/components/global/organisms/Section";
 import InformationForm from "@/components/local/Customer/Order/InformationForm";
@@ -9,34 +9,46 @@ import OrderSummary from "@/components/local/Customer/Order/OrderSummary";
 import { Button } from "@/components/global/atoms/button";
 import { scrollToTop } from "@/lib/utils";
 import { useLocation } from "react-router-dom";
+import { FormData, Province, District, Ward } from "@/types/order.interface";
 
 function OrderPage() {
   const location = useLocation();
   const { state } = location;
   const { cartItems } = state || { cartItems: [] };
 
-  // const getProductDetails = (productId: string, type: ICartType) => {
-  //   if (type === ICartType.Diamond) {
-  //     return diamondData.find((diamond) => diamond.diamondId === productId);
-  //   } else if (type === ICartType.Jewelry) {
-  //     return jewelryData.find((jewelry) => jewelry.jewelryId === productId);
-  //   }
-  // };
-
-  // const enrichedCartItems = cartItems.map((item: ICart) => ({
-  //   ...item,
-  //   ...getProductDetails(item.productId, item.productType),
-  // }));
-
-  // console.log(enrichedCartItems);
-
-  const tabs = [
-    { component: InformationForm, label: "Information" },
-    { component: ShippingForm, label: "Shipping" },
-    { component: PaymentForm, label: "Payment" },
-    { component: ConfirmOrder, label: "Done" },
-  ];
   const [tab, setTab] = useState(0);
+  const [isSticky, setIsSticky] = useState(false);
+  const [formData, setFormData] = useState<FormData>({
+    email: "",
+    fullName: "",
+    phoneNumber: "",
+    address: "",
+    province: "",
+    district: "",
+    ward: "",
+  });
+
+  const [provinces, setProvinces] = useState<Province[]>([]);
+  const [districts, setDistricts] = useState<District[]>([]);
+  const [wards, setWards] = useState<Ward[]>([]);
+
+  const headerHeight = 200;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > headerHeight) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [headerHeight]);
 
   const nextStep = async () => {
     let output = true;
@@ -55,6 +67,24 @@ function OrderPage() {
     }
   };
 
+  const getButtonText = (tab: number) => {
+    switch (tab) {
+      case 0:
+        return "Continue To Choose Shipping Method";
+      case 1:
+        return "Continue To Payment";
+      default:
+        return "Complete Order";
+    }
+  };
+
+  const tabs = [
+    { component: InformationForm, label: "Information" },
+    { component: ShippingForm, label: "Shipping" },
+    { component: PaymentForm, label: "Payment" },
+    { component: ConfirmOrder, label: "Done" },
+  ];
+
   const CurrentForm = tabs[tab].component;
 
   return (
@@ -67,9 +97,22 @@ function OrderPage() {
 
       <div className="mt-20 flex w-full gap-8">
         <div className="w-3/5 rounded-md border-2 border-input bg-white p-5 shadow-md">
-          <CurrentForm />
+          <CurrentForm
+            formData={formData}
+            setFormData={setFormData}
+            provinces={provinces}
+            setProvinces={setProvinces}
+            districts={districts}
+            setDistricts={setDistricts}
+            wards={wards}
+            setWards={setWards}
+          />
         </div>
-        <div className="w-2/5 rounded-md border-2 border-input bg-white p-5 shadow-md">
+        <div
+          className={`${
+            isSticky ? "top-28" : "top-0"
+          } sticky h-fit w-2/5 rounded-md border-2 border-input bg-white p-5 shadow-md`}
+        >
           <OrderSummary cartItems={cartItems} />
         </div>
       </div>
@@ -79,7 +122,7 @@ function OrderPage() {
           Back
         </Button>
         <Button disabled={tab === tabs.length - 1} onClick={nextStep}>
-          Next
+          {getButtonText(tab)}
         </Button>
       </div>
     </div>

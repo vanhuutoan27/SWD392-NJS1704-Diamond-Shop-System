@@ -71,7 +71,7 @@ export function DataTable<TData, TValue>({
         <div className="relative flex w-full items-center py-4">
           <Search className="absolute left-3 mb-1" size={16} />
           <Input
-            placeholder="Filter Jewelry by ID..."
+            placeholder="Search Jewelry by ID..."
             value={
               (table.getColumn("jewelryId")?.getFilterValue() as string) ?? ""
             }

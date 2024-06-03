@@ -18,19 +18,21 @@ const COUPON_DISCOUNTS: { [key: string]: number } = {
 function OrderSummary({ cartItems }: OrderSummaryProps) {
   const [couponCode, setCouponCode] = useState("");
   const [discount, setDiscount] = useState(0);
-  const [discountMessage, setDiscountMessage] = useState("");
 
   const handleApplyCoupon = () => {
     const discountRate = COUPON_DISCOUNTS[couponCode] || 0;
     setDiscount(discountRate);
 
     if (discountRate > 0) {
-      setDiscountMessage("Apply coupon successfully");
       toast.success("Apply coupon successfully");
     } else {
-      setDiscountMessage("Apply coupon failed. Try another code!");
       toast.error("Apply coupon failed. Try another code!");
     }
+  };
+
+  const handleClearCoupon = () => {
+    setCouponCode("");
+    setDiscount(0);
   };
 
   const subTotal = cartItems.reduce(
@@ -72,16 +74,13 @@ function OrderSummary({ cartItems }: OrderSummaryProps) {
           <X
             size={16}
             className="absolute right-4 top-1/2 -translate-y-1/2 transform cursor-pointer text-secondary"
-            onClick={() => setCouponCode("")}
+            onClick={handleClearCoupon}
           />
         </div>
         <Button type="button" className="ml-4 h-11" onClick={handleApplyCoupon}>
           Apply
         </Button>
       </div>
-      {discountMessage && (
-        <div className="ml-2 text-sm text-red-600">{discountMessage}</div>
-      )}
 
       <div className="text-md mt-8 flex w-full flex-col gap-2 font-medium">
         <div className="flex justify-between">

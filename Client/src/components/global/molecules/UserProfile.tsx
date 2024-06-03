@@ -16,11 +16,11 @@ import {
 } from "@/components/global/atoms/dropdown-menu";
 import { Link } from "react-router-dom";
 import { scrollToTop } from "@/lib/utils";
-import { IJwtPayload } from "@/types/user.interface";
+import { IUser } from "@/types/user.interface";
 import { Skeleton } from "../atoms/skeleton";
 
 interface UserProfileProps {
-  userData: IJwtPayload | null;
+  userData: IUser | null;
   onLogout: () => void;
 }
 
@@ -78,7 +78,7 @@ function UserProfile({ userData, onLogout }: UserProfileProps) {
       <div className="flex items-center gap-4">
         <span className="hidden text-right md:block">
           <span className="slow block cursor-pointer text-sm font-medium text-primary hover:text-secondary">
-            {userData.fullname}
+            {userData.fullName}
           </span>
           <span className="block text-xs text-secondary">{userData.email}</span>
         </span>

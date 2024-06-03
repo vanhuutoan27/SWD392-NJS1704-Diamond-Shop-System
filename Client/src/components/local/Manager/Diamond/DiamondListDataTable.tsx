@@ -73,7 +73,7 @@ export function DataTable<TData, TValue>({
               size={16}
             />
             <Input
-              placeholder="Filter Diamond by ID..."
+              placeholder="Search Diamond by ID..."
               value={
                 (table.getColumn("diamondId")?.getFilterValue() as string) ?? ""
               }

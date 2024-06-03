@@ -19,7 +19,7 @@ function AuthLayout() {
     return <Loader />;
   }
 
-  if (!user || !user.roles.includes("Admin")) {
+  if (!user || !user.roles || user.roles.includes("Customer")) {
     return <Navigate to="/forbidden" />;
   }
 

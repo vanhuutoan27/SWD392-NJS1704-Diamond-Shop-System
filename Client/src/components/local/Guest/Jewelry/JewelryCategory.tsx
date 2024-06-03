@@ -30,9 +30,9 @@ function JewelryCategory({
           <SelectGroup>
             <SelectItem value="all">All Categories</SelectItem>
             <SelectItem value="Earrings">Jewelry Earrings</SelectItem>
-            <SelectItem value="Pendant">Jewelry Pendants</SelectItem>
-            <SelectItem value="Bracelet">Jewelry Bracelets</SelectItem>
-            <SelectItem value="Ring">Jewelry Rings</SelectItem>
+            <SelectItem value="Pendant">Jewelry Pendant</SelectItem>
+            <SelectItem value="Bracelet">Jewelry Bracelet</SelectItem>
+            <SelectItem value="Ring">Jewelry Ring</SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>

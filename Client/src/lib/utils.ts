@@ -3,7 +3,6 @@ import { twMerge } from "tailwind-merge";
 import { ICart, ICartType } from "@/types/cart.interface";
 import { diamondData } from "@/constants/diamond";
 import { jewelryData } from "@/constants/jewelry";
-import { IUserRole } from "@/types/user.interface";
 import { useLocation } from "react-router-dom";
 
 export function cn(...inputs: ClassValue[]) {
