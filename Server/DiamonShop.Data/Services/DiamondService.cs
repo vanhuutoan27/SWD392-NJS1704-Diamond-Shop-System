@@ -54,7 +54,7 @@ namespace DiamonShop.Data.Services
                 DateModified = DateTime.Now
             };
             _repositoryManager.Product.Add(product);
-            await _repositoryManager.Save();
+            await _repositoryManager.SaveAsync();
             return new DiamondRespone
             {
                 Message = "Create Diamond Successfully",
@@ -116,7 +116,7 @@ namespace DiamonShop.Data.Services
             }
 
             _repositoryManager.Diamond.Update(existingDiamond);
-            await _repositoryManager.Save();
+            await _repositoryManager.SaveAsync();
             return new DiamondRespone
             {
                 Message = "Update Successfully!",
@@ -138,7 +138,7 @@ namespace DiamonShop.Data.Services
             }
 
             _repositoryManager.Diamond.Remove(diamondid);
-            await _repositoryManager.Save();
+            await _repositoryManager.SaveAsync();
         }
     }
 }
