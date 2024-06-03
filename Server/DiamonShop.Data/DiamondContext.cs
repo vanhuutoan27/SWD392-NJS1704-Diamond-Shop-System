@@ -41,6 +41,8 @@ namespace DiamonShop.Data
             builder.ApplyConfiguration(new CategoryConfiguration());
             builder.ApplyConfiguration(new ProductConfiguration());
             builder.ApplyConfiguration(new DiamondConfiguration());
+            builder.ApplyConfiguration(new JewelryConfiguration());
+            builder.ApplyConfiguration(new ImageConfiguration());
         }
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

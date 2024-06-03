@@ -7,6 +7,7 @@ namespace DiamonShop.Core.Domain.Content
     {
         [Key, ForeignKey(nameof(Product))]
         public Guid DiamondId { get; set; }
+        public string SkuID { get; set; }
         [Required]
         public string Shape { get; set; }
         [Required]

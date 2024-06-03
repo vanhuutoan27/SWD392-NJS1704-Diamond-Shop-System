@@ -7,11 +7,12 @@ namespace DiamonShop.Core.Domain.Content
     {
         [Key, ForeignKey(nameof(Product))]
         public Guid JewelryId { get; set; }
+
+        public string SkuID { get; set; }
+
         [Required]
         public string Name { get; set; }
-        [Required]
 
-        public string ProductType { get; set; }
         [Required]
 
         public string MainStoneSize { get; set; }
