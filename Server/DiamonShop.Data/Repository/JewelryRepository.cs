@@ -34,6 +34,12 @@ namespace DiamonShop.Data.Repository
             return await _context.Jewelrys.Include(j => j.Product).ThenInclude(p => p.Category).ToListAsync();
         }
 
+        public async Task<Jewelry> GetJewelryAsync(Guid id)
+        {
+            return await _context.Jewelrys.Where(j => j.JewelryId == id).Include(j => j.Product)
+                .ThenInclude(p => p.Category).FirstOrDefaultAsync();
+        }
+
         public void UpdateJewelry(Guid id, Jewelry jewelry)
         {
             _context.Update(jewelry);

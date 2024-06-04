@@ -8,6 +8,7 @@ namespace DiamonShop.Core.Repository
         void UpdateJewelry(Guid id, Jewelry jewelry);
         Task<string> GenerateSkuAsync();
         Task<IEnumerable<Jewelry>> GetAllJewelryAsync();
+        Task<Jewelry> GetJewelryAsync(Guid id);
 
     }
 }

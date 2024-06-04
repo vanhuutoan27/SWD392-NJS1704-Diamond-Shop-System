@@ -86,9 +86,10 @@ namespace DiamonShop.Data.Services
             return listJewelryResponse;
         }
 
-        public async Task<Jewelry> GetJewelryById(Guid id)
+        public async Task<JewelryResponse> GetJewelryById(Guid id)
         {
-            return await _repositoryManager.Jewelry.GetByIdAsync(id);
+            var jewelry = await _repositoryManager.Jewelry.GetJewelryAsync(id);
+            return _mapper.Map<JewelryResponse>(jewelry);
         }
 
         public async Task<bool> UpdateJewelry(Guid id, CreateUpdateJewelryRequest jewelryDto)
