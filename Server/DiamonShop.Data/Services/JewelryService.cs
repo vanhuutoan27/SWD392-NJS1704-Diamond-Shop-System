@@ -94,7 +94,7 @@ namespace DiamonShop.Data.Services
 
         public async Task<bool> UpdateJewelry(Guid id, CreateUpdateJewelryRequest jewelryDto)
         {
-            var updateJewelry = await _repositoryManager.Jewelry.GetByIdAsync(id);
+            var updateJewelry = await _repositoryManager.Jewelry.GetJewelryAsync(id);
             if (updateJewelry == null)
             {
                 return false;
@@ -111,12 +111,20 @@ namespace DiamonShop.Data.Services
             updateJewelry.Price = jewelryDto.Price;
             _repositoryManager.Jewelry.UpdateJewelry(id, updateJewelry);
 
-            var product = new Product()
+            var product = await _repositoryManager.Product.GetByIdAsync(id);
+            Category category = null;
+            if (product == null) throw new ArgumentException("not found product");
+            product.Name = jewelryDto.Name;
+            if (product.Category.Name != jewelryDto.Name)
             {
-                Name = jewelryDto.Name
-            };
-            _repositoryManager.Product.UpdateProduct(id, product);
+                category = await _repositoryManager.Category.GetByNameAsync(jewelryDto.ProductType);
 
+                product.CategoryId = category != null ? category.CategoryId : throw new ArgumentNullException(nameof(category),
+                        "Category cannot be null");
+
+            }
+            _repositoryManager.Product.Update(product);
+            await _repositoryManager.SaveAsync();
             return true;
         }
     }

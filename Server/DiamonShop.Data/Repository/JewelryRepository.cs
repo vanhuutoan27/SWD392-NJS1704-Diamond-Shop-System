@@ -43,7 +43,6 @@ namespace DiamonShop.Data.Repository
         public void UpdateJewelry(Guid id, Jewelry jewelry)
         {
             _context.Update(jewelry);
-            _context.SaveChanges();
         }
     }
 }

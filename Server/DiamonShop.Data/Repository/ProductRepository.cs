@@ -18,7 +18,6 @@ namespace DiamonShop.Data.Repository
             {
                 productFromDb.Name = product.Name;
             }
-            _context.SaveChanges();
         }
     }
 }
