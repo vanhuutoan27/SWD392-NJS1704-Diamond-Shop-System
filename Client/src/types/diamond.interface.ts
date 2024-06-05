@@ -57,10 +57,11 @@ export const IDiamondClarity = [
   "VVS2",
   "VS1",
   "VS2",
+  "VS3",
   "SI1",
   "SI2",
   "I1",
-  "I2",
+  // "I2",
 ];
 
 export const IDiamondSize = [
@@ -74,7 +75,7 @@ export const IDiamondSize = [
 
 export const IDiamondCertification = ["GIA", "IGI", "HRD", "AGS", "EGL"];
 
-export const IDiamondFluorescence = ["None", "Faint", "Medium", "Strong"];
+export const IDiamondFluorescence = ["NONE", "FAINT", "MEDIUM", "STRONG"];
 
 export const IDiamondQualityOfCut = [
   "Excellent",

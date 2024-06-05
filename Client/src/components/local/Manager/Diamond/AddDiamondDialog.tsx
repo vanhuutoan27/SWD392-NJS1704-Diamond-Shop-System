@@ -37,6 +37,7 @@ import {
   IDiamondQualityOfCut,
   IDiamondCertification,
 } from "@/types/diamond.interface";
+import { Plus } from "lucide-react";
 
 type DiamondFormValues = z.infer<typeof diamondSchema>;
 
@@ -126,6 +127,7 @@ function AddDiamondDialog() {
         onClick={() => setIsDialogOpen(true)}
         className="flex gap-2 bg-gray-800 pl-5 hover:bg-gray-900"
       >
+        <Plus size={20} />
         Add Diamond
       </Button>
 

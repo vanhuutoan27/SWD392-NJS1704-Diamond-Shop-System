@@ -67,19 +67,24 @@ export function DataTable<TData, TValue>({
 
   return (
     <>
-      <div className="mb-4 flex items-center justify-between gap-4">
-        <div className="relative flex w-full items-center py-4">
-          <Search className="absolute left-3 mb-1" size={16} />
-          <Input
-            placeholder="Search Jewelry by ID..."
-            value={
-              (table.getColumn("jewelryId")?.getFilterValue() as string) ?? ""
-            }
-            onChange={(event) =>
-              table.getColumn("jewelryId")?.setFilterValue(event.target.value)
-            }
-            className="w-[400px] max-w-sm border border-secondary bg-white pl-10"
-          />
+      <div className="mb-8 flex items-center justify-between gap-4">
+        <div className="flex w-full items-center gap-4">
+          <div className="relative flex w-full items-center">
+            <Search
+              className="absolute left-3 top-1/2 mb-1 -translate-y-1/2"
+              size={16}
+            />
+            <Input
+              placeholder="Search Jewelry by ID..."
+              value={
+                (table.getColumn("jewelryId")?.getFilterValue() as string) ?? ""
+              }
+              onChange={(event) =>
+                table.getColumn("jewelryId")?.setFilterValue(event.target.value)
+              }
+              className="w-[400px] max-w-sm border border-secondary bg-white pl-10"
+            />
+          </div>
         </div>
 
         <div className="flex gap-4">

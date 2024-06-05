@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import diamoonAPI from "../lib/diamoonAPI";
-import { INewUser, IUser } from "@/types/user.interface";
+import { INewUser, IUpdateUser, IUser } from "@/types/user.interface";
+import { toast } from "sonner";
 
 export const useGetAllUsers = () => {
   return useQuery<IUser[]>({
@@ -33,6 +34,47 @@ export const usePostUser = () => {
     {
       onSuccess: () => {
         queryClient.invalidateQueries("users");
+      },
+    },
+  );
+};
+
+export const usePutUser = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation(
+    async (newUserData: IUpdateUser) => {
+      const { id, ...data } = newUserData;
+      const response = await diamoonAPI.put(`/User/${id}`, data);
+      return response.data;
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("users");
+        toast.success("Profile updated successfully");
+      },
+      onError: () => {
+        toast.error("Failed to update profile");
+      },
+    },
+  );
+};
+
+export const useChangeUserStatus = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation(
+    async (id: string) => {
+      const { data } = await diamoonAPI.put(`/User/change-status/${id}`);
+      return data;
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("users");
+        toast.success("User status changed successfully");
+      },
+      onError: () => {
+        toast.error("Failed to change user status");
       },
     },
   );

@@ -5,7 +5,6 @@ interface ProgressBarProps {
 function ProgressBar({ currentStep }: ProgressBarProps) {
   const items = [
     { title: "Information", color: "bg-primary" },
-    { title: "Shipping", color: "bg-primary" },
     { title: "Payment", color: "bg-primary" },
     { title: "Done", color: "bg-primary" },
   ];

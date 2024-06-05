@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import ProgressBar from "@/components/global/molecules/ProgressBar";
 import Section from "@/components/global/organisms/Section";
 import InformationForm from "@/components/local/Customer/Order/InformationForm";
-import ShippingForm from "@/components/local/Customer/Order/ShippingForm";
 import PaymentForm from "@/components/local/Customer/Order/PaymentForm";
 import ConfirmOrder from "@/components/local/Customer/Order/ConfirmOrder";
 import OrderSummary from "@/components/local/Customer/Order/OrderSummary";
@@ -93,9 +92,7 @@ function OrderPage() {
   const getButtonText = (tab: number) => {
     switch (tab) {
       case 0:
-        return "Continue To Choose Shipping Method";
-      case 1:
-        return "Continue To Payment";
+        return "Continue To Choose Payment Method";
       default:
         return "Complete Order";
     }
@@ -103,7 +100,6 @@ function OrderPage() {
 
   const tabs = [
     { component: InformationForm, label: "Information" },
-    { component: ShippingForm, label: "Shipping" },
     { component: PaymentForm, label: "Payment" },
     { component: ConfirmOrder, label: "Done" },
   ];
@@ -114,11 +110,11 @@ function OrderPage() {
     <div className="container">
       <Section pageName={"Check Out"} />
 
-      <div className="w-4/5 pr-8">
+      <div className="w-3/5 pr-8">
         <ProgressBar currentStep={tab + 1} />
       </div>
 
-      <div className="mt-20 flex w-full gap-8">
+      <div className="mt-16 flex w-full gap-8">
         <div className="w-3/5 rounded-md border-2 border-input bg-white p-5 shadow-md">
           <CurrentForm
             formData={formData}

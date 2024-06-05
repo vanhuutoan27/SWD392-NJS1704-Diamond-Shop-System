@@ -1,7 +1,7 @@
 import { cn, useIsAdminRoute } from "@/lib/utils";
 import { useParams } from "react-router-dom";
 import { IUser } from "@/types/user.interface";
-import SettingChangPhoto from "@/components/local/Customer/Setting/SettingChangPhoto";
+import SettingChangePhoto from "@/components/local/Customer/Setting/SettingChangePhoto";
 import SettingForm from "@/components/local/Customer/Setting/SettingForm";
 import { Loader } from "@/components/global/atoms/Loader";
 import Section from "@/components/global/organisms/Section";
@@ -44,7 +44,7 @@ function SettingPage() {
           <SettingForm user={userDetails} onSave={handleSave} />
         </div>
         <div className="w-1/3">
-          <SettingChangPhoto user={userDetails} onSave={handleSave} />
+          <SettingChangePhoto user={userDetails} onSave={handleSave} />
         </div>
       </div>
     </div>

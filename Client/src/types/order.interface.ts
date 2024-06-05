@@ -40,7 +40,7 @@ export interface InformationFormProps {
   >;
 }
 
-export interface ShippingFormProps {
+export interface PaymentFormProps {
   formData: FormData;
   provinces: Province[];
   districts: District[];

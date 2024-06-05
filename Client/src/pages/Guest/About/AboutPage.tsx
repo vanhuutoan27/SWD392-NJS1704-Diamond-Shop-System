@@ -3,6 +3,7 @@ import { Loader } from "@/components/global/atoms/Loader";
 import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
 import Section from "@/components/global/organisms/Section";
 import AboutInfo from "@/components/local/Guest/About/AboutInfo";
+import { tempUserData } from "@/constants/user";
 
 function AboutPage() {
   const { data: userData, isLoading, error } = useGetAllUsers();
@@ -11,7 +12,7 @@ function AboutPage() {
     return <Loader />;
   }
 
-  const adminData = userData.filter((user) => user.roles.includes("Admin"));
+  const adminData = tempUserData.filter((user) => user.roles.includes("Admin"));
 
   return (
     <div className="container">

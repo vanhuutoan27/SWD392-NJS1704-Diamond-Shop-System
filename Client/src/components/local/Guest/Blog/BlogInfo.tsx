@@ -26,7 +26,7 @@ function BlogInfo() {
             />
             <div
               className={`slow absolute inset-0 bg-black ${
-                hoveredIndex === index ? "opacity-50" : "opacity-0"
+                hoveredIndex === index ? "opacity-25" : "opacity-0"
               }`}
             ></div>
           </div>

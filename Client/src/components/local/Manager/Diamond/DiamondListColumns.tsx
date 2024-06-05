@@ -145,10 +145,10 @@ export const columns: ColumnDef<IDiamond>[] = [
     ),
     cell: ({ row }) => {
       const diamond = row.original;
-      const [isDialogOpen, setIsDialogOpen] = useState(false);
+      const [isViewDialogOpen, setIsViewDialogOpen] = useState(false);
 
       const handleViewDetailsClick = () => {
-        setIsDialogOpen(true);
+        setIsViewDialogOpen(true);
       };
 
       return (
@@ -178,10 +178,11 @@ export const columns: ColumnDef<IDiamond>[] = [
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          {isDialogOpen && (
+
+          {isViewDialogOpen && (
             <ViewDiamondDialog
               diamondId={diamond.diamondId}
-              onClose={() => setIsDialogOpen(false)}
+              onClose={() => setIsViewDialogOpen(false)}
             />
           )}
         </div>

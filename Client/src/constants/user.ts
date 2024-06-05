@@ -1,6 +1,6 @@
 import { IUser } from "@/types/user.interface";
 
-export const userData: IUser[] = [
+export const tempUserData: IUser[] = [
   {
     id: "U001",
     fullName: "Van Huu Toan",

@@ -12,7 +12,7 @@ export interface IUser {
 }
 
 export interface INewUser {
-  role?: string;
+  roles: string;
   email: string;
   fullName: string;
   password: string;
@@ -20,11 +20,19 @@ export interface INewUser {
   address: string;
 }
 
+export interface IUpdateUser {
+  id: string;
+  email: string;
+  fullName: string;
+  phone: string;
+  address: string;
+  role: string;
+}
+
 export interface IJwtPayload {
   id: string;
   email: string;
   fullname: string;
   roles: string;
-
   avatar: string;
 }

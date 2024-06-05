@@ -3,7 +3,13 @@
 import { formatDate } from "@/lib/utils";
 import { IUser } from "@/types/user.interface";
 import { ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown, Copy, Eye, MoreHorizontal } from "lucide-react";
+import {
+  ArrowUpDown,
+  Copy,
+  Eye,
+  MoreHorizontal,
+  UserRoundCog,
+} from "lucide-react";
 
 import { Button } from "@/components/global/atoms/button";
 import {
@@ -15,6 +21,9 @@ import {
 } from "@/components/global/atoms/dropdown-menu";
 import Chip from "@/components/global/atoms/Chip";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import ViewUserDialog from "./ViewUserDialog";
+import { useChangeUserStatus } from "@/api/userApi";
 
 export const columns: ColumnDef<IUser>[] = [
   {
@@ -110,7 +119,7 @@ export const columns: ColumnDef<IUser>[] = [
     },
     cell: (info) => {
       const value: boolean = info.getValue() as boolean;
-      console.log(value);
+      // console.log(value);
 
       return (
         <Chip
@@ -129,32 +138,62 @@ export const columns: ColumnDef<IUser>[] = [
     ),
     cell: ({ row }) => {
       const user = row.original;
+      const [isViewDialogOpen, setIsViewDialogOpen] = useState(false);
+
+      const { mutate: changeUserStatus } = useChangeUserStatus();
+
+      const handleStatusChange = () => {
+        changeUserStatus(user.id);
+      };
+
+      const handleViewDetailsClick = () => {
+        setIsViewDialogOpen(true);
+      };
 
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="ml-4 h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal size={20} />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="p-2">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => {
-                navigator.clipboard.writeText(user.id);
-              }}
-              className="text-sm"
-            >
-              <Copy size={16} className="mr-2" />
-              <span>Copy ID</span>
-            </DropdownMenuItem>
-            <DropdownMenuItem className="text-sm">
-              <Eye size={16} className="mr-2" />
-              <span>View Details</span>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <div>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="ml-4 h-8 w-8 p-0">
+                <span className="sr-only">Open menu</span>
+                <MoreHorizontal size={20} />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="p-2">
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuItem
+                onClick={() => {
+                  navigator.clipboard.writeText(user.id);
+                }}
+                className="text-sm"
+              >
+                <Copy size={16} className="mr-2" />
+                <span>Copy ID</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={handleStatusChange}
+                className="text-sm"
+              >
+                <UserRoundCog size={16} className="mr-2" />
+                <span>{user.isActive ? "Deactive" : "Active"}</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={handleViewDetailsClick}
+                className="text-sm"
+              >
+                <Eye size={16} className="mr-2" />
+                <span>View Details</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {isViewDialogOpen && (
+            <ViewUserDialog
+              userId={user.id}
+              onClose={() => setIsViewDialogOpen(false)}
+            />
+          )}
+        </div>
       );
     },
   },

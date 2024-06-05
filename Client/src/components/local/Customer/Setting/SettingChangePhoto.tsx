@@ -6,12 +6,12 @@ import UploadPhotoDialog from "./UploadPhotoDialog";
 import { toast } from "sonner";
 import { userAvatar } from "@/lib/constants";
 
-interface SettingChangPhotoProps {
+interface SettingChangePhotoProps {
   user: IUser;
   onSave: (user: IUser) => void;
 }
 
-const SettingChangPhoto: React.FC<SettingChangPhotoProps> = ({
+const SettingChangePhoto: React.FC<SettingChangePhotoProps> = ({
   user,
   onSave,
 }) => {
@@ -107,4 +107,4 @@ const SettingChangPhoto: React.FC<SettingChangPhotoProps> = ({
   );
 };
 
-export default SettingChangPhoto;
+export default SettingChangePhoto;
