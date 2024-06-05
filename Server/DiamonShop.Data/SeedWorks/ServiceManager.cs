@@ -1,15 +1,16 @@
 ﻿using AutoMapper;
 using DiamonShop.Core.SeedWorks;
 using DiamonShop.Core.services;
+using DiamonShop.Data.Services;
 
-namespace DiamonShop.Data.Services
+namespace DiamonShop.Data.SeedWorks
 {
     public class ServiceManager : IServiceManager
     {
         private readonly Lazy<IProductService> _productService;
         private readonly Lazy<IDiamondService> _diamondService;
         private readonly Lazy<IJewelryService> _jewelryService;
-        public ServiceManager(IRepositoryManager repositoryManager, IMapper mapper )
+        public ServiceManager(IRepositoryManager repositoryManager, IMapper mapper)
         {
             _productService = new Lazy<IProductService>(() => new ProductService(repositoryManager, mapper));
             _diamondService = new Lazy<IDiamondService>(() => new DiamondService(repositoryManager, mapper));

@@ -20,6 +20,7 @@ namespace DiamonShop.API.Controllers
             _service = serviceManager;
             _mapper = mapper;
         }
+
         [HttpGet]
         public async Task<ActionResult<ResultModel>> GetAllJewelries()
         {

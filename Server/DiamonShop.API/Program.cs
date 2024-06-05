@@ -2,6 +2,7 @@ using AutoMapper;
 using AutoMapper.Internal;
 using DiamonShop.API;
 using DiamonShop.API.Extensions;
+using DiamonShop.API.GlobalExceptionHandler;
 using DiamonShop.API.Mappings;
 using DiamonShop.API.Services;
 using DiamonShop.Core.ConfigOptions;
@@ -10,9 +11,11 @@ using DiamonShop.Core.SeedWorks;
 using DiamonShop.Core.services;
 using DiamonShop.Data;
 using DiamonShop.Data.SeedWorks;
-using DiamonShop.Data.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -65,6 +68,9 @@ var mapperConfig = new MapperConfiguration(mc =>
 });
 builder.Services.AddAutoMapper(cfg => cfg.Internal().MethodMappingEnabled = false, typeof(MappingConfig).Assembly);
 
+//add GlobalError
+builder.Services.AddExceptionHandler<GlobalExceptionHandlers>();
+
 //add Cors
 builder.Services.ConfigureCors();
 
@@ -104,6 +110,39 @@ builder.Services.AddSwaggerGen(opt =>
         }
     });
 });
+//builder.Services.AddSwaggerGen(c =>
+//{
+//    c.CustomOperationIds(apiDesc =>
+//    {
+//        return apiDesc.TryGetMethodInfo(out MethodInfo methodInfo) ? methodInfo.Name : null;
+//    });
+//    c.SwaggerDoc("AdminAPI", new Microsoft.OpenApi.Models.OpenApiInfo
+//    {
+//        Version = "v1",
+//        Title = "API for Administrators",
+//        Description = "API for CMS core domain. This domain keeps track of campaigns, campaign rules, and campaign execution."
+//    });
+//    //c.ParameterFilter<SwaggerNullableParameterFilter>();
+//});
+//add authen 
+builder.Services.AddAuthentication(o =>
+{
+    o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer("mySchema", cfg =>
+{
+    cfg.RequireHttpsMetadata = false;
+    cfg.SaveToken = true;
+    cfg.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateLifetime = true,
+        ClockSkew = TimeSpan.FromSeconds(0),
+        ValidIssuer = configuration["JwtTokenSettings:Issuer"],
+        ValidAudience = configuration["JwtTokenSettings:Issuer"],
+        //IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtTokenSettings:Key"]))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetSection("JwtTokenSettings:Key").Value))
+    };
+});
 
 var app = builder.Build();
 
@@ -113,7 +152,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseExceptionHandler(opt => { });
 app.UseHttpsRedirection();
 app.UseCors("CorsPolicy");
 

@@ -174,8 +174,11 @@ IMapper mapper)
                 user.IsActive = false;
                 user.LockoutEnabled = true;
             }
-            user.IsActive = true;
-            user.LockoutEnabled = false;
+            else
+            {
+                user.IsActive = true;
+                user.LockoutEnabled = false;
+            }
             var result = await _userManager.UpdateAsync(user);
             if (!result.Succeeded) { return BadRequest(result.Errors); }
             resp.IsSuccess = true;
