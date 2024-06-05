@@ -107,7 +107,7 @@ IMapper mapper)
             if (roles.FirstOrDefault() != request.Role)
             {
                 await _repositoryManager.User.RemoveUserFromRoleAsync(UserToEdit.Id, roles.ToArray());
-                _repositoryManager.Save();
+                _repositoryManager.SaveAsync();
                 var addedResult = await _userManager.AddToRoleAsync(UserToEdit, request.Role);
                 if (!addedResult.Succeeded)
                 {
@@ -174,8 +174,11 @@ IMapper mapper)
                 user.IsActive = false;
                 user.LockoutEnabled = true;
             }
-            user.IsActive = true;
-            user.LockoutEnabled = false;
+            else
+            {
+                user.IsActive = true;
+                user.LockoutEnabled = false;
+            }
             var result = await _userManager.UpdateAsync(user);
             if (!result.Succeeded) { return BadRequest(result.Errors); }
             resp.IsSuccess = true;

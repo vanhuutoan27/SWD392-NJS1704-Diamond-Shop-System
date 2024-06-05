@@ -4,5 +4,6 @@
     {
         IProductService ProductService { get; }
         IDiamondService DiamondService { get; }
+        IJewelryService JewelryService { get; }
     }
 }

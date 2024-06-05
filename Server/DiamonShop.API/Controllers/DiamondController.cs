@@ -1,12 +1,14 @@
 ﻿using DiamonShop.Core.Models.content.RequestModels;
 using DiamonShop.Core.Models.content.Respone;
 using DiamonShop.Core.services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DiamonShop.API.Controllers
 {
     [ApiController]
     [Route("/api/v1/Diamond")]
+    [Authorize]
     public class DiamondController : ControllerBase
     {
         private readonly IServiceManager _services;

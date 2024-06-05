@@ -31,5 +31,16 @@ namespace DiamonShop.Core.SeedWorks.Constants
             [Description("Xóa người dùng")]
             public const string Delete = "Permissions.Users.Delete";
         }
+        public static class Jewelrys
+        {
+            [Description("Xem người dùng")]
+            public const string View = "Permissions.Jewelrys.View";
+            [Description("Tạo người dùng")]
+            public const string Create = "Permissions.Jewelrys.Create";
+            [Description("Sửa người dùng")]
+            public const string Edit = "Permissions.Jewelrys.Edit";
+            [Description("Xóa người dùng")]
+            public const string Delete = "Permissions.Jewelrys.Delete";
+        }
     }
 }
