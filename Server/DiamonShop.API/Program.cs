@@ -1,4 +1,4 @@
-using AutoMapper;
+﻿using AutoMapper;
 using AutoMapper.Internal;
 using DiamonShop.API;
 using DiamonShop.API.Extensions;
@@ -51,6 +51,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 //config token 
 builder.Services.Configure<JwtTokenSettings>(configuration.GetSection(nameof(JwtTokenSettings)));
+
 builder.Services.AddScoped<SignInManager<AppUser>, SignInManager<AppUser>>();
 builder.Services.AddScoped<UserManager<AppUser>, UserManager<AppUser>>();
 builder.Services.AddScoped<ITokenService, TokenService>();
@@ -82,31 +83,31 @@ builder.Services.AddAuthen();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(opt =>
+builder.Services.AddSwaggerGen(options =>
 {
-    opt.SwaggerDoc("v1", new OpenApiInfo { Title = "MyAPI", Version = "v1" });
-    opt.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    options.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
     {
-        In = ParameterLocation.Header,
-        Description = "Please enter token",
         Name = "Authorization",
-        Type = SecuritySchemeType.Http,
+        In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+        Description = "Please enter your token with this format: ''Bearer YOUR_TOKEN''",
+        Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
         BearerFormat = "JWT",
         Scheme = "bearer"
     });
-
-    opt.AddSecurityRequirement(new OpenApiSecurityRequirement
+    options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
     {
         {
             new OpenApiSecurityScheme
             {
+                Name = "Bearer",
+                In = ParameterLocation.Header,
                 Reference = new OpenApiReference
                 {
-                    Type=ReferenceType.SecurityScheme,
-                    Id="Bearer"
+                    Id = "Bearer",
+                    Type = ReferenceType.SecurityScheme
                 }
             },
-            new string[]{}
+            new List<string>()
         }
     });
 });
@@ -127,6 +128,7 @@ builder.Services.AddSwaggerGen(opt =>
 //add authen 
 builder.Services.AddAuthentication(o =>
 {
+    o.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
     o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer("mySchema", cfg =>
@@ -135,14 +137,20 @@ builder.Services.AddAuthentication(o =>
     cfg.SaveToken = true;
     cfg.TokenValidationParameters = new TokenValidationParameters
     {
+        ValidateIssuer = false,
+        ValidateAudience = false,
         ValidateLifetime = true,
-        ClockSkew = TimeSpan.FromSeconds(0),
-        ValidIssuer = configuration["JwtTokenSettings:Issuer"],
-        ValidAudience = configuration["JwtTokenSettings:Issuer"],
+        ValidateIssuerSigningKey = true,
+        ClockSkew = TimeSpan.Zero,
+
+        //ValidIssuer = configuration["JwtTokenSettings:Issuer"],
+        //ValidAudience = configuration["JwtTokenSettings:Issuer"],
         //IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtTokenSettings:Key"]))
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetSection("JwtTokenSettings:Key").Value))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtTokenSettings:Key"]))
     };
 });
+
+
 
 var app = builder.Build();
 
@@ -152,9 +160,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors("CorsPolicy");
+
 app.UseExceptionHandler(opt => { });
 app.UseHttpsRedirection();
-app.UseCors("CorsPolicy");
 
 app.UseAuthentication();
 app.UseAuthorization();

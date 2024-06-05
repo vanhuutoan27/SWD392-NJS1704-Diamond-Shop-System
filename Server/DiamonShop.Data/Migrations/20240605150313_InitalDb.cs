@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DiamonShop.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class InitalDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -132,13 +132,13 @@ namespace DiamonShop.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    FullName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     RefreshToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RefreshTokenExpiryTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Dob = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Avatar = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     VipStartDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     VipExpireDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -216,6 +216,7 @@ namespace DiamonShop.Data.Migrations
                 columns: table => new
                 {
                     DiamondId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SkuID = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Shape = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Weight = table.Column<double>(type: "float", nullable: false),
                     ColorLevel = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -287,8 +288,8 @@ namespace DiamonShop.Data.Migrations
                 columns: table => new
                 {
                     JewelryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SkuID = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProductType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MainStoneSize = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     sideStoneType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     sideStoneQuantity = table.Column<int>(type: "int", nullable: false),

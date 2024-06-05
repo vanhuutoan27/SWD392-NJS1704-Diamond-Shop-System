@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DiamonShop.Data.Migrations
 {
     [DbContext(typeof(DiamondContext))]
-    [Migration("20240530142748_AddUserAddressAndEditRole")]
-    partial class AddUserAddressAndEditRole
+    [Migration("20240605150313_InitalDb")]
+    partial class InitalDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,16 +51,6 @@ namespace DiamonShop.Data.Migrations
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categorys");
-
-                    b.HasData(
-                        new
-                        {
-                            CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 5, 30, 21, 27, 47, 707, DateTimeKind.Local).AddTicks(17),
-                            DateModified = new DateTime(2024, 5, 30, 21, 27, 47, 707, DateTimeKind.Local).AddTicks(27),
-                            Description = "Kim Cuong vien nhap khau ",
-                            Name = "Kim Cương Viên"
-                        });
                 });
 
             modelBuilder.Entity("DiamonShop.Core.Domain.Content.Diamond", b =>
@@ -104,59 +94,16 @@ namespace DiamonShop.Data.Migrations
                     b.Property<double>("Size")
                         .HasColumnType("float");
 
+                    b.Property<string>("SkuID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<double>("Weight")
                         .HasColumnType("float");
 
                     b.HasKey("DiamondId");
 
                     b.ToTable("Diamonds");
-
-                    b.HasData(
-                        new
-                        {
-                            DiamondId = new Guid("e655174b-f444-4ab8-baa8-71ac382d73df"),
-                            Certification = "GIA",
-                            Clarity = "VVS2",
-                            ColorLevel = "F",
-                            DateCreated = new DateTime(2024, 5, 30, 21, 27, 47, 707, DateTimeKind.Local).AddTicks(179),
-                            DateModified = new DateTime(2024, 5, 30, 21, 27, 47, 707, DateTimeKind.Local).AddTicks(179),
-                            Fluorescence = "MEDIUM",
-                            Price = 535790600.0,
-                            QualityOfCut = "Excellent",
-                            Shape = "Pear",
-                            Size = 4.4000000000000004,
-                            Weight = 1.5
-                        },
-                        new
-                        {
-                            DiamondId = new Guid("4f5cbe8a-a04a-484f-978d-4b26d2979063"),
-                            Certification = "GIA",
-                            Clarity = "VS3",
-                            ColorLevel = "D",
-                            DateCreated = new DateTime(2024, 5, 30, 21, 27, 47, 707, DateTimeKind.Local).AddTicks(182),
-                            DateModified = new DateTime(2024, 5, 30, 21, 27, 47, 707, DateTimeKind.Local).AddTicks(182),
-                            Fluorescence = "MEDIUM",
-                            Price = 21924560.0,
-                            QualityOfCut = "Excellent",
-                            Shape = "Round",
-                            Size = 4.4000000000000004,
-                            Weight = 2.5
-                        },
-                        new
-                        {
-                            DiamondId = new Guid("005da949-dd83-438b-9ee9-aea012d87068"),
-                            Certification = "GIA",
-                            Clarity = "IF",
-                            ColorLevel = "D",
-                            DateCreated = new DateTime(2024, 5, 30, 21, 27, 47, 707, DateTimeKind.Local).AddTicks(184),
-                            DateModified = new DateTime(2024, 5, 30, 21, 27, 47, 707, DateTimeKind.Local).AddTicks(184),
-                            Fluorescence = "MEDIUM",
-                            Price = 32422800.0,
-                            QualityOfCut = "Excellent",
-                            Shape = "Round",
-                            Size = 4.2999999999999998,
-                            Weight = 2.7000000000000002
-                        });
                 });
 
             modelBuilder.Entity("DiamonShop.Core.Domain.Content.Image", b =>
@@ -239,7 +186,7 @@ namespace DiamonShop.Data.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<string>("ProductType")
+                    b.Property<string>("SkuID")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -374,41 +321,6 @@ namespace DiamonShop.Data.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            ProductId = new Guid("e655174b-f444-4ab8-baa8-71ac382d73df"),
-                            CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 5, 30, 21, 27, 47, 707, DateTimeKind.Local).AddTicks(97),
-                            DateModified = new DateTime(2024, 5, 30, 21, 27, 47, 707, DateTimeKind.Local).AddTicks(98),
-                            Description = "Kinh cương tự nhiên 100%",
-                            Name = "Kim Cương Viên",
-                            Price = 535790600.0,
-                            Status = 0
-                        },
-                        new
-                        {
-                            ProductId = new Guid("4f5cbe8a-a04a-484f-978d-4b26d2979063"),
-                            CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 5, 30, 21, 27, 47, 707, DateTimeKind.Local).AddTicks(100),
-                            DateModified = new DateTime(2024, 5, 30, 21, 27, 47, 707, DateTimeKind.Local).AddTicks(101),
-                            Description = "Kinh cương tự nhiên 99%",
-                            Name = "Kim Cương Viên",
-                            Price = 21924560.0,
-                            Status = 0
-                        },
-                        new
-                        {
-                            ProductId = new Guid("005da949-dd83-438b-9ee9-aea012d87068"),
-                            CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 5, 30, 21, 27, 47, 707, DateTimeKind.Local).AddTicks(103),
-                            DateModified = new DateTime(2024, 5, 30, 21, 27, 47, 707, DateTimeKind.Local).AddTicks(103),
-                            Description = "Kinh cương tự nhiên 98%",
-                            Name = "Kim Cương Viên",
-                            Price = 32422800.0,
-                            Status = 0
-                        });
                 });
 
             modelBuilder.Entity("DiamonShop.Core.Domain.Identity.AppRole", b =>
@@ -434,36 +346,6 @@ namespace DiamonShop.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("322488f9-7aa9-49b0-b2b8-fd98b7b260fc"),
-                            DisplayName = "Khách Hàng",
-                            Name = "Customer",
-                            NormalizedName = "CUSTOMER"
-                        },
-                        new
-                        {
-                            Id = new Guid("c0278115-8549-4fad-890a-44f8e8fcc022"),
-                            DisplayName = "Quản Lí",
-                            Name = "Manager",
-                            NormalizedName = "MANAGER"
-                        },
-                        new
-                        {
-                            Id = new Guid("ab8e4032-2d95-45cc-89c1-c039e9e8bc39"),
-                            DisplayName = "Nhân Viên Giao Hàng",
-                            Name = "DeliveryStaff",
-                            NormalizedName = "DELIVERYSTAFF"
-                        },
-                        new
-                        {
-                            Id = new Guid("1401744d-0421-41eb-b9d6-f888aaccca91"),
-                            DisplayName = "Nhân Viên Bán Hàng",
-                            Name = "SaleStaff",
-                            NormalizedName = "SALESTAFF"
-                        });
                 });
 
             modelBuilder.Entity("DiamonShop.Core.Domain.Identity.AppUser", b =>
