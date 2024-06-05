@@ -41,7 +41,7 @@ function SettingPage() {
 
       <div className="flex w-full flex-col gap-8 md:flex-row">
         <div className="w-2/3">
-          <SettingForm user={userDetails} onSave={handleSave} />
+          <SettingForm user={userDetails} />
         </div>
         <div className="w-1/3">
           <SettingChangePhoto user={userDetails} onSave={handleSave} />

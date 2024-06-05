@@ -7,7 +7,7 @@ import {
 
 import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
 import Section from "@/components/global/organisms/Section";
-import { userData } from "@/constants/user";
+import { tempUserData } from "@/constants/user";
 import { formatInvoiceData, getProductData } from "@/lib/utils";
 import { ICart, ICartType } from "@/types/cart.interface";
 import { useParams } from "react-router-dom";
@@ -18,7 +18,7 @@ import InvoiceItem from "@/components/local/Customer/Invoice/InvoiceItem";
 function InvoicePage() {
   const { userId } = useParams<{ userId: string }>();
 
-  const billingToUser = userData.find((u) => u.id === userId);
+  const billingToUser = tempUserData.find((u) => u.id === userId);
 
   const invoiceData = {
     invoiceId: "DIAMOON27082003",
