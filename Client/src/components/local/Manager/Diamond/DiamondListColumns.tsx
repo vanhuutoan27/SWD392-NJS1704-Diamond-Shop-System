@@ -121,7 +121,9 @@ export const columns: ColumnDef<IDiamond>[] = [
         <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
       </div>
     ),
-    cell: (info) => <span>{info.getValue() as string}</span>,
+    cell: (info) => (
+      <span className="uppercase">{info.getValue() as string}</span>
+    ),
   },
   {
     accessorKey: "qualityOfCut",

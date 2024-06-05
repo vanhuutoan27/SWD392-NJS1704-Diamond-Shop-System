@@ -28,7 +28,7 @@ function DiamondPage() {
   const [selectedClarity, setSelectedClarity] = useState("");
 
   const [filteredDiamonds, setFilteredDiamonds] = useState<IDiamond[]>([]);
-  const [rowsToShow, setRowsToShow] = useState(5);
+  const [rowsToShow, setRowsToShow] = useState(10);
 
   useEffect(() => {
     if (diamondData) {
@@ -49,7 +49,7 @@ function DiamondPage() {
     setSelectedClarity(clarity);
 
   const handleShowMore = () => {
-    setRowsToShow((prev) => prev + 5);
+    setRowsToShow((prev) => prev + 10);
   };
 
   // Function to parse price range
@@ -116,7 +116,7 @@ function DiamondPage() {
     });
 
     setFilteredDiamonds(filteredData || []);
-    setRowsToShow(5);
+    setRowsToShow(10);
   };
 
   // Function to reset all filters
@@ -130,7 +130,7 @@ function DiamondPage() {
     setSelectedClarity("");
 
     setFilteredDiamonds(diamondData || []);
-    setRowsToShow(5);
+    setRowsToShow(10);
 
     setTimeout(() => {
       setIsReset(false);

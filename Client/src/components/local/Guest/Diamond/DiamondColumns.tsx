@@ -141,7 +141,7 @@ export const columns: ColumnDef<IDiamond>[] = [
     },
     cell: (info) => {
       const value: string = info.getValue() as string;
-      return <div className="text-center">{value}</div>;
+      return <div className="text-center uppercase">{value}</div>;
     },
   },
   {
