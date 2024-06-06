@@ -4,6 +4,7 @@ using DiamonShop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DiamonShop.Data.Migrations
 {
     [DbContext(typeof(DiamondContext))]
-    partial class DiamondContextModelSnapshot : ModelSnapshot
+    [Migration("20240605174107_SeedData")]
+    partial class SeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,37 +56,37 @@ namespace DiamonShop.Data.Migrations
                         new
                         {
                             CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2723),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2737),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4797),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4811),
                             Description = "Kim Cuong vien nhap khau ",
                             Name = "Diamond"
                         },
                         new
                         {
                             CategoryId = new Guid("420fcf35-560e-4fc9-86db-7ac3c5c7a38c"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2742),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2742),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4818),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4818),
                             Name = "Pendant"
                         },
                         new
                         {
                             CategoryId = new Guid("419ca5be-f464-48ab-a7f4-b756673d28af"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2744),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2745),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4821),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4821),
                             Name = "Ring"
                         },
                         new
                         {
                             CategoryId = new Guid("c9522945-fec5-417f-90da-820cc66aaf6c"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2746),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2747),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4823),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4824),
                             Name = "Bracelet"
                         },
                         new
                         {
                             CategoryId = new Guid("131ff973-ac23-49d3-8880-04498fba1fa8"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2748),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2748),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4826),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4827),
                             Name = "Earrings"
                         });
                 });
@@ -151,8 +154,8 @@ namespace DiamonShop.Data.Migrations
                             Certification = "GIA",
                             Clarity = "IF",
                             ColorLevel = "E",
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2997),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2997),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5099),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5100),
                             Fluorescence = "None",
                             Price = 13500000.0,
                             ProductType = "Diamond",
@@ -168,8 +171,8 @@ namespace DiamonShop.Data.Migrations
                             Certification = "AGS",
                             Clarity = "VS2",
                             ColorLevel = "D",
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3000),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3000),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5103),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5104),
                             Fluorescence = "Faint",
                             Price = 83000000.0,
                             ProductType = "Diamond",
@@ -185,8 +188,8 @@ namespace DiamonShop.Data.Migrations
                             Certification = "EGL",
                             Clarity = "I2",
                             ColorLevel = "F",
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3002),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3003),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5107),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5107),
                             Fluorescence = "Medium",
                             Price = 470000000.0,
                             ProductType = "Diamond",
@@ -202,8 +205,8 @@ namespace DiamonShop.Data.Migrations
                             Certification = "HRD",
                             Clarity = "VVS1",
                             ColorLevel = "H",
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3005),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3005),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5110),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5111),
                             Fluorescence = "Strong",
                             Price = 364000000.0,
                             ProductType = "Diamond",
@@ -219,8 +222,8 @@ namespace DiamonShop.Data.Migrations
                             Certification = "IGI",
                             Clarity = "SL1",
                             ColorLevel = "J",
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3008),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3008),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5115),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5115),
                             Fluorescence = "Faint",
                             Price = 29400000.0,
                             ProductType = "Diamond",
@@ -236,8 +239,8 @@ namespace DiamonShop.Data.Migrations
                             Certification = "GIA",
                             Clarity = "SL2",
                             ColorLevel = "I",
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3015),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3016),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5118),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5119),
                             Fluorescence = "Strong",
                             Price = 15900000.0,
                             ProductType = "Diamond",
@@ -253,8 +256,8 @@ namespace DiamonShop.Data.Migrations
                             Certification = "AGS",
                             Clarity = "I2",
                             ColorLevel = "K",
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3018),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3018),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5121),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5122),
                             Fluorescence = "Medium",
                             Price = 615000000.0,
                             ProductType = "Diamond",
@@ -270,8 +273,8 @@ namespace DiamonShop.Data.Migrations
                             Certification = "EGL",
                             Clarity = "IF",
                             ColorLevel = "L",
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3020),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3020),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5124),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5125),
                             Fluorescence = "None",
                             Price = 268000000.0,
                             ProductType = "Diamond",
@@ -287,8 +290,8 @@ namespace DiamonShop.Data.Migrations
                             Certification = "IGI",
                             Clarity = "IF",
                             ColorLevel = "G",
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3022),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3023),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5128),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5128),
                             Fluorescence = "None",
                             Price = 61000000.0,
                             ProductType = "Diamond",
@@ -304,8 +307,8 @@ namespace DiamonShop.Data.Migrations
                             Certification = "GIA",
                             Clarity = "VVS2",
                             ColorLevel = "M",
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3025),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3026),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5131),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5132),
                             Fluorescence = "Medium",
                             Price = 26000000.0,
                             ProductType = "Diamond",
@@ -321,8 +324,8 @@ namespace DiamonShop.Data.Migrations
                             Certification = "HRD",
                             Clarity = "VS1",
                             ColorLevel = "E",
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3028),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3028),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5134),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5135),
                             Fluorescence = "Strong",
                             Price = 668350000.0,
                             ProductType = "Diamond",
@@ -338,8 +341,8 @@ namespace DiamonShop.Data.Migrations
                             Certification = "HRD",
                             Clarity = "I1",
                             ColorLevel = "K",
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3030),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3031),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5137),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5138),
                             Fluorescence = "Strong",
                             Price = 392740000.0,
                             ProductType = "Diamond",
@@ -355,8 +358,8 @@ namespace DiamonShop.Data.Migrations
                             Certification = "AGS",
                             Clarity = "VVS2",
                             ColorLevel = "J",
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3033),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3034),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5140),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5141),
                             Fluorescence = "Faint",
                             Price = 21000000.0,
                             ProductType = "Diamond",
@@ -372,8 +375,8 @@ namespace DiamonShop.Data.Migrations
                             Certification = "EGL",
                             Clarity = "VVS1",
                             ColorLevel = "K",
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3036),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3036),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5143),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5144),
                             Fluorescence = "None",
                             Price = 105740000.0,
                             ProductType = "Diamond",
@@ -389,8 +392,8 @@ namespace DiamonShop.Data.Migrations
                             Certification = "IGI",
                             Clarity = "I1",
                             ColorLevel = "L",
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3038),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3039),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5146),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5147),
                             Fluorescence = "Strong",
                             Price = 292740000.0,
                             ProductType = "Diamond",
@@ -433,167 +436,167 @@ namespace DiamonShop.Data.Migrations
                         new
                         {
                             ImageId = new Guid("c20d846c-a73b-4356-8736-a51273667bee"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3219),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5343),
                             ProductId = new Guid("9f3519c6-1df4-4125-bbef-8e7825425dcd"),
                             Url = "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FJewelry%2FJ003_1.jpg?alt=media&token=ac90a06a-e325-4d08-bf75-5d6078da28f4"
                         },
                         new
                         {
-                            ImageId = new Guid("e2dbf1b2-5783-47ad-a706-984517e5ea64"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(3305),
+                            ImageId = new Guid("b1e19408-348a-427e-8937-1273ea69c979"),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5377),
                             ProductId = new Guid("9f3519c6-1df4-4125-bbef-8e7825425dcd"),
                             Url = "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FJewelry%2FJ003_2.jpg?alt=media&token=7a80ce7c-4073-46f7-a1e9-aa9d2196bdd6"
                         },
                         new
                         {
-                            ImageId = new Guid("41e23a43-884d-4bcf-aac0-530dfe83d90c"),
+                            ImageId = new Guid("f2f27a01-aa7c-4fed-a3c4-2df4aacec2a3"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = new Guid("c2bc12a6-e878-4da0-9b70-656cc94f3316"),
                             Url = "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FJewelry%2FJ003_3.jpg?alt=media&token=801a85ce-434c-4eee-9652-3672d8bb4482"
                         },
                         new
                         {
-                            ImageId = new Guid("612edaa3-e864-45d2-bb02-872caacebd5d"),
+                            ImageId = new Guid("52e4dd79-147a-4875-9408-c70231740589"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = new Guid("c2bc12a6-e878-4da0-9b70-656cc94f3316"),
                             Url = "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FJewelry%2FJ003_4.jpg?alt=media&token=f0761d38-c205-48d8-89fd-84039af48ddf"
                         },
                         new
                         {
-                            ImageId = new Guid("d13b79a7-ce04-4426-a253-d4e5ac223d6f"),
+                            ImageId = new Guid("3ce84eaf-cfef-41d4-99d1-98ecc514c488"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = new Guid("af32b397-0dc4-46fa-aa7f-eb31bffd2821"),
                             Url = "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FJewelry%2FJ004_1.jpg?alt=media&token=c8ef04f8-2a5e-4b64-a10e-b3693616f8a3"
                         },
                         new
                         {
-                            ImageId = new Guid("aeff1391-5b29-434b-bc42-3bf648a58185"),
+                            ImageId = new Guid("1ac49f5e-b02e-42b6-a205-6c4ab11c062b"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = new Guid("af32b397-0dc4-46fa-aa7f-eb31bffd2821"),
                             Url = "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FJewelry%2FJ004_4.jpg?alt=media&token=164f4d10-12f3-442c-81d2-eed699c79bd5"
                         },
                         new
                         {
-                            ImageId = new Guid("4c9410dd-c49e-473a-a8ab-580ec7259019"),
+                            ImageId = new Guid("92e7e2d1-64d2-4da3-8138-c200e8b287da"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = new Guid("4fd47f59-6149-48c2-b1ad-e454438d08c3"),
                             Url = "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FJewelry%2Fring1%20m1.jpg?alt=media&token=3788a61b-0bb2-40cd-a27f-da6d6c078939"
                         },
                         new
                         {
-                            ImageId = new Guid("a5cc5448-1490-4f10-94cb-838360321bec"),
+                            ImageId = new Guid("2225cd32-d47f-4a03-8259-1c07edd53904"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = new Guid("4fd47f59-6149-48c2-b1ad-e454438d08c3"),
                             Url = "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FJewelry%2Fring1%20m2.jpg?alt=media&token=001430c6-ef62-4db7-96cf-678ebcd6dea5"
                         },
                         new
                         {
-                            ImageId = new Guid("b9cf6191-59e5-48ef-8a7f-edd1e37ca91e"),
+                            ImageId = new Guid("a3e688c9-a8e1-423a-953b-b9c7580ff618"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = new Guid("6abb1f7d-1bab-4405-8f72-a817c2fe9b05"),
                             Url = "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FJewelry%2Fring2%20m1.jpg?alt=media&token=1c3dcb9b-9ba2-49e4-a39b-c6c7fa428bc6"
                         },
                         new
                         {
-                            ImageId = new Guid("5b174d04-7bb2-4cd1-a255-7ee6d22fc830"),
+                            ImageId = new Guid("2a0672a0-fbf6-4863-8bc6-3ffb5a70c9ce"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = new Guid("6abb1f7d-1bab-4405-8f72-a817c2fe9b05"),
                             Url = "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FJewelry%2Fring2%20m2.jpg?alt=media&token=c7c568ef-cd9b-4889-9fc2-96e478177e97"
                         },
                         new
                         {
-                            ImageId = new Guid("4b033141-3560-47e7-9a65-683c895ee9b7"),
+                            ImageId = new Guid("e2737961-1ee2-46a0-89a4-5cbb58a3eba2"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = new Guid("e8447232-f062-423c-ac95-eaad6fc8d8b1"),
                             Url = "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FJewelry%2Fring3%20m1.jpg?alt=media&token=ce8862c1-380a-479e-a0e9-58634fa2d68a"
                         },
                         new
                         {
-                            ImageId = new Guid("d4d8861e-d588-4667-83a4-d7d01d1e53fe"),
+                            ImageId = new Guid("0c9f5d62-7173-47f1-8901-0f7db4662aa0"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = new Guid("e8447232-f062-423c-ac95-eaad6fc8d8b1"),
                             Url = "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FJewelry%2Fring3%20m2.jpg?alt=media&token=235c27dd-1417-46da-82ee-af820e415790"
                         },
                         new
                         {
-                            ImageId = new Guid("ad6f7e03-7d36-4a80-b1f0-cd9fa8f3735c"),
+                            ImageId = new Guid("11ed27cf-789c-4030-8753-1e6e173cf1e7"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = new Guid("361c08c6-49c7-4da0-96c3-9062acd03bff"),
                             Url = "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FJewelry%2Fbra1%20m1.jpg?alt=media&token=ec5d2b70-753a-4485-a892-60c5c0938615"
                         },
                         new
                         {
-                            ImageId = new Guid("d8218aae-c430-47c2-a4d9-bcf08fd27b61"),
+                            ImageId = new Guid("224f3ba1-039e-40ff-a445-743d47ca1e23"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = new Guid("361c08c6-49c7-4da0-96c3-9062acd03bff"),
                             Url = "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FJewelry%2Fbra1%20m2.jpg?alt=media&token=7f01ab19-e4e8-42ea-8278-2ce5b7e50872"
                         },
                         new
                         {
-                            ImageId = new Guid("cc94e69a-ed43-4b7f-b127-eb894ec21310"),
+                            ImageId = new Guid("ecae5412-59fe-4e0a-9b70-f336affd7c01"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = new Guid("bce4345d-d1cb-4d01-b904-be38fcb9caca"),
                             Url = "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FJewelry%2Fbra2%20m1.jpg?alt=media&token=2144ca96-674c-454e-b5c4-9141e98af6d7"
                         },
                         new
                         {
-                            ImageId = new Guid("0cbed5e2-5cd1-4d73-af72-b976e54ea7f7"),
+                            ImageId = new Guid("b142b4b4-836f-4a67-82fc-8913ff9852d4"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = new Guid("bce4345d-d1cb-4d01-b904-be38fcb9caca"),
                             Url = "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FJewelry%2Fbra2%20m2.jpg?alt=media&token=f5167a68-4c7a-46cf-ad28-e352ab8481e5"
                         },
                         new
                         {
-                            ImageId = new Guid("2113b4b9-e0ed-439b-874e-1c1bf1e385e2"),
+                            ImageId = new Guid("9cfc4c4d-7453-4ed6-951b-3031c9712283"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = new Guid("1876fa93-1502-4d84-93ae-5ba6301d63cb"),
                             Url = "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FJewelry%2Fbra3%20m1.jpg?alt=media&token=5b52cbae-c5fd-4d97-8af8-5f2d5fb6df1b"
                         },
                         new
                         {
-                            ImageId = new Guid("38b09fa0-969f-42cc-80f0-58699e2030ab"),
+                            ImageId = new Guid("fe9dc59f-f3d8-4988-bd44-94063845baee"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = new Guid("1876fa93-1502-4d84-93ae-5ba6301d63cb"),
                             Url = "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FJewelry%2Fbra3%20m2.jpg?alt=media&token=33c0ae2b-4f6d-4864-879d-a1c08be6d412"
                         },
                         new
                         {
-                            ImageId = new Guid("b0247dd8-e276-4110-a615-d26f943c23c8"),
+                            ImageId = new Guid("288361e4-7aa1-49f8-be2d-a840766e764e"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = new Guid("734aab01-8668-4e5c-8afb-473b05fc52c0"),
                             Url = "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FJewelry%2FJ002_1.jpg?alt=media&token=e313cc02-5436-487a-9a3b-71f4985fb733"
                         },
                         new
                         {
-                            ImageId = new Guid("af78e943-01dd-44ae-b863-cc07e0569823"),
+                            ImageId = new Guid("b36718a2-12a7-49ac-a569-585b096fae7b"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = new Guid("734aab01-8668-4e5c-8afb-473b05fc52c0"),
                             Url = "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FJewelry%2FJ002_2.jpg?alt=media&token=a663022d-ce58-4774-a5ea-55089b414b4f"
                         },
                         new
                         {
-                            ImageId = new Guid("2de9f105-0b6e-409c-b502-c344089fcf86"),
+                            ImageId = new Guid("4069353e-095b-461e-941a-5ae97839d3eb"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = new Guid("1cc86444-85b6-4cd7-b002-afe58ca36a39"),
                             Url = "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FJewelry%2FJ001_1.jpg?alt=media&token=42eda424-48f5-4586-a7e6-fda26c5659be"
                         },
                         new
                         {
-                            ImageId = new Guid("a177f11a-e135-49c9-af7a-f09e4b111ad0"),
+                            ImageId = new Guid("5a7c66d8-af81-4327-8faf-0d2fcb0697ef"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = new Guid("1cc86444-85b6-4cd7-b002-afe58ca36a39"),
                             Url = "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FJewelry%2FJ001_2.jpg?alt=media&token=42dc5653-5240-4df1-9b39-c4d1975defd7"
                         },
                         new
                         {
-                            ImageId = new Guid("4c3cf25b-cf84-49fc-8f76-5a08d6fdf739"),
+                            ImageId = new Guid("bc73b6ad-0661-47cb-8575-0a2966ddfaa0"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = new Guid("5d411445-ba01-46d2-92a4-c690f1e19db4"),
                             Url = "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FJewelry%2FJ001_3.jpg?alt=media&token=fc95d920-491f-4c8d-a50a-681673bb929d"
                         },
                         new
                         {
-                            ImageId = new Guid("113e256a-43c4-460b-bb77-d93546d2b395"),
+                            ImageId = new Guid("1ebbd530-3e8b-4cf3-96dc-e3b0a0997b0e"),
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             ProductId = new Guid("5d411445-ba01-46d2-92a4-c690f1e19db4"),
                             Url = "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Products%2FJewelry%2FJ002_2.jpg?alt=media&token=a663022d-ce58-4774-a5ea-55089b414b4f"
@@ -979,298 +982,298 @@ namespace DiamonShop.Data.Migrations
                         {
                             ProductId = new Guid("e655174b-f444-4ab8-baa8-71ac382d73df"),
                             CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2837),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2837),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4918),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4919),
                             Description = "Kinh cương tự nhiên 100%",
                             Name = "Kim Cương Viên",
                             Price = 535790600.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("4f5cbe8a-a04a-484f-978d-4b26d2979063"),
                             CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2840),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2841),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4922),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4923),
                             Description = "Kinh cương tự nhiên 99%",
                             Name = "Kim Cương Viên",
                             Price = 21924560.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("005da949-dd83-438b-9ee9-aea012d87068"),
                             CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2843),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2843),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4925),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4926),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Kim Cương Viên",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("f376d66d-cf4a-4103-836f-43811290f18c"),
                             CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2845),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2845),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4928),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4929),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Kim Cương Viên",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("76b4bb4a-3435-4876-af7f-ffb9b0301e00"),
                             CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2847),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2848),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4931),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4932),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Kim Cương Viên",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("53edc0ad-98ad-41e9-9a1b-ada8950090cb"),
                             CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2849),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2850),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4934),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4935),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Kim Cương Viên",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("d2c73200-1ae0-4066-9475-0bda2e220d57"),
                             CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2852),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2853),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4939),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4939),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Kim Cương Viên",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("c9807cfc-98b8-4b48-9ca8-fd4c44b6933c"),
                             CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2854),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2855),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4941),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4942),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Kim Cương Viên",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("aa298dfb-004c-4008-b0a1-c143af1d15d5"),
                             CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2857),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2858),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4944),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4945),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Kim Cương Viên",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("87340bc6-a7cb-4a10-be79-77ae910348ef"),
                             CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2859),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2860),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4948),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4948),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Kim Cương Viên",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("751ea591-6934-4c48-a64b-bc64ef26c724"),
                             CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2862),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2863),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4951),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4951),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Kim Cương Viên",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("b9948c96-e456-471d-b523-159b7cf3242c"),
                             CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2864),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2865),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4958),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4958),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Kim Cương Viên",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("27c26fa1-c62b-408b-99a3-bd36531b2a16"),
                             CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2867),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2867),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4961),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4961),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Kim Cương Viên",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("84b37cf4-2ae5-4a07-a5dc-e2703f93c129"),
                             CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2869),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2869),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4964),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4964),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Kim Cương Viên",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("48b3b08e-d266-4eec-b82c-b71c7303c446"),
                             CategoryId = new Guid("816f2393-683e-428c-a4bb-2ba6e2e3f791"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2871),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2871),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4967),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4968),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Kim Cương Viên",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("9f3519c6-1df4-4125-bbef-8e7825425dcd"),
                             CategoryId = new Guid("420fcf35-560e-4fc9-86db-7ac3c5c7a38c"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2874),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2875),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4971),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4972),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Jewelry",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("c2bc12a6-e878-4da0-9b70-656cc94f3316"),
                             CategoryId = new Guid("420fcf35-560e-4fc9-86db-7ac3c5c7a38c"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2877),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2877),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4974),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4975),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Jewelry",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("af32b397-0dc4-46fa-aa7f-eb31bffd2821"),
                             CategoryId = new Guid("420fcf35-560e-4fc9-86db-7ac3c5c7a38c"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2879),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2879),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4977),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4977),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Jewelry",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("4fd47f59-6149-48c2-b1ad-e454438d08c3"),
                             CategoryId = new Guid("419ca5be-f464-48ab-a7f4-b756673d28af"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2881),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2881),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4980),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4980),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Jewelry",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("6abb1f7d-1bab-4405-8f72-a817c2fe9b05"),
                             CategoryId = new Guid("419ca5be-f464-48ab-a7f4-b756673d28af"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2883),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2883),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4983),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4983),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Jewelry",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("e8447232-f062-423c-ac95-eaad6fc8d8b1"),
                             CategoryId = new Guid("419ca5be-f464-48ab-a7f4-b756673d28af"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2885),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2886),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4986),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4986),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Jewelry",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("361c08c6-49c7-4da0-96c3-9062acd03bff"),
                             CategoryId = new Guid("c9522945-fec5-417f-90da-820cc66aaf6c"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2887),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2888),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4989),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4989),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Jewelry",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("bce4345d-d1cb-4d01-b904-be38fcb9caca"),
                             CategoryId = new Guid("c9522945-fec5-417f-90da-820cc66aaf6c"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2890),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2890),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4991),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4992),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Jewelry",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("1876fa93-1502-4d84-93ae-5ba6301d63cb"),
                             CategoryId = new Guid("c9522945-fec5-417f-90da-820cc66aaf6c"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2892),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2892),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4994),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4995),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Jewelry",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("734aab01-8668-4e5c-8afb-473b05fc52c0"),
                             CategoryId = new Guid("131ff973-ac23-49d3-8880-04498fba1fa8"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2894),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2894),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4997),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(4998),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Jewelry",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("1cc86444-85b6-4cd7-b002-afe58ca36a39"),
                             CategoryId = new Guid("131ff973-ac23-49d3-8880-04498fba1fa8"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2896),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2896),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5000),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5001),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Jewelry",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         },
                         new
                         {
                             ProductId = new Guid("5d411445-ba01-46d2-92a4-c690f1e19db4"),
                             CategoryId = new Guid("131ff973-ac23-49d3-8880-04498fba1fa8"),
-                            DateCreated = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2898),
-                            DateModified = new DateTime(2024, 6, 6, 16, 0, 43, 939, DateTimeKind.Local).AddTicks(2899),
+                            DateCreated = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5003),
+                            DateModified = new DateTime(2024, 6, 6, 0, 41, 7, 48, DateTimeKind.Local).AddTicks(5003),
                             Description = "Kinh cương tự nhiên 98%",
                             Name = "Jewelry",
                             Price = 32422800.0,
-                            Status = 1
+                            Status = 0
                         });
                 });
 

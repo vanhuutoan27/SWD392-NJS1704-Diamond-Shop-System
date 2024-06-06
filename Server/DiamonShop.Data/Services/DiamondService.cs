@@ -49,7 +49,7 @@ namespace DiamonShop.Data.Services
                 Description = "sdfsdfdsfsdf",
                 Price = 100000,
                 CategoryId = new Guid("816F2393-683E-428C-A4BB-2BA6E2E3F791"),
-                Status = EnumStatus.Status.Active,
+                Status = EnumStatus.Status.InActive,
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now
             };
@@ -64,26 +64,28 @@ namespace DiamonShop.Data.Services
         }
 
 
-        public async Task<IEnumerable<Diamond>> GetAllDiamond()
+        public async Task<IEnumerable<DiamondResponses>> GetAllDiamond()
         {
-            var diamonds = await _repositoryManager.Diamond.GetAllAsync();
+            var diamonds = await _repositoryManager.Diamond.GetAllDiamondAsync();
             if (diamonds == null)
             {
-                return Enumerable.Empty<Diamond>();
+                throw new Exception("Not Found List Diamonds");
             }
-            return diamonds;
+
+            return _mapper.Map<IEnumerable<DiamondResponses>>(diamonds);
 
         }
 
-        public async Task<Diamond> GetDiamondbyId(Guid id)
+        public async Task<DiamondResponses> GetDiamondbyId(Guid id)
         {
-            var diamondId = await _repositoryManager.Diamond.GetByIdAsync(id);
+            var diamondId = await _repositoryManager.Diamond.GetDiamondById(id);
 
             if (diamondId == null)
             {
                 return null;
             }
-            return diamondId;
+
+            return _mapper.Map<DiamondResponses>(diamondId);
 
         }
 

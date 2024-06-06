@@ -31,7 +31,10 @@ namespace DiamonShop.Data.Repository
 
         public async Task<IEnumerable<Jewelry>> GetAllJewelryAsync()
         {
-            return await _context.Jewelrys.Include(j => j.Product).ThenInclude(p => p.Category).ToListAsync();
+            return await _context.Jewelrys
+                .Include(j => j.Product).ThenInclude(p => p.Images)
+                .Include(j => j.Product).ThenInclude(p => p.Category)
+                .ToListAsync();
         }
 
         public async Task<Jewelry> GetJewelryAsync(Guid id)

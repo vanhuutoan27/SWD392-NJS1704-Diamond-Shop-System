@@ -12,6 +12,7 @@ namespace DiamonShop.Core.Domain.Content
 
         [Required]
         public string Name { get; set; }
+        public string ProductType { get; set; }
 
         [Required]
 

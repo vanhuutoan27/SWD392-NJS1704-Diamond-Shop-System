@@ -10,5 +10,6 @@ namespace DiamonShop.Core.Repository
         Task<IEnumerable<Jewelry>> GetAllJewelryAsync();
         Task<Jewelry> GetJewelryAsync(Guid id);
 
+
     }
 }
