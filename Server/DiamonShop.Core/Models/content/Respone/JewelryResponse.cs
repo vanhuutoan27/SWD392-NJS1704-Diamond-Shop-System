@@ -10,6 +10,7 @@ namespace DiamonShop.Core.Models.content.Respone
         public string SkuID { get; set; }
 
         public string JewelryName { get; set; }
+        public string ProductType { get; set; }
 
         public string jewelryCategory { get; set; }
         public string MainStoneSize { get; set; }
