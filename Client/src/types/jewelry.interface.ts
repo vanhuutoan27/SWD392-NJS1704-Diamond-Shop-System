@@ -1,4 +1,6 @@
 export interface IJewelry {
+  dateModified: string;
+  dateCreated: string;
   productType: string;
   jewelryId: string;
   skuID: string;
@@ -8,10 +10,10 @@ export interface IJewelry {
   mainStoneSize: string;
   sideStoneType: string;
   sideStoneQuantity: number;
-  sideStoneWeight: number;
+  stoneWeight: number;
   goldType: string;
   goldKarat: string;
-  goldWeight: string;
+  goldWeight: number;
   price: number;
   status: string;
 }

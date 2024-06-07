@@ -22,9 +22,10 @@ import {
   TableRow,
 } from "@/components/global/atoms/table";
 import { Input } from "@/components/global/atoms/input";
-import { Plus, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import { Button } from "@/components/global/atoms/button";
 import DataTablePagination from "@/components/global/molecules/DataTablePagination";
+import AddJewlryDialog from "./AddJewelryDialog";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -92,7 +93,7 @@ export function DataTable<TData, TValue>({
             <Import size={20} /> Import
           </Button> */}
           <Button className="flex gap-2 bg-gray-800 pl-5 hover:bg-gray-900">
-            <Plus size={20} /> Add Jewelry
+            <AddJewlryDialog />
           </Button>
         </div>
       </div>

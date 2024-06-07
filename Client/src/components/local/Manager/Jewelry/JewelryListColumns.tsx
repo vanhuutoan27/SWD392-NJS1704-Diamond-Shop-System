@@ -12,6 +12,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/global/atoms/dropdown-menu";
 import { IJewelry } from "@/types/jewelry.interface";
+import { useState } from "react";
+import ViewJewelryDialog from "./ViewJewelryDialog";
 
 export const columns: ColumnDef<IJewelry>[] = [
   {
@@ -123,30 +125,46 @@ export const columns: ColumnDef<IJewelry>[] = [
     ),
     cell: ({ row }) => {
       const jewelry = row.original;
+      const [isViewDialogOpen, setIsViewDialogOpen] = useState(false);
+
+      const handleViewDetailsClick = () => {
+        setIsViewDialogOpen(true);
+      };
 
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="ml-4 h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal size={20} />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="p-2">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(jewelry.jewelryId)}
-              className="text-sm"
-            >
-              <Copy size={16} className="mr-2" />
-              <span>Copy ID</span>
-            </DropdownMenuItem>
-            <DropdownMenuItem className="text-sm">
-              <Eye size={16} className="mr-2" />
-              <span>View Details</span>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <div>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="ml-4 h-8 w-8 p-0">
+                <span className="sr-only">Open menu</span>
+                <MoreHorizontal size={20} />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="p-2">
+              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuItem
+                onClick={() => navigator.clipboard.writeText(jewelry.jewelryId)}
+                className="text-sm"
+              >
+                <Copy size={16} className="mr-2" />
+                <span>Copy ID</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={handleViewDetailsClick}
+                className="text-sm"
+              >
+                <Eye size={16} className="mr-2" />
+                <span>View Details</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          {isViewDialogOpen && (
+            <ViewJewelryDialog
+              jewelryId={jewelry.jewelryId}
+              onClose={() => setIsViewDialogOpen(false)}
+            />
+          )}
+        </div>
       );
     },
   },
