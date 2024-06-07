@@ -50,6 +50,7 @@ namespace DiamonShop.Data.Services
                 Status = EnumStatus.Status.InActive,
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now
+                //updated
             };
             _repositoryManager.Product.Add(product);
             await _repositoryManager.SaveAsync();
