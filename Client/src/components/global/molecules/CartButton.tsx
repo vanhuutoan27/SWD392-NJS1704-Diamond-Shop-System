@@ -9,11 +9,15 @@ import {
 import { Separator } from "@/components/global/atoms/separator";
 import { diamondImage, vatPercentage } from "@/lib/constants";
 import { calculateCartTotal, formatCurrency, scrollToTop } from "@/lib/utils";
-import { ICart } from "@/types/cart.interface";
+import { ICart, IDiamondCart } from "@/types/cart.interface";
 import { ShoppingCart, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
+
+function isDiamondCart(item: ICart): item is IDiamondCart {
+  return item.productType === "Diamond";
+}
 
 function CartButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -78,19 +82,17 @@ function CartButton() {
                 <div className="flex h-14 w-14 items-center">
                   <Link
                     to={
-                      cartItem.productType === "Diamond"
+                      isDiamondCart(cartItem)
                         ? `/diamond/${cartItem.productId}`
                         : `/jewelry/${cartItem.productId}`
                     }
                   >
                     <img
                       src={
-                        cartItem.productType === "Diamond"
-                          ? diamondImage
-                          : cartItem.image
+                        isDiamondCart(cartItem) ? diamondImage : cartItem.image
                       }
                       alt={
-                        cartItem.productType === "Diamond"
+                        isDiamondCart(cartItem)
                           ? `Natural Diamond x ${cartItem.size}mm`
                           : cartItem.jewelryName
                       }
@@ -104,13 +106,13 @@ function CartButton() {
                     <div>
                       <Link
                         to={
-                          cartItem.productType === "Diamond"
+                          isDiamondCart(cartItem)
                             ? `/diamond/${cartItem.productId}`
                             : `/jewelry/${cartItem.productId}`
                         }
                         className="slow mr-2 text-sm font-semibold uppercase hover:text-secondary"
                       >
-                        {cartItem.productType === "Diamond"
+                        {isDiamondCart(cartItem)
                           ? `Natural Diamond x ${cartItem.size}mm`
                           : cartItem.jewelryName}
                       </Link>
