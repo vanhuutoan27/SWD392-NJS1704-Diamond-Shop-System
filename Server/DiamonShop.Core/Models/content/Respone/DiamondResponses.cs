@@ -1,38 +1,29 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using DiamonShop.Core.Shared.Enum;
+using System.Text.Json.Serialization;
 
-namespace DiamonShop.Core.Domain.Content
+namespace DiamonShop.Core.Models.content.Respone
 {
-    public class Diamond
+    public class DiamondResponses
     {
-        [Key, ForeignKey(nameof(Product))]
         public Guid DiamondId { get; set; }
         public string SkuID { get; set; }
-        [Required]
         public string Shape { get; set; }
         public string ProductType { get; set; }
-        [Required]
         public double Weight { get; set; }
-        [Required]
         public string ColorLevel { get; set; }
-        [Required]
+
         public string Clarity { get; set; }
-        [Required]
         public string Certification { get; set; }
-        [Required]
         public double Size { get; set; }
-        [Required]
         public string Fluorescence { get; set; }
-        [Required]
         public string QualityOfCut { get; set; }
-        [Required]
+        public string? Image { get; set; }
         public double Price { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime? DateModified { get; set; }
 
-
-        //naviagte 
-        public Product Product { get; set; }
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public EnumStatus.Status Status { get; set; }
 
     }
 }

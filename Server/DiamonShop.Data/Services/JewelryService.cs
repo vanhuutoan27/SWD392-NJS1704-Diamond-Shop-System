@@ -47,9 +47,10 @@ namespace DiamonShop.Data.Services
                 Price = createJewelryDto.Price,
                 CategoryId = category != null ? category.CategoryId : throw new ArgumentNullException(nameof(category),
                 "Category cannot be null"),
-                Status = EnumStatus.Status.Active,
+                Status = EnumStatus.Status.InActive,
                 DateCreated = DateTime.Now,
                 DateModified = DateTime.Now
+                //updated
             };
             _repositoryManager.Product.Add(product);
             await _repositoryManager.SaveAsync();
