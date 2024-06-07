@@ -17,13 +17,12 @@ function JewelryList({
 }: JewelryListProps) {
   return (
     <div className="mt-10">
-      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-2 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {jewelryItems.map((jewelry) => (
           <ProductCard
             key={jewelry.jewelryId}
             productId={jewelry.jewelryId}
-            image={jewelry.image}
-            image2={jewelry.image2}
+            images={jewelry.images}
             jewelryName={jewelry.jewelryName}
             price={jewelry.price}
           />

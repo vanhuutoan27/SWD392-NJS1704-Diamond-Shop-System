@@ -1,11 +1,6 @@
-export enum ICartType {
-  Diamond = "Diamond",
-  Jewelry = "Jewelry",
-}
-
 export interface ICartBase {
   cartId: string;
-  productType: ICartType;
+  productType: string;
   productId: string;
   quantity: number;
   price: number;
@@ -13,12 +8,12 @@ export interface ICartBase {
 }
 
 export interface IDiamondCart extends ICartBase {
-  productType: ICartType.Diamond;
+  productType: string;
   size: number;
 }
 
 export interface IJewelryCart extends ICartBase {
-  productType: ICartType.Jewelry;
+  productType: string;
   jewelryName: string;
 }
 

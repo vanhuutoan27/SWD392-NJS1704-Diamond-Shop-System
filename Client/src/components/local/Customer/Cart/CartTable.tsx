@@ -2,19 +2,20 @@ import { useState, useEffect } from "react";
 import { cartColumns } from "@/components/local/Customer/Cart/CartColumns";
 import { cartJewelryColumns } from "./CartJewelryColumns";
 import { DataTable } from "@/components/local/Customer/Cart/CartDataTable";
-import { ICart, ICartType } from "@/types/cart.interface";
+import { ICart } from "@/types/cart.interface";
 import { Button } from "@/components/global/atoms/button";
 import { Link, useNavigate } from "react-router-dom";
 import { calculateCartTotal, formatCurrency, scrollToTop } from "@/lib/utils";
 import { ScrollArea, ScrollBar } from "@/components/global/atoms/scroll-area";
-import { diamondData } from "@/constants/diamond";
-import { jewelryData } from "@/constants/jewelry";
 import { TabsContent } from "./CartTabs";
 import { cartDiamondColumns } from "./CartDiamondColumns";
 import { toast } from "sonner";
 import { vatPercentage } from "@/lib/constants";
+import { useGetAllDiamonds } from "@/api/diamondApi";
+import { useGetAllJewelries } from "@/api/jewelryApi";
+import { Loader } from "@/components/global/atoms/Loader";
 
-interface renderTabContentProps {
+interface RenderTabContentProps {
   type: string;
   title: string;
   columns: any[];
@@ -22,13 +23,21 @@ interface renderTabContentProps {
   subTotal: number;
 }
 
-interface CartTableProps {
-  activeTab: string;
-}
-
-function CartTable({ activeTab }: CartTableProps) {
+function CartTable() {
   const [cartItems, setCartItems] = useState<ICart[]>([]);
   const navigate = useNavigate();
+
+  const {
+    data: allDiamonds,
+    error: diamondsError,
+    isLoading: isDiamondsLoading,
+  } = useGetAllDiamonds();
+
+  const {
+    data: allJewelries,
+    error: jewelriesError,
+    isLoading: isJewelriesLoading,
+  } = useGetAllJewelries();
 
   useEffect(() => {
     const storedCartItems = localStorage.getItem("cartItems");
@@ -37,11 +46,11 @@ function CartTable({ activeTab }: CartTableProps) {
     }
   }, []);
 
-  const getProductDetails = (productId: string, type: ICartType) => {
-    if (type === ICartType.Diamond) {
-      return diamondData.find((diamond) => diamond.diamondId === productId);
-    } else if (type === ICartType.Jewelry) {
-      return jewelryData.find((jewelry) => jewelry.jewelryId === productId);
+  const getProductDetails = (productId: string, type: string) => {
+    if (type === "Diamond") {
+      return allDiamonds?.find((diamond) => diamond.diamondId === productId);
+    } else if (type === "Jewelry") {
+      return allJewelries?.find((jewelry) => jewelry.jewelryId === productId);
     }
   };
 
@@ -85,12 +94,20 @@ function CartTable({ activeTab }: CartTableProps) {
     scrollToTop();
   };
 
+  if (isDiamondsLoading || isJewelriesLoading) {
+    return <Loader />;
+  }
+
+  if (diamondsError || jewelriesError) {
+    toast.error("Failed to fetch data");
+  }
+
   const allItemsInCart = cartItems.filter((item) => item.quantity > 0);
   const diamondsInCart = enrichCartItems(
-    allItemsInCart.filter((item) => item.productType === ICartType.Diamond),
+    allItemsInCart.filter((item) => item.productType === "Diamond"),
   );
   const jewelriesInCart = enrichCartItems(
-    allItemsInCart.filter((item) => item.productType === ICartType.Jewelry),
+    allItemsInCart.filter((item) => item.productType === "Jewelry"),
   );
 
   const tabData = [
@@ -135,14 +152,9 @@ function CartTable({ activeTab }: CartTableProps) {
     columns,
     data,
     subTotal,
-  }: renderTabContentProps) => {
+  }: RenderTabContentProps) => {
     const vatAmount = subTotal * vatPercentage;
     const total = subTotal + vatAmount;
-
-    // Log the data for the active tab
-    if (activeTab === type) {
-      console.log(type, data);
-    }
 
     return (
       <TabsContent value={type} key={type}>

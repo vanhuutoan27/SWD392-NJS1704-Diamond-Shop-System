@@ -1,8 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { ICart, ICartType } from "@/types/cart.interface";
-import { diamondData } from "@/constants/diamond";
-import { jewelryData } from "@/constants/jewelry";
+import { ICart } from "@/types/cart.interface";
+
 import { useLocation } from "react-router-dom";
 
 export function cn(...inputs: ClassValue[]) {
@@ -38,18 +37,6 @@ export const formatDate = (dateStr: string): string => {
   const year = date.getFullYear();
   return `${month}/${day}/${year}`;
 };
-
-// Get product data
-export function getProductData(cartItem: ICart) {
-  switch (cartItem.productType) {
-    case ICartType.Diamond:
-      return diamondData.find((item) => item.diamondId === cartItem.productId);
-    case ICartType.Jewelry:
-      return jewelryData.find((item) => item.jewelryId === cartItem.productId);
-    default:
-      return null;
-  }
-}
 
 // Check if the current route is an admin route
 export const useIsAdminRoute = (): boolean => {

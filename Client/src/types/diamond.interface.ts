@@ -1,8 +1,7 @@
-import { ICartType } from "./cart.interface";
-
 export interface IDiamond {
-  productType: ICartType.Diamond;
+  productType: string;
   diamondId: string;
+  skuID: string;
   image: string;
   shape: string;
   weight: number;
@@ -15,6 +14,7 @@ export interface IDiamond {
   price: number;
   dateCreated: string;
   dateModified: string;
+  status: string;
 }
 
 export const IDiamondShape = [

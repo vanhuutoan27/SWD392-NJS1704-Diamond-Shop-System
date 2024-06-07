@@ -1,22 +1,33 @@
 import { useState, useEffect, useMemo } from "react";
 import { projectName } from "@/lib/constants";
-import { jewelryData } from "@/constants/jewelry";
-import { IJewelryStatus } from "@/types/jewelry.interface";
 import JewelryList from "@/components/local/Guest/Jewelry/JewelryList";
 import JewelryCategory from "@/components/local/Guest/Jewelry/JewelryCategory";
 import Section from "@/components/global/organisms/Section";
 import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
+import { useGetAllJewelries } from "@/api/jewelryApi";
+import { Loader } from "@/components/global/atoms/Loader";
+import { toast } from "sonner";
 
 function JewelryPage() {
   const [category, setCategory] = useState("");
   const [priceRange, setPriceRange] = useState("");
   const [sortOrder, setSortOrder] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4;
+  const itemsPerPage = 8;
+
+  const { data: allJewelries, error, isLoading } = useGetAllJewelries();
+
+  if (!allJewelries || isLoading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    toast.error("Failed to fetch diamonds");
+  }
 
   const filteredJewelry = useMemo(() => {
-    let filtered = jewelryData.filter(
-      (jewelry) => jewelry.status === IJewelryStatus.Available,
+    let filtered = allJewelries.filter(
+      (jewelry) => jewelry.status === "Active",
     );
 
     if (category && category !== "all") {
@@ -45,9 +56,6 @@ function JewelryPage() {
       } else if (sortOrder === "low-high") {
         filtered.sort((a, b) => a.price - b.price);
       }
-      // else if (sortOrder === "new") {
-      //   filtered.sort((a, b) => new Date(b.createdOn) - new Date(a.createdOn));
-      // }
     }
 
     return filtered;

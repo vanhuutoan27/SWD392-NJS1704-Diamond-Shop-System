@@ -1,7 +1,5 @@
-import { ICartType } from "./cart.interface";
-
 export interface IInvoiceItem {
-  productType: ICartType;
+  productType: string;
   productId: string;
   quantity: number;
   description?: string;

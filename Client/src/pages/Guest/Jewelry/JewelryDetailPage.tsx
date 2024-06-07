@@ -7,22 +7,35 @@ import JewelryDetails from "@/components/local/Guest/Jewelry/JewelryDetails";
 import RelatedJewelry from "@/components/local/Guest/Jewelry/RelatedJewelry";
 import JewelryFaqs from "@/components/local/Guest/Jewelry/JewelryFaqs";
 import JewelryQualityCommitment from "@/components/local/Guest/Jewelry/JewelryQualityCommitment";
-import { jewelryData } from "@/constants/jewelry";
+import { useGetAllJewelries, useGetJewelryById } from "@/api/jewelryApi";
+import { toast } from "sonner";
 
 function JewelryDetailPage() {
   const { jewelryId } = useParams<{ jewelryId: string }>();
 
-  const jewelryDetails = jewelryData.find(
-    (jewelry) => jewelry.jewelryId === jewelryId,
-  );
+  const {
+    data: jewelryDetails,
+    error: jewelryDetailsError,
+    isLoading: isJewelryDetailsLoading,
+  } = useGetJewelryById(jewelryId || "");
 
-  const relatedProducts = jewelryData.filter(
-    (jewelry) => jewelry.jewelryId !== jewelryId,
-  );
+  const {
+    data: jewelryData,
+    error: allJewelrysError,
+    isLoading: isAllJewelriesLoading,
+  } = useGetAllJewelries();
 
-  if (!jewelryDetails) {
+  if (isJewelryDetailsLoading || isAllJewelriesLoading) {
     return <Loader />;
   }
+
+  if (jewelryDetailsError || allJewelrysError) {
+    toast.error("Failed to fetch diamonds");
+  }
+
+  const relatedProducts = (jewelryData || []).filter(
+    (jewelry) => jewelry.jewelryId !== jewelryId,
+  );
 
   return (
     <div className="container">
@@ -31,10 +44,10 @@ function JewelryDetailPage() {
         lastPageUrl="/"
         currentPage="Jewelry"
         currentPageUrl="/jewelry"
-        currentDetailPage={jewelryDetails.jewelryId}
+        currentDetailPage={jewelryDetails?.jewelryId}
       />
 
-      <JewelryDetails jewelryDetails={jewelryDetails} />
+      {jewelryDetails && <JewelryDetails jewelryDetails={jewelryDetails} />}
 
       <JewelryQualityCommitment />
 

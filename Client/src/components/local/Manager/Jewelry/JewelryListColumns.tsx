@@ -27,9 +27,11 @@ export const columns: ColumnDef<IJewelry>[] = [
         </div>
       );
     },
-    cell: (info) => (
-      <span className="font-semibold">{info.getValue() as string}</span>
-    ),
+    cell: (info) => {
+      const value: string = info.getValue() as string;
+      const shortId = value.split("-")[0];
+      return <span className="font-semibold">{shortId}</span>;
+    },
   },
   {
     accessorKey: "jewelryCategory",

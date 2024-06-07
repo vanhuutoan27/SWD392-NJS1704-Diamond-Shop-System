@@ -19,7 +19,7 @@ export const columns: ColumnDef<IDiamond>[] = [
     accessorKey: "diamondId",
     header: ({ column }) => (
       <div
-        className="flex select-none items-center justify-center"
+        className="flex select-none items-center"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
       >
         <span className="flex cursor-pointer text-white">ID</span>

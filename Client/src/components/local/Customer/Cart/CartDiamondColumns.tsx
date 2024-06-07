@@ -30,7 +30,8 @@ export const cartDiamondColumns = (
     ),
     cell: (info) => {
       const value: string = info.getValue() as string;
-      return <div className="text-center">{value}</div>;
+      const shortProductId = value.split("-")[0];
+      return <div className="text-center">{shortProductId}</div>;
     },
   },
   {
@@ -64,7 +65,7 @@ export const cartDiamondColumns = (
     },
   },
   {
-    accessorKey: "color",
+    accessorKey: "colorLevel",
     header: ({ column }) => (
       <div
         className="flex cursor-pointer justify-center text-white"
@@ -137,7 +138,7 @@ export const cartDiamondColumns = (
     ),
     cell: (info) => {
       const value: string = info.getValue() as string;
-      return <div className="text-center">{value}</div>;
+      return <div className="text-center uppercase">{value}</div>;
     },
   },
   {

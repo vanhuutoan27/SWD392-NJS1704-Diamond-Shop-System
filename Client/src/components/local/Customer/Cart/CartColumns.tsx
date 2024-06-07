@@ -1,14 +1,10 @@
 import { ColumnDef } from "@tanstack/react-table";
-import {
-  ICart,
-  ICartType,
-  IDiamondCart,
-  IJewelryCart,
-} from "@/types/cart.interface";
+import { ICart, IDiamondCart, IJewelryCart } from "@/types/cart.interface";
 import { formatCurrency } from "@/lib/utils";
 import { Link } from "react-router-dom";
 import { Minus, Plus } from "lucide-react";
 import { Button } from "@/components/global/atoms/button";
+import { diamondImage } from "@/lib/constants";
 
 export const cartColumns = (
   updateItemQuantity: (productId: string, newQuantity: number) => void,
@@ -22,7 +18,8 @@ export const cartColumns = (
     ),
     cell: (info) => {
       const value: string = info.getValue() as string;
-      return <div className="text-center">{value}</div>;
+      const shortProductId = value.split("-")[0];
+      return <div className="text-center">{shortProductId}</div>;
     },
   },
   {
@@ -31,10 +28,16 @@ export const cartColumns = (
       <div className="flex cursor-pointer justify-center text-white">Image</div>
     ),
     cell: (info) => {
+      const row = info.row.original;
       const value: string = info.getValue() as string;
+      const imageUrl = row.productType === "Diamond" ? diamondImage : value;
       return (
         <div className="flex cursor-pointer justify-center">
-          <img src={value} alt="Product" className="h-14 w-14 object-cover" />
+          <img
+            src={imageUrl}
+            alt="Product"
+            className="h-14 w-14 object-cover"
+          />
         </div>
       );
     },
@@ -50,13 +53,13 @@ export const cartColumns = (
       const row = info.row.original;
 
       const productName =
-        row.productType === ICartType.Diamond
+        row.productType === "Diamond"
           ? `Natural Diamond x ${(row as IDiamondCart).size}mm`
           : (row as IJewelryCart).jewelryName;
 
       return (
         <div className="slow text-center font-semibold uppercase hover:text-secondary">
-          {row.productType === ICartType.Diamond ? (
+          {row.productType === "Diamond" ? (
             <Link
               to={`/diamond/${row.productId}`}
               target="_blank"

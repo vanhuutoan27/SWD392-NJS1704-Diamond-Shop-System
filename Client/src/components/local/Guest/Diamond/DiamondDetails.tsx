@@ -1,7 +1,7 @@
 import { IDiamond } from "@/types/diamond.interface";
 import { addToCart, formatCurrency } from "@/lib/utils";
 import { useEffect, useState } from "react";
-import { ICart, ICartType, IDiamondCart } from "@/types/cart.interface";
+import { ICart, IDiamondCart } from "@/types/cart.interface";
 import { toast } from "sonner";
 import Section from "@/components/global/organisms/Section";
 import { Button } from "@/components/global/atoms/button";
@@ -38,7 +38,7 @@ function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
     } else {
       const newItem: IDiamondCart = {
         cartId: `C${diamondDetails.diamondId}`,
-        productType: ICartType.Diamond,
+        productType: "Diamond",
         productId: diamondDetails.diamondId,
         quantity: 1,
         price: diamondDetails.price,
@@ -63,7 +63,7 @@ function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
           onMouseMove={handleMouseMove}
         >
           <img
-            src={diamondDetails.image || diamondImage}
+            src={diamondImage}
             alt="Diamond"
             className="w-full cursor-pointer"
           />
@@ -168,7 +168,7 @@ function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
               <td className="w-[300px] border-2 border-input px-4 py-2 text-secondary">
                 Fluorescence
               </td>
-              <td className="border-2 border-input px-4 py-2 italic">
+              <td className="border-2 border-input px-4 py-2 uppercase italic">
                 {diamondDetails.fluorescence}
               </td>
             </tr>

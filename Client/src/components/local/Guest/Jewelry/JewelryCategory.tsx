@@ -67,7 +67,6 @@ function JewelryCategory({
             <SelectItem value="all">All Sort Options</SelectItem>
             <SelectItem value="high-low">Price from high to low</SelectItem>
             <SelectItem value="low-high">Price from low to high</SelectItem>
-            <SelectItem value="new">New Diamond</SelectItem>
           </SelectGroup>
         </SelectContent>
       </Select>

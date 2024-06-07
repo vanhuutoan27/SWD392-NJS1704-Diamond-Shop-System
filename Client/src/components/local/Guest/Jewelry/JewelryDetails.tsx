@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { IJewelry } from "@/types/jewelry.interface";
 import { addToCart, formatCurrency } from "@/lib/utils";
-import { ICart, ICartType, IJewelryCart } from "@/types/cart.interface";
+import { ICart, IJewelryCart } from "@/types/cart.interface";
 import { toast } from "sonner";
 import { Button } from "@/components/global/atoms/button";
 import Section from "@/components/global/organisms/Section";
@@ -9,10 +9,10 @@ import { useAuthContext } from "@/contexts/AuthContext";
 
 function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
   const { user } = useAuthContext();
-
-  const salePrice = null;
-
   const [cartItems, setCartItems] = useState<ICart[]>([]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const salePrice = 100000; // Placeholder for the sale price
 
   useEffect(() => {
     const storedCartItems = localStorage.getItem("cartItems");
@@ -30,9 +30,6 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
     container.style.setProperty("--y", `${y}%`);
   };
 
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const images = [jewelryDetails.image, jewelryDetails.image2];
-
   const selectImage = (index: number) => {
     setCurrentImageIndex(index);
   };
@@ -44,18 +41,18 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
     } else {
       const newItem: IJewelryCart = {
         cartId: `C${jewelryDetails.jewelryId}`,
-        productType: ICartType.Jewelry,
+        productType: 'Jewelry',
         productId: jewelryDetails.jewelryId,
         quantity: 1,
         price: jewelryDetails.price,
-        image: jewelryDetails.image,
+        image: jewelryDetails.images ? jewelryDetails.images[0] : "",
         jewelryName: jewelryDetails.jewelryName,
       };
       const updatedCart = addToCart(cartItems, newItem);
       setCartItems(updatedCart);
       localStorage.setItem("cartItems", JSON.stringify(updatedCart));
 
-      toast.success("Add to cart successfully");
+      toast.success("Added to cart successfully");
 
       window.dispatchEvent(new CustomEvent("cartChanged"));
     }
@@ -70,22 +67,31 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
             onMouseMove={handleMouseMove}
           >
             <img
-              src={images[currentImageIndex]}
+              src={
+                jewelryDetails.images && jewelryDetails.images.length > 0
+                  ? jewelryDetails.images[currentImageIndex]
+                  : ""
+              }
               alt="Jewelry"
               className="w-full cursor-pointer"
             />
           </div>
 
-          <div className="flex w-full">
-            {images.map((image, index) => (
-              <img
-                key={index}
-                src={image}
-                alt={`Thumbnail ${index}`}
-                className={`slow h-auto w-28 cursor-pointer border-2 ${currentImageIndex === index ? "border-3 border-primary duration-300" : "opacity-30 hover:border-primary"}`}
-                onClick={() => selectImage(index)}
-              />
-            ))}
+          <div className="mt-4 flex w-full">
+            {jewelryDetails.images &&
+              jewelryDetails.images.map((image, index) => (
+                <img
+                  key={index}
+                  src={image}
+                  alt={`Thumbnail ${index}`}
+                  className={`slow h-auto w-28 cursor-pointer border-2 ${
+                    currentImageIndex === index
+                      ? "border-3 border-primary duration-300"
+                      : "opacity-30 hover:border-primary"
+                  }`}
+                  onClick={() => selectImage(index)}
+                />
+              ))}
           </div>
         </div>
 
@@ -102,11 +108,9 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
               </span>
             </span>
           ) : (
-            <>
-              <span className="mr-2 text-base font-semibold">
-                {formatCurrency(jewelryDetails.price)}
-              </span>
-            </>
+            <span className="mr-2 text-base font-semibold">
+              {formatCurrency(jewelryDetails.price)}
+            </span>
           )}
 
           <p className="text-sm text-[#555]">
@@ -143,10 +147,10 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
               </td>
             </tr>
             <tr>
-              <td className="w-[300px] border-2  border-input bg-slate-50 px-4 py-2 text-secondary">
-                Main Store Size
+              <td className="w-[300px] border-2 border-input bg-slate-50 px-4 py-2 text-secondary">
+                Main Stone Size
               </td>
-              <td className="border-2 border-input  bg-slate-50 px-4 py-2 italic">
+              <td className="border-2 border-input bg-slate-50 px-4 py-2 italic">
                 {jewelryDetails.mainStoneSize}
               </td>
             </tr>
@@ -159,7 +163,7 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
               </td>
             </tr>
             <tr>
-              <td className="w-[300px] border-2  border-input bg-slate-50 px-4 py-2 text-secondary">
+              <td className="w-[300px] border-2 border-input bg-slate-50 px-4 py-2 text-secondary">
                 Side Stone Quantity
               </td>
               <td className="border-2 border-input bg-slate-50 px-4 py-2 italic">
@@ -175,10 +179,10 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
               </td>
             </tr>
             <tr>
-              <td className="w-[300px] border-2  border-input bg-slate-50 px-4 py-2 text-secondary">
+              <td className="w-[300px] border-2 border-input bg-slate-50 px-4 py-2 text-secondary">
                 Gold Type
               </td>
-              <td className="border-2 border-input  bg-slate-50 px-4 py-2 italic">
+              <td className="border-2 border-input bg-slate-50 px-4 py-2 italic">
                 {jewelryDetails.goldType}
               </td>
             </tr>
@@ -191,10 +195,10 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
               </td>
             </tr>
             <tr>
-              <td className="w-[300px] border-2  border-input bg-slate-50 px-4 py-2 text-secondary">
+              <td className="w-[300px] border-2 border-input bg-slate-50 px-4 py-2 text-secondary">
                 Gold Weight
               </td>
-              <td className="border-2 border-input  bg-slate-50 px-4 py-2 italic">
+              <td className="border-2 border-input bg-slate-50 px-4 py-2 italic">
                 {jewelryDetails.goldWeight}
               </td>
             </tr>

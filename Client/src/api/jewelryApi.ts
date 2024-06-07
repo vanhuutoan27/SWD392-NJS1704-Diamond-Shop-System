@@ -16,10 +16,8 @@ export const useGetJewelryById = (id: string) => {
   return useQuery<IJewelry>({
     queryKey: ["jewelry", id],
     queryFn: async () => {
-      const { data } = await diamoonAPI.get(`/Jewelry/Id`, {
-        params: { id },
-      });
-      return data;
+      const { data } = await diamoonAPI.get(`/Jewelry/${id}`);
+      return data.data;
     },
   });
 };

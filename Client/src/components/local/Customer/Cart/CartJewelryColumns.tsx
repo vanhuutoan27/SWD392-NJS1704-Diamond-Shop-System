@@ -19,7 +19,8 @@ export const cartJewelryColumns = (
     ),
     cell: (info) => {
       const value: string = info.getValue() as string;
-      return <div className="text-center">{value}</div>;
+      const shortProductId = value.split("-")[0];
+      return <div className="text-center">{shortProductId}</div>;
     },
   },
   {

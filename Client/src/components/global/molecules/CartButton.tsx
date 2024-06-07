@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/global/atoms/dropdown-menu";
 import { Separator } from "@/components/global/atoms/separator";
-import { vatPercentage } from "@/lib/constants";
+import { diamondImage, vatPercentage } from "@/lib/constants";
 import { calculateCartTotal, formatCurrency, scrollToTop } from "@/lib/utils";
 import { ICart } from "@/types/cart.interface";
 import { ShoppingCart, X } from "lucide-react";
@@ -84,7 +84,11 @@ function CartButton() {
                     }
                   >
                     <img
-                      src={cartItem.image}
+                      src={
+                        cartItem.productType === "Diamond"
+                          ? diamondImage
+                          : cartItem.image
+                      }
                       alt={
                         cartItem.productType === "Diamond"
                           ? `Natural Diamond x ${cartItem.size}mm`
