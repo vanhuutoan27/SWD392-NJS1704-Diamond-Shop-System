@@ -125,6 +125,7 @@ export const columns: ColumnDef<IJewelry>[] = [
     ),
     cell: ({ row }) => {
       const jewelry = row.original;
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       const [isViewDialogOpen, setIsViewDialogOpen] = useState(false);
 
       const handleViewDetailsClick = () => {

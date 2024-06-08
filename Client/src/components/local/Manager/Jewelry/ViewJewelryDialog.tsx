@@ -8,7 +8,6 @@ import {
   DialogTitle,
 } from "@/components/global/atoms/dialog";
 import { Button } from "@/components/global/atoms/button";
-import { diamondImage } from "@/lib/constants";
 import { Skeleton } from "@/components/global/atoms/skeleton";
 import {
   Select,
@@ -36,6 +35,7 @@ function ViewDiamondDialog({
 
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [formData, setFormData] = useState({
     jewelryId: "",
     skuID: "",
@@ -49,7 +49,7 @@ function ViewDiamondDialog({
     goldKarat: "",
     goldWeight: 0,
     price: 0,
-    images: diamondImage,
+    images: "",
     dateCreated: "",
     dateModified: "",
   });
@@ -58,6 +58,7 @@ function ViewDiamondDialog({
 
   useEffect(() => {
     if (jewelryDetails) {
+      setSelectedImageIndex(0); // Reset selected image index when jewelry details change
       setFormData({
         jewelryId: jewelryDetails.jewelryId || "",
         skuID: jewelryDetails.skuID || "",
@@ -71,7 +72,7 @@ function ViewDiamondDialog({
         goldKarat: jewelryDetails.goldKarat || "",
         goldWeight: jewelryDetails.goldWeight || 0,
         price: jewelryDetails.price || 0,
-        images: jewelryDetails.images[0] || diamondImage || "",
+        images: jewelryDetails.images[0] || "",
         dateCreated: jewelryDetails.dateCreated || "",
         dateModified: jewelryDetails.dateModified || "",
       });
@@ -108,17 +109,29 @@ function ViewDiamondDialog({
           </DialogTitle>
         </DialogHeader>
         <div className="mt-4 grid grid-cols-8 gap-4">
-          <div className="col-span-4 row-span-3 flex items-center justify-center rounded-md">
+          <div className="col-span-4 row-span-3 flex flex-col items-center justify-center rounded-md">
             {!imageLoaded && (
               <Skeleton className="h-[250px] w-[250px] rounded-md border-2 border-gray-800" />
             )}
             <img
-              src={formData.images}
+              src={jewelryDetails.images[selectedImageIndex]} // Use selectedImageIndex to determine which image to display
               alt="Diamond"
               onLoad={() => setImageLoaded(true)}
               className={`h-[250px] w-[250px] rounded-md border-2 border-gray-800 object-cover ${imageLoaded ? "block" : "hidden"}`}
             />
+            <div className="mt-2">
+              {jewelryDetails.images.map((_image: string, index: number) => (
+                <button
+                  key={index}
+                  onClick={() => setSelectedImageIndex(index)} // Update selectedImageIndex on button click
+                  className={`mx-1 rounded-full p-1 ${
+                    index === selectedImageIndex ? "bg-blue-500" : "bg-gray-300"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
+
           <div className="col-span-4">
             <span className="ml-1 text-sm font-medium">Jewelry ID</span>
             <input
@@ -239,7 +252,7 @@ function ViewDiamondDialog({
             <span className="ml-1 text-sm font-medium">Stone Quantity</span>
             {isEditing ? (
               <input
-                type="text"
+                type="number"
                 placeholder="e.g., Round 5ly"
                 className="input-field mt-1"
               />
@@ -259,7 +272,7 @@ function ViewDiamondDialog({
             <span className="ml-1 text-sm font-medium">Stone Weight</span>
             {isEditing ? (
               <input
-                type="text"
+                type="number"
                 placeholder="e.g., Round 5ly"
                 className="input-field mt-1"
               />
@@ -277,20 +290,26 @@ function ViewDiamondDialog({
         </div>
 
         <div className="mt-1 grid grid-cols-9 gap-4">
-
-
-        <div className="col-span-3">
+          <div className="col-span-3">
             <span className="ml-1 text-sm font-medium">Gold Type</span>
             {isEditing ? (
-              <input
-                type="text"
-                placeholder="e.g., Round 5ly"
-                className="input-field mt-1"
-              />
+              <Select
+                value={formData.goldType}
+                onValueChange={(value) => handleSelectChange("goldType", value)}
+              >
+                <SelectTrigger className="mt-1 h-11 w-full px-5">
+                  <SelectValue placeholder="Select category" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectItem value="White gold">White gold</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
             ) : (
               <input
                 type="text"
-                name="shape"
+                name="goldType"
                 value={formData.goldType}
                 readOnly
                 className="input-field mt-1"
@@ -338,22 +357,34 @@ function ViewDiamondDialog({
               />
             )}
           </div>
-
-
         </div>
-
-        <div className="">
-            <span className="ml-1 text-sm font-medium">Price (VND)</span>
-            <input
-              type="number"
-              name="price"
-              value={formData.price}
-              onChange={handleChange}
-              readOnly={!isEditing}
-              className="input-field mt-1"
-              tabIndex={-1}
-            />
-          </div>
+        <div className="mt-1 grid grid-cols-5 gap-4">
+        <div className="col-span-2">
+          <span className="ml-1 text-sm font-medium">Price (VND)</span>
+          <input
+            type="number"
+            name="price"
+            value={formData.price}
+            onChange={handleChange}
+            readOnly={!isEditing}
+            className="input-field mt-1"
+            tabIndex={-1}
+          />
+        </div>
+        <div className="col-span-3">
+          <span className="ml-1 text-sm font-medium">Name</span>
+          <input
+            type="text"
+            name="jewelryName"
+            value={formData.jewelryName}
+            onChange={handleChange}
+            readOnly
+            className="input-field mt-1"
+            tabIndex={-1}
+          />
+        </div>
+        </div>
+        
 
         <div className="mt-4 flex justify-between gap-4">
           <div className="flex justify-between gap-4">

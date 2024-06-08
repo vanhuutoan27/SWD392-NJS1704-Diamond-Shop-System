@@ -245,11 +245,11 @@ function AddJewlryDialog() {
                     </Select>
                   )}
                 />
-                {/* {errors.jewelryCategory && (
+                {errors.jewelryCategory && (
                   <p className="mt-1 text-sm text-red-600">
                     {errors.jewelryCategory.message}
                   </p>
-                )} */}
+                )}
               </div>
 
               <div className="col-span-4">

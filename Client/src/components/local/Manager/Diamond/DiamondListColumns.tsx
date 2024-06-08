@@ -147,6 +147,7 @@ export const columns: ColumnDef<IDiamond>[] = [
     ),
     cell: ({ row }) => {
       const diamond = row.original;
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       const [isViewDialogOpen, setIsViewDialogOpen] = useState(false);
 
       const handleViewDetailsClick = () => {
