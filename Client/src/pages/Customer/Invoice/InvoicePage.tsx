@@ -6,7 +6,6 @@ import {
 } from "@/components/global/atoms/accordion";
 import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
 import Section from "@/components/global/organisms/Section";
-import { tempUserData } from "@/constants/user";
 import { formatInvoiceData } from "@/lib/utils";
 import { ICart } from "@/types/cart.interface";
 import { useParams } from "react-router-dom";
@@ -18,6 +17,7 @@ import { useGetAllJewelries } from "@/api/jewelryApi";
 import { Loader } from "@/components/global/atoms/Loader";
 import { toast } from "sonner";
 import { useEffect } from "react";
+import { useGetAllUsers } from "@/api/userApi";
 
 function InvoicePage() {
   const { userId } = useParams<{ userId: string }>();
@@ -34,13 +34,23 @@ function InvoicePage() {
     isLoading: isJewelriesLoading,
   } = useGetAllJewelries();
 
+  const {
+    data: allUsers,
+    error: usersError,
+    isLoading: isUsersLoading,
+  } = useGetAllUsers();
+
   useEffect(() => {
-    if (diamondsError || jewelriesError) {
+    if (diamondsError || jewelriesError || usersError) {
       toast.error("Failed to fetch data");
     }
-  }, [diamondsError, jewelriesError]);
+  }, [diamondsError, jewelriesError, usersError]);
 
-  if (isDiamondsLoading || isJewelriesLoading) {
+  if (isDiamondsLoading || isJewelriesLoading || isUsersLoading) {
+    return <Loader />;
+  }
+
+  if (!allUsers || !allDiamonds || !allJewelries) {
     return <Loader />;
   }
 
@@ -59,7 +69,11 @@ function InvoicePage() {
     }
   }
 
-  const billingToUser = tempUserData.find((u) => u.id === userId);
+  const billingToUser = allUsers.find((u) => u.id === userId);
+
+  if (!billingToUser) {
+    return <div>User not found</div>;
+  }
 
   const invoiceDataList = [
     {
@@ -132,7 +146,7 @@ function InvoicePage() {
   });
 
   return (
-    <div className="container">
+    <div className="container mx-auto px-4 py-8">
       <BreadcrumbComponent
         lastPage={"Home"}
         lastPageUrl="/"
