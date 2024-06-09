@@ -117,7 +117,7 @@ function ViewDiamondDialog({
               <Skeleton className="h-[200px] w-[200px] rounded-md border-2 border-gray-800" />
             )}
             <img
-              src={formData.image}
+              src={diamondImage}
               alt="Diamond"
               onLoad={() => setImageLoaded(true)}
               className={`h-[200px] w-[200px] rounded-md border-2 border-gray-800 object-cover ${imageLoaded ? "block" : "hidden"}`}

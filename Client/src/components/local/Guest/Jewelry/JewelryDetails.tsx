@@ -175,7 +175,7 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
                 Side Stone Weight
               </td>
               <td className="border-2 border-input px-4 py-2 italic">
-                {jewelryDetails.sideStoneWeight}
+                {jewelryDetails.stoneWeight}
               </td>
             </tr>
             <tr>

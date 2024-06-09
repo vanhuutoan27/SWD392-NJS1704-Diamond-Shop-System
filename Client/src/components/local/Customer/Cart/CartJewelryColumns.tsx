@@ -98,7 +98,7 @@ export const cartJewelryColumns = (
     },
   },
   {
-    accessorKey: "sideStoneWeight",
+    accessorKey: "stoneWeight",
     header: () => (
       <div className="flex cursor-pointer justify-center text-xs text-white">
         Side Stone Weight

@@ -34,7 +34,7 @@ import { Plus } from "lucide-react";
 
 type JewelryFormValues = z.infer<typeof jewelrySchema>;
 
-function AddJewlryDialog() {
+function AddJewelryDialog() {
   const [imageUrl, setImageUrl] = useState<string>("");
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const [newPhoto, setNewPhoto] = useState<File | null>(null);
@@ -436,4 +436,4 @@ function AddJewlryDialog() {
   );
 }
 
-export default AddJewlryDialog;
+export default AddJewelryDialog;

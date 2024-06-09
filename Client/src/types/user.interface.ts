@@ -36,3 +36,13 @@ export interface IJwtPayload {
   roles: string;
   avatar: string;
 }
+
+export interface IUserAdmin {
+  id: string;
+  email: string;
+  fullName: string;
+  phoneNumber: string;
+  address: string;
+  roles: string;
+  isActive: boolean;
+}

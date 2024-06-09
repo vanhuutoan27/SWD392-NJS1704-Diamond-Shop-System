@@ -1,6 +1,4 @@
 export interface IJewelry {
-  dateModified: string;
-  dateCreated: string;
   productType: string;
   jewelryId: string;
   skuID: string;
@@ -15,5 +13,7 @@ export interface IJewelry {
   goldKarat: string;
   goldWeight: number;
   price: number;
+  dateModified: string;
+  dateCreated: string;
   status: string;
 }
