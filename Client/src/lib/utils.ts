@@ -22,6 +22,11 @@ export const calculateCartTotal = (cartItems: ICart[]) => {
   );
 };
 
+// Format currency without VND
+export const formatCurrencyWithoutVND = (amount: number) => {
+  return new Intl.NumberFormat("vi-VN").format(amount);
+};
+
 // Format currency
 export const formatCurrency = (amount: number) => {
   return new Intl.NumberFormat("vi-VN").format(amount) + " VND";
@@ -106,5 +111,3 @@ export const formatInvoiceData = (invoiceData: any, vatPercentage: number) => {
     total: formatCurrency(total),
   };
 };
-
-//

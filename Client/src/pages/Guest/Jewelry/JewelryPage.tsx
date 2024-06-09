@@ -17,15 +17,13 @@ function JewelryPage() {
 
   const { data: allJewelries, error, isLoading } = useGetAllJewelries();
 
-  if (!allJewelries || isLoading) {
-    return <Loader />;
-  }
-
-  if (error) {
-    toast.error("Failed to fetch diamonds");
-  }
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [category, priceRange, sortOrder]);
 
   const filteredJewelry = useMemo(() => {
+    if (!allJewelries) return [];
+
     let filtered = allJewelries.filter(
       (jewelry) => jewelry.status === "Active",
     );
@@ -59,19 +57,26 @@ function JewelryPage() {
     }
 
     return filtered;
-  }, [category, priceRange, sortOrder]);
+  }, [allJewelries, category, priceRange, sortOrder]);
 
   const totalItems = filteredJewelry.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-  const currentItems = filteredJewelry.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage,
-  );
+  const currentItems = useMemo(() => {
+    return filteredJewelry.slice(
+      (currentPage - 1) * itemsPerPage,
+      currentPage * itemsPerPage,
+    );
+  }, [filteredJewelry, currentPage, itemsPerPage]);
 
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [category, priceRange, sortOrder]);
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    toast.error("Failed to fetch jewelry");
+    return null;
+  }
 
   return (
     <div className="container">

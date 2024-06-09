@@ -119,7 +119,7 @@ function InformationForm({
       <div>
         <h4 className="mb-2 pl-4 font-semibold">Order Information</h4>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-2">
           <input
             type="text"
             placeholder="Full name"
@@ -138,7 +138,7 @@ function InformationForm({
           <input
             type="number"
             placeholder="Phone number"
-            className="input-field mt-4"
+            className="input-field"
             value={formData.phoneNumber}
             onChange={(e) => {
               setFormData({ ...formData, phoneNumber: e.target.value });
@@ -153,7 +153,7 @@ function InformationForm({
           <input
             type="text"
             placeholder="Address"
-            className="input-field mt-4"
+            className="input-field"
             value={formData.address}
             onChange={(e) => {
               setFormData({ ...formData, address: e.target.value });
@@ -166,7 +166,7 @@ function InformationForm({
             </p>
           )}
 
-          <div className="mt-4 flex w-full justify-between gap-4">
+          <div className="flex w-full justify-between gap-4">
             <div className="flex w-1/3 flex-col">
               <Select
                 onValueChange={(value) => {

@@ -17,6 +17,18 @@ export interface IDiamond {
   status: string;
 }
 
+export interface IDiamondPost {
+  shape: string;
+  weight: number;
+  colorLevel: string;
+  clarity: string;
+  certification: string;
+  size: number;
+  fluorescence: string;
+  qualityOfCut: string;
+  price: number;
+}
+
 export const IDiamondShape = [
   {
     shapeName: "Round",

@@ -20,17 +20,21 @@ function JewelryListPagination({
 }: JewelryListPaginationProps) {
   const handlePrevious = () => {
     if (currentPage > 1) {
+      window.scrollTo({ top: 500, behavior: "smooth" });
       setCurrentPage(currentPage - 1);
     }
   };
 
   const handleNext = () => {
     if (currentPage < totalPages) {
+      window.scrollTo({ top: 500, behavior: "smooth" });
       setCurrentPage(currentPage + 1);
     }
   };
 
   const handlePageClick = (page: number) => {
+    window.scrollTo({ top: 500, behavior: "smooth" });
+
     setCurrentPage(page);
   };
 

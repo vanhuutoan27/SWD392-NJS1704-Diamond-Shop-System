@@ -29,12 +29,14 @@ function JewelryList({
         ))}
       </div>
 
-      {jewelryItems.length > 0 && (
+      {jewelryItems.length > 0 ? (
         <JewelryListPagination
           currentPage={currentPage}
           totalPages={totalPages}
           setCurrentPage={setCurrentPage}
         />
+      ) : (
+        <p className="text-center">No jewelry found.</p>
       )}
     </div>
   );

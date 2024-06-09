@@ -51,11 +51,17 @@ function OrderSummary({ cartItems }: OrderSummaryProps) {
         {cartItems.map((item) => (
           <div
             key={item.productId}
-            className="flex items-center justify-between"
+            className="flex w-full items-center justify-between"
           >
-            <img src={item.image} alt={item.productId} className="h-14 w-14" />
-            <span>x{item.quantity}</span>
-            <span className="font-semibold">
+            <div className="w-1/4">
+              <img
+                src={item.image}
+                alt={item.productId}
+                className="h-14 w-14"
+              />
+            </div>
+            <span className="w-1/4">x{item.quantity}</span>
+            <span className="w-2/4 text-right font-semibold">
               {formatCurrency(item.price * item.quantity)}
             </span>
           </div>

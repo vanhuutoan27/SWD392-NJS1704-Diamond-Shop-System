@@ -38,6 +38,7 @@ import {
   IDiamondCertification,
 } from "@/types/diamond.interface";
 import { Plus } from "lucide-react";
+import { usePostDiamond } from "@/api/diamondApi";
 
 type DiamondFormValues = z.infer<typeof diamondSchema>;
 
@@ -47,6 +48,8 @@ function AddDiamondDialog() {
   const [newPhoto, setNewPhoto] = useState<File | null>(null);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [imageMethod, setImageMethod] = useState<"upload" | "url">("upload");
+
+  const postDiamond = usePostDiamond();
 
   const handleSave = () => {
     if (newPhoto) {
@@ -91,25 +94,39 @@ function AddDiamondDialog() {
   }, [watchImageUrl, imageMethod]);
 
   const onSubmit: SubmitHandler<DiamondFormValues> = (data) => {
+    const diamondData = {
+      shape: data.shape,
+      weight: data.weight,
+      colorLevel: data.colorLevel,
+      clarity: data.clarity,
+      certification: data.certification,
+      size: data.size,
+      fluorescence: data.fluorescence,
+      qualityOfCut: data.qualityOfCut,
+      price: data.price,
+    };
+
     if (imageMethod === "upload") {
       handleSave();
     } else {
-      console.log("Diamond data:", data);
+      console.log("Diamond data:", diamondData);
+
+      postDiamond.mutate(diamondData);
     }
-    setIsDialogOpen(false);
   };
 
   const handleClear = () => {
     reset({
       shape: "",
-      weight: undefined,
+      weight: 0,
       colorLevel: "",
       clarity: "",
       certification: "",
-      size: undefined,
+      size: 0,
       fluorescence: "",
       qualityOfCut: "",
       image: "",
+      price: 0,
     });
     setUploadProgress(0);
     setNewPhoto(null);
@@ -272,7 +289,7 @@ function AddDiamondDialog() {
                       }}
                     >
                       <SelectTrigger className="mt-1 w-full">
-                        <SelectValue placeholder="Select color" />
+                        <SelectValue placeholder="Select Color" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
@@ -307,7 +324,7 @@ function AddDiamondDialog() {
                       }}
                     >
                       <SelectTrigger className="mt-1 w-full">
-                        <SelectValue placeholder="Select clarity" />
+                        <SelectValue placeholder="Select Clarity" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
@@ -342,7 +359,7 @@ function AddDiamondDialog() {
                       }}
                     >
                       <SelectTrigger className="mt-1 w-full">
-                        <SelectValue placeholder="Select certification" />
+                        <SelectValue placeholder="Select Certification" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
@@ -382,7 +399,7 @@ function AddDiamondDialog() {
                       }}
                     >
                       <SelectTrigger className="mt-1 w-full">
-                        <SelectValue placeholder="Select fluorescence" />
+                        <SelectValue placeholder="Select Fluorescence" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
@@ -417,7 +434,7 @@ function AddDiamondDialog() {
                       }}
                     >
                       <SelectTrigger className="mt-1 w-full">
-                        <SelectValue placeholder="Select quality of cut" />
+                        <SelectValue placeholder="Select Quality of Cut" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>

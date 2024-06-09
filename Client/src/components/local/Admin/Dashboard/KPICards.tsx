@@ -1,6 +1,44 @@
-import { Eye, DollarSign, ShoppingBag, Users } from "lucide-react";
+import { useGetAllDiamonds } from "@/api/diamondApi";
+import { useGetAllJewelries } from "@/api/jewelryApi";
+import { useGetAllUsers } from "@/api/userApi";
+import { Loader } from "@/components/global/atoms/Loader";
+import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage";
+import { Eye, DollarSign, Users, Gem } from "lucide-react";
 
 function KPICards() {
+  const {
+    data: diamondData,
+    error: diamondError,
+    isLoading: diamondLoading,
+  } = useGetAllDiamonds();
+
+  const {
+    data: jewelryData,
+    error: jewelryError,
+    isLoading: jewelryLoading,
+  } = useGetAllJewelries();
+
+  const {
+    data: userData,
+    error: userError,
+    isLoading: userLoading,
+  } = useGetAllUsers();
+
+  if (
+    !diamondData ||
+    !jewelryData ||
+    !userData ||
+    diamondLoading ||
+    jewelryLoading ||
+    userLoading
+  ) {
+    return <Loader />;
+  }
+
+  if (diamondError || jewelryError || userError) {
+    return <NotFoundPage />;
+  }
+
   const kpiCards = [
     {
       title: "Total Views",
@@ -18,14 +56,17 @@ function KPICards() {
     },
     {
       title: "Total Products",
-      value: "2.450",
-      icon: <ShoppingBag />,
+      value:
+        diamondData?.length.toString() ??
+        "0" + jewelryData?.length.toString() ??
+        "0",
+      icon: <Gem />,
       percentage: "2.59%",
       trend: "up",
     },
     {
       title: "Total Users",
-      value: "3.456",
+      value: userData?.length.toString() ?? "0",
       icon: <Users />,
       percentage: "0.95%",
       trend: "down",
@@ -50,11 +91,11 @@ function KPICards() {
             <div className="flex justify-between">
               <div className="text-sm text-secondary">{card.title}</div>
 
-              <div
+              {/* <div
                 className={`font-semibold ${card.trend === "up" ? "text-green-500" : "text-red-500"}`}
               >
                 {card.percentage} {card.trend === "up" ? "↑" : "↓"}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

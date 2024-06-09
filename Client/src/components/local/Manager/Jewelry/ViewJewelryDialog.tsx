@@ -17,8 +17,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/global/atoms/select";
-import { formatDate } from "@/lib/utils";
+import { formatCurrencyWithoutVND, formatDate } from "@/lib/utils";
 import { Loader } from "@/components/global/atoms/Loader";
+import AlertDialogComponent from "@/components/global/molecules/AlertDialogComponent";
 
 function ViewDiamondDialog({
   jewelryId,
@@ -35,10 +36,11 @@ function ViewDiamondDialog({
 
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [formData, setFormData] = useState({
     jewelryId: "",
     skuID: "",
-    images: [],
+    images: "",
     jewelryCategory: "",
     jewelryName: "",
     mainStoneSize: "",
@@ -57,6 +59,8 @@ function ViewDiamondDialog({
 
   useEffect(() => {
     if (jewelryDetails) {
+      setSelectedImageIndex(0);
+
       setFormData({
         jewelryId: jewelryDetails.jewelryId || "",
         skuID: jewelryDetails.skuID || "",
@@ -70,7 +74,7 @@ function ViewDiamondDialog({
         goldKarat: jewelryDetails.goldKarat || "",
         goldWeight: jewelryDetails.goldWeight || 0,
         price: jewelryDetails.price || 0,
-        images: jewelryDetails.images || [],
+        images: jewelryDetails.images[0] || "",
         dateCreated: jewelryDetails.dateCreated || "",
         dateModified: jewelryDetails.dateModified || "",
       });
@@ -88,6 +92,29 @@ function ViewDiamondDialog({
 
   const handleSelectChange = (name: string, value: string) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleConfirmCancel = () => {
+    if (jewelryDetails) {
+      setFormData({
+        jewelryId: jewelryDetails.jewelryId || "",
+        skuID: jewelryDetails.skuID || "",
+        jewelryName: jewelryDetails.jewelryName || "",
+        jewelryCategory: jewelryDetails.jewelryCategory || "",
+        mainStoneSize: jewelryDetails.mainStoneSize || "",
+        sideStoneType: jewelryDetails.sideStoneType || "",
+        sideStoneQuantity: jewelryDetails.sideStoneQuantity || 0,
+        stoneWeight: jewelryDetails.stoneWeight || 0,
+        goldType: jewelryDetails.goldType || "",
+        goldKarat: jewelryDetails.goldKarat || "",
+        goldWeight: jewelryDetails.goldWeight || 0,
+        price: jewelryDetails.price || 0,
+        images: jewelryDetails.images[0] || "",
+        dateCreated: jewelryDetails.dateCreated || "",
+        dateModified: jewelryDetails.dateModified || "",
+      });
+    }
+    setIsEditing(false);
   };
 
   if (!jewelryDetails || isLoading) {
@@ -108,18 +135,25 @@ function ViewDiamondDialog({
         </DialogHeader>
         <div>
           <div className="grid grid-cols-8 gap-4">
-            <div className="col-span-2 flex flex-col items-center justify-center rounded-md">
+            <div className="col-span-2 flex flex-col items-center rounded-md">
               {!imageLoaded && (
                 <Skeleton className="h-[250px] w-[250px] rounded-md border-2 border-gray-800" />
               )}
-              <div className="flex flex-col gap-4">
-                {jewelryDetails.images.map((image, index) => (
-                  <img
+              <img
+                src={jewelryDetails.images[selectedImageIndex]}
+                onLoad={() => setImageLoaded(true)}
+                className={`h-[250px] w-[250px] rounded-md border-2 border-gray-800 object-cover ${imageLoaded ? "block" : "hidden"}`}
+              />
+              <div className="mt-2">
+                {jewelryDetails.images.map((_image: string, index: number) => (
+                  <button
                     key={index}
-                    src={image}
-                    alt={jewelryDetails.jewelryName}
-                    onLoad={() => setImageLoaded(true)}
-                    className={`h-[250px] w-[250px] rounded-md border-2 border-gray-800 object-cover ${imageLoaded ? "block" : "hidden"}`}
+                    onClick={() => setSelectedImageIndex(index)}
+                    className={`slow mx-1 rounded-full p-[5px] ${
+                      index === selectedImageIndex
+                        ? "bg-primary px-4"
+                        : "bg-gray-300"
+                    }`}
                   />
                 ))}
               </div>
@@ -397,9 +431,13 @@ function ViewDiamondDialog({
                 <div>
                   <span className="ml-1 text-sm font-medium">Price (VND)</span>
                   <input
-                    type="number"
+                    type={isEditing ? "number" : "text"}
                     name="price"
-                    value={formData.price}
+                    value={
+                      isEditing
+                        ? formData.price
+                        : formatCurrencyWithoutVND(formData.price)
+                    }
                     onChange={handleChange}
                     readOnly={!isEditing}
                     className="input-field mt-1"
@@ -416,13 +454,14 @@ function ViewDiamondDialog({
                 {isEditing ? "Save" : "Edit"}
               </Button>
               {isEditing && (
-                <Button
-                  type="button"
-                  variant={"secondary"}
-                  onClick={handleEditClick}
-                >
-                  Cancel
-                </Button>
+                <AlertDialogComponent
+                  variant="secondary"
+                  actionBtn="Cancel"
+                  title="Discard changes?"
+                  description="You have unsaved changes. Are you sure you want to discard them?"
+                  action="Discard"
+                  onConfirm={handleConfirmCancel}
+                />
               )}
             </div>
             <Button type="button" onClick={onClose}>

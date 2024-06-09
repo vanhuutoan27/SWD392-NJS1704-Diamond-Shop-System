@@ -34,13 +34,20 @@ function ProductCard({
     } else if (images && images.length > 0) {
       // Render hover effect for jewelry images
       return (
-        <>
-          {isHover ? (
-            <img src={images[1]} className="h-48 w-full rounded object-cover" />
-          ) : (
-            <img src={images[0]} className="h-48 w-full rounded object-cover" />
-          )}
-        </>
+        <div className="relative h-48 w-full overflow-hidden rounded">
+          <img
+            src={images[0]}
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
+              isHover ? "opacity-0" : "opacity-100"
+            }`}
+          />
+          <img
+            src={images[1]}
+            className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
+              isHover ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        </div>
       );
     }
   };

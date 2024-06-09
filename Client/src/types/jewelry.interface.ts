@@ -17,3 +17,15 @@ export interface IJewelry {
   dateCreated: string;
   status: string;
 }
+
+export interface IJewelryPost {
+  name: string;
+  mainStoneSize: string;
+  sideStoneType: string;
+  sideStoneQuantity: number;
+  stoneWeight: number;
+  goldType: string;
+  goldKarat: string;
+  goldWeight: number;
+  price: number;
+}

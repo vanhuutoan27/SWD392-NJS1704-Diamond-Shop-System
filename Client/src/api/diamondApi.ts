@@ -1,6 +1,7 @@
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import diamoonAPI from "../lib/diamoonAPI";
-import { IDiamond } from "@/types/diamond.interface";
+import { IDiamond, IDiamondPost } from "@/types/diamond.interface";
+import { toast } from "sonner";
 
 export const useGetAllDiamonds = () => {
   return useQuery<IDiamond[]>({
@@ -22,4 +23,25 @@ export const useGetDiamondById = (id: string) => {
       return data;
     },
   });
+};
+
+export const usePostDiamond = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation(
+    async (diamond: IDiamondPost) => {
+      const { data } = await diamoonAPI.post("/Diamond", diamond);
+      return data;
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("diamonds");
+        toast.success("Diamond added successfully");
+      },
+      onError: (error) => {
+        console.error("Error posting diamond data:", error);
+        toast.error("Failed to add diamond");
+      },
+    },
+  );
 };

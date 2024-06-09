@@ -26,8 +26,9 @@ import {
   IDiamondFluorescence,
   IDiamondQualityOfCut,
 } from "@/types/diamond.interface";
-import { formatDate } from "@/lib/utils";
+import { formatCurrencyWithoutVND, formatDate } from "@/lib/utils";
 import { Loader } from "@/components/global/atoms/Loader";
+import AlertDialogComponent from "@/components/global/molecules/AlertDialogComponent";
 
 function ViewDiamondDialog({
   diamondId,
@@ -93,6 +94,27 @@ function ViewDiamondDialog({
 
   const handleSelectChange = (name: string, value: string) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleConfirmCancel = () => {
+    if (diamondDetails) {
+      setFormData({
+        diamondId: diamondDetails.diamondId || "",
+        shape: diamondDetails.shape || "",
+        colorLevel: diamondDetails.colorLevel || "",
+        clarity: diamondDetails.clarity || "",
+        certification: diamondDetails.certification || "",
+        fluorescence: diamondDetails.fluorescence.toUpperCase() || "",
+        qualityOfCut: diamondDetails.qualityOfCut || "",
+        weight: diamondDetails.weight || 0,
+        size: diamondDetails.size || 0,
+        price: diamondDetails.price || 0,
+        image: diamondDetails.image || diamondImage || "",
+        dateCreated: diamondDetails.dateCreated || "",
+        dateModified: diamondDetails.dateModified || "",
+      });
+    }
+    setIsEditing(false);
   };
 
   if (!diamondDetails || isLoading) {
@@ -377,9 +399,13 @@ function ViewDiamondDialog({
           <div className="col-span-2">
             <span className="ml-1 text-sm font-medium">Price (VND)</span>
             <input
-              type="number"
+              type={isEditing ? "number" : "text"}
               name="price"
-              value={formData.price}
+              value={
+                isEditing
+                  ? formData.price
+                  : formatCurrencyWithoutVND(formData.price)
+              }
               onChange={handleChange}
               readOnly={!isEditing}
               className="input-field mt-1"
@@ -394,13 +420,14 @@ function ViewDiamondDialog({
               {isEditing ? "Save" : "Edit"}
             </Button>
             {isEditing && (
-              <Button
-                type="button"
-                variant={"secondary"}
-                onClick={handleEditClick}
-              >
-                Cancel
-              </Button>
+              <AlertDialogComponent
+                variant="secondary"
+                actionBtn="Cancel"
+                title="Discard changes?"
+                description="You have unsaved changes. Are you sure you want to discard them?"
+                action="Discard"
+                onConfirm={handleConfirmCancel}
+              />
             )}
           </div>
           <Button type="button" onClick={onClose}>

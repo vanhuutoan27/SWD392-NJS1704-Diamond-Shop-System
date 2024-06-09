@@ -200,8 +200,8 @@ function ViewUserDialog({
             </div>
           </div>
         </div>
-        <div className="flex justify-between gap-4">
-          <div className="flex justify-between gap-4">
+        <div className="flex justify-end gap-4">
+          <div className="justify-between gap-4 hidden">
             <Button type="button" onClick={handleEditClick}>
               {isEditing ? "Save" : "Edit"}
             </Button>

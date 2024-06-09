@@ -41,8 +41,8 @@ export interface IUserAdmin {
   id: string;
   email: string;
   fullName: string;
+  avatar: string;
   phoneNumber: string;
-  address: string;
-  roles: string;
+  roles: string[];
   isActive: boolean;
 }

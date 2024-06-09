@@ -5,12 +5,9 @@ export const tempUserData: IUserAdmin[] = [
     id: "U001",
     fullName: "Van Huu Toan",
     email: "toanvhse171981@fpt.edu.vn",
-    password: "123As@",
     avatar:
       "https://i.pinimg.com/originals/3f/ab/07/3fab077cc8865e75354d5fbf20b35488.jpg",
     phoneNumber: "0987654321",
-    address: "Cu Chi, Ho Chi Minh City, Vietnam",
-    createdOn: "07-05-2024",
     roles: ["Admin"],
     isActive: true,
   },
@@ -50,7 +47,6 @@ export const tempUserData: IUserAdmin[] = [
     id: "U005",
     fullName: "Nguyen Pham Khanh",
     email: "khanhnpse160945@fpt.edu.vn",
-    password: "123As@",
     avatar:
       "https://i.pinimg.com/originals/3f/ab/07/3fab077cc8865e75354d5fbf20b35488.jpg",
     phoneNumber: "0987654321",
