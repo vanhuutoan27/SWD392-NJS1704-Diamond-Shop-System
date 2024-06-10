@@ -23,6 +23,8 @@ namespace DiamonShop.Data.Configuration
                         GoldKarat = "18K",
                         GoldWeight = 0.53,
                         Price = 28300000,
+                        DateCreated = DateTime.Now,
+                        DateModified = DateTime.Now,
 
                     },
                      new Jewelry
@@ -40,6 +42,8 @@ namespace DiamonShop.Data.Configuration
                          GoldKarat = "18K",
                          GoldWeight = 0.61,
                          Price = 31200000,
+                         DateCreated = DateTime.Now,
+                         DateModified = DateTime.Now,
 
                      },
                        new Jewelry
@@ -56,6 +60,8 @@ namespace DiamonShop.Data.Configuration
                            GoldKarat = "18K",
                            GoldWeight = 0.58,
                            Price = 33450000,
+                           DateCreated = DateTime.Now,
+                           DateModified = DateTime.Now,
 
                        },
                      new Jewelry
@@ -72,6 +78,8 @@ namespace DiamonShop.Data.Configuration
                          GoldKarat = "18K",
                          GoldWeight = 1.05,
                          Price = 38589000,
+                         DateCreated = DateTime.Now,
+                         DateModified = DateTime.Now,
 
                      },
                      new Jewelry
@@ -88,6 +96,8 @@ namespace DiamonShop.Data.Configuration
                          GoldKarat = "18K",
                          GoldWeight = 1.09,
                          Price = 37430000,
+                         DateCreated = DateTime.Now,
+                         DateModified = DateTime.Now,
 
                      },
                        new Jewelry
@@ -104,7 +114,8 @@ namespace DiamonShop.Data.Configuration
                            GoldKarat = "18K",
                            GoldWeight = 1.17,
                            Price = 41246000,
-
+                           DateCreated = DateTime.Now,
+                           DateModified = DateTime.Now,
                        },
                         new Jewelry
                         {
@@ -120,7 +131,8 @@ namespace DiamonShop.Data.Configuration
                             GoldKarat = "18K",
                             GoldWeight = 6.6,
                             Price = 135371000,
-
+                            DateCreated = DateTime.Now,
+                            DateModified = DateTime.Now,
                         },
                          new Jewelry
                          {
@@ -136,7 +148,8 @@ namespace DiamonShop.Data.Configuration
                              GoldKarat = "18K",
                              GoldWeight = 7.1,
                              Price = 148239000,
-
+                             DateCreated = DateTime.Now,
+                             DateModified = DateTime.Now,
                          },
                           new Jewelry
                           {
@@ -152,7 +165,8 @@ namespace DiamonShop.Data.Configuration
                               GoldKarat = "18K",
                               GoldWeight = 5.9,
                               Price = 139800000,
-
+                              DateCreated = DateTime.Now,
+                              DateModified = DateTime.Now,
                           },
 
                             new Jewelry
@@ -169,7 +183,8 @@ namespace DiamonShop.Data.Configuration
                                 GoldKarat = "18K",
                                 GoldWeight = 1.04,
                                 Price = 31317000,
-
+                                DateCreated = DateTime.Now,
+                                DateModified = DateTime.Now,
                             },
                             new Jewelry
                             {
@@ -185,7 +200,8 @@ namespace DiamonShop.Data.Configuration
                                 GoldKarat = "18K",
                                 GoldWeight = 1.08,
                                 Price = 47239000,
-
+                                DateCreated = DateTime.Now,
+                                DateModified = DateTime.Now,
                             },
                               new Jewelry
                               {
@@ -201,7 +217,8 @@ namespace DiamonShop.Data.Configuration
                                   GoldKarat = "18K",
                                   GoldWeight = 1.07,
                                   Price = 44650000,
-
+                                  DateCreated = DateTime.Now,
+                                  DateModified = DateTime.Now,
                               }
 
 

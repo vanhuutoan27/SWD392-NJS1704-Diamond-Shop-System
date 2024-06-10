@@ -36,6 +36,8 @@ namespace DiamonShop.Core.Domain.Content
         public double GoldWeight { get; set; }
         [Required]
         public double Price { get; set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime? DateModified { get; set; }
 
         //navigate 
         public Product Product { get; set; }
