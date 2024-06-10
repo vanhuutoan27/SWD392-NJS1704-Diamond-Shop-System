@@ -1,19 +1,7 @@
-﻿using DiamonShop.Core.Domain.Content;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DiamonShop.Core.Models.content.RequestModels
+﻿namespace DiamonShop.Core.Models.content.RequestModels
 {
     public class CreateDiamondRequest
     {
-
-
-
         public string Shape { get; set; }
 
         public double Weight { get; set; }
@@ -31,7 +19,6 @@ namespace DiamonShop.Core.Models.content.RequestModels
         public string QualityOfCut { get; set; }
 
         public double Price { get; set; }
-        public DateTime DateCreated { get; set; }
-        public DateTime? DateModified { get; set; }
+
     }
 }

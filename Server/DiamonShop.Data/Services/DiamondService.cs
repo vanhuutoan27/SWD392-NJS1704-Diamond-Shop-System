@@ -25,11 +25,14 @@ namespace DiamonShop.Data.Services
 
             var createDiamond = _mapper.Map<Diamond>(createDiamondRequest);
             var productID = Guid.NewGuid();
+            var skuid = await _repositoryManager.Diamond.GenerateSkuAsync();
             var model = new Diamond()
             {
 
                 DiamondId = productID,
+                SkuID = skuid,
                 Shape = createDiamond.Shape,
+                ProductType = "Diamond",
                 Weight = createDiamond.Weight,
                 ColorLevel = createDiamond.ColorLevel,
                 Clarity = createDiamond.Clarity,

@@ -29,6 +29,7 @@ namespace DiamonShop.Data.Services
                 JewelryId = productId,
                 Name = productName,
                 SkuID = skudId,
+                ProductType = "Jewelry",
                 MainStoneSize = createJewelryDto.MainStoneSize,
                 sideStoneType = createJewelryDto.SideStoneType,
                 sideStoneQuantity = createJewelryDto.SideStoneQuantity,
@@ -36,7 +37,7 @@ namespace DiamonShop.Data.Services
                 GoldType = createJewelryDto.GoldType,
                 GoldKarat = createJewelryDto.GoldKarat,
                 GoldWeight = createJewelryDto.GoldWeight,
-                Price = createJewelryDto.Price
+                Price = createJewelryDto.Price,
             };
             _repositoryManager.Jewelry.Add(newJewelry);
             var category = await _repositoryManager.Category.GetByNameAsync(createJewelryDto.ProductType);

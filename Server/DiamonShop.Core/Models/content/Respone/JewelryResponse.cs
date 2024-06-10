@@ -28,6 +28,8 @@ namespace DiamonShop.Core.Models.content.Respone
         public double Price { get; set; }
 
         public List<string> Images { get; set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime? DateModified { get; set; }
 
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public EnumStatus.Status Status { get; set; }
