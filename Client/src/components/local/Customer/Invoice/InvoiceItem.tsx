@@ -122,9 +122,7 @@ function InvoiceItem({
             }`}
           >
             <div className="col-span-2">
-              <p className="text-sm font-medium text-secondary">
-                {item.productId}
-              </p>
+              <p className="text-sm font-medium text-secondary">{item.skuID}</p>
             </div>
             <div className="col-span-4">
               <p className="text-sm font-medium text-secondary">

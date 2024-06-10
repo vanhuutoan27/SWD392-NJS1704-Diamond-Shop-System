@@ -40,6 +40,7 @@ function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
         cartId: `C${diamondDetails.diamondId}`,
         productType: "Diamond",
         productId: diamondDetails.diamondId,
+        skuID: diamondDetails.skuID,
         quantity: 1,
         price: diamondDetails.price,
         image: diamondDetails.image,

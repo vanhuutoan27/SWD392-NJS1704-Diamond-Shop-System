@@ -44,7 +44,7 @@ function JewelryDetailPage() {
         lastPageUrl="/"
         currentPage="Jewelry"
         currentPageUrl="/jewelry"
-        currentDetailPage={jewelryDetails?.jewelryId}
+        currentDetailPage={jewelryDetails?.skuID}
       />
 
       {jewelryDetails && <JewelryDetails jewelryDetails={jewelryDetails} />}

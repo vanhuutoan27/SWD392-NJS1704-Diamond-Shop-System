@@ -44,7 +44,7 @@ function DiamondDetailPage() {
         lastPage="Home"
         lastPageUrl="/"
         currentPage="Diamond"
-        currentDetailPage={diamondDetails.diamondId}
+        currentDetailPage={diamondDetails.skuID}
       />
 
       {diamondDetails && <DiamondDetails diamondDetails={diamondDetails} />}

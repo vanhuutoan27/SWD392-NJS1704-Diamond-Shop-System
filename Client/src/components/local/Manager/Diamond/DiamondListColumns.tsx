@@ -16,16 +16,18 @@ import { useState } from "react";
 
 export const columns: ColumnDef<IDiamond>[] = [
   {
-    accessorKey: "diamondId",
-    header: ({ column }) => (
-      <div
-        className="flex select-none items-center"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-      >
-        <span className="flex cursor-pointer text-white">ID</span>
-        <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
-      </div>
-    ),
+    accessorKey: "skuID",
+    header: ({ column }) => {
+      return (
+        <div
+          className="flex select-none items-center"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          <span className="flex cursor-pointer text-white">ID</span>
+          <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
+        </div>
+      );
+    },
     cell: (info) => {
       const value: string = info.getValue() as string;
       const shortId = value.split("-")[0];

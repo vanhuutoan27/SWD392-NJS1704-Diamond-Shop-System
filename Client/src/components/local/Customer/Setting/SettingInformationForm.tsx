@@ -46,7 +46,7 @@ function SettingInformationForm({ user }: SettingInformationFormProps) {
       role,
     };
 
-    console.log("newUserData", newUserData);
+    // console.log("newUserData", newUserData);
 
     saveUser(newUserData);
   };

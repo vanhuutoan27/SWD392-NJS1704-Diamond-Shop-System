@@ -2,6 +2,7 @@ export interface ICartBase {
   cartId: string;
   productType: string;
   productId: string;
+  skuID: string;
   quantity: number;
   price: number;
   image: string;

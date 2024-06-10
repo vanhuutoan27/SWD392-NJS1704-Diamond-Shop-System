@@ -6,6 +6,7 @@ import { diamondImage } from "@/lib/constants";
 
 interface ProductCardProps {
   productId: string;
+  skuID: string;
   image?: string;
   images?: string[];
   size?: number;
@@ -15,6 +16,7 @@ interface ProductCardProps {
 
 function ProductCard({
   productId,
+  skuID,
   image,
   images,
   size,
@@ -22,8 +24,6 @@ function ProductCard({
   jewelryName,
 }: ProductCardProps) {
   const [isHover, setIsHover] = useState(false);
-
-  const shortProductId = productId.split("-")[0];
 
   const renderImage = () => {
     if (image) {
@@ -92,7 +92,7 @@ function ProductCard({
         </Link>
       </div>
       <div className="mt-8 text-center">
-        <p className="mb-1 text-xs text-gray-500">{shortProductId}</p>
+        <p className="mb-1 text-xs text-gray-500">{skuID}</p>
         <p className="h-7">{renderLink()}</p>
         <div className="mt-2 flex items-center justify-center gap-2">
           <span className="text-[13px] font-semibold text-[#c69967]">

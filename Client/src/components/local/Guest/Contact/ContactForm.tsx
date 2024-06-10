@@ -47,17 +47,17 @@ function ContactForm() {
       form.append("entry.1193730251", subject);
       form.append("entry.764643230", content);
 
-      console.log(
-        "Submitting form with data:",
-        Object.fromEntries(form.entries()),
-      );
+      // console.log(
+      //   "Submitting form with data:",
+      //   Object.fromEntries(form.entries()),
+      // );
 
       await fetch(formUrl, {
         method: "POST",
         mode: "no-cors",
         body: form,
       });
-      console.log("Form submitted successfully");
+      // console.log("Form submitted successfully");
       handleReset();
     } catch (error) {
       if (error instanceof z.ZodError) {

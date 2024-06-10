@@ -85,16 +85,19 @@ function InvoicePage() {
         {
           productType: "Diamond",
           productId: "d2c73200-1ae0-4066-9475-0bda2e220d57",
+          skuID: "D001",
           quantity: 1,
         },
         {
           productType: "Jewelry",
           productId: "734aab01-8668-4e5c-8afb-473b05fc52c0",
+          skuID: "J001",
           quantity: 3,
         },
         {
           productType: "Jewelry",
           productId: "1876fa93-1502-4d84-93ae-5ba6301d63cb",
+          skuID: "J002",
           quantity: 1,
         },
       ],
@@ -108,16 +111,19 @@ function InvoicePage() {
         {
           productType: "Diamond",
           productId: "d2c73200-1ae0-4066-9475-0bda2e220d57",
+          skuID: "D001",
           quantity: 2,
         },
         {
           productType: "Jewelry",
           productId: "734aab01-8668-4e5c-8afb-473b05fc52c0",
+          skuID: "J001",
           quantity: 1,
         },
         {
           productType: "Jewelry",
           productId: "1876fa93-1502-4d84-93ae-5ba6301d63cb",
+          skuID: "J002",
           quantity: 4,
         },
       ],
@@ -144,6 +150,8 @@ function InvoicePage() {
       vatPercentage,
     );
   });
+
+  console.log(formattedInvoices);
 
   return (
     <div className="container mx-auto px-4 py-8">

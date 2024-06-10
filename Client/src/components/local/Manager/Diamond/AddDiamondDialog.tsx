@@ -109,7 +109,7 @@ function AddDiamondDialog() {
     if (imageMethod === "upload") {
       handleSave();
     } else {
-      console.log("Diamond data:", diamondData);
+      // console.log("Diamond data:", diamondData);
 
       postDiamond.mutate(diamondData);
     }
@@ -247,11 +247,10 @@ function AddDiamondDialog() {
                       {...field}
                       onValueChange={(value) => {
                         field.onChange(value);
-                        console.log("Shape:", value);
                       }}
                     >
                       <SelectTrigger className="mt-1 w-full">
-                        <SelectValue placeholder="Select shape" />
+                        <SelectValue placeholder="Select Shape" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
@@ -285,7 +284,6 @@ function AddDiamondDialog() {
                       {...field}
                       onValueChange={(value) => {
                         field.onChange(value);
-                        console.log("Color:", value);
                       }}
                     >
                       <SelectTrigger className="mt-1 w-full">
@@ -320,7 +318,6 @@ function AddDiamondDialog() {
                       {...field}
                       onValueChange={(value) => {
                         field.onChange(value);
-                        console.log("Clarity:", value);
                       }}
                     >
                       <SelectTrigger className="mt-1 w-full">
@@ -355,7 +352,6 @@ function AddDiamondDialog() {
                       {...field}
                       onValueChange={(value) => {
                         field.onChange(value);
-                        console.log("Certification:", value);
                       }}
                     >
                       <SelectTrigger className="mt-1 w-full">
@@ -395,7 +391,6 @@ function AddDiamondDialog() {
                       {...field}
                       onValueChange={(value) => {
                         field.onChange(value);
-                        console.log("Fluorescence:", value);
                       }}
                     >
                       <SelectTrigger className="mt-1 w-full">
@@ -430,7 +425,6 @@ function AddDiamondDialog() {
                       {...field}
                       onValueChange={(value) => {
                         field.onChange(value);
-                        console.log("Quality of Cut:", value);
                       }}
                     >
                       <SelectTrigger className="mt-1 w-full">

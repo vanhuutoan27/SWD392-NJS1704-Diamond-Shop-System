@@ -22,6 +22,7 @@ function JewelryList({
           <ProductCard
             key={jewelry.jewelryId}
             productId={jewelry.jewelryId}
+            skuID={jewelry.skuID}
             images={jewelry.images}
             jewelryName={jewelry.jewelryName}
             price={jewelry.price}

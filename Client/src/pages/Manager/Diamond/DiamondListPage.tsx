@@ -4,7 +4,7 @@ import { columns } from "@/components/local/Manager/Diamond/DiamondListColumns";
 import { DataTable } from "@/components/local/Manager/Diamond/DiamondListDataTable";
 import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage";
 
-function UserListPage() {
+function DiamondListPage() {
   const { data: diamondData, error, isLoading } = useGetAllDiamonds();
 
   if (isLoading) {
@@ -22,4 +22,4 @@ function UserListPage() {
   );
 }
 
-export default UserListPage;
+export default DiamondListPage;

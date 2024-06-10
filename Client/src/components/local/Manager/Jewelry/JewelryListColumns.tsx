@@ -17,7 +17,7 @@ import ViewJewelryDialog from "./ViewJewelryDialog";
 
 export const columns: ColumnDef<IJewelry>[] = [
   {
-    accessorKey: "jewelryId",
+    accessorKey: "skuID",
     header: ({ column }) => {
       return (
         <div

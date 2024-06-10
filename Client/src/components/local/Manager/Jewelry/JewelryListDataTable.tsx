@@ -23,31 +23,42 @@ import {
 } from "@/components/global/atoms/table";
 import { Input } from "@/components/global/atoms/input";
 import { Search } from "lucide-react";
-import { Button } from "@/components/global/atoms/button";
 import DataTablePagination from "@/components/global/molecules/DataTablePagination";
 import AddJewelryDialog from "./AddJewelryDialog";
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
+interface JewelryData {
+  jewelryId: string;
+  [key: string]: any;
+}
+
+interface DataTableProps<TData> {
+  columns: ColumnDef<TData, any>[];
   data: TData[];
 }
 
-export function DataTable<TData, TValue>({
+export function DataTable<TData extends JewelryData>({
   columns,
   data,
-}: DataTableProps<TData, TValue>) {
+}: DataTableProps<TData>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     [],
   );
   const [currentPage, setCurrentPage] = React.useState(1);
+  const [searchValue, setSearchValue] = React.useState<string>("");
   const itemsPerPage = 7;
+
+  const filteredData = React.useMemo(() => {
+    return data.filter((item) =>
+      item.jewelryId.toLowerCase().includes(searchValue.toLowerCase()),
+    );
+  }, [data, searchValue]);
 
   const paginatedData = React.useMemo(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    return data.slice(startIndex, endIndex);
-  }, [data, currentPage]);
+    return filteredData.slice(startIndex, endIndex);
+  }, [filteredData, currentPage]);
 
   const table = useReactTable({
     data: paginatedData,
@@ -64,7 +75,7 @@ export function DataTable<TData, TValue>({
     },
   });
 
-  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
   return (
     <>
@@ -77,24 +88,15 @@ export function DataTable<TData, TValue>({
             />
             <Input
               placeholder="Search Jewelry by ID..."
-              value={
-                (table.getColumn("jewelryId")?.getFilterValue() as string) ?? ""
-              }
-              onChange={(event) =>
-                table.getColumn("jewelryId")?.setFilterValue(event.target.value)
-              }
+              value={searchValue}
+              onChange={(event) => setSearchValue(event.target.value)}
               className="w-[400px] max-w-sm border border-secondary bg-white pl-10"
             />
           </div>
         </div>
 
         <div className="flex gap-4">
-          {/* <Button className="flex gap-2" variant={"destructive"}>
-            <Import size={20} /> Import
-          </Button> */}
-          <Button className="flex gap-2 bg-gray-800 pl-5 hover:bg-gray-900">
-            <AddJewelryDialog />
-          </Button>
+          <AddJewelryDialog />
         </div>
       </div>
 

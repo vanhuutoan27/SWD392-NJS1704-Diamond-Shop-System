@@ -32,6 +32,7 @@ function RelatedDiamonds({ pageName, relatedDiamonds }: RelatedDiamondsProps) {
             >
               <ProductCard
                 productId={diamond.diamondId}
+                skuID={diamond.skuID}
                 image={diamond.image}
                 size={diamond.size}
                 price={diamond.price}

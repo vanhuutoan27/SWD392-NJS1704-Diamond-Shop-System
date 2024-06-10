@@ -86,9 +86,8 @@ function AddJewelryDialog() {
   const onSubmit: SubmitHandler<JewelryFormValues> = (data) => {
     if (imageMethod === "upload") {
       handleSave();
-    } else {
-      console.log("Jewelry data:", data);
     }
+    console.log("Jewelry data:", data);
     setIsDialogOpen(false);
   };
 
@@ -215,8 +214,8 @@ function AddJewelryDialog() {
               </Tabs>
             </div>
 
-            <div className="grid grid-cols-8 items-center gap-4">
-              <div className="col-span-4">
+            <div className="grid grid-cols-3 items-center gap-4">
+              <div className="col-span-1">
                 <span className="ml-1 text-sm font-medium">
                   Jewelry Category
                 </span>
@@ -228,7 +227,6 @@ function AddJewelryDialog() {
                       {...field}
                       onValueChange={(value) => {
                         field.onChange(value);
-                        console.log("Jewelry Category:", value);
                       }}
                     >
                       <SelectTrigger className="mt-1 w-full">
@@ -252,8 +250,41 @@ function AddJewelryDialog() {
                 )}
               </div>
 
-              <div className="col-span-4">
-                <span className="ml-1 text-sm font-medium">Stone Type</span>
+              <div className="col-span-1">
+                <span className="ml-1 text-sm font-medium">Jewelry Name</span>
+                <input
+                  type="text"
+                  className="input-field mt-1"
+                  {...register("jewelryName")}
+                />
+                {errors.jewelryName && (
+                  <p className="mt-1 text-sm text-red-600">
+                    {errors.jewelryName.message}
+                  </p>
+                )}
+              </div>
+
+              <div className="col-span-1">
+                <span className="ml-1 text-sm font-medium">
+                  Main Stone Size
+                </span>
+                <input
+                  type="text"
+                  placeholder="e.g., Round 5ly"
+                  className="input-field mt-1"
+                  {...register("mainStoneSize")}
+                />
+                {errors.mainStoneSize && (
+                  <p className="mt-1 text-sm text-red-600">
+                    {errors.mainStoneSize.message}
+                  </p>
+                )}
+              </div>
+
+              <div className="col-span-1">
+                <span className="ml-1 text-sm font-medium">
+                  Side Stone Type
+                </span>
                 <Controller
                   control={control}
                   name="sideStoneType"
@@ -262,7 +293,6 @@ function AddJewelryDialog() {
                       {...field}
                       onValueChange={(value) => {
                         field.onChange(value);
-                        console.log("Stone Type:", value);
                       }}
                     >
                       <SelectTrigger className="mt-1 w-full">
@@ -276,132 +306,136 @@ function AddJewelryDialog() {
                     </Select>
                   )}
                 />
-                {/* {errors.sideStoneType && (
+                {errors.sideStoneType && (
                   <p className="mt-1 text-sm text-red-600">
                     {errors.sideStoneType.message}
                   </p>
-                )} */}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-9 items-center gap-4">
-              <div className="col-span-3">
-                <span className="ml-1 text-sm font-medium">Stone Size</span>
-                <input
-                  type="text"
-                  placeholder="e.g., Round 5ly"
-                  className="input-field mt-1"
-                />
-                {/* {errors.mainStoneSize && (
-                  <p className="mt-1 text-sm text-red-600">
-                    {errors.mainStoneSize.message}
-                  </p>
-                )} */}
+                )}
               </div>
 
-              <div className="col-span-3">
-                <span className="ml-1 text-sm font-medium">Stone Quantity</span>
+              <div className="col-span-1">
+                <span className="ml-1 text-sm font-medium">
+                  Side Stone Quantity
+                </span>
                 <input
                   type="number"
-                  placeholder="Input Stone quantity"
+                  placeholder="e.g., 15"
                   className="input-field mt-1"
+                  {...register("sideStoneQuantity", { valueAsNumber: true })}
                 />
-                {/* {errors.sideStoneQuantity && (
+                {errors.sideStoneQuantity && (
                   <p className="mt-1 text-sm text-red-600">
                     {errors.sideStoneQuantity.message}
                   </p>
-                )} */}
+                )}
               </div>
 
-              <div className="col-span-3">
-                <span className="ml-1 text-sm font-medium">Stone Weight</span>
+              <div className="col-span-1">
+                <span className="ml-1 text-sm font-medium">
+                  Side Stone Weight
+                </span>
                 <input
                   type="number"
-                  placeholder="Input Stone weight"
+                  placeholder="e.g., 0.04"
                   className="input-field mt-1"
+                  {...register("stoneWeight", { valueAsNumber: true })}
                 />
-                {/* {errors.stoneWeight && (
+                {errors.stoneWeight && (
                   <p className="mt-1 text-sm text-red-600">
                     {errors.stoneWeight.message}
                   </p>
-                )} */}
+                )}
               </div>
-            </div>
 
-            <div className="grid grid-cols-9 items-center gap-4">
-              <div className="col-span-3">
+              <div className="col-span-1">
                 <span className="ml-1 text-sm font-medium">Gold Type</span>
-                <input
-                  type="text"
-                  placeholder="Input Gold type"
-                  className="input-field mt-1"
+                <Controller
+                  control={control}
+                  name="goldType"
+                  render={({ field }) => (
+                    <Select
+                      {...field}
+                      onValueChange={(value) => {
+                        field.onChange(value);
+                      }}
+                    >
+                      <SelectTrigger className="mt-1 w-full">
+                        <SelectValue placeholder="Select Gold Type" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectItem value="WhiteGold">White gold</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  )}
                 />
-                {/* {errors.goldType && (
+                {errors.goldType && (
                   <p className="mt-1 text-sm text-red-600">
                     {errors.goldType.message}
                   </p>
-                )} */}
+                )}
               </div>
 
-              <div className="col-span-3">
+              <div className="col-span-1">
                 <span className="ml-1 text-sm font-medium">Gold Karat</span>
-                <input
-                  type="text"
-                  placeholder="Input Gold karat"
-                  className="input-field mt-1"
+                <Controller
+                  control={control}
+                  name="goldKarat"
+                  render={({ field }) => (
+                    <Select
+                      {...field}
+                      onValueChange={(value) => {
+                        field.onChange(value);
+                      }}
+                    >
+                      <SelectTrigger className="mt-1 w-full">
+                        <SelectValue placeholder="Select Gold Karat" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectItem value="14K">14K</SelectItem>
+                          <SelectItem value="18K">18K</SelectItem>
+                          <SelectItem value="22K">22K</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  )}
                 />
-                {/* {errors.goldKarat && (
+                {errors.goldKarat && (
                   <p className="mt-1 text-sm text-red-600">
                     {errors.goldKarat.message}
                   </p>
-                )} */}
+                )}
               </div>
 
-              <div className="col-span-3">
+              <div className="col-span-1">
                 <span className="ml-1 text-sm font-medium">Gold Weight</span>
                 <input
                   type="number"
-                  step="any"
-                  placeholder="Input Gold weight"
+                  placeholder="e.g., 1.04"
                   {...register("goldWeight", { valueAsNumber: true })}
-                  className="input-field no-arrows mt-1"
+                  className="input-field mt-1"
                 />
-                {/* {errors.goldWeight && (
+                {errors.goldWeight && (
                   <p className="mt-1 text-sm text-red-600">
                     {errors.goldWeight.message}
                   </p>
-                )} */}
+                )}
               </div>
-            </div>
 
-            <div className="grid grid-cols-8 items-center gap-4">
-              <div className="col-span-4">
+              <div className="col-span-1">
                 <span className="ml-1 text-sm font-medium">Price (VND)</span>
                 <input
                   type="number"
-                  step="any"
                   {...register("price", { valueAsNumber: true })}
-                  className="input-field no-arrows mt-1"
+                  className="input-field mt-1"
                 />
-                {/* {errors.price && (
+                {errors.price && (
                   <p className="mt-1 text-sm text-red-600">
                     {errors.price.message}
                   </p>
-                )} */}
-              </div>
-
-              <div className="col-span-4">
-                <span className="ml-1 text-sm font-medium">Name</span>
-                <input
-                  type="text"
-                  placeholder="Input name"
-                  className="input-field no-arrows mt-1"
-                />
-                {/* {errors.jewelryName && (
-                  <p className="mt-1 text-sm text-red-600">
-                    {errors.jewelryName.message}
-                  </p>
-                )} */}
+                )}
               </div>
             </div>
 

@@ -208,6 +208,11 @@ function DiamondPage() {
               <div
                 key={index}
                 className="slow cursor-pointer rounded-md border-[1px] border-slate-700 px-4 py-1 text-sm font-medium hover:bg-primary hover:text-white"
+                onClick={() => {
+                  toast.error(
+                    "This function has not been implemented at the moment :(",
+                  );
+                }}
               >
                 {product}
               </div>

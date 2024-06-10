@@ -41,8 +41,9 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
     } else {
       const newItem: IJewelryCart = {
         cartId: `C${jewelryDetails.jewelryId}`,
-        productType: 'Jewelry',
+        productType: "Jewelry",
         productId: jewelryDetails.jewelryId,
+        skuID: jewelryDetails.skuID,
         quantity: 1,
         price: jewelryDetails.price,
         image: jewelryDetails.images ? jewelryDetails.images[0] : "",

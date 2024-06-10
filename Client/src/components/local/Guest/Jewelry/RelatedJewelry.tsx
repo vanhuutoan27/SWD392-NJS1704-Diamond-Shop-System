@@ -32,6 +32,7 @@ function RelatedJewelry({ pageName, relatedJewelries }: RelatedJewelryProps) {
             >
               <ProductCard
                 productId={jewelry.jewelryId}
+                skuID={jewelry.skuID}
                 images={jewelry.images}
                 jewelryName={jewelry.jewelryName}
                 price={jewelry.price}
