@@ -17,7 +17,7 @@ namespace DiamonShop.Core.Models.content.Respone
         public double Size { get; set; }
         public string Fluorescence { get; set; }
         public string QualityOfCut { get; set; }
-        public string? Image { get; set; }
+        public string? Images { get; set; }
         public double Price { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime? DateModified { get; set; }

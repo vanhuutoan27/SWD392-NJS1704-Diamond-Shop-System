@@ -1,7 +1,6 @@
 ﻿using DiamonShop.Core.Models.content.RequestModels;
 using DiamonShop.Core.Models.content.Respone;
 using DiamonShop.Core.services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DiamonShop.API.Controllers
@@ -17,7 +16,6 @@ namespace DiamonShop.API.Controllers
             _services = services;
         }
         [HttpGet]
-        [Authorize]
         public async Task<IActionResult> GetAll()
         {
 
