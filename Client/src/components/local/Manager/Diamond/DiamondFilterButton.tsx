@@ -1,30 +1,33 @@
-import { useState } from "react";
-import { Button } from "@/components/global/atoms/button";
+import { useState } from "react"
+
+import {
+  IDiamondClarity,
+  IDiamondColor,
+  IDiamondShape,
+  IDiamondSize,
+  IDiamondWeight
+} from "@/types/diamond.interface"
+
+import { Button } from "@/components/global/atoms/button"
 import {
   Popover,
   PopoverContent,
-  PopoverTrigger,
-} from "@/components/global/atoms/popover";
-import {
-  IDiamondShape,
-  IDiamondWeight,
-  IDiamondColor,
-  IDiamondClarity,
-  IDiamondSize,
-} from "@/types/diamond.interface";
+  PopoverTrigger
+} from "@/components/global/atoms/popover"
 
 interface FilterOptionGroupProps {
-  title: string;
-  options: Array<{ shapeName?: string; [key: string]: any } | string>;
-  selectedOption: string;
-  handleSelection: (value: string) => void;
+  title: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  options: Array<{ shapeName?: string; [key: string]: any } | string>
+  selectedOption: string
+  handleSelection: (value: string) => void
 }
 
 function FilterOptionGroup({
   title,
   options,
   selectedOption,
-  handleSelection,
+  handleSelection
 }: FilterOptionGroupProps) {
   return (
     <div className="mb-4 flex flex-col">
@@ -51,7 +54,7 @@ function FilterOptionGroup({
             }`}
             onClick={() =>
               handleSelection(
-                typeof option === "string" ? option : option.shapeName || "",
+                typeof option === "string" ? option : option.shapeName || ""
               )
             }
           >
@@ -60,22 +63,22 @@ function FilterOptionGroup({
         ))}
       </div>
     </div>
-  );
+  )
 }
 
 interface DiamondFilterButtonProps {
   setColumnFilters: (
-    filters: Array<{ id: string; value: string | number[] }>,
-  ) => void;
+    filters: Array<{ id: string; value: string | number[] }>
+  ) => void
 }
 
 type Filters = {
-  shape: string;
-  weight: string;
-  colorLevel: string;
-  clarity: string;
-  size: string;
-};
+  shape: string
+  weight: string
+  colorLevel: string
+  clarity: string
+  size: string
+}
 
 function DiamondFilterButton({ setColumnFilters }: DiamondFilterButtonProps) {
   const [filters, setFilters] = useState<Filters>({
@@ -83,30 +86,30 @@ function DiamondFilterButton({ setColumnFilters }: DiamondFilterButtonProps) {
     weight: "",
     colorLevel: "",
     clarity: "",
-    size: "",
-  });
+    size: ""
+  })
 
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false)
 
   const handleFilterClick = (key: keyof Filters, value: string) => {
     setFilters((prevFilters) => ({
       ...prevFilters,
-      [key]: prevFilters[key] === value ? "" : value,
-    }));
-  };
+      [key]: prevFilters[key] === value ? "" : value
+    }))
+  }
 
   const applyFilters = () => {
     const weightRange = filters.weight
       ? filters.weight === "Over 3.0"
         ? [3.0, Infinity]
         : filters.weight.split(" - ").map((w) => parseFloat(w))
-      : null;
+      : null
 
     const sizeRange = filters.size
       ? filters.size === "Over 9.0"
         ? [9.0, Infinity]
         : filters.size.split(" - ").map((s) => parseFloat(s))
-      : null;
+      : null
 
     const filterArray = Object.keys(filters)
       .filter((key) => filters[key as keyof Filters])
@@ -117,12 +120,12 @@ function DiamondFilterButton({ setColumnFilters }: DiamondFilterButtonProps) {
             ? weightRange
             : key === "size" && sizeRange
               ? sizeRange
-              : filters[key as keyof Filters],
-      }));
+              : filters[key as keyof Filters]
+      }))
 
-    setColumnFilters(filterArray);
-    setIsPopoverOpen(false); // Close the popover
-  };
+    setColumnFilters(filterArray)
+    setIsPopoverOpen(false) // Close the popover
+  }
 
   const resetFilters = () => {
     setFilters({
@@ -130,11 +133,11 @@ function DiamondFilterButton({ setColumnFilters }: DiamondFilterButtonProps) {
       weight: "",
       colorLevel: "",
       clarity: "",
-      size: "",
-    });
-    setColumnFilters([]);
-    setIsPopoverOpen(false);
-  };
+      size: ""
+    })
+    setColumnFilters([])
+    setIsPopoverOpen(false)
+  }
 
   return (
     <Popover open={isPopoverOpen} onOpenChange={setIsPopoverOpen}>
@@ -191,7 +194,7 @@ function DiamondFilterButton({ setColumnFilters }: DiamondFilterButtonProps) {
         </div>
       </PopoverContent>
     </Popover>
-  );
+  )
 }
 
-export default DiamondFilterButton;
+export default DiamondFilterButton

@@ -1,4 +1,4 @@
-import { projectName } from "@/lib/constants";
+import { projectName } from "@/lib/constants"
 
 function DiamondBanner() {
   return (
@@ -18,7 +18,7 @@ function DiamondBanner() {
         />
       </div>
     </div>
-  );
+  )
 }
 
-export default DiamondBanner;
+export default DiamondBanner

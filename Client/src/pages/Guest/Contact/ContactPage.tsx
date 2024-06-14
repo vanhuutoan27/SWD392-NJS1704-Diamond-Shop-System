@@ -1,7 +1,8 @@
-import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
-import Section from "@/components/global/organisms/Section";
-import ContactForm from "@/components/local/Guest/Contact/ContactForm";
-import { projectName } from "@/lib/constants";
+import { projectName } from "@/lib/constants"
+
+import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent"
+import Section from "@/components/global/organisms/Section"
+import ContactForm from "@/components/local/Guest/Contact/ContactForm"
 
 function ContactPage() {
   return (
@@ -26,7 +27,7 @@ function ContactPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default ContactPage;
+export default ContactPage

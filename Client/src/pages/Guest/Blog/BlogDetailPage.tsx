@@ -1,16 +1,18 @@
-import { useParams } from "react-router-dom";
-import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
-import { Loader } from "@/components/global/atoms/Loader";
-import { formatDate } from "@/lib/utils";
-import { blogData } from "@/constants/blog";
+import { blogData } from "@/constants/blog"
+import { useParams } from "react-router-dom"
+
+import { formatDate } from "@/lib/utils"
+
+import { Loader } from "@/components/global/atoms/Loader"
+import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent"
 
 function BlogDetailPage() {
-  const { blogId } = useParams<{ blogId: string }>();
+  const { blogId } = useParams<{ blogId: string }>()
 
-  const blogItem = blogData.find((blog) => blog.blogId === blogId);
+  const blogItem = blogData.find((blog) => blog.blogId === blogId)
 
   if (!blogItem) {
-    return <Loader />;
+    return <Loader />
   }
 
   return (
@@ -49,7 +51,7 @@ function BlogDetailPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default BlogDetailPage;
+export default BlogDetailPage

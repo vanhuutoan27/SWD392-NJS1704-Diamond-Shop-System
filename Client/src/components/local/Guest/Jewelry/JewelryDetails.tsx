@@ -1,43 +1,47 @@
-import { useEffect, useState } from "react";
-import { IJewelry } from "@/types/jewelry.interface";
-import { addToCart, formatCurrency } from "@/lib/utils";
-import { ICart, IJewelryCart } from "@/types/cart.interface";
-import { toast } from "sonner";
-import { Button } from "@/components/global/atoms/button";
-import Section from "@/components/global/organisms/Section";
-import { useAuthContext } from "@/contexts/AuthContext";
+import { useEffect, useState } from "react"
+
+import { useAuthContext } from "@/contexts/AuthContext"
+import { toast } from "sonner"
+
+import { ICart, IJewelryCart } from "@/types/cart.interface"
+import { IJewelry } from "@/types/jewelry.interface"
+
+import { addToCart, formatCurrency } from "@/lib/utils"
+
+import { Button } from "@/components/global/atoms/button"
+import Section from "@/components/global/organisms/Section"
 
 function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
-  const { user } = useAuthContext();
-  const [cartItems, setCartItems] = useState<ICart[]>([]);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { user } = useAuthContext()
+  const [cartItems, setCartItems] = useState<ICart[]>([])
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
-  const salePrice = 100000; // Placeholder for the sale price
+  const salePrice = 100000 // Placeholder for the sale price
 
   useEffect(() => {
-    const storedCartItems = localStorage.getItem("cartItems");
+    const storedCartItems = localStorage.getItem("cartItems")
     if (storedCartItems) {
-      setCartItems(JSON.parse(storedCartItems));
+      setCartItems(JSON.parse(storedCartItems))
     }
-  }, []);
+  }, [])
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    const container = event.currentTarget;
-    const rect = container.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width) * 100;
-    const y = ((event.clientY - rect.top) / rect.height) * 100;
-    container.style.setProperty("--x", `${x}%`);
-    container.style.setProperty("--y", `${y}%`);
-  };
+    const container = event.currentTarget
+    const rect = container.getBoundingClientRect()
+    const x = ((event.clientX - rect.left) / rect.width) * 100
+    const y = ((event.clientY - rect.top) / rect.height) * 100
+    container.style.setProperty("--x", `${x}%`)
+    container.style.setProperty("--y", `${y}%`)
+  }
 
   const selectImage = (index: number) => {
-    setCurrentImageIndex(index);
-  };
+    setCurrentImageIndex(index)
+  }
 
   const handleAddToCart = () => {
     if (!user) {
-      toast.error("Please login to add to cart");
-      return;
+      toast.error("Please login to add to cart")
+      return
     } else {
       const newItem: IJewelryCart = {
         cartId: `C${jewelryDetails.jewelryId}`,
@@ -47,17 +51,17 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
         quantity: 1,
         price: jewelryDetails.price,
         image: jewelryDetails.images ? jewelryDetails.images[0] : "",
-        jewelryName: jewelryDetails.jewelryName,
-      };
-      const updatedCart = addToCart(cartItems, newItem);
-      setCartItems(updatedCart);
-      localStorage.setItem("cartItems", JSON.stringify(updatedCart));
+        jewelryName: jewelryDetails.jewelryName
+      }
+      const updatedCart = addToCart(cartItems, newItem)
+      setCartItems(updatedCart)
+      localStorage.setItem("cartItems", JSON.stringify(updatedCart))
 
-      toast.success("Added to cart successfully");
+      toast.success("Added to cart successfully")
 
-      window.dispatchEvent(new CustomEvent("cartChanged"));
+      window.dispatchEvent(new CustomEvent("cartChanged"))
     }
-  };
+  }
 
   return (
     <>
@@ -207,7 +211,7 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
         </table>
       </div>
     </>
-  );
+  )
 }
 
-export default JewelryDetails;
+export default JewelryDetails

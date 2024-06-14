@@ -1,5 +1,6 @@
-import Section from "@/components/global/organisms/Section";
-import { CircleCheckBig } from "lucide-react";
+import { CircleCheckBig } from "lucide-react"
+
+import Section from "@/components/global/organisms/Section"
 
 function BuyingGuide() {
   return (
@@ -26,7 +27,7 @@ function BuyingGuide() {
         </li>
       </ul>
     </div>
-  );
+  )
 }
 
-export default BuyingGuide;
+export default BuyingGuide

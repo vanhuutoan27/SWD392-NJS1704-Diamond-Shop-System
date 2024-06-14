@@ -1,51 +1,53 @@
-import { useState } from "react";
-import { Button } from "@/components/global/atoms/button";
-import { contactSchema } from "@/schemas/ContactForm";
-import { z } from "zod";
+import { useState } from "react"
+
+import { contactSchema } from "@/schemas/ContactForm"
+import { z } from "zod"
+
+import { Button } from "@/components/global/atoms/button"
 
 interface Errors {
-  name?: string;
-  email?: string;
-  subject?: string;
-  content?: string;
+  name?: string
+  email?: string
+  subject?: string
+  content?: string
 }
 
 function ContactForm() {
   const formUrl =
-    "https://docs.google.com/forms/u/0/d/e/1FAIpQLSe86NtCNVbYjdxVNmGLoGAuypfrS2kDCpZiJnZ5hV-FiKUWlg/formResponse";
+    "https://docs.google.com/forms/u/0/d/e/1FAIpQLSe86NtCNVbYjdxVNmGLoGAuypfrS2kDCpZiJnZ5hV-FiKUWlg/formResponse"
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
-  const [content, setContent] = useState("");
-  const [errors, setErrors] = useState<Errors>({});
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [subject, setSubject] = useState("")
+  const [content, setContent] = useState("")
+  const [errors, setErrors] = useState<Errors>({})
 
   const handleReset = () => {
-    setName("");
-    setEmail("");
-    setSubject("");
-    setContent("");
-    setErrors({});
-  };
+    setName("")
+    setEmail("")
+    setSubject("")
+    setContent("")
+    setErrors({})
+  }
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault()
 
     const formData = {
       name,
       email,
       subject,
-      content,
-    };
+      content
+    }
 
     try {
-      contactSchema.parse(formData);
+      contactSchema.parse(formData)
 
-      const form = new FormData();
-      form.append("entry.992756596", name);
-      form.append("entry.289138189", email);
-      form.append("entry.1193730251", subject);
-      form.append("entry.764643230", content);
+      const form = new FormData()
+      form.append("entry.992756596", name)
+      form.append("entry.289138189", email)
+      form.append("entry.1193730251", subject)
+      form.append("entry.764643230", content)
 
       // console.log(
       //   "Submitting form with data:",
@@ -55,53 +57,54 @@ function ContactForm() {
       await fetch(formUrl, {
         method: "POST",
         mode: "no-cors",
-        body: form,
-      });
+        body: form
+      })
       // console.log("Form submitted successfully");
-      handleReset();
+      handleReset()
     } catch (error) {
       if (error instanceof z.ZodError) {
-        const fieldErrors = error.flatten().fieldErrors;
-        const formattedErrors: Errors = {};
+        const fieldErrors = error.flatten().fieldErrors
+        const formattedErrors: Errors = {}
         for (const key in fieldErrors) {
+          // eslint-disable-next-line no-prototype-builtins
           if (fieldErrors.hasOwnProperty(key)) {
-            formattedErrors[key as keyof Errors] = fieldErrors[key]?.join(" ");
+            formattedErrors[key as keyof Errors] = fieldErrors[key]?.join(" ")
           }
         }
-        setErrors(formattedErrors);
-        console.error("Validation errors:", formattedErrors);
+        setErrors(formattedErrors)
+        console.error("Validation errors:", formattedErrors)
       } else {
-        console.error("Error submitting form:", error);
+        console.error("Error submitting form:", error)
       }
     }
-  };
+  }
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     switch (name) {
       case "name":
-        setName(value);
-        break;
+        setName(value)
+        break
       case "email":
-        setEmail(value);
-        break;
+        setEmail(value)
+        break
       case "subject":
-        setSubject(value);
-        break;
+        setSubject(value)
+        break
       case "content":
-        setContent(value);
-        break;
+        setContent(value)
+        break
       default:
-        break;
+        break
     }
 
     setErrors((prevErrors) => ({
       ...prevErrors,
-      [name]: undefined,
-    }));
-  };
+      [name]: undefined
+    }))
+  }
 
   return (
     <div className="flex h-full">
@@ -163,7 +166,7 @@ function ContactForm() {
         </form>
       </div>
     </div>
-  );
+  )
 }
 
-export default ContactForm;
+export default ContactForm

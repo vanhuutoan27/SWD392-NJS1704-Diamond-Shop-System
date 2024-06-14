@@ -1,41 +1,46 @@
-import { useState, useEffect } from "react";
-import { getUsername } from "@/lib/utils";
-import { CircleUserRound, Mail, MapPin, Phone, User, Info } from "lucide-react";
-import AlertDialogComponent from "@/components/global/molecules/AlertDialogComponent";
-import { toast } from "sonner";
-import { usePutUser } from "@/apis/userApi";
-import { IUpdateUser, IUser } from "@/types/user.interface";
+import { useEffect, useState } from "react"
+
+import { CircleUserRound, Info, Mail, MapPin, Phone, User } from "lucide-react"
+import { toast } from "sonner"
+
+import { IUpdateUser, IUser } from "@/types/user.interface"
+
+import { usePutUser } from "@/apis/userApi"
+
+import { getUsername } from "@/lib/utils"
+
+import AlertDialogComponent from "@/components/global/molecules/AlertDialogComponent"
 
 interface SettingInformationFormProps {
-  user: IUser;
+  user: IUser
 }
 
 function SettingInformationForm({ user }: SettingInformationFormProps) {
-  const [formData, setFormData] = useState<IUser>(user);
-  const [username, setUsername] = useState<string>("");
+  const [formData, setFormData] = useState<IUser>(user)
+  const [username, setUsername] = useState<string>("")
 
-  const { mutate: saveUser } = usePutUser();
+  const { mutate: saveUser } = usePutUser()
 
   useEffect(() => {
-    setUsername(getUsername(formData.email) || "");
-  }, [formData.email]);
+    setUsername(getUsername(formData.email) || "")
+  }, [formData.email])
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
+    const { name, value } = e.target
+    setFormData((prevData) => ({ ...prevData, [name]: value }))
+  }
 
   const handleSubmit = () => {
-    const { id, email, fullName, phoneNumber, address, roles } = formData;
+    const { id, email, fullName, phoneNumber, address, roles } = formData
 
     if (!id) {
-      toast.error("User ID is missing, cannot update profile");
-      return;
+      toast.error("User ID is missing, cannot update profile")
+      return
     }
 
-    const role = roles.length > 0 ? roles[0] : "";
+    const role = roles.length > 0 ? roles[0] : ""
 
     const newUserData: IUpdateUser = {
       id,
@@ -43,21 +48,21 @@ function SettingInformationForm({ user }: SettingInformationFormProps) {
       fullName,
       phone: phoneNumber,
       address,
-      role,
-    };
+      role
+    }
 
     // console.log("newUserData", newUserData);
 
-    saveUser(newUserData);
-  };
+    saveUser(newUserData)
+  }
 
   const confirmCancel = () => {
-    setFormData(user);
-  };
+    setFormData(user)
+  }
 
   const confirmSave = () => {
-    handleSubmit();
-  };
+    handleSubmit()
+  }
 
   return (
     <form
@@ -193,7 +198,7 @@ function SettingInformationForm({ user }: SettingInformationFormProps) {
         />
       </div>
     </form>
-  );
+  )
 }
 
-export default SettingInformationForm;
+export default SettingInformationForm

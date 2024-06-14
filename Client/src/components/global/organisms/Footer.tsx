@@ -1,5 +1,3 @@
-import { projectName } from "@/lib/constants";
-import { scrollToTop } from "@/lib/utils";
 import {
   Circle,
   Facebook,
@@ -7,44 +5,47 @@ import {
   Mail,
   MapPin,
   Phone,
-  Youtube,
-} from "lucide-react";
-import { Link } from "react-router-dom";
+  Youtube
+} from "lucide-react"
+import { Link } from "react-router-dom"
+
+import { projectName } from "@/lib/constants"
+import { scrollToTop } from "@/lib/utils"
 
 function Footer() {
   const aboutInfos = [
     {
       name: "Address: Long Thanh My, Thu Duc City, Ho Chi Minh City, Vietnam",
       link: "#",
-      icon: <MapPin size={20} />,
+      icon: <MapPin size={20} />
     },
     {
       name: "Email: diamoon.contact@gmail.com",
       link: "#",
-      icon: <Mail size={20} />,
+      icon: <Mail size={20} />
     },
-    { name: "Phone: (84) 098 765 321", link: "#", icon: <Phone size={20} /> },
-  ];
+    { name: "Phone: (84) 098 765 321", link: "#", icon: <Phone size={20} /> }
+  ]
 
   const quickLinks = [
     { name: "Home", link: "/", icon: <Circle size={6} /> },
     { name: "Diamond", link: "/diamond", icon: <Circle size={6} /> },
     { name: "Jewelry", link: "/jewelry", icon: <Circle size={6} /> },
-    { name: "News & Blog ", link: "/blog", icon: <Circle size={6} /> },
-  ];
+    { name: "News & Blog ", link: "/blog", icon: <Circle size={6} /> }
+  ]
 
   const Informations = [
     { name: "About Us", link: "/about", icon: <Circle size={6} /> },
     { name: "Contact us", link: "/contact", icon: <Circle size={6} /> },
     { name: "Promotion", link: "/promotion", icon: <Circle size={6} /> },
-    { name: "Terms & Condition", link: "#", icon: <Circle size={6} /> },
-  ];
+    { name: "Terms & Condition", link: "#", icon: <Circle size={6} /> }
+  ]
 
   const socialMedias = [
     { name: "Facebook", link: "#", icon: <Facebook /> },
     { name: "Instagram", link: "#", icon: <Instagram /> },
-    { name: "Youtube", link: "#", icon: <Youtube /> },
-  ];
+    { name: "Youtube", link: "#", icon: <Youtube /> }
+  ]
 
   return (
     <div className="mt-20 bg-primary text-white">
@@ -135,7 +136,7 @@ function Footer() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

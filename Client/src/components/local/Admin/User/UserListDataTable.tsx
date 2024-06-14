@@ -1,6 +1,7 @@
-"use client";
+"use client"
 
-import * as React from "react";
+import * as React from "react"
+
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -9,37 +10,38 @@ import {
   getCoreRowModel,
   getFilteredRowModel,
   getSortedRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
+  useReactTable
+} from "@tanstack/react-table"
+import { Search } from "lucide-react"
 
+import { Input } from "@/components/global/atoms/input"
 import {
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
-  TableRow,
-} from "@/components/global/atoms/table";
-import { Input } from "@/components/global/atoms/input";
-import { Search } from "lucide-react";
-import ListPagination from "@/components/global/molecules/DataTablePagination";
-import AddUserDialog from "./AddUserDialog";
+  TableRow
+} from "@/components/global/atoms/table"
+import ListPagination from "@/components/global/molecules/DataTablePagination"
+
+import AddUserDialog from "./AddUserDialog"
 
 interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+  columns: ColumnDef<TData, TValue>[]
+  data: TData[]
 }
 
 export function DataTable<TData, TValue>({
   columns,
-  data,
+  data
 }: DataTableProps<TData, TValue>) {
-  const [sorting, setSorting] = React.useState<SortingState>([]);
+  const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    [],
-  );
-  const [currentPage, setCurrentPage] = React.useState(1);
-  const itemsPerPage = 7;
+    []
+  )
+  const [currentPage, setCurrentPage] = React.useState(1)
+  const itemsPerPage = 7
 
   const table = useReactTable({
     data,
@@ -51,27 +53,27 @@ export function DataTable<TData, TValue>({
     getFilteredRowModel: getFilteredRowModel(),
     state: {
       sorting,
-      columnFilters,
-    },
-  });
+      columnFilters
+    }
+  })
 
   const filteredData = table
     .getFilteredRowModel()
-    .rows.map((row) => row.original);
+    .rows.map((row) => row.original)
 
   const paginatedData = React.useMemo(() => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    return filteredData.slice(startIndex, endIndex);
-  }, [filteredData, currentPage]);
+    const startIndex = (currentPage - 1) * itemsPerPage
+    const endIndex = startIndex + itemsPerPage
+    return filteredData.slice(startIndex, endIndex)
+  }, [filteredData, currentPage])
 
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage)
 
   React.useEffect(() => {
     if (currentPage > totalPages) {
-      setCurrentPage(1);
+      setCurrentPage(1)
     }
-  }, [filteredData, currentPage, totalPages]);
+  }, [filteredData, currentPage, totalPages])
 
   return (
     <>
@@ -105,10 +107,10 @@ export function DataTable<TData, TValue>({
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext(),
+                            header.getContext()
                           )}
                     </TableHead>
-                  );
+                  )
                 })}
               </TableRow>
             ))}
@@ -126,8 +128,8 @@ export function DataTable<TData, TValue>({
                           ...cell.getContext(),
                           row: {
                             ...cell.getContext().row,
-                            original: row,
-                          },
+                            original: row
+                          }
                         })}
                       </TableCell>
                     ))}
@@ -152,5 +154,5 @@ export function DataTable<TData, TValue>({
         setCurrentPage={setCurrentPage}
       />
     </>
-  );
+  )
 }

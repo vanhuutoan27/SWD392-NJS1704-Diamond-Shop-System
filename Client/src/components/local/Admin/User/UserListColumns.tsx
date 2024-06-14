@@ -138,8 +138,10 @@ export const columns: ColumnDef<IUser>[] = [
     ),
     cell: ({ row }) => {
       const user = row.original;
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       const [isViewDialogOpen, setIsViewDialogOpen] = useState(false);
 
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       const { mutate: changeUserStatus } = useChangeUserStatus();
 
       const handleStatusChange = () => {

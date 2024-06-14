@@ -1,4 +1,4 @@
-import { Facebook, Github, Instagram, Twitter } from "lucide-react";
+import { Facebook, Github, Instagram, Twitter } from "lucide-react"
 
 function ProfileSocial() {
   return (
@@ -17,7 +17,7 @@ function ProfileSocial() {
         <Github size={20} className="slow text-primary hover:text-secondary" />
       </div>
     </div>
-  );
+  )
 }
 
-export default ProfileSocial;
+export default ProfileSocial

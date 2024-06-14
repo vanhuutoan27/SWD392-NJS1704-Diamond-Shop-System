@@ -1,18 +1,20 @@
-import { useGetAllUsers } from "@/apis/userApi";
-import { Loader } from "@/components/global/atoms/Loader";
-import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
-import Section from "@/components/global/organisms/Section";
-import AboutInfo from "@/components/local/Guest/About/AboutInfo";
-import { tempUserData } from "@/constants/user";
+import { tempUserData } from "@/constants/user"
+
+import { useGetAllUsers } from "@/apis/userApi"
+
+import { Loader } from "@/components/global/atoms/Loader"
+import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent"
+import Section from "@/components/global/organisms/Section"
+import AboutInfo from "@/components/local/Guest/About/AboutInfo"
 
 function AboutPage() {
-  const { data: userData, isLoading, error } = useGetAllUsers();
+  const { data: userData, isLoading, error } = useGetAllUsers()
 
   if (!userData || isLoading || error) {
-    return <Loader />;
+    return <Loader />
   }
 
-  const adminData = tempUserData.filter((user) => user.roles.includes("Admin"));
+  const adminData = tempUserData.filter((user) => user.roles.includes("Admin"))
 
   return (
     <div className="container">
@@ -51,7 +53,7 @@ function AboutPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default AboutPage;
+export default AboutPage

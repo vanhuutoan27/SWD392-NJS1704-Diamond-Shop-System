@@ -1,12 +1,13 @@
-import DiamondFilter from "./DiamondFilter";
-import { IDiamondWeight } from "@/types/diamond.interface";
+import { IDiamondWeight } from "@/types/diamond.interface"
+
+import DiamondFilter from "./DiamondFilter"
 
 function DiamondWeightFilter({
   onWeightSelected,
-  isResetting,
+  isResetting
 }: {
-  onWeightSelected: (weight: string) => void;
-  isResetting: boolean;
+  onWeightSelected: (weight: string) => void
+  isResetting: boolean
 }) {
   return (
     <DiamondFilter
@@ -15,7 +16,7 @@ function DiamondWeightFilter({
       title="Weight"
       isResetting={isResetting}
     />
-  );
+  )
 }
 
-export default DiamondWeightFilter;
+export default DiamondWeightFilter

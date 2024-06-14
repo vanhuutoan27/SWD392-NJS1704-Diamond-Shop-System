@@ -1,4 +1,4 @@
-import { projectName } from "@/lib/constants";
+import { projectName } from "@/lib/constants"
 
 function AboutInfo() {
   return (
@@ -58,7 +58,7 @@ function AboutInfo() {
         </p>
       </div>
     </div>
-  );
+  )
 }
 
-export default AboutInfo;
+export default AboutInfo

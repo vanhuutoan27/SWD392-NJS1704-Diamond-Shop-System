@@ -1,12 +1,14 @@
-import { Link } from "react-router-dom";
-import Navigation from "./Navigation";
-import { Button } from "../atoms/button";
-import { projectName } from "@/lib/constants";
-import UserProfile from "../molecules/UserProfile";
-import { useAuthContext } from "@/contexts/AuthContext";
+import { useAuthContext } from "@/contexts/AuthContext"
+import { Link } from "react-router-dom"
+
+import { projectName } from "@/lib/constants"
+
+import { Button } from "../atoms/button"
+import UserProfile from "../molecules/UserProfile"
+import Navigation from "./Navigation"
 
 function Header() {
-  const { user, logout } = useAuthContext();
+  const { user, logout } = useAuthContext()
 
   return (
     <div className="container bg-white pt-8">
@@ -40,7 +42,7 @@ function Header() {
 
       <Navigation />
     </div>
-  );
+  )
 }
 
-export default Header;
+export default Header

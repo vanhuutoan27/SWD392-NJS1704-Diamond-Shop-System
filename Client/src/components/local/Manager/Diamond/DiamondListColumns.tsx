@@ -1,18 +1,22 @@
-"use client";
+"use client"
 
-import { ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown, Copy, Eye, MoreHorizontal } from "lucide-react";
-import { Button } from "@/components/global/atoms/button";
+import { useState } from "react"
+
+import { ColumnDef } from "@tanstack/react-table"
+import { ArrowUpDown, Copy, Eye, MoreHorizontal } from "lucide-react"
+
+import { IDiamond } from "@/types/diamond.interface"
+
+import { Button } from "@/components/global/atoms/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/global/atoms/dropdown-menu";
-import { IDiamond } from "@/types/diamond.interface";
-import ViewDiamondDialog from "./ViewDiamondDialog";
-import { useState } from "react";
+  DropdownMenuTrigger
+} from "@/components/global/atoms/dropdown-menu"
+
+import ViewDiamondDialog from "./ViewDiamondDialog"
 
 export const columns: ColumnDef<IDiamond>[] = [
   {
@@ -26,13 +30,13 @@ export const columns: ColumnDef<IDiamond>[] = [
           <span className="flex cursor-pointer text-white">ID</span>
           <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
         </div>
-      );
+      )
     },
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      const shortId = value.split("-")[0];
-      return <span className="font-semibold">{shortId}</span>;
-    },
+      const value: string = info.getValue() as string
+      const shortId = value.split("-")[0]
+      return <span className="font-semibold">{shortId}</span>
+    }
   },
   {
     accessorKey: "shape",
@@ -45,7 +49,7 @@ export const columns: ColumnDef<IDiamond>[] = [
         <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
       </div>
     ),
-    cell: (info) => <span>{info.getValue() as string}</span>,
+    cell: (info) => <span>{info.getValue() as string}</span>
   },
   {
     accessorKey: "weight",
@@ -58,7 +62,7 @@ export const columns: ColumnDef<IDiamond>[] = [
         <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
       </div>
     ),
-    cell: (info) => <span>{info.getValue() as string}</span>,
+    cell: (info) => <span>{info.getValue() as string}</span>
   },
   {
     accessorKey: "colorLevel",
@@ -71,7 +75,7 @@ export const columns: ColumnDef<IDiamond>[] = [
         <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
       </div>
     ),
-    cell: (info) => <span>{info.getValue() as string}</span>,
+    cell: (info) => <span>{info.getValue() as string}</span>
   },
   {
     accessorKey: "clarity",
@@ -84,7 +88,7 @@ export const columns: ColumnDef<IDiamond>[] = [
         <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
       </div>
     ),
-    cell: (info) => <span>{info.getValue() as string}</span>,
+    cell: (info) => <span>{info.getValue() as string}</span>
   },
   {
     accessorKey: "certification",
@@ -97,7 +101,7 @@ export const columns: ColumnDef<IDiamond>[] = [
         <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
       </div>
     ),
-    cell: (info) => <span>{info.getValue() as string}</span>,
+    cell: (info) => <span>{info.getValue() as string}</span>
   },
   {
     accessorKey: "size",
@@ -110,7 +114,7 @@ export const columns: ColumnDef<IDiamond>[] = [
         <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
       </div>
     ),
-    cell: (info) => <span>{info.getValue() as string}</span>,
+    cell: (info) => <span>{info.getValue() as string}</span>
   },
   {
     accessorKey: "fluorescence",
@@ -125,7 +129,7 @@ export const columns: ColumnDef<IDiamond>[] = [
     ),
     cell: (info) => (
       <span className="uppercase">{info.getValue() as string}</span>
-    ),
+    )
   },
   {
     accessorKey: "qualityOfCut",
@@ -138,7 +142,7 @@ export const columns: ColumnDef<IDiamond>[] = [
         <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
       </div>
     ),
-    cell: (info) => <span>{info.getValue() as string}</span>,
+    cell: (info) => <span>{info.getValue() as string}</span>
   },
   {
     id: "actions",
@@ -148,13 +152,13 @@ export const columns: ColumnDef<IDiamond>[] = [
       </div>
     ),
     cell: ({ row }) => {
-      const diamond = row.original;
+      const diamond = row.original
       // eslint-disable-next-line react-hooks/rules-of-hooks
-      const [isViewDialogOpen, setIsViewDialogOpen] = useState(false);
+      const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
 
       const handleViewDetailsClick = () => {
-        setIsViewDialogOpen(true);
-      };
+        setIsViewDialogOpen(true)
+      }
 
       return (
         <div>
@@ -191,7 +195,7 @@ export const columns: ColumnDef<IDiamond>[] = [
             />
           )}
         </div>
-      );
-    },
-  },
-];
+      )
+    }
+  }
+]

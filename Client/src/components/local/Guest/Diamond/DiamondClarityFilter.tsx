@@ -1,12 +1,13 @@
-import DiamondFilter from "./DiamondFilter";
-import { IDiamondClarity } from "@/types/diamond.interface";
+import { IDiamondClarity } from "@/types/diamond.interface"
+
+import DiamondFilter from "./DiamondFilter"
 
 function DiamondClarityFilter({
   onClaritySelected,
-  isResetting,
+  isResetting
 }: {
-  onClaritySelected: (clarity: string) => void;
-  isResetting: boolean;
+  onClaritySelected: (clarity: string) => void
+  isResetting: boolean
 }) {
   return (
     <DiamondFilter
@@ -15,7 +16,7 @@ function DiamondClarityFilter({
       title="Clarity"
       isResetting={isResetting}
     />
-  );
+  )
 }
 
-export default DiamondClarityFilter;
+export default DiamondClarityFilter

@@ -1,15 +1,18 @@
-import { ColumnDef } from "@tanstack/react-table";
-import { ICart, IDiamondCart, IJewelryCart } from "@/types/cart.interface";
-import { formatCurrency } from "@/lib/utils";
-import { Link } from "react-router-dom";
-import { Minus, Plus } from "lucide-react";
-import { Button } from "@/components/global/atoms/button";
-import { diamondImage } from "@/lib/constants";
+import { ColumnDef } from "@tanstack/react-table"
+import { Minus, Plus } from "lucide-react"
+import { Link } from "react-router-dom"
+
+import { ICart, IDiamondCart, IJewelryCart } from "@/types/cart.interface"
+
+import { diamondImage } from "@/lib/constants"
+import { formatCurrency } from "@/lib/utils"
+
+import { Button } from "@/components/global/atoms/button"
 
 export const cartColumns = (
   updateItemQuantity: (productId: string, newQuantity: number) => void,
   incrementQuantity: (productId: string) => void,
-  decrementQuantity: (productId: string) => void,
+  decrementQuantity: (productId: string) => void
 ): ColumnDef<ICart>[] => [
   {
     accessorKey: "productId",
@@ -17,10 +20,10 @@ export const cartColumns = (
       <div className="flex cursor-pointer justify-center text-white">ID</div>
     ),
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      const shortProductId = value.split("-")[0];
-      return <div className="text-center">{shortProductId}</div>;
-    },
+      const value: string = info.getValue() as string
+      const shortProductId = value.split("-")[0]
+      return <div className="text-center">{shortProductId}</div>
+    }
   },
   {
     accessorKey: "image",
@@ -28,9 +31,9 @@ export const cartColumns = (
       <div className="flex cursor-pointer justify-center text-white">Image</div>
     ),
     cell: (info) => {
-      const row = info.row.original;
-      const value: string = info.getValue() as string;
-      const imageUrl = row.productType === "Diamond" ? diamondImage : value;
+      const row = info.row.original
+      const value: string = info.getValue() as string
+      const imageUrl = row.productType === "Diamond" ? diamondImage : value
       return (
         <div className="flex cursor-pointer justify-center">
           <img
@@ -39,8 +42,8 @@ export const cartColumns = (
             className="h-14 w-14 object-cover"
           />
         </div>
-      );
-    },
+      )
+    }
   },
   {
     accessorKey: "productName",
@@ -50,12 +53,12 @@ export const cartColumns = (
       </div>
     ),
     cell: (info) => {
-      const row = info.row.original;
+      const row = info.row.original
 
       const productName =
         row.productType === "Diamond"
           ? `Natural Diamond x ${(row as IDiamondCart).size}mm`
-          : (row as IJewelryCart).jewelryName;
+          : (row as IJewelryCart).jewelryName
 
       return (
         <div className="slow text-center font-semibold uppercase hover:text-secondary">
@@ -77,8 +80,8 @@ export const cartColumns = (
             </Link>
           )}
         </div>
-      );
-    },
+      )
+    }
   },
   {
     accessorKey: "quantity",
@@ -88,8 +91,8 @@ export const cartColumns = (
       </div>
     ),
     cell: (info) => {
-      const row = info.row.original;
-      const value: number = info.getValue() as number;
+      const row = info.row.original
+      const value: number = info.getValue() as number
       return (
         <div className="flex items-center justify-center gap-2">
           <Button
@@ -117,8 +120,8 @@ export const cartColumns = (
             <Plus size={12} strokeWidth={3} />
           </Button>
         </div>
-      );
-    },
+      )
+    }
   },
   {
     accessorKey: "price",
@@ -126,12 +129,12 @@ export const cartColumns = (
       <div className="flex cursor-pointer justify-center text-white">Price</div>
     ),
     cell: (info) => {
-      const value: number = info.getValue() as number;
+      const value: number = info.getValue() as number
       return (
         <div className="text-center font-semibold text-red-500">
           {formatCurrency(value)}
         </div>
-      );
-    },
-  },
-];
+      )
+    }
+  }
+]

@@ -1,28 +1,30 @@
-import { useGetAllDiamonds } from "@/apis/diamondApi";
-import { useGetAllJewelries } from "@/apis/jewelryApi";
-import { useGetAllUsers } from "@/apis/userApi";
-import { Loader } from "@/components/global/atoms/Loader";
-import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage";
-import { Eye, DollarSign, Users, Gem } from "lucide-react";
+import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage"
+import { DollarSign, Eye, Gem, Users } from "lucide-react"
+
+import { useGetAllDiamonds } from "@/apis/diamondApi"
+import { useGetAllJewelries } from "@/apis/jewelryApi"
+import { useGetAllUsers } from "@/apis/userApi"
+
+import { Loader } from "@/components/global/atoms/Loader"
 
 function KPICards() {
   const {
     data: diamondData,
     error: diamondError,
-    isLoading: diamondLoading,
-  } = useGetAllDiamonds();
+    isLoading: diamondLoading
+  } = useGetAllDiamonds()
 
   const {
     data: jewelryData,
     error: jewelryError,
-    isLoading: jewelryLoading,
-  } = useGetAllJewelries();
+    isLoading: jewelryLoading
+  } = useGetAllJewelries()
 
   const {
     data: userData,
     error: userError,
-    isLoading: userLoading,
-  } = useGetAllUsers();
+    isLoading: userLoading
+  } = useGetAllUsers()
 
   if (
     !diamondData ||
@@ -32,11 +34,11 @@ function KPICards() {
     jewelryLoading ||
     userLoading
   ) {
-    return <Loader />;
+    return <Loader />
   }
 
   if (diamondError || jewelryError || userError) {
-    return <NotFoundPage />;
+    return <NotFoundPage />
   }
 
   const kpiCards = [
@@ -45,14 +47,14 @@ function KPICards() {
       value: "3.456K",
       icon: <Eye />,
       percentage: "0.43%",
-      trend: "up",
+      trend: "up"
     },
     {
       title: "Total Profit",
       value: "$45.2K",
       icon: <DollarSign />,
       percentage: "4.35%",
-      trend: "up",
+      trend: "up"
     },
     {
       title: "Total Products",
@@ -62,16 +64,16 @@ function KPICards() {
         "0",
       icon: <Gem />,
       percentage: "2.59%",
-      trend: "up",
+      trend: "up"
     },
     {
       title: "Total Users",
       value: userData?.length.toString() ?? "0",
       icon: <Users />,
       percentage: "0.95%",
-      trend: "down",
-    },
-  ];
+      trend: "down"
+    }
+  ]
 
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -101,7 +103,7 @@ function KPICards() {
         </div>
       ))}
     </div>
-  );
+  )
 }
 
-export default KPICards;
+export default KPICards

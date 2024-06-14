@@ -4,39 +4,39 @@ import {
   PaginationItem,
   PaginationLink,
   PaginationNext,
-  PaginationPrevious,
-} from "@/components/global/atoms/pagination";
+  PaginationPrevious
+} from "@/components/global/atoms/pagination"
 
 interface JewelryListPaginationProps {
-  currentPage: number;
-  totalPages: number;
-  setCurrentPage: (page: number) => void;
+  currentPage: number
+  totalPages: number
+  setCurrentPage: (page: number) => void
 }
 
 function JewelryListPagination({
   currentPage,
   totalPages,
-  setCurrentPage,
+  setCurrentPage
 }: JewelryListPaginationProps) {
   const handlePrevious = () => {
     if (currentPage > 1) {
-      window.scrollTo({ top: 500, behavior: "smooth" });
-      setCurrentPage(currentPage - 1);
+      window.scrollTo({ top: 500, behavior: "smooth" })
+      setCurrentPage(currentPage - 1)
     }
-  };
+  }
 
   const handleNext = () => {
     if (currentPage < totalPages) {
-      window.scrollTo({ top: 500, behavior: "smooth" });
-      setCurrentPage(currentPage + 1);
+      window.scrollTo({ top: 500, behavior: "smooth" })
+      setCurrentPage(currentPage + 1)
     }
-  };
+  }
 
   const handlePageClick = (page: number) => {
-    window.scrollTo({ top: 500, behavior: "smooth" });
+    window.scrollTo({ top: 500, behavior: "smooth" })
 
-    setCurrentPage(page);
-  };
+    setCurrentPage(page)
+  }
 
   return (
     <div className="mt-10">
@@ -67,7 +67,7 @@ function JewelryListPagination({
         </PaginationContent>
       </Pagination>
     </div>
-  );
+  )
 }
 
-export default JewelryListPagination;
+export default JewelryListPagination

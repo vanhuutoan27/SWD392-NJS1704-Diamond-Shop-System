@@ -1,26 +1,28 @@
-import { useEffect, useState } from "react";
-import { Navigate, Outlet } from "react-router-dom";
-import Sidebar from "../organisms/Sidebar";
-import { useAuthContext } from "@/contexts/AuthContext";
-import { Loader } from "../atoms/Loader";
+import { useEffect, useState } from "react"
+
+import { useAuthContext } from "@/contexts/AuthContext"
+import { Navigate, Outlet } from "react-router-dom"
+
+import { Loader } from "../atoms/Loader"
+import Sidebar from "../organisms/Sidebar"
 
 function AuthLayout() {
-  const { user } = useAuthContext();
-  const [isLoading, setIsLoading] = useState(true);
+  const { user } = useAuthContext()
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     if (user) {
-      setIsLoading(false);
+      setIsLoading(false)
       // console.log(user.roles);
     }
-  }, [user]);
+  }, [user])
 
   if (isLoading) {
-    return <Loader />;
+    return <Loader />
   }
 
   if (!user || !user.roles || user.roles.includes("Customer")) {
-    return <Navigate to="/forbidden" />;
+    return <Navigate to="/forbidden" />
   }
 
   return (
@@ -30,7 +32,7 @@ function AuthLayout() {
         <Outlet />
       </div>
     </div>
-  );
+  )
 }
 
-export default AuthLayout;
+export default AuthLayout

@@ -1,8 +1,8 @@
-import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
-import Section from "@/components/global/organisms/Section";
-import CartCategories from "@/components/local/Customer/Cart/CartCategories";
-import CartTable from "@/components/local/Customer/Cart/CartTable";
-import { Tabs } from "@/components/local/Customer/Cart/CartTabs";
+import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent"
+import Section from "@/components/global/organisms/Section"
+import CartCategories from "@/components/local/Customer/Cart/CartCategories"
+import CartTable from "@/components/local/Customer/Cart/CartTable"
+import { Tabs } from "@/components/local/Customer/Cart/CartTabs"
 
 function CartPage() {
   return (
@@ -28,7 +28,7 @@ function CartPage() {
         </div>
       </Tabs>
     </div>
-  );
+  )
 }
 
-export default CartPage;
+export default CartPage

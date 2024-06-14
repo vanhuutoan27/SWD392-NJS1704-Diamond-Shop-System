@@ -1,12 +1,13 @@
-import DiamondFilter from "./DiamondFilter";
-import { IDiamondSize } from "@/types/diamond.interface";
+import { IDiamondSize } from "@/types/diamond.interface"
+
+import DiamondFilter from "./DiamondFilter"
 
 function DiamondSizeFilter({
   onSizeSelected,
-  isResetting,
+  isResetting
 }: {
-  onSizeSelected: (size: string) => void;
-  isResetting: boolean;
+  onSizeSelected: (size: string) => void
+  isResetting: boolean
 }) {
   return (
     <DiamondFilter
@@ -15,7 +16,7 @@ function DiamondSizeFilter({
       title="Size"
       isResetting={isResetting}
     />
-  );
+  )
 }
 
-export default DiamondSizeFilter;
+export default DiamondSizeFilter

@@ -1,65 +1,69 @@
-import { Button } from "@/components/global/atoms/button";
+import { useEffect, useState } from "react"
+
+import { ShoppingCart, X } from "lucide-react"
+import { Link } from "react-router-dom"
+import { toast } from "sonner"
+
+import { ICart, IDiamondCart } from "@/types/cart.interface"
+
+import { diamondImage, vatPercentage } from "@/lib/constants"
+import { calculateCartTotal, formatCurrency, scrollToTop } from "@/lib/utils"
+
+import { Button } from "@/components/global/atoms/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/global/atoms/dropdown-menu";
-import { Separator } from "@/components/global/atoms/separator";
-import { diamondImage, vatPercentage } from "@/lib/constants";
-import { calculateCartTotal, formatCurrency, scrollToTop } from "@/lib/utils";
-import { ICart, IDiamondCart } from "@/types/cart.interface";
-import { ShoppingCart, X } from "lucide-react";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { toast } from "sonner";
+  DropdownMenuTrigger
+} from "@/components/global/atoms/dropdown-menu"
+import { Separator } from "@/components/global/atoms/separator"
 
 function isDiamondCart(item: ICart): item is IDiamondCart {
-  return item.productType === "Diamond";
+  return item.productType === "Diamond"
 }
 
 function CartButton() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [cartItems, setCartItems] = useState<ICart[]>([]);
+  const [isOpen, setIsOpen] = useState(false)
+  const [cartItems, setCartItems] = useState<ICart[]>([])
 
   const loadCartItems = () => {
-    const storedCartItems = localStorage.getItem("cartItems");
+    const storedCartItems = localStorage.getItem("cartItems")
     if (storedCartItems) {
-      setCartItems(JSON.parse(storedCartItems));
+      setCartItems(JSON.parse(storedCartItems))
     }
-  };
+  }
 
   useEffect(() => {
-    loadCartItems();
+    loadCartItems()
 
     const handleStorageChange = () => {
-      loadCartItems();
-    };
+      loadCartItems()
+    }
 
-    window.addEventListener("storage", handleStorageChange);
-    window.addEventListener("cartChanged", handleStorageChange);
+    window.addEventListener("storage", handleStorageChange)
+    window.addEventListener("cartChanged", handleStorageChange)
 
     return () => {
-      window.removeEventListener("storage", handleStorageChange);
-      window.removeEventListener("cartChanged", handleStorageChange);
-    };
-  }, []);
+      window.removeEventListener("storage", handleStorageChange)
+      window.removeEventListener("cartChanged", handleStorageChange)
+    }
+  }, [])
 
   const handleRemoveItem = (cartId: string) => {
-    const updatedCartItems = cartItems.filter((item) => item.cartId !== cartId);
-    setCartItems(updatedCartItems);
-    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
-    window.dispatchEvent(new CustomEvent("cartChanged"));
+    const updatedCartItems = cartItems.filter((item) => item.cartId !== cartId)
+    setCartItems(updatedCartItems)
+    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems))
+    window.dispatchEvent(new CustomEvent("cartChanged"))
 
-    toast.success("Item removed from cart!");
-  };
+    toast.success("Item removed from cart!")
+  }
 
-  const subTotal = calculateCartTotal(cartItems);
-  const vatAmount = subTotal * vatPercentage;
-  const total = subTotal + vatAmount;
+  const subTotal = calculateCartTotal(cartItems)
+  const vatAmount = subTotal * vatPercentage
+  const total = subTotal + vatAmount
 
-  const handleClose = () => setIsOpen(false);
+  const handleClose = () => setIsOpen(false)
 
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
@@ -154,8 +158,8 @@ function CartButton() {
               <Link
                 to="/cart"
                 onClick={() => {
-                  scrollToTop();
-                  handleClose();
+                  scrollToTop()
+                  handleClose()
                 }}
               >
                 <Button type="button">View Cart</Button>
@@ -167,7 +171,7 @@ function CartButton() {
         )}
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }
 
-export default CartButton;
+export default CartButton

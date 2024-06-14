@@ -1,29 +1,30 @@
-import { Navigate } from "react-router-dom";
-import { Loader } from "@/components/global/atoms/Loader";
-import { useAuthContext } from "@/contexts/AuthContext";
+import { useAuthContext } from "@/contexts/AuthContext"
+import { Navigate } from "react-router-dom"
+
+import { Loader } from "@/components/global/atoms/Loader"
 
 function RedirectPage() {
-  const { user } = useAuthContext();
+  const { user } = useAuthContext()
 
   if (!user) {
-    return <Loader />;
+    return <Loader />
   }
 
-  const roles = user?.roles || [];
+  const roles = user?.roles || []
 
   if (roles.includes("Admin")) {
-    return <Navigate to="/admin/dashboard" />;
+    return <Navigate to="/admin/dashboard" />
   } else if (roles.includes("Manager")) {
-    return <Navigate to="/admin/jewelry-list" />;
+    return <Navigate to="/admin/jewelry-list" />
   } else if (roles.includes("SalesStaff")) {
-    return <Navigate to="/sales-staff/dashboard" />;
+    return <Navigate to="/sales-staff/dashboard" />
   } else if (roles.includes("DeliveryStaff")) {
-    return <Navigate to="/delivery-staff/dashboard" />;
+    return <Navigate to="/delivery-staff/dashboard" />
   } else if (roles.includes("Customer")) {
-    return <Navigate to="/" />;
+    return <Navigate to="/" />
   }
 
-  return <Loader />;
+  return <Loader />
 }
 
-export default RedirectPage;
+export default RedirectPage

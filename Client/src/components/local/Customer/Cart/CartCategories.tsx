@@ -1,4 +1,4 @@
-import { TabsList, TabsTrigger } from "./CartTabs";
+import { TabsList, TabsTrigger } from "./CartTabs"
 
 function CartCategories() {
   return (
@@ -10,7 +10,7 @@ function CartCategories() {
         <TabsTrigger value="diamond">Diamond</TabsTrigger>
       </TabsList>
     </div>
-  );
+  )
 }
 
-export default CartCategories;
+export default CartCategories

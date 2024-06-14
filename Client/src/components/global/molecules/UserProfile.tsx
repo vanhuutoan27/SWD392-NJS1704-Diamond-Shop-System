@@ -1,56 +1,54 @@
-import {
-  LogOut,
-  Settings,
-  User,
-  ReceiptText,
-  PackageCheck,
-} from "lucide-react";
-import { Avatar, AvatarImage } from "@/components/global/atoms/avatar";
+import { LogOut, PackageCheck, ReceiptText, Settings, User } from "lucide-react"
+import { Link } from "react-router-dom"
+
+import { IUser } from "@/types/user.interface"
+
+import { scrollToTop } from "@/lib/utils"
+
+import { Avatar, AvatarImage } from "@/components/global/atoms/avatar"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/global/atoms/dropdown-menu";
-import { Link } from "react-router-dom";
-import { scrollToTop } from "@/lib/utils";
-import { IUser } from "@/types/user.interface";
-import { Skeleton } from "../atoms/skeleton";
+  DropdownMenuTrigger
+} from "@/components/global/atoms/dropdown-menu"
+
+import { Skeleton } from "../atoms/skeleton"
 
 interface UserProfileProps {
-  userData: IUser | null;
-  onLogout: () => void;
+  userData: IUser | null
+  onLogout: () => void
 }
 
 function UserProfile({ userData, onLogout }: UserProfileProps) {
-  const userId = userData?.id;
+  const userId = userData?.id
 
   const menuItems = [
     {
       icon: User,
       label: "My Profile",
       link: `/profile/${userId}`,
-      hoverColor: "group-hover:text-secondary",
+      hoverColor: "group-hover:text-secondary"
     },
     {
       icon: PackageCheck,
       label: "My Order",
       link: `/orders/${userId}`,
-      hoverColor: "group-hover:text-secondary",
+      hoverColor: "group-hover:text-secondary"
     },
     {
       icon: ReceiptText,
       label: "Invoices",
       link: `/invoices/${userId}`,
-      hoverColor: "group-hover:text-secondary",
+      hoverColor: "group-hover:text-secondary"
     },
     {
       icon: Settings,
       label: "Settings",
       link: `/settings/${userId}`,
-      hoverColor: "group-hover:text-secondary",
+      hoverColor: "group-hover:text-secondary"
     },
     {
       icon: LogOut,
@@ -58,9 +56,9 @@ function UserProfile({ userData, onLogout }: UserProfileProps) {
       link: "/login",
       hoverColor: "group-hover:text-red-600",
       separator: true,
-      onClick: onLogout,
-    },
-  ];
+      onClick: onLogout
+    }
+  ]
 
   if (!userData)
     return (
@@ -71,7 +69,7 @@ function UserProfile({ userData, onLogout }: UserProfileProps) {
         </div>
         <Skeleton className="h-10 w-10 rounded-full" />
       </div>
-    );
+    )
 
   return (
     <DropdownMenu>
@@ -102,8 +100,8 @@ function UserProfile({ userData, onLogout }: UserProfileProps) {
                   key={index}
                   to={item.link}
                   onClick={() => {
-                    scrollToTop();
-                    if (item.onClick) item.onClick();
+                    scrollToTop()
+                    if (item.onClick) item.onClick()
                   }}
                 >
                   {item.separator && <DropdownMenuSeparator />}
@@ -119,12 +117,12 @@ function UserProfile({ userData, onLogout }: UserProfileProps) {
                     </span>
                   </DropdownMenuItem>
                 </Link>
-              ),
+              )
           )}
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }
 
-export default UserProfile;
+export default UserProfile

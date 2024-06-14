@@ -1,40 +1,44 @@
-import { IDiamond } from "@/types/diamond.interface";
-import { addToCart, formatCurrency } from "@/lib/utils";
-import { useEffect, useState } from "react";
-import { ICart, IDiamondCart } from "@/types/cart.interface";
-import { toast } from "sonner";
-import Section from "@/components/global/organisms/Section";
-import { Button } from "@/components/global/atoms/button";
-import { useAuthContext } from "@/contexts/AuthContext";
-import { diamondImage } from "@/lib/constants";
+import { useEffect, useState } from "react"
+
+import { useAuthContext } from "@/contexts/AuthContext"
+import { toast } from "sonner"
+
+import { ICart, IDiamondCart } from "@/types/cart.interface"
+import { IDiamond } from "@/types/diamond.interface"
+
+import { diamondImage } from "@/lib/constants"
+import { addToCart, formatCurrency } from "@/lib/utils"
+
+import { Button } from "@/components/global/atoms/button"
+import Section from "@/components/global/organisms/Section"
 
 function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
-  const { user } = useAuthContext();
+  const { user } = useAuthContext()
 
-  const salePrice = null;
+  const salePrice = null
 
-  const [cartItems, setCartItems] = useState<ICart[]>([]);
+  const [cartItems, setCartItems] = useState<ICart[]>([])
 
   useEffect(() => {
-    const storedCartItems = localStorage.getItem("cartItems");
+    const storedCartItems = localStorage.getItem("cartItems")
     if (storedCartItems) {
-      setCartItems(JSON.parse(storedCartItems));
+      setCartItems(JSON.parse(storedCartItems))
     }
-  }, []);
+  }, [])
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    const container = event.currentTarget;
-    const rect = container.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width) * 100;
-    const y = ((event.clientY - rect.top) / rect.height) * 100;
-    container.style.setProperty("--x", `${x}%`);
-    container.style.setProperty("--y", `${y}%`);
-  };
+    const container = event.currentTarget
+    const rect = container.getBoundingClientRect()
+    const x = ((event.clientX - rect.left) / rect.width) * 100
+    const y = ((event.clientY - rect.top) / rect.height) * 100
+    container.style.setProperty("--x", `${x}%`)
+    container.style.setProperty("--y", `${y}%`)
+  }
 
   const handleAddToCart = () => {
     if (!user) {
-      toast.error("Please login to add to cart");
-      return;
+      toast.error("Please login to add to cart")
+      return
     } else {
       const newItem: IDiamondCart = {
         cartId: `C${diamondDetails.diamondId}`,
@@ -44,17 +48,17 @@ function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
         quantity: 1,
         price: diamondDetails.price,
         image: diamondDetails.image,
-        size: diamondDetails.size,
-      };
-      const updatedCart = addToCart(cartItems, newItem);
-      setCartItems(updatedCart);
-      localStorage.setItem("cartItems", JSON.stringify(updatedCart));
+        size: diamondDetails.size
+      }
+      const updatedCart = addToCart(cartItems, newItem)
+      setCartItems(updatedCart)
+      localStorage.setItem("cartItems", JSON.stringify(updatedCart))
 
-      toast.success("Add to cart successfully");
+      toast.success("Add to cart successfully")
 
-      window.dispatchEvent(new CustomEvent("cartChanged"));
+      window.dispatchEvent(new CustomEvent("cartChanged"))
     }
-  };
+  }
 
   return (
     <>
@@ -185,7 +189,7 @@ function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
         </table>
       </div>
     </>
-  );
+  )
 }
 
-export default DiamondDetails;
+export default DiamondDetails

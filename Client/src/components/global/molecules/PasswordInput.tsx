@@ -1,18 +1,20 @@
-import { Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
-import { UseFormRegister } from "react-hook-form";
+import { useState } from "react"
+
+import { Eye, EyeOff } from "lucide-react"
+import { UseFormRegister } from "react-hook-form"
 
 interface PasswordInputProps {
-  register: UseFormRegister<any>;
-  placeholder: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  register: UseFormRegister<any>
+  placeholder: string
 }
 
 function PasswordInput({ register, placeholder }: PasswordInputProps) {
-  const [isShowPassword, setIsShowPassword] = useState(false);
+  const [isShowPassword, setIsShowPassword] = useState(false)
 
   const toggleShowPassword = () => {
-    setIsShowPassword(!isShowPassword);
-  };
+    setIsShowPassword(!isShowPassword)
+  }
 
   return (
     <div className="mb-1 flex items-center rounded-md border-[1.5px] bg-transparent px-5">
@@ -37,7 +39,7 @@ function PasswordInput({ register, placeholder }: PasswordInputProps) {
         />
       )}
     </div>
-  );
+  )
 }
 
-export default PasswordInput;
+export default PasswordInput

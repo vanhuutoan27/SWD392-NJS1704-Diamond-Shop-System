@@ -1,114 +1,119 @@
-import { useState, useEffect } from "react";
-import { cartColumns } from "@/components/local/Customer/Cart/CartColumns";
-import { cartJewelryColumns } from "./CartJewelryColumns";
-import { DataTable } from "@/components/local/Customer/Cart/CartDataTable";
-import { ICart } from "@/types/cart.interface";
-import { Button } from "@/components/global/atoms/button";
-import { Link, useNavigate } from "react-router-dom";
-import { calculateCartTotal, formatCurrency, scrollToTop } from "@/lib/utils";
-import { ScrollArea, ScrollBar } from "@/components/global/atoms/scroll-area";
-import { TabsContent } from "./CartTabs";
-import { cartDiamondColumns } from "./CartDiamondColumns";
-import { toast } from "sonner";
-import { vatPercentage } from "@/lib/constants";
-import { useGetAllDiamonds } from "@/apis/diamondApi";
-import { useGetAllJewelries } from "@/apis/jewelryApi";
-import { Loader } from "@/components/global/atoms/Loader";
+import { useEffect, useState } from "react"
+
+import { Link, useNavigate } from "react-router-dom"
+import { toast } from "sonner"
+
+import { ICart } from "@/types/cart.interface"
+
+import { useGetAllDiamonds } from "@/apis/diamondApi"
+import { useGetAllJewelries } from "@/apis/jewelryApi"
+
+import { vatPercentage } from "@/lib/constants"
+import { calculateCartTotal, formatCurrency, scrollToTop } from "@/lib/utils"
+
+import { Loader } from "@/components/global/atoms/Loader"
+import { Button } from "@/components/global/atoms/button"
+import { ScrollArea, ScrollBar } from "@/components/global/atoms/scroll-area"
+import { cartColumns } from "@/components/local/Customer/Cart/CartColumns"
+import { DataTable } from "@/components/local/Customer/Cart/CartDataTable"
+
+import { cartDiamondColumns } from "./CartDiamondColumns"
+import { cartJewelryColumns } from "./CartJewelryColumns"
+import { TabsContent } from "./CartTabs"
 
 interface RenderTabContentProps {
-  type: string;
-  title: string;
-  columns: any[];
-  data: any[];
-  subTotal: number;
+  type: string
+  title: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  columns: any[]
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: any[]
+  subTotal: number
 }
 
 function CartTable() {
-  const [cartItems, setCartItems] = useState<ICart[]>([]);
-  const navigate = useNavigate();
+  const [cartItems, setCartItems] = useState<ICart[]>([])
+  const navigate = useNavigate()
 
   const {
     data: allDiamonds,
     error: diamondsError,
-    isLoading: isDiamondsLoading,
-  } = useGetAllDiamonds();
+    isLoading: isDiamondsLoading
+  } = useGetAllDiamonds()
 
   const {
     data: allJewelries,
     error: jewelriesError,
-    isLoading: isJewelriesLoading,
-  } = useGetAllJewelries();
+    isLoading: isJewelriesLoading
+  } = useGetAllJewelries()
 
   useEffect(() => {
-    const storedCartItems = localStorage.getItem("cartItems");
+    const storedCartItems = localStorage.getItem("cartItems")
     if (storedCartItems) {
-      setCartItems(JSON.parse(storedCartItems));
+      setCartItems(JSON.parse(storedCartItems))
     }
-  }, []);
+  }, [])
 
   const getProductDetails = (productId: string, type: string) => {
     if (type === "Diamond") {
-      return allDiamonds?.find((diamond) => diamond.diamondId === productId);
+      return allDiamonds?.find((diamond) => diamond.diamondId === productId)
     } else if (type === "Jewelry") {
-      return allJewelries?.find((jewelry) => jewelry.jewelryId === productId);
+      return allJewelries?.find((jewelry) => jewelry.jewelryId === productId)
     }
-  };
+  }
 
   const enrichCartItems = (items: ICart[]) => {
     return items.map((item) => {
-      const productDetails = getProductDetails(
-        item.productId,
-        item.productType,
-      );
-      return { ...item, ...productDetails };
-    });
-  };
+      const productDetails = getProductDetails(item.productId, item.productType)
+      return { ...item, ...productDetails }
+    })
+  }
 
   const updateItemQuantity = (productId: string, newQuantity: number) => {
-    if (newQuantity < 1) return;
+    if (newQuantity < 1) return
     const updatedCartItems = cartItems.map((item) =>
-      item.productId === productId ? { ...item, quantity: newQuantity } : item,
-    );
-    setCartItems(updatedCartItems);
-    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems));
+      item.productId === productId ? { ...item, quantity: newQuantity } : item
+    )
+    setCartItems(updatedCartItems)
+    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems))
 
-    toast.success("Quantity updated successfully");
-  };
+    toast.success("Quantity updated successfully")
+  }
 
   const incrementQuantity = (productId: string) => {
-    const item = cartItems.find((item) => item.productId === productId);
+    const item = cartItems.find((item) => item.productId === productId)
     if (item) {
-      updateItemQuantity(productId, item.quantity + 1);
+      updateItemQuantity(productId, item.quantity + 1)
     }
-  };
+  }
 
   const decrementQuantity = (productId: string) => {
-    const item = cartItems.find((item) => item.productId === productId);
+    const item = cartItems.find((item) => item.productId === productId)
     if (item && item.quantity > 1) {
-      updateItemQuantity(productId, item.quantity - 1);
+      updateItemQuantity(productId, item.quantity - 1)
     }
-  };
+  }
 
   const handleCheckout = () => {
-    navigate("/order", { state: { cartItems } });
-    scrollToTop();
-  };
+    navigate("/order", { state: { cartItems } })
+    scrollToTop()
+  }
 
   if (isDiamondsLoading || isJewelriesLoading) {
-    return <Loader />;
+    return <Loader />
   }
 
   if (diamondsError || jewelriesError) {
-    toast.error("Failed to fetch data");
+    toast.error("Failed to fetch data")
   }
 
-  const allItemsInCart = cartItems.filter((item) => item.quantity > 0);
+  const allItemsInCart = cartItems.filter((item) => item.quantity > 0)
   const diamondsInCart = enrichCartItems(
-    allItemsInCart.filter((item) => item.productType === "Diamond"),
-  );
+    allItemsInCart.filter((item) => item.productType === "Diamond")
+  )
   const jewelriesInCart = enrichCartItems(
-    allItemsInCart.filter((item) => item.productType === "Jewelry"),
-  );
+    allItemsInCart.filter((item) => item.productType === "Jewelry")
+  )
 
   const tabData = [
     {
@@ -117,10 +122,10 @@ function CartTable() {
       columns: cartColumns(
         updateItemQuantity,
         incrementQuantity,
-        decrementQuantity,
+        decrementQuantity
       ),
       data: allItemsInCart,
-      subTotal: calculateCartTotal(allItemsInCart),
+      subTotal: calculateCartTotal(allItemsInCart)
     },
     {
       type: "jewelry",
@@ -128,10 +133,10 @@ function CartTable() {
       columns: cartJewelryColumns(
         updateItemQuantity,
         incrementQuantity,
-        decrementQuantity,
+        decrementQuantity
       ),
       data: jewelriesInCart,
-      subTotal: calculateCartTotal(jewelriesInCart),
+      subTotal: calculateCartTotal(jewelriesInCart)
     },
     {
       type: "diamond",
@@ -139,22 +144,22 @@ function CartTable() {
       columns: cartDiamondColumns(
         updateItemQuantity,
         incrementQuantity,
-        decrementQuantity,
+        decrementQuantity
       ),
       data: diamondsInCart,
-      subTotal: calculateCartTotal(diamondsInCart),
-    },
-  ];
+      subTotal: calculateCartTotal(diamondsInCart)
+    }
+  ]
 
   const renderTabContent = ({
     type,
     title,
     columns,
     data,
-    subTotal,
+    subTotal
   }: RenderTabContentProps) => {
-    const vatAmount = subTotal * vatPercentage;
-    const total = subTotal + vatAmount;
+    const vatAmount = subTotal * vatPercentage
+    const total = subTotal + vatAmount
 
     return (
       <TabsContent value={type} key={type}>
@@ -180,8 +185,8 @@ function CartTable() {
           </div>
         </div>
       </TabsContent>
-    );
-  };
+    )
+  }
 
   return (
     <div className="flex flex-col gap-8">
@@ -198,7 +203,7 @@ function CartTable() {
         </Button>
       </div>
     </div>
-  );
+  )
 }
 
-export default CartTable;
+export default CartTable

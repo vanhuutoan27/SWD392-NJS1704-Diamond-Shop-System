@@ -1,51 +1,55 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Link, useNavigate } from "react-router-dom";
-import { IUser } from "@/types/user.interface";
-import { Button } from "@/components/global/atoms/button";
-import PasswordInput from "@/components/global/molecules/PasswordInput";
-import { loginSchema } from "@/schemas/LoginForm";
-import { toast } from "sonner";
-import { useAuthContext } from "@/contexts/AuthContext";
-import diamoonAPI from "@/lib/diamoonAPI";
+import { useState } from "react"
+
+import { useAuthContext } from "@/contexts/AuthContext"
+import { loginSchema } from "@/schemas/LoginForm"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { Link, useNavigate } from "react-router-dom"
+import { toast } from "sonner"
+
+import { IUser } from "@/types/user.interface"
+
+import diamoonAPI from "@/lib/diamoonAPI"
+
+import { Button } from "@/components/global/atoms/button"
+import PasswordInput from "@/components/global/molecules/PasswordInput"
 
 function LoginPage() {
-  const navigate = useNavigate();
-  const { login } = useAuthContext();
-  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate()
+  const { login } = useAuthContext()
+  const [isLoading, setIsLoading] = useState(false)
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm<IUser>({
-    resolver: zodResolver(loginSchema),
-  });
+    resolver: zodResolver(loginSchema)
+  })
 
   const onSubmit = async (data: IUser) => {
     try {
-      setIsLoading(true);
+      setIsLoading(true)
       const response = await diamoonAPI.post("/Auth/login", {
         email: data.email,
-        password: data.password,
-      });
+        password: data.password
+      })
 
-      const { token, refreshToken } = response.data;
+      const { token, refreshToken } = response.data
       if (token && refreshToken) {
-        login(token, refreshToken);
-        toast.success("Login successfully");
-        navigate("/redirect");
+        login(token, refreshToken)
+        toast.success("Login successfully")
+        navigate("/redirect")
       } else {
-        console.error("Tokens are missing in the response");
+        console.error("Tokens are missing in the response")
       }
     } catch (error) {
-      toast.error("Email or password is incorrect");
-      console.error("Login failed:", error);
+      toast.error("Email or password is incorrect")
+      console.error("Login failed:", error)
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   return (
     <div className="flex w-full items-center justify-center">
@@ -80,7 +84,7 @@ function LoginPage() {
         </form>
       </div>
     </div>
-  );
+  )
 }
 
-export default LoginPage;
+export default LoginPage

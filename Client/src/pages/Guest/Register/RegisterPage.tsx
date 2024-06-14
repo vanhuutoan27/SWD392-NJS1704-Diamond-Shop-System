@@ -1,43 +1,47 @@
-import { Button } from "@/components/global/atoms/button";
-import PasswordInput from "@/components/global/molecules/PasswordInput";
-import diamoonAPI from "@/lib/diamoonAPI";
-import { registerSchema } from "@/schemas/RegisterForm";
-import { IUser } from "@/types/user.interface";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from "sonner";
+import { useState } from "react"
+
+import { registerSchema } from "@/schemas/RegisterForm"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { Link, useNavigate } from "react-router-dom"
+import { toast } from "sonner"
+
+import { IUser } from "@/types/user.interface"
+
+import diamoonAPI from "@/lib/diamoonAPI"
+
+import { Button } from "@/components/global/atoms/button"
+import PasswordInput from "@/components/global/molecules/PasswordInput"
 
 function RegisterPage() {
-  const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false)
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm<IUser>({
-    resolver: zodResolver(registerSchema),
-  });
+    resolver: zodResolver(registerSchema)
+  })
 
   const onSubmit = async (data: IUser) => {
     try {
-      setIsLoading(true);
+      setIsLoading(true)
       await diamoonAPI.post("/Auth/register", {
         fullName: data.fullName,
         email: data.email,
-        password: data.password,
-      });
-      toast.success("Registration successful. Please login");
-      navigate("/login");
+        password: data.password
+      })
+      toast.success("Registration successful. Please login")
+      navigate("/login")
     } catch (error) {
-      toast.error("Registration failed. Please try again");
-      console.error("Registration failed:", error);
+      toast.error("Registration failed. Please try again")
+      console.error("Registration failed:", error)
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   return (
     <div className="flex w-full items-center justify-center">
@@ -85,7 +89,7 @@ function RegisterPage() {
         </form>
       </div>
     </div>
-  );
+  )
 }
 
-export default RegisterPage;
+export default RegisterPage

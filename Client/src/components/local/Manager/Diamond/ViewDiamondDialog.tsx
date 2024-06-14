@@ -1,50 +1,55 @@
-import { useEffect, useRef, useState } from "react";
-import { useGetDiamondById } from "@/apis/diamondApi";
-import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage";
+import { useEffect, useRef, useState } from "react"
+
+import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage"
+
+import {
+  IDiamondCertification,
+  IDiamondClarity,
+  IDiamondColor,
+  IDiamondFluorescence,
+  IDiamondQualityOfCut,
+  IDiamondShape
+} from "@/types/diamond.interface"
+
+import { useGetDiamondById } from "@/apis/diamondApi"
+
+import { diamondImage } from "@/lib/constants"
+import { formatCurrencyWithoutVND, formatDate } from "@/lib/utils"
+
+import { Loader } from "@/components/global/atoms/Loader"
+import { Button } from "@/components/global/atoms/button"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
-  DialogTitle,
-} from "@/components/global/atoms/dialog";
-import { Button } from "@/components/global/atoms/button";
-import { diamondImage } from "@/lib/constants";
-import { Skeleton } from "@/components/global/atoms/skeleton";
+  DialogTitle
+} from "@/components/global/atoms/dialog"
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
   SelectTrigger,
-  SelectValue,
-} from "@/components/global/atoms/select";
-import {
-  IDiamondShape,
-  IDiamondColor,
-  IDiamondClarity,
-  IDiamondCertification,
-  IDiamondFluorescence,
-  IDiamondQualityOfCut,
-} from "@/types/diamond.interface";
-import { formatCurrencyWithoutVND, formatDate } from "@/lib/utils";
-import { Loader } from "@/components/global/atoms/Loader";
-import AlertDialogComponent from "@/components/global/molecules/AlertDialogComponent";
+  SelectValue
+} from "@/components/global/atoms/select"
+import { Skeleton } from "@/components/global/atoms/skeleton"
+import AlertDialogComponent from "@/components/global/molecules/AlertDialogComponent"
 
 function ViewDiamondDialog({
   diamondId,
-  onClose,
+  onClose
 }: {
-  diamondId: string;
-  onClose: () => void;
+  diamondId: string
+  onClose: () => void
 }) {
   const {
     data: diamondDetails,
     isLoading,
-    error,
-  } = useGetDiamondById(diamondId);
+    error
+  } = useGetDiamondById(diamondId)
 
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false)
+  const [isEditing, setIsEditing] = useState(false)
   const [formData, setFormData] = useState({
     diamondId: "",
     shape: "",
@@ -58,10 +63,10 @@ function ViewDiamondDialog({
     price: 0,
     image: diamondImage,
     dateCreated: "",
-    dateModified: "",
-  });
+    dateModified: ""
+  })
 
-  const dialogRef = useRef<HTMLDivElement | null>(null);
+  const dialogRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     if (diamondDetails) {
@@ -78,23 +83,23 @@ function ViewDiamondDialog({
         price: diamondDetails.price || 0,
         image: diamondDetails.image || diamondImage || "",
         dateCreated: diamondDetails.dateCreated || "",
-        dateModified: diamondDetails.dateModified || "",
-      });
+        dateModified: diamondDetails.dateModified || ""
+      })
     }
-  }, [diamondDetails]);
+  }, [diamondDetails])
 
   const handleEditClick = () => {
-    setIsEditing((prev) => !prev);
-  };
+    setIsEditing((prev) => !prev)
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
 
   const handleSelectChange = (name: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
 
   const handleConfirmCancel = () => {
     if (diamondDetails) {
@@ -111,18 +116,18 @@ function ViewDiamondDialog({
         price: diamondDetails.price || 0,
         image: diamondDetails.image || diamondImage || "",
         dateCreated: diamondDetails.dateCreated || "",
-        dateModified: diamondDetails.dateModified || "",
-      });
+        dateModified: diamondDetails.dateModified || ""
+      })
     }
-    setIsEditing(false);
-  };
+    setIsEditing(false)
+  }
 
   if (!diamondDetails || isLoading) {
-    return <Loader />;
+    return <Loader />
   }
 
   if (error) {
-    return <NotFoundPage />;
+    return <NotFoundPage />
   }
 
   return (
@@ -436,7 +441,7 @@ function ViewDiamondDialog({
         </div>
       </DialogContent>
     </Dialog>
-  );
+  )
 }
 
-export default ViewDiamondDialog;
+export default ViewDiamondDialog

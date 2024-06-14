@@ -1,12 +1,13 @@
-import DiamondFilter from "./DiamondFilter";
-import { IDiamondColor } from "@/types/diamond.interface";
+import { IDiamondColor } from "@/types/diamond.interface"
+
+import DiamondFilter from "./DiamondFilter"
 
 function DiamondColorFilter({
   onColorSelected,
-  isResetting,
+  isResetting
 }: {
-  onColorSelected: (color: string) => void;
-  isResetting: boolean;
+  onColorSelected: (color: string) => void
+  isResetting: boolean
 }) {
   return (
     <DiamondFilter
@@ -15,7 +16,7 @@ function DiamondColorFilter({
       title="Color"
       isResetting={isResetting}
     />
-  );
+  )
 }
 
-export default DiamondColorFilter;
+export default DiamondColorFilter

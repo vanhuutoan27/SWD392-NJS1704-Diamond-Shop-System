@@ -1,26 +1,29 @@
-import { cn, useIsAdminRoute } from "@/lib/utils";
-import { useParams } from "react-router-dom";
-import { Loader } from "@/components/global/atoms/Loader";
-import ProfileInfo from "@/components/local/Customer/Profile/ProfileInfo";
-import ProfileSocial from "@/components/local/Customer/Profile/ProfileSocial";
-import Section from "@/components/global/organisms/Section";
-import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
-import { useGetUserById } from "@/apis/userApi";
-import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage";
-import { userAvatar } from "@/lib/constants";
+import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage"
+import { useParams } from "react-router-dom"
+
+import { useGetUserById } from "@/apis/userApi"
+
+import { userAvatar } from "@/lib/constants"
+import { cn, useIsAdminRoute } from "@/lib/utils"
+
+import { Loader } from "@/components/global/atoms/Loader"
+import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent"
+import Section from "@/components/global/organisms/Section"
+import ProfileInfo from "@/components/local/Customer/Profile/ProfileInfo"
+import ProfileSocial from "@/components/local/Customer/Profile/ProfileSocial"
 
 function ProfilePage() {
-  const isAdminRoute = useIsAdminRoute();
-  const { userId } = useParams<{ userId: string }>();
+  const isAdminRoute = useIsAdminRoute()
+  const { userId } = useParams<{ userId: string }>()
 
-  const { data: userDetails, isLoading, error } = useGetUserById(userId || "");
+  const { data: userDetails, isLoading, error } = useGetUserById(userId || "")
 
   if (!userDetails || isLoading) {
-    return <Loader />;
+    return <Loader />
   }
 
   if (error) {
-    <NotFoundPage />;
+    ;<NotFoundPage />
   }
 
   return (
@@ -62,7 +65,7 @@ function ProfilePage() {
         <ProfileSocial />
       </div>
     </div>
-  );
+  )
 }
 
-export default ProfilePage;
+export default ProfilePage

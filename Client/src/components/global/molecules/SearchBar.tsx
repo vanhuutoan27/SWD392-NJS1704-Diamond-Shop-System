@@ -1,4 +1,4 @@
-import { Search } from "lucide-react";
+import { Search } from "lucide-react"
 
 function SearchBar() {
   return (
@@ -10,7 +10,7 @@ function SearchBar() {
         className="ml-3 w-full rounded-md bg-transparent py-3 text-sm outline-none"
       />
     </div>
-  );
+  )
 }
 
-export default SearchBar;
+export default SearchBar

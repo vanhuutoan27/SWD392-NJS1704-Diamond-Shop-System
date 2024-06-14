@@ -1,19 +1,19 @@
 export interface IAuthResponseData {
-  success: boolean;
-  message: string;
+  success: boolean
+  message: string
   data: {
-    accessTokenToken: string;
-    refreshToken: string;
+    accessTokenToken: string
+    refreshToken: string
     // expiredAt: Date;
-  };
+  }
 }
 
 export interface IRefreshTokenResponse {
-  success: boolean;
-  message: string;
+  success: boolean
+  message: string
   data: {
-    accessTokenToken: string;
-    refreshToken: string;
-    expiredAt: Date;
-  };
+    accessTokenToken: string
+    refreshToken: string
+    expiredAt: Date
+  }
 }

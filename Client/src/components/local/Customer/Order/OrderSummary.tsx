@@ -1,47 +1,51 @@
-import { ICart } from "@/types/cart.interface";
-import { formatCurrency } from "@/lib/utils";
-import { vatPercentage } from "@/lib/constants";
-import { Button } from "@/components/global/atoms/button";
-import { useState } from "react";
-import { toast } from "sonner";
-import { X } from "lucide-react";
+import { useState } from "react"
+
+import { X } from "lucide-react"
+import { toast } from "sonner"
+
+import { ICart } from "@/types/cart.interface"
+
+import { vatPercentage } from "@/lib/constants"
+import { formatCurrency } from "@/lib/utils"
+
+import { Button } from "@/components/global/atoms/button"
 
 interface OrderSummaryProps {
-  cartItems: ICart[];
+  cartItems: ICart[]
 }
 
 const COUPON_DISCOUNTS: { [key: string]: number } = {
   Diamoon: 0.1,
-  ToanDepTrai: 1,
-};
+  ToanDepTrai: 1
+}
 
 function OrderSummary({ cartItems }: OrderSummaryProps) {
-  const [couponCode, setCouponCode] = useState("");
-  const [discount, setDiscount] = useState(0);
+  const [couponCode, setCouponCode] = useState("")
+  const [discount, setDiscount] = useState(0)
 
   const handleApplyCoupon = () => {
-    const discountRate = COUPON_DISCOUNTS[couponCode] || 0;
-    setDiscount(discountRate);
+    const discountRate = COUPON_DISCOUNTS[couponCode] || 0
+    setDiscount(discountRate)
 
     if (discountRate > 0) {
-      toast.success("Apply coupon successfully");
+      toast.success("Apply coupon successfully")
     } else {
-      toast.error("Apply coupon failed. Try another code!");
+      toast.error("Apply coupon failed. Try another code!")
     }
-  };
+  }
 
   const handleClearCoupon = () => {
-    setCouponCode("");
-    setDiscount(0);
-  };
+    setCouponCode("")
+    setDiscount(0)
+  }
 
   const subTotal = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
-    0,
-  );
-  const vatAmount = subTotal * vatPercentage;
-  const discountAmount = subTotal * discount;
-  const total = subTotal + vatAmount - discountAmount;
+    0
+  )
+  const vatAmount = subTotal * vatPercentage
+  const discountAmount = subTotal * discount
+  const total = subTotal + vatAmount - discountAmount
 
   return (
     <>
@@ -109,7 +113,7 @@ function OrderSummary({ cartItems }: OrderSummaryProps) {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default OrderSummary;
+export default OrderSummary

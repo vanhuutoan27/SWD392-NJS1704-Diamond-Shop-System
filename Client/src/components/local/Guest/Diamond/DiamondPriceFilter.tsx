@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
+
 import {
   Select,
   SelectContent,
@@ -6,30 +7,30 @@ import {
   SelectItem,
   SelectLabel,
   SelectTrigger,
-  SelectValue,
-} from "@/components/global/atoms/select";
+  SelectValue
+} from "@/components/global/atoms/select"
 
 interface DiamondPriceFilterProps {
-  onPriceSelected: (price: string) => void;
-  isResetting: boolean;
+  onPriceSelected: (price: string) => void
+  isResetting: boolean
 }
 
 function DiamondPriceFilter({
   onPriceSelected,
-  isResetting,
+  isResetting
 }: DiamondPriceFilterProps) {
-  const [selectedPrice, setSelectedPrice] = useState("");
+  const [selectedPrice, setSelectedPrice] = useState("")
 
   const handlePriceSelection = (price: string) => {
-    setSelectedPrice(price);
-    onPriceSelected(price);
-  };
+    setSelectedPrice(price)
+    onPriceSelected(price)
+  }
 
   useEffect(() => {
     if (isResetting) {
-      setSelectedPrice("");
+      setSelectedPrice("")
     }
-  }, [isResetting]);
+  }, [isResetting])
 
   return (
     <div className="flex flex-col">
@@ -53,7 +54,7 @@ function DiamondPriceFilter({
         </SelectContent>
       </Select>
     </div>
-  );
+  )
 }
 
-export default DiamondPriceFilter;
+export default DiamondPriceFilter

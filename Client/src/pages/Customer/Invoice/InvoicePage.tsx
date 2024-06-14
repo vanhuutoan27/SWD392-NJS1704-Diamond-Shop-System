@@ -1,78 +1,83 @@
+import { useEffect } from "react"
+
+import { useParams } from "react-router-dom"
+import { toast } from "sonner"
+
+import { ICart } from "@/types/cart.interface"
+
+import { useGetAllDiamonds } from "@/apis/diamondApi"
+import { useGetAllJewelries } from "@/apis/jewelryApi"
+import { useGetAllUsers } from "@/apis/userApi"
+
+import { vatPercentage } from "@/lib/constants"
+import { formatInvoiceData } from "@/lib/utils"
+
+import { Loader } from "@/components/global/atoms/Loader"
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger,
-} from "@/components/global/atoms/accordion";
-import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
-import Section from "@/components/global/organisms/Section";
-import { formatInvoiceData } from "@/lib/utils";
-import { ICart } from "@/types/cart.interface";
-import { useParams } from "react-router-dom";
-import { vatPercentage } from "@/lib/constants";
-import InvoiceCard from "@/components/local/Customer/Invoice/InvoiceCard";
-import InvoiceItem from "@/components/local/Customer/Invoice/InvoiceItem";
-import { useGetAllDiamonds } from "@/apis/diamondApi";
-import { useGetAllJewelries } from "@/apis/jewelryApi";
-import { Loader } from "@/components/global/atoms/Loader";
-import { toast } from "sonner";
-import { useEffect } from "react";
-import { useGetAllUsers } from "@/apis/userApi";
+  AccordionTrigger
+} from "@/components/global/atoms/accordion"
+import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent"
+import Section from "@/components/global/organisms/Section"
+import InvoiceCard from "@/components/local/Customer/Invoice/InvoiceCard"
+import InvoiceItem from "@/components/local/Customer/Invoice/InvoiceItem"
 
 function InvoicePage() {
-  const { userId } = useParams<{ userId: string }>();
+  const { userId } = useParams<{ userId: string }>()
 
   const {
     data: allDiamonds,
     error: diamondsError,
-    isLoading: isDiamondsLoading,
-  } = useGetAllDiamonds();
+    isLoading: isDiamondsLoading
+  } = useGetAllDiamonds()
 
   const {
     data: allJewelries,
     error: jewelriesError,
-    isLoading: isJewelriesLoading,
-  } = useGetAllJewelries();
+    isLoading: isJewelriesLoading
+  } = useGetAllJewelries()
 
   const {
     data: allUsers,
     error: usersError,
-    isLoading: isUsersLoading,
-  } = useGetAllUsers();
+    isLoading: isUsersLoading
+  } = useGetAllUsers()
 
   useEffect(() => {
     if (diamondsError || jewelriesError || usersError) {
-      toast.error("Failed to fetch data");
+      toast.error("Failed to fetch data")
     }
-  }, [diamondsError, jewelriesError, usersError]);
+  }, [diamondsError, jewelriesError, usersError])
 
   if (isDiamondsLoading || isJewelriesLoading || isUsersLoading) {
-    return <Loader />;
+    return <Loader />
   }
 
   if (!allUsers || !allDiamonds || !allJewelries) {
-    return <Loader />;
+    return <Loader />
   }
 
   function getProductData(cartItem: ICart) {
     switch (cartItem.productType) {
       case "Diamond":
         return allDiamonds?.find(
-          (item) => item.diamondId === cartItem.productId,
-        );
+          (item) => item.diamondId === cartItem.productId
+        )
       case "Jewelry":
         return allJewelries?.find(
-          (item) => item.jewelryId === cartItem.productId,
-        );
+          (item) => item.jewelryId === cartItem.productId
+        )
       default:
-        return null;
+        return null
     }
   }
 
-  const billingToUser = allUsers.find((u) => u.id === userId);
+  const billingToUser = allUsers.find((u) => u.id === userId)
 
   if (!billingToUser) {
-    return <div>User not found</div>;
+    return <div>User not found</div>
   }
 
   const invoiceDataList = [
@@ -86,21 +91,21 @@ function InvoicePage() {
           productType: "Diamond",
           productId: "d2c73200-1ae0-4066-9475-0bda2e220d57",
           skuID: "D001",
-          quantity: 1,
+          quantity: 1
         },
         {
           productType: "Jewelry",
           productId: "734aab01-8668-4e5c-8afb-473b05fc52c0",
           skuID: "J001",
-          quantity: 3,
+          quantity: 3
         },
         {
           productType: "Jewelry",
           productId: "1876fa93-1502-4d84-93ae-5ba6301d63cb",
           skuID: "J002",
-          quantity: 1,
-        },
-      ],
+          quantity: 1
+        }
+      ]
     },
     {
       invoiceId: "DIAMOON27082004",
@@ -112,27 +117,27 @@ function InvoicePage() {
           productType: "Diamond",
           productId: "d2c73200-1ae0-4066-9475-0bda2e220d57",
           skuID: "D001",
-          quantity: 2,
+          quantity: 2
         },
         {
           productType: "Jewelry",
           productId: "734aab01-8668-4e5c-8afb-473b05fc52c0",
           skuID: "J001",
-          quantity: 1,
+          quantity: 1
         },
         {
           productType: "Jewelry",
           productId: "1876fa93-1502-4d84-93ae-5ba6301d63cb",
           skuID: "J002",
-          quantity: 4,
-        },
-      ],
-    },
-  ];
+          quantity: 4
+        }
+      ]
+    }
+  ]
 
   const formattedInvoices = invoiceDataList.map((invoiceData) => {
     const mappedItems = invoiceData.items.map((item) => {
-      const productData = getProductData(item as ICart);
+      const productData = getProductData(item as ICart)
       return {
         ...item,
         description: productData
@@ -141,17 +146,17 @@ function InvoicePage() {
             : `NATURAL DIAMOND x ${productData.size}MM`
           : "",
         price: productData?.price || 0,
-        total: (productData?.price || 0) * item.quantity,
-      };
-    });
+        total: (productData?.price || 0) * item.quantity
+      }
+    })
 
     return formatInvoiceData(
       { ...invoiceData, items: mappedItems },
-      vatPercentage,
-    );
-  });
+      vatPercentage
+    )
+  })
 
-  console.log(formattedInvoices);
+  console.log(formattedInvoices)
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -185,7 +190,7 @@ function InvoicePage() {
         ))}
       </Accordion>
     </div>
-  );
+  )
 }
 
-export default InvoicePage;
+export default InvoicePage

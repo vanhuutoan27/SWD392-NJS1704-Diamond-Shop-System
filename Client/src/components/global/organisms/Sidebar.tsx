@@ -1,34 +1,37 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react"
+
+import { useAuthContext } from "@/contexts/AuthContext"
 import {
-  Gem,
-  LayoutDashboard,
-  Package,
-  User,
   ChevronDown,
   ChevronsUpDown,
-  Settings,
+  Gem,
+  LayoutDashboard,
   LogOut,
-} from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
-import { projectName } from "@/lib/constants";
-import { Avatar, AvatarImage } from "../atoms/avatar";
-import { useAuthContext } from "@/contexts/AuthContext";
+  Package,
+  Settings,
+  User
+} from "lucide-react"
+import { Link, useLocation } from "react-router-dom"
+
+import { projectName } from "@/lib/constants"
+
+import { Avatar, AvatarImage } from "../atoms/avatar"
 
 const menuItems = [
   {
     title: "Dashboard",
     link: "/admin/dashboard",
-    icon: <LayoutDashboard />,
+    icon: <LayoutDashboard />
   },
   {
     title: "Jewelry",
     link: "/admin/jewelry-list",
-    icon: <Gem />,
+    icon: <Gem />
   },
   {
     title: "Diamond",
     link: "/admin/diamond-list",
-    icon: <Gem />,
+    icon: <Gem />
   },
   {
     title: "User",
@@ -36,21 +39,21 @@ const menuItems = [
     icon: <User />,
     items: [
       { title: "User List", link: "/admin/user-list" },
-      { title: "User Permission", link: "/admin/user-permission" },
-    ],
+      { title: "User Permission", link: "/admin/user-permission" }
+    ]
   },
   {
     title: "Order",
     link: "/admin/order-list",
-    icon: <Package />,
-  },
-];
+    icon: <Package />
+  }
+]
 
 interface Item {
-  title: string;
-  link: string;
-  icon: JSX.Element;
-  items?: { title: string; link: string }[];
+  title: string
+  link: string
+  icon: JSX.Element
+  items?: { title: string; link: string }[]
 }
 
 function SidebarHeader() {
@@ -63,58 +66,58 @@ function SidebarHeader() {
         Diamond Shop System
       </h4>
     </div>
-  );
+  )
 }
 
 function SidebarFooter() {
-  const { user, logout } = useAuthContext();
-  const accountMenuRef = useRef<HTMLDivElement>(null);
+  const { user, logout } = useAuthContext()
+  const accountMenuRef = useRef<HTMLDivElement>(null)
 
   const accountMenus = [
     {
       title: "My Profile",
       link: `/admin/profile/${user?.id}`,
-      icon: <User />,
+      icon: <User />
     },
     {
       title: "Settings",
       link: `/admin/settings/${user?.id}`,
-      icon: <Settings />,
+      icon: <Settings />
     },
     {
       title: "Log out",
       link: "/login",
       icon: <LogOut />,
-      onClick: logout,
-    },
-  ];
+      onClick: logout
+    }
+  ]
 
-  const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
+  const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false)
 
   const handleToggleAccountMenu = () => {
-    setIsAccountMenuOpen(!isAccountMenuOpen);
-  };
+    setIsAccountMenuOpen(!isAccountMenuOpen)
+  }
 
   const handleClickOutside = (event: MouseEvent) => {
     if (
       accountMenuRef.current &&
       !accountMenuRef.current.contains(event.target as Node)
     ) {
-      setIsAccountMenuOpen(false);
+      setIsAccountMenuOpen(false)
     }
-  };
+  }
 
   useEffect(() => {
     if (isAccountMenuOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside)
     } else {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside)
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isAccountMenuOpen]);
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, [isAccountMenuOpen])
 
   return (
     <div className="relative" ref={accountMenuRef}>
@@ -156,17 +159,17 @@ function SidebarFooter() {
         </div>
       )}
     </div>
-  );
+  )
 }
 
 interface SidebarItemProps {
-  onClick: (item: string) => void;
-  title: string;
-  icon?: JSX.Element;
-  isActive: boolean;
-  hasSubNav?: boolean;
-  link?: string;
-  className?: string;
+  onClick: (item: string) => void
+  title: string
+  icon?: JSX.Element
+  isActive: boolean
+  hasSubNav?: boolean
+  link?: string
+  className?: string
 }
 
 function SidebarItem({
@@ -175,7 +178,7 @@ function SidebarItem({
   icon,
   isActive,
   hasSubNav,
-  className = "",
+  className = ""
 }: SidebarItemProps) {
   return (
     <span
@@ -195,20 +198,20 @@ function SidebarItem({
         )}
       </span>
     </span>
-  );
+  )
 }
 
 interface SubMenuProps {
-  item: Item;
-  activeItem: string;
-  handleClick: (item: string) => void;
+  item: Item
+  activeItem: string
+  handleClick: (item: string) => void
 }
 
 function SubMenu({ item, activeItem, handleClick }: SubMenuProps) {
-  const navRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLDivElement>(null)
 
   const isSubNavOpen = (item: string, items?: { title: string }[]) =>
-    items?.some((i) => i.title === activeItem) || item === activeItem;
+    items?.some((i) => i.title === activeItem) || item === activeItem
 
   return (
     <div
@@ -218,7 +221,7 @@ function SubMenu({ item, activeItem, handleClick }: SubMenuProps) {
       style={{
         height: !isSubNavOpen(item.title, item.items)
           ? 0
-          : (navRef.current?.clientHeight ?? 0) + 12,
+          : (navRef.current?.clientHeight ?? 0) + 12
       }}
     >
       <div ref={navRef} className="my-2 flex flex-col gap-2">
@@ -234,30 +237,30 @@ function SubMenu({ item, activeItem, handleClick }: SubMenuProps) {
         ))}
       </div>
     </div>
-  );
+  )
 }
 
 function Sidebar() {
-  const location = useLocation();
-  const [activeItem, setActiveItem] = useState<string>("");
+  const location = useLocation()
+  const [activeItem, setActiveItem] = useState<string>("")
 
   useEffect(() => {
     menuItems.forEach((item) => {
       if (item.items) {
         item.items.forEach((subItem) => {
           if (location.pathname === subItem.link) {
-            setActiveItem(subItem.title);
+            setActiveItem(subItem.title)
           }
-        });
+        })
       } else if (location.pathname === item.link) {
-        setActiveItem(item.title);
+        setActiveItem(item.title)
       }
-    });
-  }, [location.pathname]);
+    })
+  }, [location.pathname])
 
   const handleClick = (item: string) => {
-    setActiveItem(item !== activeItem ? item : "");
-  };
+    setActiveItem(item !== activeItem ? item : "")
+  }
 
   return (
     <div className="fixed left-0 top-0 flex h-full w-72 flex-col justify-between bg-gray-900 p-6 shadow-md">
@@ -297,7 +300,7 @@ function Sidebar() {
 
       <SidebarFooter />
     </div>
-  );
+  )
 }
 
-export default Sidebar;
+export default Sidebar

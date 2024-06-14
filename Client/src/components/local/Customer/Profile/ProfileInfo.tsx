@@ -1,4 +1,4 @@
-import { projectName } from "@/lib/constants";
+import { projectName } from "@/lib/constants"
 
 function ProfileInfo() {
   return (
@@ -11,7 +11,7 @@ function ProfileInfo() {
         experience for our customers.
       </p>
     </div>
-  );
+  )
 }
 
-export default ProfileInfo;
+export default ProfileInfo

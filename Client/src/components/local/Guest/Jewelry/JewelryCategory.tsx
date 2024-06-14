@@ -4,19 +4,19 @@ import {
   SelectGroup,
   SelectItem,
   SelectTrigger,
-  SelectValue,
-} from "@/components/global/atoms/select";
+  SelectValue
+} from "@/components/global/atoms/select"
 
 interface JewelryCategoryProps {
-  setCategory: (category: string) => void;
-  setPriceRange: (priceRange: string) => void;
-  setSortOrder: (sortOrder: string) => void;
+  setCategory: (category: string) => void
+  setPriceRange: (priceRange: string) => void
+  setSortOrder: (sortOrder: string) => void
 }
 
 function JewelryCategory({
   setCategory,
   setPriceRange,
-  setSortOrder,
+  setSortOrder
 }: JewelryCategoryProps) {
   return (
     <div className="mt-10 flex justify-center gap-4">
@@ -71,7 +71,7 @@ function JewelryCategory({
         </SelectContent>
       </Select>
     </div>
-  );
+  )
 }
 
-export default JewelryCategory;
+export default JewelryCategory

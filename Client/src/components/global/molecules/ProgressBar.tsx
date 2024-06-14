@@ -1,13 +1,13 @@
 interface ProgressBarProps {
-  currentStep: number;
+  currentStep: number
 }
 
 function ProgressBar({ currentStep }: ProgressBarProps) {
   const items = [
     { title: "Information", color: "bg-primary" },
     { title: "Payment", color: "bg-primary" },
-    { title: "Done", color: "bg-primary" },
-  ];
+    { title: "Done", color: "bg-primary" }
+  ]
 
   return (
     <div className="mb-8 flex w-full items-center">
@@ -42,7 +42,7 @@ function ProgressBar({ currentStep }: ProgressBarProps) {
         </>
       ))}
     </div>
-  );
+  )
 }
 
-export default ProgressBar;
+export default ProgressBar

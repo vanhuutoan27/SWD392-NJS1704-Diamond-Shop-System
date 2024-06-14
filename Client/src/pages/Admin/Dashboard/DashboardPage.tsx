@@ -1,4 +1,4 @@
-import KPICards from "@/components/local/Admin/Dashboard/KPICards";
+import KPICards from "@/components/local/Admin/Dashboard/KPICards"
 
 function DashboardPage() {
   return (
@@ -7,7 +7,7 @@ function DashboardPage() {
 
       <div>asd</div>
     </div>
-  );
+  )
 }
 
-export default DashboardPage;
+export default DashboardPage

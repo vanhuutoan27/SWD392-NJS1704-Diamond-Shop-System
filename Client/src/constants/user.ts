@@ -1,4 +1,4 @@
-import { IUserAdmin } from "@/types/user.interface";
+import { IUserAdmin } from "@/types/user.interface"
 
 export const tempUserData: IUserAdmin[] = [
   {
@@ -9,7 +9,7 @@ export const tempUserData: IUserAdmin[] = [
       "https://i.pinimg.com/originals/3f/ab/07/3fab077cc8865e75354d5fbf20b35488.jpg",
     phoneNumber: "0987654321",
     roles: ["Admin"],
-    isActive: true,
+    isActive: true
   },
   {
     id: "U002",
@@ -19,7 +19,7 @@ export const tempUserData: IUserAdmin[] = [
       "https://i.pinimg.com/originals/3f/ab/07/3fab077cc8865e75354d5fbf20b35488.jpg",
     phoneNumber: "0987654321",
     roles: ["Admin"],
-    isActive: true,
+    isActive: true
   },
   {
     id: "U003",
@@ -30,7 +30,7 @@ export const tempUserData: IUserAdmin[] = [
     phoneNumber: "0987654321",
 
     roles: ["Admin"],
-    isActive: true,
+    isActive: true
   },
   {
     id: "U004",
@@ -41,7 +41,7 @@ export const tempUserData: IUserAdmin[] = [
     phoneNumber: "0987654321",
 
     roles: ["Admin"],
-    isActive: true,
+    isActive: true
   },
   {
     id: "U005",
@@ -51,6 +51,6 @@ export const tempUserData: IUserAdmin[] = [
       "https://i.pinimg.com/originals/3f/ab/07/3fab077cc8865e75354d5fbf20b35488.jpg",
     phoneNumber: "0987654321",
     roles: ["Admin"],
-    isActive: true,
-  },
-];
+    isActive: true
+  }
+]

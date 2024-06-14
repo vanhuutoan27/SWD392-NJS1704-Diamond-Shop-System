@@ -1,6 +1,6 @@
-import BlogInfo from "@/components/local/Guest/Blog/BlogInfo";
-import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
-import Section from "@/components/global/organisms/Section";
+import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent"
+import Section from "@/components/global/organisms/Section"
+import BlogInfo from "@/components/local/Guest/Blog/BlogInfo"
 
 function BlogPage() {
   return (
@@ -11,7 +11,7 @@ function BlogPage() {
 
       <BlogInfo />
     </div>
-  );
+  )
 }
 
-export default BlogPage;
+export default BlogPage

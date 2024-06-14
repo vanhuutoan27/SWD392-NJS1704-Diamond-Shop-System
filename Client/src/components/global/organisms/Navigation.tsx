@@ -1,29 +1,31 @@
-import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
-import NavigationMenu from "../molecules/NavigationMenu";
-import NavigationMobile from "./NavigationMobile";
-import CartButton from "../molecules/CartButton";
-import { useAuthContext } from "@/contexts/AuthContext";
+import { useEffect, useState } from "react"
+
+import { useAuthContext } from "@/contexts/AuthContext"
+import { Menu, X } from "lucide-react"
+
+import CartButton from "../molecules/CartButton"
+import NavigationMenu from "../molecules/NavigationMenu"
+import NavigationMobile from "./NavigationMobile"
 
 function Navigation() {
-  const { user } = useAuthContext();
+  const { user } = useAuthContext()
 
-  const [isMenuOpen, setMenuOpen] = useState(false);
-  const [isSticky, setSticky] = useState(false);
+  const [isMenuOpen, setMenuOpen] = useState(false)
+  const [isSticky, setSticky] = useState(false)
 
   const toggleMenu = () => {
-    setMenuOpen(!isMenuOpen);
-  };
+    setMenuOpen(!isMenuOpen)
+  }
 
   useEffect(() => {
     const handleScroll = () => {
-      const stickyOffset = 100;
-      setSticky(window.scrollY > stickyOffset);
-    };
+      const stickyOffset = 100
+      setSticky(window.scrollY > stickyOffset)
+    }
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   return (
     <div
@@ -58,7 +60,7 @@ function Navigation() {
 
       <NavigationMobile isMenuOpen={isMenuOpen} />
     </div>
-  );
+  )
 }
 
-export default Navigation;
+export default Navigation

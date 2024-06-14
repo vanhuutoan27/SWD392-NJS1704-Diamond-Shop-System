@@ -1,10 +1,11 @@
-import { IUser } from "@/types/user.interface";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./SettingTabs";
-import SettingPasswordForm from "./SettingPasswordForm";
-import SettingInformationForm from "./SettingInformationForm";
+import { IUser } from "@/types/user.interface"
+
+import SettingInformationForm from "./SettingInformationForm"
+import SettingPasswordForm from "./SettingPasswordForm"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./SettingTabs"
 
 interface SettingFormProps {
-  user: IUser;
+  user: IUser
 }
 
 function SettingForm({ user }: SettingFormProps) {
@@ -21,7 +22,7 @@ function SettingForm({ user }: SettingFormProps) {
         <SettingPasswordForm user={user} />
       </TabsContent>
     </Tabs>
-  );
+  )
 }
 
-export default SettingForm;
+export default SettingForm

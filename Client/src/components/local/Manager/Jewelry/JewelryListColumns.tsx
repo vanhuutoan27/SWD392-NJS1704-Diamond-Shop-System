@@ -1,19 +1,22 @@
-"use client";
+"use client"
 
-import { ColumnDef } from "@tanstack/react-table";
-import { ArrowUpDown, Copy, Eye, MoreHorizontal } from "lucide-react";
+import { useState } from "react"
 
-import { Button } from "@/components/global/atoms/button";
+import { ColumnDef } from "@tanstack/react-table"
+import { ArrowUpDown, Copy, Eye, MoreHorizontal } from "lucide-react"
+
+import { IJewelry } from "@/types/jewelry.interface"
+
+import { Button } from "@/components/global/atoms/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/global/atoms/dropdown-menu";
-import { IJewelry } from "@/types/jewelry.interface";
-import { useState } from "react";
-import ViewJewelryDialog from "./ViewJewelryDialog";
+  DropdownMenuTrigger
+} from "@/components/global/atoms/dropdown-menu"
+
+import ViewJewelryDialog from "./ViewJewelryDialog"
 
 export const columns: ColumnDef<IJewelry>[] = [
   {
@@ -27,13 +30,13 @@ export const columns: ColumnDef<IJewelry>[] = [
           <span className="flex cursor-pointer text-white">ID</span>
           <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
         </div>
-      );
+      )
     },
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      const shortId = value.split("-")[0];
-      return <span className="font-semibold">{shortId}</span>;
-    },
+      const value: string = info.getValue() as string
+      const shortId = value.split("-")[0]
+      return <span className="font-semibold">{shortId}</span>
+    }
   },
   {
     accessorKey: "jewelryCategory",
@@ -46,9 +49,9 @@ export const columns: ColumnDef<IJewelry>[] = [
           <span className="flex cursor-pointer text-white">Category</span>
           <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
         </div>
-      );
+      )
     },
-    cell: (info) => <span>{info.getValue() as string}</span>,
+    cell: (info) => <span>{info.getValue() as string}</span>
   },
   {
     accessorKey: "jewelryName",
@@ -61,11 +64,11 @@ export const columns: ColumnDef<IJewelry>[] = [
           <span className="flex cursor-pointer text-white">Name</span>
           <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
         </div>
-      );
+      )
     },
     cell: (info) => (
       <span className="font-semibold">{info.getValue() as string}</span>
-    ),
+    )
   },
   {
     accessorKey: "mainStoneSize",
@@ -80,9 +83,9 @@ export const columns: ColumnDef<IJewelry>[] = [
           </span>
           <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
         </div>
-      );
+      )
     },
-    cell: (info) => <span>{info.getValue() as string}</span>,
+    cell: (info) => <span>{info.getValue() as string}</span>
   },
   {
     accessorKey: "sideStoneType",
@@ -97,9 +100,9 @@ export const columns: ColumnDef<IJewelry>[] = [
           </span>
           <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
         </div>
-      );
+      )
     },
-    cell: (info) => <span>{info.getValue() as string}</span>,
+    cell: (info) => <span>{info.getValue() as string}</span>
   },
   {
     accessorKey: "goldType",
@@ -112,9 +115,9 @@ export const columns: ColumnDef<IJewelry>[] = [
           <span className="flex cursor-pointer text-white">Gold Type</span>
           <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
         </div>
-      );
+      )
     },
-    cell: (info) => <span>{info.getValue() as string}</span>,
+    cell: (info) => <span>{info.getValue() as string}</span>
   },
   {
     id: "actions",
@@ -124,13 +127,13 @@ export const columns: ColumnDef<IJewelry>[] = [
       </div>
     ),
     cell: ({ row }) => {
-      const jewelry = row.original;
+      const jewelry = row.original
       // eslint-disable-next-line react-hooks/rules-of-hooks
-      const [isViewDialogOpen, setIsViewDialogOpen] = useState(false);
+      const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
 
       const handleViewDetailsClick = () => {
-        setIsViewDialogOpen(true);
-      };
+        setIsViewDialogOpen(true)
+      }
 
       return (
         <div>
@@ -166,7 +169,7 @@ export const columns: ColumnDef<IJewelry>[] = [
             />
           )}
         </div>
-      );
-    },
-  },
-];
+      )
+    }
+  }
+]

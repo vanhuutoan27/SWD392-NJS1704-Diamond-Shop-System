@@ -1,27 +1,29 @@
-import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/global/atoms/button";
-import { cn, scrollToTop, useIsAdminRoute } from "@/lib/utils";
+import { useNavigate } from "react-router-dom"
+
+import { cn, scrollToTop, useIsAdminRoute } from "@/lib/utils"
+
+import { Button } from "@/components/global/atoms/button"
 
 function ForbiddenPage() {
-  const isAdminRoute = useIsAdminRoute();
+  const isAdminRoute = useIsAdminRoute()
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const goBack = () => {
-    navigate(-1);
-    setTimeout(scrollToTop, 100);
-  };
+    navigate(-1)
+    setTimeout(scrollToTop, 100)
+  }
 
   const goToHome = () => {
-    navigate("/");
-    setTimeout(scrollToTop, 100);
-  };
+    navigate("/")
+    setTimeout(scrollToTop, 100)
+  }
 
   return (
     <div
       className={cn(
         "flex w-full select-none items-center justify-center bg-white",
-        isAdminRoute ? "h-[calc(100vh-64px)]" : "h-screen",
+        isAdminRoute ? "h-[calc(100vh-64px)]" : "h-screen"
       )}
     >
       <div className="flex w-[700px] flex-col px-4 text-center font-medium">
@@ -42,7 +44,7 @@ function ForbiddenPage() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default ForbiddenPage;
+export default ForbiddenPage
