@@ -1,23 +1,24 @@
+import { projectName } from "@/lib/constants"
+
 import {
   Carousel,
   CarouselContent,
-  CarouselItem,
-} from "@/components/global/atoms/carousel";
-import { projectName } from "@/lib/constants";
+  CarouselItem
+} from "@/components/global/atoms/carousel"
 
 function CarouselSlider() {
   const slides = [
     { image: "../images/home_slider_2.jpg" },
     { image: "../images/home_slider_1.jpg" },
-    { image: "../images/home_slider_3.jpg" },
-  ];
+    { image: "../images/home_slider_3.jpg" }
+  ]
 
   return (
     <div>
       <Carousel
         opts={{
           align: "start",
-          loop: true,
+          loop: true
         }}
       >
         <CarouselContent>
@@ -35,7 +36,7 @@ function CarouselSlider() {
         </CarouselContent>
       </Carousel>
     </div>
-  );
+  )
 }
 
-export default CarouselSlider;
+export default CarouselSlider

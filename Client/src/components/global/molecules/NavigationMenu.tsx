@@ -1,10 +1,12 @@
-import { Link, useLocation } from "react-router-dom";
-import { Button } from "../atoms/button";
-import { scrollToTop } from "@/lib/utils";
+import { Link, useLocation } from "react-router-dom"
+
+import { scrollToTop } from "@/lib/utils"
+
+import { Button } from "../atoms/button"
 
 function NavigationMenu() {
-  const location = useLocation();
-  const currentUrl = location.pathname;
+  const location = useLocation()
+  const currentUrl = location.pathname
 
   const Menus = [
     { title: "Home", link: "/" },
@@ -13,8 +15,8 @@ function NavigationMenu() {
     { title: "Jewelry", link: "/jewelry" },
     { title: "Promotion", link: "/promotion" },
     { title: "Blog", link: "/blog" },
-    { title: "Contact", link: "/contact" },
-  ];
+    { title: "Contact", link: "/contact" }
+  ]
 
   return (
     <>
@@ -47,7 +49,7 @@ function NavigationMenu() {
         </div>
       </ul>
     </>
-  );
+  )
 }
 
-export default NavigationMenu;
+export default NavigationMenu

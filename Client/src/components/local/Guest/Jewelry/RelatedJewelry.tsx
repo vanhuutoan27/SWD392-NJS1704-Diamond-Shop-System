@@ -1,16 +1,16 @@
-import ProductCard from "@/components/global/molecules/ProductCard";
-import Section from "@/components/global/organisms/Section";
-import { IJewelry } from "@/types/jewelry.interface";
+import { IJewelry } from "@/types/jewelry.interface"
 
 import {
   Carousel,
   CarouselContent,
-  CarouselItem,
-} from "@/components/global/atoms/carousel";
+  CarouselItem
+} from "@/components/global/atoms/carousel"
+import ProductCard from "@/components/global/molecules/ProductCard"
+import Section from "@/components/global/organisms/Section"
 
 interface RelatedJewelryProps {
-  pageName?: string;
-  relatedJewelries: IJewelry[];
+  pageName?: string
+  relatedJewelries: IJewelry[]
 }
 
 function RelatedJewelry({ pageName, relatedJewelries }: RelatedJewelryProps) {
@@ -20,7 +20,7 @@ function RelatedJewelry({ pageName, relatedJewelries }: RelatedJewelryProps) {
 
       <Carousel
         opts={{
-          align: "start",
+          align: "start"
         }}
         className="w-full"
       >
@@ -42,7 +42,7 @@ function RelatedJewelry({ pageName, relatedJewelries }: RelatedJewelryProps) {
         </CarouselContent>
       </Carousel>
     </div>
-  );
+  )
 }
 
-export default RelatedJewelry;
+export default RelatedJewelry

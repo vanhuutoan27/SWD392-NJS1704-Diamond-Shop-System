@@ -1,39 +1,43 @@
-import { useState } from "react";
-import { Button } from "@/components/global/atoms/button";
+import { useState } from "react"
+
+import { userSchema } from "@/schemas/UserForm"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Eye, EyeOff, Plus } from "lucide-react"
+import { UseFormStateReturn, useForm } from "react-hook-form"
+import { toast } from "sonner"
+
+import { INewUser } from "@/types/user.interface"
+
+import { usePostUser } from "@/apis/userApi"
+
+import { Button } from "@/components/global/atoms/button"
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
-  DialogTitle,
-} from "@/components/global/atoms/dialog";
-import { Eye, EyeOff, Plus } from "lucide-react";
-import { userSchema } from "@/schemas/UserForm";
-import AlertDialogComponent from "@/components/global/molecules/AlertDialogComponent";
-import { useForm, UseFormStateReturn } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+  DialogTitle
+} from "@/components/global/atoms/dialog"
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
   SelectTrigger,
-  SelectValue,
-} from "@/components/global/atoms/select";
-import { INewUser } from "@/types/user.interface";
-import { toast } from "sonner";
-import { usePostUser } from "@/apis/userApi";
+  SelectValue
+} from "@/components/global/atoms/select"
+import AlertDialogComponent from "@/components/global/molecules/AlertDialogComponent"
 
 function AddUserDialog() {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [isShowPassword, setIsShowPassword] = useState(false);
-  const [role, setRole] = useState("Customer");
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [isShowPassword, setIsShowPassword] = useState(false)
+  const [role, setRole] = useState("Customer")
 
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors, isDirty },
+    formState: { errors, isDirty }
   } = useForm<INewUser, UseFormStateReturn<INewUser>>({
     resolver: zodResolver(userSchema),
     defaultValues: {
@@ -41,49 +45,49 @@ function AddUserDialog() {
       fullName: "",
       phone: "",
       address: "",
-      password: "",
-    },
-  });
+      password: ""
+    }
+  })
 
   const toggleShowPassword = () => {
-    setIsShowPassword(!isShowPassword);
-  };
+    setIsShowPassword(!isShowPassword)
+  }
 
   const handleClear = () => {
-    reset();
-  };
+    reset()
+  }
 
-  const { mutate: addNewUser } = usePostUser();
+  const { mutate: addNewUser } = usePostUser()
 
   const onSubmit = async (data: INewUser) => {
     try {
-      const formData = { ...data, role };
+      const formData = { ...data, role }
       // console.log("Submitting form data:", formData);
 
       addNewUser(formData, {
         onSuccess: () => {
-          toast.success("Created a new user successfully");
-          handleClear();
-          setIsDialogOpen(false);
+          toast.success("Created a new user successfully")
+          handleClear()
+          setIsDialogOpen(false)
         },
         onError: () => {
-          toast.error("Create a new user failed");
-        },
-      });
+          toast.error("Create a new user failed")
+        }
+      })
     } catch (error) {
-      console.error("Error submitting form", error);
-      toast.error("Create a new user failed");
+      console.error("Error submitting form", error)
+      toast.error("Create a new user failed")
     }
-  };
+  }
 
   const handleConfirmCancel = () => {
-    handleClear();
-    setIsDialogOpen(false);
-  };
+    handleClear()
+    setIsDialogOpen(false)
+  }
 
   const handleRoleChange = (value: string) => {
-    setRole(value);
-  };
+    setRole(value)
+  }
 
   return (
     <>
@@ -97,9 +101,9 @@ function AddUserDialog() {
         open={isDialogOpen}
         onOpenChange={(open) => {
           if (!open) {
-            handleClear();
+            handleClear()
           }
-          setIsDialogOpen(open);
+          setIsDialogOpen(open)
         }}
       >
         <DialogContent>
@@ -253,7 +257,7 @@ function AddUserDialog() {
         </DialogContent>
       </Dialog>
     </>
-  );
+  )
 }
 
-export default AddUserDialog;
+export default AddUserDialog

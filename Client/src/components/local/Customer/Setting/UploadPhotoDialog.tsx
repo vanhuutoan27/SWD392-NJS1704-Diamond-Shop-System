@@ -1,53 +1,56 @@
-import { useState } from "react";
+import { useState } from "react"
+
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage"
+
+import { diamoonDB } from "@/lib/firebase"
+
+import { Button } from "@/components/global/atoms/button"
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
-  DialogTitle,
-} from "@/components/global/atoms/dialog";
-import { Button } from "@/components/global/atoms/button";
-import { diamoonDB } from "@/lib/firebase";
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { Input } from "@/components/global/atoms/input";
+  DialogTitle
+} from "@/components/global/atoms/dialog"
+import { Input } from "@/components/global/atoms/input"
 
 interface UploadPhotoDialogProps {
-  open: boolean;
-  onClose: () => void;
-  onUpload: (newPhoto: string) => void;
+  open: boolean
+  onClose: () => void
+  onUpload: (newPhoto: string) => void
 }
 
 function UploadPhotoDialog({
   open,
   onClose,
-  onUpload,
+  onUpload
 }: UploadPhotoDialogProps) {
-  const [newPhoto, setNewPhoto] = useState<File | null>(null);
-  const [uploadProgress, setUploadProgress] = useState(0);
+  const [newPhoto, setNewPhoto] = useState<File | null>(null)
+  const [uploadProgress, setUploadProgress] = useState(0)
 
   const handleSave = () => {
     if (newPhoto) {
-      const storageRef = ref(diamoonDB, `Test/${newPhoto.name}`);
-      const uploadTask = uploadBytesResumable(storageRef, newPhoto);
+      const storageRef = ref(diamoonDB, `Test/${newPhoto.name}`)
+      const uploadTask = uploadBytesResumable(storageRef, newPhoto)
 
       uploadTask.on(
         "state_changed",
         (snapshot) => {
           const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          setUploadProgress(progress);
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          setUploadProgress(progress)
         },
         (error) => {
-          console.error("Upload failed:", error);
+          console.error("Upload failed:", error)
         },
         async () => {
-          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-          onUpload(downloadURL);
-        },
-      );
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
+          onUpload(downloadURL)
+        }
+      )
     }
-  };
+  }
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
@@ -64,11 +67,11 @@ function UploadPhotoDialog({
           className="w-full"
           onChange={(e) => {
             if (e.target.files && e.target.files[0]) {
-              const reader = new FileReader();
+              const reader = new FileReader()
               reader.onload = () => {
-                setNewPhoto(e.target.files![0]);
-              };
-              reader.readAsDataURL(e.target.files[0]);
+                setNewPhoto(e.target.files![0])
+              }
+              reader.readAsDataURL(e.target.files[0])
             }
           }}
         />
@@ -90,7 +93,7 @@ function UploadPhotoDialog({
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
+  )
 }
 
-export default UploadPhotoDialog;
+export default UploadPhotoDialog

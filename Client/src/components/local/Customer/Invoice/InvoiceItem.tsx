@@ -1,40 +1,45 @@
-import { useRef } from "react";
-import { jsPDF } from "jspdf";
-import { toPng } from "html-to-image";
-import { Button } from "@/components/global/atoms/button";
-import { projectName } from "@/lib/constants";
-import { formatCurrency } from "@/lib/utils";
-import { IInvoiceItem } from "@/types/invoice.interface";
-import { IUser } from "@/types/user.interface";
+import { useRef } from "react"
+
+import { toPng } from "html-to-image"
+import { jsPDF } from "jspdf"
+
+import { IInvoiceItem } from "@/types/invoice.interface"
+import { IUser } from "@/types/user.interface"
+
+import { projectName } from "@/lib/constants"
+import { formatCurrency } from "@/lib/utils"
+
+import { Button } from "@/components/global/atoms/button"
 
 interface InvoiceItemProps {
-  formattedInvoiceData: any;
-  billingToUser: IUser | undefined;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  formattedInvoiceData: any
+  billingToUser: IUser | undefined
 }
 
 function InvoiceItem({
   formattedInvoiceData,
-  billingToUser,
+  billingToUser
 }: InvoiceItemProps) {
-  const invoiceRef = useRef<HTMLDivElement>(null);
+  const invoiceRef = useRef<HTMLDivElement>(null)
 
   const downloadPDF = () => {
-    const input = invoiceRef.current;
+    const input = invoiceRef.current
     if (input) {
       toPng(input, { cacheBust: true })
         .then((dataUrl) => {
-          const pdf = new jsPDF("p", "mm", "a4");
-          const pdfWidth = pdf.internal.pageSize.getWidth();
-          const imgProps = pdf.getImageProperties(dataUrl);
-          const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-          pdf.addImage(dataUrl, "PNG", 0, 0, pdfWidth, pdfHeight);
-          pdf.save(`INVOICE-${formattedInvoiceData.invoiceId}.pdf`);
+          const pdf = new jsPDF("p", "mm", "a4")
+          const pdfWidth = pdf.internal.pageSize.getWidth()
+          const imgProps = pdf.getImageProperties(dataUrl)
+          const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width
+          pdf.addImage(dataUrl, "PNG", 0, 0, pdfWidth, pdfHeight)
+          pdf.save(`INVOICE-${formattedInvoiceData.invoiceId}.pdf`)
         })
         .catch((error) => {
-          console.error("Error generating PDF: ", error);
-        });
+          console.error("Error generating PDF: ", error)
+        })
     }
-  };
+  }
 
   return (
     <div className="rounded-md border-2 border-input shadow-md">
@@ -178,7 +183,7 @@ function InvoiceItem({
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default InvoiceItem;
+export default InvoiceItem

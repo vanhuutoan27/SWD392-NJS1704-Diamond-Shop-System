@@ -1,16 +1,19 @@
-"use client";
+"use client"
 
-import { ColumnDef } from "@tanstack/react-table";
-import { ICart, IJewelryCart } from "@/types/cart.interface";
-import { formatCurrency } from "@/lib/utils";
-import { Link } from "react-router-dom";
-import { Minus, Plus } from "lucide-react";
-import { Button } from "@/components/global/atoms/button";
+import { ColumnDef } from "@tanstack/react-table"
+import { Minus, Plus } from "lucide-react"
+import { Link } from "react-router-dom"
+
+import { ICart, IJewelryCart } from "@/types/cart.interface"
+
+import { formatCurrency } from "@/lib/utils"
+
+import { Button } from "@/components/global/atoms/button"
 
 export const cartJewelryColumns = (
   updateItemQuantity: (productId: string, newQuantity: number) => void,
   incrementQuantity: (productId: string) => void,
-  decrementQuantity: (productId: string) => void,
+  decrementQuantity: (productId: string) => void
 ): ColumnDef<ICart>[] => [
   {
     accessorKey: "productId",
@@ -18,10 +21,10 @@ export const cartJewelryColumns = (
       <div className="flex cursor-pointer justify-center text-white">ID</div>
     ),
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      const shortProductId = value.split("-")[0];
-      return <div className="text-center">{shortProductId}</div>;
-    },
+      const value: string = info.getValue() as string
+      const shortProductId = value.split("-")[0]
+      return <div className="text-center">{shortProductId}</div>
+    }
   },
   {
     accessorKey: "image",
@@ -29,13 +32,13 @@ export const cartJewelryColumns = (
       <div className="flex cursor-pointer justify-center text-white">Image</div>
     ),
     cell: (info) => {
-      const value: string = info.getValue() as string;
+      const value: string = info.getValue() as string
       return (
         <div className="flex cursor-pointer justify-center">
           <img src={value} alt="Product" className="h-14 w-14 object-cover" />
         </div>
-      );
-    },
+      )
+    }
   },
   {
     accessorKey: "jewelryName",
@@ -45,8 +48,8 @@ export const cartJewelryColumns = (
       </div>
     ),
     cell: (info) => {
-      const value = info.getValue() as string;
-      const row = info.row.original as IJewelryCart;
+      const value = info.getValue() as string
+      const row = info.row.original as IJewelryCart
 
       return (
         <div className="slow text-center font-semibold hover:text-secondary">
@@ -58,8 +61,8 @@ export const cartJewelryColumns = (
             {value}
           </Link>
         </div>
-      );
-    },
+      )
+    }
   },
   {
     accessorKey: "mainStoneSize",
@@ -69,9 +72,9 @@ export const cartJewelryColumns = (
       </div>
     ),
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <div className="text-center">{value}</div>;
-    },
+      const value: string = info.getValue() as string
+      return <div className="text-center">{value}</div>
+    }
   },
   {
     accessorKey: "sideStoneType",
@@ -81,9 +84,9 @@ export const cartJewelryColumns = (
       </div>
     ),
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <div className="text-center">{value}</div>;
-    },
+      const value: string = info.getValue() as string
+      return <div className="text-center">{value}</div>
+    }
   },
   {
     accessorKey: "sideStoneQuantity",
@@ -93,9 +96,9 @@ export const cartJewelryColumns = (
       </div>
     ),
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <div className="text-center">{value}</div>;
-    },
+      const value: string = info.getValue() as string
+      return <div className="text-center">{value}</div>
+    }
   },
   {
     accessorKey: "stoneWeight",
@@ -105,9 +108,9 @@ export const cartJewelryColumns = (
       </div>
     ),
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <div className="text-center">{value}</div>;
-    },
+      const value: string = info.getValue() as string
+      return <div className="text-center">{value}</div>
+    }
   },
   {
     accessorKey: "goldType",
@@ -117,9 +120,9 @@ export const cartJewelryColumns = (
       </div>
     ),
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <div className="text-center">{value}</div>;
-    },
+      const value: string = info.getValue() as string
+      return <div className="text-center">{value}</div>
+    }
   },
   {
     accessorKey: "goldKarat",
@@ -129,9 +132,9 @@ export const cartJewelryColumns = (
       </div>
     ),
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <div className="text-center">{value}</div>;
-    },
+      const value: string = info.getValue() as string
+      return <div className="text-center">{value}</div>
+    }
   },
   {
     accessorKey: "goldWeight",
@@ -141,9 +144,9 @@ export const cartJewelryColumns = (
       </div>
     ),
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <div className="text-center">{value}</div>;
-    },
+      const value: string = info.getValue() as string
+      return <div className="text-center">{value}</div>
+    }
   },
   {
     accessorKey: "quantity",
@@ -153,8 +156,8 @@ export const cartJewelryColumns = (
       </div>
     ),
     cell: (info) => {
-      const row = info.row.original;
-      const value: number = info.getValue() as number;
+      const row = info.row.original
+      const value: number = info.getValue() as number
       return (
         <div className="flex items-center justify-center gap-2">
           <Button
@@ -182,8 +185,8 @@ export const cartJewelryColumns = (
             <Plus size={12} strokeWidth={3} />
           </Button>
         </div>
-      );
-    },
+      )
+    }
   },
   {
     accessorKey: "price",
@@ -191,12 +194,12 @@ export const cartJewelryColumns = (
       <div className="flex cursor-pointer justify-center text-white">Price</div>
     ),
     cell: (info) => {
-      const value: number = info.getValue() as number;
+      const value: number = info.getValue() as number
       return (
         <div className="text-center font-semibold text-red-500">
           {formatCurrency(value)}
         </div>
-      );
-    },
-  },
-];
+      )
+    }
+  }
+]

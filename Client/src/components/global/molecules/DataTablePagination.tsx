@@ -4,35 +4,35 @@ import {
   PaginationItem,
   PaginationLink,
   PaginationNext,
-  PaginationPrevious,
-} from "@/components/global/atoms/pagination";
+  PaginationPrevious
+} from "@/components/global/atoms/pagination"
 
 interface DataTablePaginationProps {
-  currentPage: number;
-  totalPages: number;
-  setCurrentPage: (page: number) => void;
+  currentPage: number
+  totalPages: number
+  setCurrentPage: (page: number) => void
 }
 
 function DataTablePagination({
   currentPage,
   totalPages,
-  setCurrentPage,
+  setCurrentPage
 }: DataTablePaginationProps) {
   const handlePrevious = () => {
     if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
+      setCurrentPage(currentPage - 1)
     }
-  };
+  }
 
   const handleNext = () => {
     if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
+      setCurrentPage(currentPage + 1)
     }
-  };
+  }
 
   const handlePageClick = (page: number) => {
-    setCurrentPage(page);
-  };
+    setCurrentPage(page)
+  }
 
   return (
     <div className="mt-8">
@@ -64,7 +64,7 @@ function DataTablePagination({
         </PaginationContent>
       </Pagination>
     </div>
-  );
+  )
 }
 
-export default DataTablePagination;
+export default DataTablePagination

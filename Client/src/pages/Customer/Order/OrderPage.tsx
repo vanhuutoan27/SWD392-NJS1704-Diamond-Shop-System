@@ -1,23 +1,27 @@
-import { useEffect, useState } from "react";
-import ProgressBar from "@/components/global/molecules/ProgressBar";
-import Section from "@/components/global/organisms/Section";
-import InformationForm from "@/components/local/Customer/Order/InformationForm";
-import PaymentForm from "@/components/local/Customer/Order/PaymentForm";
-import ConfirmOrder from "@/components/local/Customer/Order/ConfirmOrder";
-import OrderSummary from "@/components/local/Customer/Order/OrderSummary";
-import { Button } from "@/components/global/atoms/button";
-import { scrollToTop } from "@/lib/utils";
-import { useLocation } from "react-router-dom";
-import { FormData, Province, District, Ward } from "@/types/order.interface";
-import { informationSchema } from "@/schemas/OrderForm";
+import { useEffect, useState } from "react"
+
+import { informationSchema } from "@/schemas/OrderForm"
+import { useLocation } from "react-router-dom"
+
+import { District, FormData, Province, Ward } from "@/types/order.interface"
+
+import { scrollToTop } from "@/lib/utils"
+
+import { Button } from "@/components/global/atoms/button"
+import ProgressBar from "@/components/global/molecules/ProgressBar"
+import Section from "@/components/global/organisms/Section"
+import ConfirmOrder from "@/components/local/Customer/Order/ConfirmOrder"
+import InformationForm from "@/components/local/Customer/Order/InformationForm"
+import OrderSummary from "@/components/local/Customer/Order/OrderSummary"
+import PaymentForm from "@/components/local/Customer/Order/PaymentForm"
 
 function OrderPage() {
-  const location = useLocation();
-  const { state } = location;
-  const { cartItems } = state || { cartItems: [] };
+  const location = useLocation()
+  const { state } = location
+  const { cartItems } = state || { cartItems: [] }
 
-  const [tab, setTab] = useState(0);
-  const [isSticky, setIsSticky] = useState(false);
+  const [tab, setTab] = useState(0)
+  const [isSticky, setIsSticky] = useState(false)
   const [formData, setFormData] = useState<FormData>({
     email: "",
     fullName: "",
@@ -25,86 +29,86 @@ function OrderPage() {
     address: "",
     province: "",
     district: "",
-    ward: "",
-  });
+    ward: ""
+  })
 
-  const [provinces, setProvinces] = useState<Province[]>([]);
-  const [districts, setDistricts] = useState<District[]>([]);
-  const [wards, setWards] = useState<Ward[]>([]);
-  const [errors, setErrors] = useState<any>({});
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
-  const [paymentError, setPaymentError] = useState("");
+  const [provinces, setProvinces] = useState<Province[]>([])
+  const [districts, setDistricts] = useState<District[]>([])
+  const [wards, setWards] = useState<Ward[]>([])
+  const [errors, setErrors] = useState<any>({})
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("")
+  const [paymentError, setPaymentError] = useState("")
 
-  const headerHeight = 200;
+  const headerHeight = 200
 
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > headerHeight) {
-        setIsSticky(true);
+        setIsSticky(true)
       } else {
-        setIsSticky(false);
+        setIsSticky(false)
       }
-    };
+    }
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll)
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [headerHeight]);
+      window.removeEventListener("scroll", handleScroll)
+    }
+  }, [headerHeight])
 
   const nextStep = async () => {
-    let output = true;
+    let output = true
 
     // Validate form data based on the current tab
     if (tab === 0) {
-      const validation = informationSchema.safeParse(formData);
+      const validation = informationSchema.safeParse(formData)
       if (!validation.success) {
-        setErrors(validation.error.format());
-        output = false;
+        setErrors(validation.error.format())
+        output = false
       } else {
-        setErrors({});
+        setErrors({})
       }
     }
 
     // Validate payment method selection
     if (tab === 1 && !selectedPaymentMethod) {
-      setPaymentError("Please select a payment method.");
-      output = false;
+      setPaymentError("Please select a payment method.")
+      output = false
     } else {
-      setPaymentError("");
+      setPaymentError("")
     }
 
-    if (!output) return;
+    if (!output) return
     if (tab < tabs.length - 1) {
-      setTab(tab + 1);
-      scrollToTop();
+      setTab(tab + 1)
+      scrollToTop()
     }
-  };
+  }
 
   const prevStep = () => {
     if (tab > 0) {
-      setTab(tab - 1);
-      scrollToTop();
+      setTab(tab - 1)
+      scrollToTop()
     }
-  };
+  }
 
   const getButtonText = (tab: number) => {
     switch (tab) {
       case 0:
-        return "Continue To Choose Payment Method";
+        return "Continue To Choose Payment Method"
       default:
-        return "Complete Order";
+        return "Complete Order"
     }
-  };
+  }
 
   const tabs = [
     { component: InformationForm, label: "Information" },
     { component: PaymentForm, label: "Payment" },
-    { component: ConfirmOrder, label: "Done" },
-  ];
+    { component: ConfirmOrder, label: "Done" }
+  ]
 
-  const CurrentForm = tabs[tab].component;
+  const CurrentForm = tabs[tab].component
 
   return (
     <div className="container">
@@ -151,7 +155,7 @@ function OrderPage() {
         </Button>
       </div>
     </div>
-  );
+  )
 }
 
-export default OrderPage;
+export default OrderPage

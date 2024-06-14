@@ -1,27 +1,28 @@
+import { Slash } from "lucide-react"
+
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/global/atoms/breadcrumb";
-import { Slash } from "lucide-react";
+  BreadcrumbSeparator
+} from "@/components/global/atoms/breadcrumb"
 
 type BreadcrumbComponentProps = {
-  lastPage: string;
-  lastPageUrl: string;
-  currentPage: string;
-  currentPageUrl?: string;
-  currentDetailPage?: string;
-};
+  lastPage: string
+  lastPageUrl: string
+  currentPage: string
+  currentPageUrl?: string
+  currentDetailPage?: string
+}
 
 function BreadcrumbComponent({
   lastPage,
   lastPageUrl,
   currentPage,
   currentPageUrl,
-  currentDetailPage,
+  currentDetailPage
 }: BreadcrumbComponentProps) {
   return (
     <div className="mb-2 flex py-2">
@@ -67,7 +68,7 @@ function BreadcrumbComponent({
         </BreadcrumbList>
       </Breadcrumb>
     </div>
-  );
+  )
 }
 
-export default BreadcrumbComponent;
+export default BreadcrumbComponent

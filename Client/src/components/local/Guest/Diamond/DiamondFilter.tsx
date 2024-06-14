@@ -1,30 +1,30 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 
 interface DiamondFilterProps {
-  options: string[];
-  onSelection: (selection: string) => void;
-  title: string;
-  isResetting: boolean;
+  options: string[]
+  onSelection: (selection: string) => void
+  title: string
+  isResetting: boolean
 }
 
 function DiamondFilter({
   options,
   onSelection,
   title,
-  isResetting,
+  isResetting
 }: DiamondFilterProps) {
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState("")
 
   const handleSelection = (option: string) => {
-    setSelectedOption(option);
-    onSelection(option);
-  };
+    setSelectedOption(option)
+    onSelection(option)
+  }
 
   useEffect(() => {
     if (isResetting) {
-      setSelectedOption("");
+      setSelectedOption("")
     }
-  }, [isResetting]);
+  }, [isResetting])
 
   return (
     <div className="flex flex-col">
@@ -55,7 +55,7 @@ function DiamondFilter({
         ))}
       </div>
     </div>
-  );
+  )
 }
 
-export default DiamondFilter;
+export default DiamondFilter

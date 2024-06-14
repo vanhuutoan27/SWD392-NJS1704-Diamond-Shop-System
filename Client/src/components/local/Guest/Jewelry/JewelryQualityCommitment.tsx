@@ -1,6 +1,8 @@
-import { ShieldCheck } from "lucide-react";
-import { projectName } from "@/lib/constants";
-import Section from "@/components/global/organisms/Section";
+import { ShieldCheck } from "lucide-react"
+
+import { projectName } from "@/lib/constants"
+
+import Section from "@/components/global/organisms/Section"
 
 function JewelryQualityCommitment() {
   return (
@@ -38,7 +40,7 @@ function JewelryQualityCommitment() {
         </li>
       </ul>
     </div>
-  );
+  )
 }
 
-export default JewelryQualityCommitment;
+export default JewelryQualityCommitment

@@ -7,17 +7,17 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/global/atoms/alert-dialog";
-import { Button } from "@/components/global/atoms/button";
+  AlertDialogTrigger
+} from "@/components/global/atoms/alert-dialog"
+import { Button } from "@/components/global/atoms/button"
 
 interface AlertDialogComponentProps {
-  variant: "default" | "secondary";
-  actionBtn: string;
-  title: string;
-  description: string;
-  action: string;
-  onConfirm: () => void;
+  variant: "default" | "secondary"
+  actionBtn: string
+  title: string
+  description: string
+  action: string
+  onConfirm: () => void
 }
 
 function AlertDialogComponent({
@@ -26,7 +26,7 @@ function AlertDialogComponent({
   title,
   description,
   action,
-  onConfirm,
+  onConfirm
 }: AlertDialogComponentProps) {
   return (
     <AlertDialog>
@@ -52,7 +52,7 @@ function AlertDialogComponent({
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
-  );
+  )
 }
 
-export default AlertDialogComponent;
+export default AlertDialogComponent

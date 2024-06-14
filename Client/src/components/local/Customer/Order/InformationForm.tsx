@@ -1,21 +1,24 @@
-import { Checkbox } from "@/components/global/atoms/checkbox";
+import { useEffect } from "react"
+
+import axios from "axios"
+
+import { InformationFormProps } from "@/types/order.interface"
+
+import { Checkbox } from "@/components/global/atoms/checkbox"
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
   SelectTrigger,
-  SelectValue,
-} from "@/components/global/atoms/select";
-import axios from "axios";
-import { useEffect } from "react";
-import { InformationFormProps } from "@/types/order.interface";
+  SelectValue
+} from "@/components/global/atoms/select"
 
-const API_PROVINCES = "https://esgoo.net/api-tinhthanh/1/0.htm";
+const API_PROVINCES = "https://esgoo.net/api-tinhthanh/1/0.htm"
 const API_DISTRICTS = (provinceId: string) =>
-  `https://esgoo.net/api-tinhthanh/2/${provinceId}.htm`;
+  `https://esgoo.net/api-tinhthanh/2/${provinceId}.htm`
 const API_WARDS = (districtId: string) =>
-  `https://esgoo.net/api-tinhthanh/3/${districtId}.htm`;
+  `https://esgoo.net/api-tinhthanh/3/${districtId}.htm`
 
 function InformationForm({
   formData,
@@ -27,73 +30,74 @@ function InformationForm({
   wards,
   setWards,
   errors,
-  setErrors,
+  setErrors
 }: InformationFormProps) {
   useEffect(() => {
     axios
       .get(API_PROVINCES)
       .then((response) => {
-        const data = response.data;
+        const data = response.data
         if (data.error === 0) {
-          setProvinces(data.data);
+          setProvinces(data.data)
         }
       })
-      .catch((error) => console.error("Error fetching provinces:", error));
-  }, [setProvinces]);
+      .catch((error) => console.error("Error fetching provinces:", error))
+  }, [setProvinces])
 
   useEffect(() => {
     if (formData.province) {
       axios
         .get(API_DISTRICTS(formData.province))
         .then((response) => {
-          const data = response.data;
+          const data = response.data
           if (data.error === 0) {
-            setDistricts(data.data);
-            setWards([]);
+            setDistricts(data.data)
+            setWards([])
           }
         })
-        .catch((error) => console.error("Error fetching districts:", error));
+        .catch((error) => console.error("Error fetching districts:", error))
     }
-  }, [formData.province, setDistricts, setFormData, setWards]);
+  }, [formData.province, setDistricts, setFormData, setWards])
 
   useEffect(() => {
     if (formData.district) {
       axios
         .get(API_WARDS(formData.district))
         .then((response) => {
-          const data = response.data;
+          const data = response.data
           if (data.error === 0) {
-            setWards(data.data);
+            setWards(data.data)
           }
         })
-        .catch((error) => console.error("Error fetching wards:", error));
+        .catch((error) => console.error("Error fetching wards:", error))
     }
-  }, [formData.district, setWards, setFormData]);
+  }, [formData.district, setWards, setFormData])
 
   useEffect(() => {
     if (formData.province && formData.district && formData.ward) {
       const selectedProvince = provinces.find(
-        (province) => province.id === formData.province,
-      )?.full_name;
+        (province) => province.id === formData.province
+      )?.full_name
       const selectedDistrict = districts.find(
-        (district) => district.id === formData.district,
-      )?.full_name;
+        (district) => district.id === formData.district
+      )?.full_name
       const selectedWard = wards.find(
-        (ward) => ward.id === formData.ward,
-      )?.full_name;
+        (ward) => ward.id === formData.ward
+      )?.full_name
 
       console.log(
-        `${formData.address}, ${selectedWard}, ${selectedDistrict}, ${selectedProvince}`,
-      );
+        `${formData.address}, ${selectedWard}, ${selectedDistrict}, ${selectedProvince}`
+      )
     }
-  }, [formData, provinces, districts, wards]);
+  }, [formData, provinces, districts, wards])
 
   const clearError = (field: string) => {
     setErrors((prevErrors) => {
-      const { [field]: removedError, ...restErrors } = prevErrors as any;
-      return restErrors;
-    });
-  };
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
+      const { [field]: removedError, ...restErrors } = prevErrors as any
+      return restErrors
+    })
+  }
 
   return (
     <div className="flex flex-col gap-4">
@@ -105,8 +109,8 @@ function InformationForm({
           className="input-field"
           value={formData.email}
           onChange={(e) => {
-            setFormData({ ...formData, email: e.target.value });
-            clearError("email");
+            setFormData({ ...formData, email: e.target.value })
+            clearError("email")
           }}
         />
         {errors?.email && (
@@ -126,8 +130,8 @@ function InformationForm({
             className="input-field"
             value={formData.fullName}
             onChange={(e) => {
-              setFormData({ ...formData, fullName: e.target.value });
-              clearError("fullName");
+              setFormData({ ...formData, fullName: e.target.value })
+              clearError("fullName")
             }}
           />
           {errors?.fullName && (
@@ -141,8 +145,8 @@ function InformationForm({
             className="input-field"
             value={formData.phoneNumber}
             onChange={(e) => {
-              setFormData({ ...formData, phoneNumber: e.target.value });
-              clearError("phoneNumber");
+              setFormData({ ...formData, phoneNumber: e.target.value })
+              clearError("phoneNumber")
             }}
           />
           {errors?.phoneNumber && (
@@ -156,8 +160,8 @@ function InformationForm({
             className="input-field"
             value={formData.address}
             onChange={(e) => {
-              setFormData({ ...formData, address: e.target.value });
-              clearError("address");
+              setFormData({ ...formData, address: e.target.value })
+              clearError("address")
             }}
           />
           {errors?.address && (
@@ -170,14 +174,14 @@ function InformationForm({
             <div className="flex w-1/3 flex-col">
               <Select
                 onValueChange={(value) => {
-                  setFormData({ ...formData, province: value });
-                  clearError("province");
+                  setFormData({ ...formData, province: value })
+                  clearError("province")
                 }}
               >
                 <SelectTrigger className="input-field h-11">
                   <SelectValue placeholder="Province / City">
                     {provinces.find(
-                      (province) => province.id === formData.province,
+                      (province) => province.id === formData.province
                     )?.full_name || "Province / City"}
                   </SelectValue>
                 </SelectTrigger>
@@ -201,14 +205,14 @@ function InformationForm({
             <div className="flex w-1/3 flex-col">
               <Select
                 onValueChange={(value) => {
-                  setFormData({ ...formData, district: value });
-                  clearError("district");
+                  setFormData({ ...formData, district: value })
+                  clearError("district")
                 }}
               >
                 <SelectTrigger className="input-field h-11">
                   <SelectValue placeholder="District">
                     {districts.find(
-                      (district) => district.id === formData.district,
+                      (district) => district.id === formData.district
                     )?.full_name || "District"}
                   </SelectValue>
                 </SelectTrigger>
@@ -232,8 +236,8 @@ function InformationForm({
             <div className="flex w-1/3 flex-col">
               <Select
                 onValueChange={(value) => {
-                  setFormData({ ...formData, ward: value });
-                  clearError("ward");
+                  setFormData({ ...formData, ward: value })
+                  clearError("ward")
                 }}
               >
                 <SelectTrigger className="input-field h-11">
@@ -275,7 +279,7 @@ function InformationForm({
         />
       </div>
     </div>
-  );
+  )
 }
 
-export default InformationForm;
+export default InformationForm

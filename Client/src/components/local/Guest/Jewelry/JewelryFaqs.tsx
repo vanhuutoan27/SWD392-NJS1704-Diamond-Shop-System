@@ -1,11 +1,12 @@
+import { projectName } from "@/lib/constants"
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger,
-} from "@/components/global/atoms/accordion";
-import Section from "@/components/global/organisms/Section";
-import { projectName } from "@/lib/constants";
+  AccordionTrigger
+} from "@/components/global/atoms/accordion"
+import Section from "@/components/global/organisms/Section"
 
 function JewelryFaqs() {
   return (
@@ -144,7 +145,7 @@ function JewelryFaqs() {
         </AccordionItem>
       </Accordion>
     </div>
-  );
+  )
 }
 
-export default JewelryFaqs;
+export default JewelryFaqs

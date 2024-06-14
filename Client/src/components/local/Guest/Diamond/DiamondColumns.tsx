@@ -1,26 +1,27 @@
-"use client";
+"use client"
 
-import { ColumnDef } from "@tanstack/react-table";
-import { IDiamond } from "@/types/diamond.interface";
-import { Link } from "react-router-dom";
-import { ChevronRight } from "lucide-react";
+import { ColumnDef } from "@tanstack/react-table"
+import { ChevronRight } from "lucide-react"
+import { Link } from "react-router-dom"
+
+import { IDiamond } from "@/types/diamond.interface"
 
 // Helper function to format numbers conditionally
 const formatNumber = (num: number) => {
-  const decimalPart = num.toString().split(".")[1];
+  const decimalPart = num.toString().split(".")[1]
   if (decimalPart) {
     if (decimalPart.length === 1) {
-      return num.toFixed(1);
+      return num.toFixed(1)
     } else if (decimalPart.length === 2) {
-      return num.toFixed(2);
+      return num.toFixed(2)
     }
   }
-  return num.toFixed(1);
-};
+  return num.toFixed(1)
+}
 
 export const formatPrice = (amount: number) => {
-  return new Intl.NumberFormat("vi-VN").format(amount);
-};
+  return new Intl.NumberFormat("vi-VN").format(amount)
+}
 
 export const columns: ColumnDef<IDiamond>[] = [
   {
@@ -33,12 +34,12 @@ export const columns: ColumnDef<IDiamond>[] = [
         >
           Shape
         </div>
-      );
+      )
     },
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <div className="text-center">{value}</div>;
-    },
+      const value: string = info.getValue() as string
+      return <div className="text-center">{value}</div>
+    }
   },
   {
     accessorKey: "weight",
@@ -50,15 +51,15 @@ export const columns: ColumnDef<IDiamond>[] = [
         >
           Weight (cts)
         </div>
-      );
+      )
     },
     cell: (info) => {
-      const value: number = parseFloat(info.getValue() as string);
-      return <div className="text-center">{formatNumber(value)}</div>;
-    },
+      const value: number = parseFloat(info.getValue() as string)
+      return <div className="text-center">{formatNumber(value)}</div>
+    }
   },
   {
-    accessorKey: "colorLevel",  
+    accessorKey: "colorLevel",
     header: ({ column }) => {
       return (
         <div
@@ -67,12 +68,12 @@ export const columns: ColumnDef<IDiamond>[] = [
         >
           Color
         </div>
-      );
+      )
     },
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <div className="text-center">{value}</div>;
-    },
+      const value: string = info.getValue() as string
+      return <div className="text-center">{value}</div>
+    }
   },
   {
     accessorKey: "clarity",
@@ -84,12 +85,12 @@ export const columns: ColumnDef<IDiamond>[] = [
         >
           Clarity
         </div>
-      );
+      )
     },
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <div className="text-center">{value}</div>;
-    },
+      const value: string = info.getValue() as string
+      return <div className="text-center">{value}</div>
+    }
   },
   {
     accessorKey: "certification",
@@ -101,14 +102,14 @@ export const columns: ColumnDef<IDiamond>[] = [
         >
           Certification
         </div>
-      );
+      )
     },
     cell: (info) => {
-      const value: string = info.getValue() as string;
+      const value: string = info.getValue() as string
       return (
         <div className="text-center font-semibold text-red-500">{value}</div>
-      );
-    },
+      )
+    }
   },
   {
     accessorKey: "size",
@@ -120,12 +121,12 @@ export const columns: ColumnDef<IDiamond>[] = [
         >
           Size (mm)
         </div>
-      );
+      )
     },
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <div className="text-center">{value}</div>;
-    },
+      const value: string = info.getValue() as string
+      return <div className="text-center">{value}</div>
+    }
   },
   {
     accessorKey: "fluorescence",
@@ -137,12 +138,12 @@ export const columns: ColumnDef<IDiamond>[] = [
         >
           Fluorescence
         </div>
-      );
+      )
     },
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <div className="text-center uppercase">{value}</div>;
-    },
+      const value: string = info.getValue() as string
+      return <div className="text-center uppercase">{value}</div>
+    }
   },
   {
     accessorKey: "qualityOfCut",
@@ -154,12 +155,12 @@ export const columns: ColumnDef<IDiamond>[] = [
         >
           Quality Of Cut
         </div>
-      );
+      )
     },
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <div className="text-center">{value}</div>;
-    },
+      const value: string = info.getValue() as string
+      return <div className="text-center">{value}</div>
+    }
   },
   {
     accessorKey: "price",
@@ -171,12 +172,12 @@ export const columns: ColumnDef<IDiamond>[] = [
         >
           Price (VND)
         </div>
-      );
+      )
     },
     cell: (info) => {
-      const value: number = info.getValue() as number;
-      return <div className="text-center">{formatPrice(value)}</div>;
-    },
+      const value: number = info.getValue() as number
+      return <div className="text-center">{formatPrice(value)}</div>
+    }
   },
   {
     accessorKey: "details",
@@ -185,10 +186,10 @@ export const columns: ColumnDef<IDiamond>[] = [
         <div className="flex cursor-pointer justify-center text-white">
           Details
         </div>
-      );
+      )
     },
     cell: (info) => {
-      const diamondId = info.row.original.diamondId;
+      const diamondId = info.row.original.diamondId
 
       return (
         <Link
@@ -199,7 +200,7 @@ export const columns: ColumnDef<IDiamond>[] = [
         >
           Details <ChevronRight size={20} />
         </Link>
-      );
-    },
-  },
-];
+      )
+    }
+  }
+]

@@ -1,39 +1,42 @@
-import { Button } from "@/components/global/atoms/button";
+import { useEffect, useState } from "react"
+
+import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage"
+
+import { useGetUserById } from "@/apis/userApi"
+
+import { Loader } from "@/components/global/atoms/Loader"
+import { Button } from "@/components/global/atoms/button"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
-  DialogTitle,
-} from "@/components/global/atoms/dialog";
-import { useGetUserById } from "@/apis/userApi";
-import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage";
-import { Loader } from "@/components/global/atoms/Loader";
-import { useState, useEffect } from "react";
+  DialogTitle
+} from "@/components/global/atoms/dialog"
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
   SelectTrigger,
-  SelectValue,
-} from "@/components/global/atoms/select";
+  SelectValue
+} from "@/components/global/atoms/select"
 
 function ViewUserDialog({
   userId,
-  onClose,
+  onClose
 }: {
-  userId: string;
-  onClose: () => void;
+  userId: string
+  onClose: () => void
 }) {
-  const { data: userDetails, isLoading, error } = useGetUserById(userId || "");
-  const [isEditing, setIsEditing] = useState(false);
+  const { data: userDetails, isLoading, error } = useGetUserById(userId || "")
+  const [isEditing, setIsEditing] = useState(false)
   const [formData, setFormData] = useState({
     roles: "",
     email: "",
     fullName: "",
     phoneNumber: "",
-    address: "",
-  });
+    address: ""
+  })
 
   useEffect(() => {
     if (userDetails) {
@@ -42,31 +45,31 @@ function ViewUserDialog({
         email: userDetails.email || "",
         fullName: userDetails.fullName || "",
         phoneNumber: userDetails.phoneNumber || "",
-        address: userDetails.address || "",
-      });
+        address: userDetails.address || ""
+      })
     }
-  }, [userDetails]);
+  }, [userDetails])
 
   if (!userDetails || isLoading) {
-    return <Loader />;
+    return <Loader />
   }
 
   if (error) {
-    return <NotFoundPage />;
+    return <NotFoundPage />
   }
 
   const handleEditClick = () => {
-    setIsEditing((prev) => !prev);
-  };
+    setIsEditing((prev) => !prev)
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
 
   const handleSelectChange = (value: string) => {
-    setFormData((prev) => ({ ...prev, roles: value }));
-  };
+    setFormData((prev) => ({ ...prev, roles: value }))
+  }
 
   return (
     <Dialog open={true} onOpenChange={onClose}>
@@ -220,7 +223,7 @@ function ViewUserDialog({
         </div>
       </DialogContent>
     </Dialog>
-  );
+  )
 }
 
-export default ViewUserDialog;
+export default ViewUserDialog

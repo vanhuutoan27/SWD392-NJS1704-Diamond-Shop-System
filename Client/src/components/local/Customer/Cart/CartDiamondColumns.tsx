@@ -1,27 +1,30 @@
-"use client";
+"use client"
 
-import { ColumnDef } from "@tanstack/react-table";
-import { ICart } from "@/types/cart.interface";
-import { formatCurrency } from "@/lib/utils";
-import { Minus, Plus } from "lucide-react";
-import { Button } from "@/components/global/atoms/button";
+import { ColumnDef } from "@tanstack/react-table"
+import { Minus, Plus } from "lucide-react"
+
+import { ICart } from "@/types/cart.interface"
+
+import { formatCurrency } from "@/lib/utils"
+
+import { Button } from "@/components/global/atoms/button"
 
 const formatNumber = (num: number) => {
-  const decimalPart = num.toString().split(".")[1];
+  const decimalPart = num.toString().split(".")[1]
   if (decimalPart) {
     if (decimalPart.length === 1) {
-      return num.toFixed(1);
+      return num.toFixed(1)
     } else if (decimalPart.length === 2) {
-      return num.toFixed(2);
+      return num.toFixed(2)
     }
   }
-  return num.toFixed(1);
-};
+  return num.toFixed(1)
+}
 
 export const cartDiamondColumns = (
   updateItemQuantity: (productId: string, newQuantity: number) => void,
   incrementQuantity: (productId: string) => void,
-  decrementQuantity: (productId: string) => void,
+  decrementQuantity: (productId: string) => void
 ): ColumnDef<ICart>[] => [
   {
     accessorKey: "productId",
@@ -29,10 +32,10 @@ export const cartDiamondColumns = (
       <div className="flex cursor-pointer justify-center text-white">ID</div>
     ),
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      const shortProductId = value.split("-")[0];
-      return <div className="text-center">{shortProductId}</div>;
-    },
+      const value: string = info.getValue() as string
+      const shortProductId = value.split("-")[0]
+      return <div className="text-center">{shortProductId}</div>
+    }
   },
   {
     accessorKey: "shape",
@@ -45,9 +48,9 @@ export const cartDiamondColumns = (
       </div>
     ),
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <div className="text-center">{value}</div>;
-    },
+      const value: string = info.getValue() as string
+      return <div className="text-center">{value}</div>
+    }
   },
   {
     accessorKey: "weight",
@@ -60,9 +63,9 @@ export const cartDiamondColumns = (
       </div>
     ),
     cell: (info) => {
-      const value: number = parseFloat(info.getValue() as string);
-      return <div className="text-center">{formatNumber(value)}</div>;
-    },
+      const value: number = parseFloat(info.getValue() as string)
+      return <div className="text-center">{formatNumber(value)}</div>
+    }
   },
   {
     accessorKey: "colorLevel",
@@ -75,9 +78,9 @@ export const cartDiamondColumns = (
       </div>
     ),
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <div className="text-center">{value}</div>;
-    },
+      const value: string = info.getValue() as string
+      return <div className="text-center">{value}</div>
+    }
   },
   {
     accessorKey: "clarity",
@@ -90,9 +93,9 @@ export const cartDiamondColumns = (
       </div>
     ),
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <div className="text-center">{value}</div>;
-    },
+      const value: string = info.getValue() as string
+      return <div className="text-center">{value}</div>
+    }
   },
   {
     accessorKey: "certification",
@@ -105,11 +108,11 @@ export const cartDiamondColumns = (
       </div>
     ),
     cell: (info) => {
-      const value: string = info.getValue() as string;
+      const value: string = info.getValue() as string
       return (
         <div className="text-center font-semibold text-red-500">{value}</div>
-      );
-    },
+      )
+    }
   },
   {
     accessorKey: "size",
@@ -122,9 +125,9 @@ export const cartDiamondColumns = (
       </div>
     ),
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <div className="text-center">{value}</div>;
-    },
+      const value: string = info.getValue() as string
+      return <div className="text-center">{value}</div>
+    }
   },
   {
     accessorKey: "fluorescence",
@@ -137,9 +140,9 @@ export const cartDiamondColumns = (
       </div>
     ),
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <div className="text-center uppercase">{value}</div>;
-    },
+      const value: string = info.getValue() as string
+      return <div className="text-center uppercase">{value}</div>
+    }
   },
   {
     accessorKey: "qualityOfCut",
@@ -152,9 +155,9 @@ export const cartDiamondColumns = (
       </div>
     ),
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <div className="text-center">{value}</div>;
-    },
+      const value: string = info.getValue() as string
+      return <div className="text-center">{value}</div>
+    }
   },
   {
     accessorKey: "quantity",
@@ -164,8 +167,8 @@ export const cartDiamondColumns = (
       </div>
     ),
     cell: (info) => {
-      const row = info.row.original;
-      const value: number = info.getValue() as number;
+      const row = info.row.original
+      const value: number = info.getValue() as number
       return (
         <div className="flex items-center justify-center gap-2">
           <Button
@@ -193,8 +196,8 @@ export const cartDiamondColumns = (
             <Plus size={12} strokeWidth={3} />
           </Button>
         </div>
-      );
-    },
+      )
+    }
   },
   {
     accessorKey: "price",
@@ -202,12 +205,12 @@ export const cartDiamondColumns = (
       <div className="flex cursor-pointer justify-center text-white">Price</div>
     ),
     cell: (info) => {
-      const value: number = info.getValue() as number;
+      const value: number = info.getValue() as number
       return (
         <div className="text-center font-semibold text-red-500">
           {formatCurrency(value)}
         </div>
-      );
-    },
-  },
-];
+      )
+    }
+  }
+]

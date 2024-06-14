@@ -1,78 +1,83 @@
-import { useEffect, useState } from "react";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Button } from "@/components/global/atoms/button";
+import { useEffect, useState } from "react"
+
+import { diamondSchema } from "@/schemas/AddDiamondForm"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage"
+import { Plus } from "lucide-react"
+import { Controller, SubmitHandler, useForm } from "react-hook-form"
+import { z } from "zod"
+
+import {
+  IDiamondCertification,
+  IDiamondClarity,
+  IDiamondColor,
+  IDiamondFluorescence,
+  IDiamondQualityOfCut,
+  IDiamondShape
+} from "@/types/diamond.interface"
+
+import { usePostDiamond } from "@/apis/diamondApi"
+
+import { diamoonDB } from "@/lib/firebase"
+
+import { Button } from "@/components/global/atoms/button"
 import {
   Dialog,
   DialogContent,
   DialogFooter,
   DialogHeader,
-  DialogTitle,
-} from "@/components/global/atoms/dialog";
-import AlertDialogComponent from "@/components/global/molecules/AlertDialogComponent";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { diamoonDB } from "@/lib/firebase";
-import { Input } from "@/components/global/atoms/input";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/global/molecules/UploadImageTab";
+  DialogTitle
+} from "@/components/global/atoms/dialog"
+import { Input } from "@/components/global/atoms/input"
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
   SelectTrigger,
-  SelectValue,
-} from "@/components/global/atoms/select";
-import { diamondSchema } from "@/schemas/AddDiamondForm";
+  SelectValue
+} from "@/components/global/atoms/select"
+import AlertDialogComponent from "@/components/global/molecules/AlertDialogComponent"
 import {
-  IDiamondClarity,
-  IDiamondColor,
-  IDiamondShape,
-  IDiamondFluorescence,
-  IDiamondQualityOfCut,
-  IDiamondCertification,
-} from "@/types/diamond.interface";
-import { Plus } from "lucide-react";
-import { usePostDiamond } from "@/apis/diamondApi";
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger
+} from "@/components/global/molecules/UploadImageTab"
 
-type DiamondFormValues = z.infer<typeof diamondSchema>;
+type DiamondFormValues = z.infer<typeof diamondSchema>
 
 function AddDiamondDialog() {
-  const [imageUrl, setImageUrl] = useState<string>("");
-  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
-  const [newPhoto, setNewPhoto] = useState<File | null>(null);
-  const [uploadProgress, setUploadProgress] = useState(0);
-  const [imageMethod, setImageMethod] = useState<"upload" | "url">("upload");
+  const [imageUrl, setImageUrl] = useState<string>("")
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
+  const [newPhoto, setNewPhoto] = useState<File | null>(null)
+  const [uploadProgress, setUploadProgress] = useState(0)
+  const [imageMethod, setImageMethod] = useState<"upload" | "url">("upload")
 
-  const postDiamond = usePostDiamond();
+  const postDiamond = usePostDiamond()
 
   const handleSave = () => {
     if (newPhoto) {
-      const storageRef = ref(diamoonDB, `Test/${newPhoto.name}`);
-      const uploadTask = uploadBytesResumable(storageRef, newPhoto);
+      const storageRef = ref(diamoonDB, `Test/${newPhoto.name}`)
+      const uploadTask = uploadBytesResumable(storageRef, newPhoto)
 
       uploadTask.on(
         "state_changed",
         (snapshot) => {
           const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          setUploadProgress(progress);
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          setUploadProgress(progress)
         },
         (error) => {
-          console.error("Upload failed:", error);
+          console.error("Upload failed:", error)
         },
         async () => {
-          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-          setImageUrl(downloadURL);
-        },
-      );
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
+          setImageUrl(downloadURL)
+        }
+      )
     }
-  };
+  }
 
   const {
     register,
@@ -80,18 +85,18 @@ function AddDiamondDialog() {
     control,
     reset,
     watch,
-    formState: { errors, isDirty },
+    formState: { errors, isDirty }
   } = useForm<DiamondFormValues>({
-    resolver: zodResolver(diamondSchema),
-  });
+    resolver: zodResolver(diamondSchema)
+  })
 
-  const watchImageUrl = watch("image");
+  const watchImageUrl = watch("image")
 
   useEffect(() => {
     if (imageMethod === "url") {
-      setImageUrl(watchImageUrl);
+      setImageUrl(watchImageUrl)
     }
-  }, [watchImageUrl, imageMethod]);
+  }, [watchImageUrl, imageMethod])
 
   const onSubmit: SubmitHandler<DiamondFormValues> = (data) => {
     const diamondData = {
@@ -103,17 +108,17 @@ function AddDiamondDialog() {
       size: data.size,
       fluorescence: data.fluorescence,
       qualityOfCut: data.qualityOfCut,
-      price: data.price,
-    };
+      price: data.price
+    }
 
     if (imageMethod === "upload") {
-      handleSave();
+      handleSave()
     } else {
       // console.log("Diamond data:", diamondData);
 
-      postDiamond.mutate(diamondData);
+      postDiamond.mutate(diamondData)
     }
-  };
+  }
 
   const handleClear = () => {
     reset({
@@ -126,17 +131,17 @@ function AddDiamondDialog() {
       fluorescence: "",
       qualityOfCut: "",
       image: "",
-      price: 0,
-    });
-    setUploadProgress(0);
-    setNewPhoto(null);
-    setImageUrl("");
-  };
+      price: 0
+    })
+    setUploadProgress(0)
+    setNewPhoto(null)
+    setImageUrl("")
+  }
 
   const handleConfirmCancel = () => {
-    handleClear();
-    setIsDialogOpen(false);
-  };
+    handleClear()
+    setIsDialogOpen(false)
+  }
 
   return (
     <>
@@ -152,9 +157,9 @@ function AddDiamondDialog() {
         open={isDialogOpen}
         onOpenChange={(open) => {
           if (!open) {
-            handleClear();
+            handleClear()
           }
-          setIsDialogOpen(open);
+          setIsDialogOpen(open)
         }}
       >
         <DialogContent className="min-w-[1000px]">
@@ -205,7 +210,7 @@ function AddDiamondDialog() {
                     className="input-field mt-1"
                     onChange={(e) => {
                       if (e.target.files && e.target.files[0]) {
-                        setNewPhoto(e.target.files[0]);
+                        setNewPhoto(e.target.files[0])
                       }
                     }}
                   />
@@ -246,7 +251,7 @@ function AddDiamondDialog() {
                     <Select
                       {...field}
                       onValueChange={(value) => {
-                        field.onChange(value);
+                        field.onChange(value)
                       }}
                     >
                       <SelectTrigger className="mt-1 w-full">
@@ -283,7 +288,7 @@ function AddDiamondDialog() {
                     <Select
                       {...field}
                       onValueChange={(value) => {
-                        field.onChange(value);
+                        field.onChange(value)
                       }}
                     >
                       <SelectTrigger className="mt-1 w-full">
@@ -317,7 +322,7 @@ function AddDiamondDialog() {
                     <Select
                       {...field}
                       onValueChange={(value) => {
-                        field.onChange(value);
+                        field.onChange(value)
                       }}
                     >
                       <SelectTrigger className="mt-1 w-full">
@@ -351,7 +356,7 @@ function AddDiamondDialog() {
                     <Select
                       {...field}
                       onValueChange={(value) => {
-                        field.onChange(value);
+                        field.onChange(value)
                       }}
                     >
                       <SelectTrigger className="mt-1 w-full">
@@ -390,7 +395,7 @@ function AddDiamondDialog() {
                     <Select
                       {...field}
                       onValueChange={(value) => {
-                        field.onChange(value);
+                        field.onChange(value)
                       }}
                     >
                       <SelectTrigger className="mt-1 w-full">
@@ -424,7 +429,7 @@ function AddDiamondDialog() {
                     <Select
                       {...field}
                       onValueChange={(value) => {
-                        field.onChange(value);
+                        field.onChange(value)
                       }}
                     >
                       <SelectTrigger className="mt-1 w-full">
@@ -529,7 +534,7 @@ function AddDiamondDialog() {
         </DialogContent>
       </Dialog>
     </>
-  );
+  )
 }
 
-export default AddDiamondDialog;
+export default AddDiamondDialog

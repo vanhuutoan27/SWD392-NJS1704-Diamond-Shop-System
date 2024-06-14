@@ -1,6 +1,7 @@
-"use client";
+"use client"
 
-import * as React from "react";
+import * as React from "react"
+
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -10,55 +11,58 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
+  useReactTable
+} from "@tanstack/react-table"
+import { Search } from "lucide-react"
 
+import { Input } from "@/components/global/atoms/input"
 import {
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableHeader,
-  TableRow,
-} from "@/components/global/atoms/table";
-import { Input } from "@/components/global/atoms/input";
-import { Search } from "lucide-react";
-import DataTablePagination from "@/components/global/molecules/DataTablePagination";
-import AddJewelryDialog from "./AddJewelryDialog";
+  TableRow
+} from "@/components/global/atoms/table"
+import DataTablePagination from "@/components/global/molecules/DataTablePagination"
+
+import AddJewelryDialog from "./AddJewelryDialog"
 
 interface JewelryData {
-  jewelryId: string;
-  [key: string]: any;
+  jewelryId: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any
 }
 
 interface DataTableProps<TData> {
-  columns: ColumnDef<TData, any>[];
-  data: TData[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  columns: ColumnDef<TData, any>[]
+  data: TData[]
 }
 
 export function DataTable<TData extends JewelryData>({
   columns,
-  data,
+  data
 }: DataTableProps<TData>) {
-  const [sorting, setSorting] = React.useState<SortingState>([]);
+  const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    [],
-  );
-  const [currentPage, setCurrentPage] = React.useState(1);
-  const [searchValue, setSearchValue] = React.useState<string>("");
-  const itemsPerPage = 7;
+    []
+  )
+  const [currentPage, setCurrentPage] = React.useState(1)
+  const [searchValue, setSearchValue] = React.useState<string>("")
+  const itemsPerPage = 7
 
   const filteredData = React.useMemo(() => {
     return data.filter((item) =>
-      item.jewelryId.toLowerCase().includes(searchValue.toLowerCase()),
-    );
-  }, [data, searchValue]);
+      item.jewelryId.toLowerCase().includes(searchValue.toLowerCase())
+    )
+  }, [data, searchValue])
 
   const paginatedData = React.useMemo(() => {
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    return filteredData.slice(startIndex, endIndex);
-  }, [filteredData, currentPage]);
+    const startIndex = (currentPage - 1) * itemsPerPage
+    const endIndex = startIndex + itemsPerPage
+    return filteredData.slice(startIndex, endIndex)
+  }, [filteredData, currentPage])
 
   const table = useReactTable({
     data: paginatedData,
@@ -71,11 +75,11 @@ export function DataTable<TData extends JewelryData>({
     getFilteredRowModel: getFilteredRowModel(),
     state: {
       sorting,
-      columnFilters,
-    },
-  });
+      columnFilters
+    }
+  })
 
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage)
 
   return (
     <>
@@ -112,10 +116,10 @@ export function DataTable<TData extends JewelryData>({
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext(),
+                            header.getContext()
                           )}
                     </TableHead>
-                  );
+                  )
                 })}
               </TableRow>
             ))}
@@ -131,7 +135,7 @@ export function DataTable<TData extends JewelryData>({
                     <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext(),
+                        cell.getContext()
                       )}
                     </TableCell>
                   ))}
@@ -157,5 +161,5 @@ export function DataTable<TData extends JewelryData>({
         setCurrentPage={setCurrentPage}
       />
     </>
-  );
+  )
 }

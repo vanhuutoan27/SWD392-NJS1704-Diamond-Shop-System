@@ -1,4 +1,4 @@
-import NavigationMenu from "../molecules/NavigationMenu";
+import NavigationMenu from "../molecules/NavigationMenu"
 
 function NavigationMobile({ isMenuOpen }: { isMenuOpen: boolean }) {
   return (
@@ -11,7 +11,7 @@ function NavigationMobile({ isMenuOpen }: { isMenuOpen: boolean }) {
         <NavigationMenu />
       </div>
     </div>
-  );
+  )
 }
 
-export default NavigationMobile;
+export default NavigationMobile

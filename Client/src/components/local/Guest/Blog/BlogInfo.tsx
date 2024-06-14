@@ -1,11 +1,15 @@
-import { useState } from "react";
-import { blogData } from "../../../../constants/blog";
-import { Button } from "@/components/global/atoms/button";
-import { Link } from "react-router-dom";
-import { formatDate } from "@/lib/utils";
+import { useState } from "react"
+
+import { Link } from "react-router-dom"
+
+import { formatDate } from "@/lib/utils"
+
+import { Button } from "@/components/global/atoms/button"
+
+import { blogData } from "../../../../constants/blog"
 
 function BlogInfo() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
   return (
     <div className="grid gap-10 sm:grid-cols-2">
@@ -55,7 +59,7 @@ function BlogInfo() {
         </div>
       ))}
     </div>
-  );
+  )
 }
 
-export default BlogInfo;
+export default BlogInfo

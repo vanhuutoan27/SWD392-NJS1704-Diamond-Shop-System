@@ -1,42 +1,46 @@
-import { useEffect, useRef, useState } from "react";
-import { useGetJewelryById } from "@/apis/jewelryApi";
-import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage";
+import { useEffect, useRef, useState } from "react"
+
+import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage"
+
+import { useGetJewelryById } from "@/apis/jewelryApi"
+
+import { formatCurrencyWithoutVND, formatDate } from "@/lib/utils"
+
+import { Loader } from "@/components/global/atoms/Loader"
+import { Button } from "@/components/global/atoms/button"
 import {
   Dialog,
   DialogContent,
   DialogHeader,
-  DialogTitle,
-} from "@/components/global/atoms/dialog";
-import { Button } from "@/components/global/atoms/button";
-import { Skeleton } from "@/components/global/atoms/skeleton";
+  DialogTitle
+} from "@/components/global/atoms/dialog"
 import {
   Select,
   SelectContent,
   SelectGroup,
   SelectItem,
   SelectTrigger,
-  SelectValue,
-} from "@/components/global/atoms/select";
-import { formatCurrencyWithoutVND, formatDate } from "@/lib/utils";
-import { Loader } from "@/components/global/atoms/Loader";
-import AlertDialogComponent from "@/components/global/molecules/AlertDialogComponent";
+  SelectValue
+} from "@/components/global/atoms/select"
+import { Skeleton } from "@/components/global/atoms/skeleton"
+import AlertDialogComponent from "@/components/global/molecules/AlertDialogComponent"
 
 function ViewDiamondDialog({
   jewelryId,
-  onClose,
+  onClose
 }: {
-  jewelryId: string;
-  onClose: () => void;
+  jewelryId: string
+  onClose: () => void
 }) {
   const {
     data: jewelryDetails,
     isLoading,
-    error,
-  } = useGetJewelryById(jewelryId);
+    error
+  } = useGetJewelryById(jewelryId)
 
-  const [imageLoaded, setImageLoaded] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState(false)
+  const [isEditing, setIsEditing] = useState(false)
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
   const [formData, setFormData] = useState({
     jewelryId: "",
     skuID: "",
@@ -52,14 +56,14 @@ function ViewDiamondDialog({
     goldWeight: 0,
     price: 0,
     dateCreated: "",
-    dateModified: "",
-  });
+    dateModified: ""
+  })
 
-  const dialogRef = useRef<HTMLDivElement | null>(null);
+  const dialogRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     if (jewelryDetails) {
-      setSelectedImageIndex(0);
+      setSelectedImageIndex(0)
 
       setFormData({
         jewelryId: jewelryDetails.jewelryId || "",
@@ -76,23 +80,23 @@ function ViewDiamondDialog({
         price: jewelryDetails.price || 0,
         images: jewelryDetails.images[0] || "",
         dateCreated: jewelryDetails.dateCreated || "",
-        dateModified: jewelryDetails.dateModified || "",
-      });
+        dateModified: jewelryDetails.dateModified || ""
+      })
     }
-  }, [jewelryDetails]);
+  }, [jewelryDetails])
 
   const handleEditClick = () => {
-    setIsEditing((prev) => !prev);
-  };
+    setIsEditing((prev) => !prev)
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
 
   const handleSelectChange = (name: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
 
   const handleConfirmCancel = () => {
     if (jewelryDetails) {
@@ -111,18 +115,18 @@ function ViewDiamondDialog({
         price: jewelryDetails.price || 0,
         images: jewelryDetails.images[0] || "",
         dateCreated: jewelryDetails.dateCreated || "",
-        dateModified: jewelryDetails.dateModified || "",
-      });
+        dateModified: jewelryDetails.dateModified || ""
+      })
     }
-    setIsEditing(false);
-  };
+    setIsEditing(false)
+  }
 
   if (!jewelryDetails || isLoading) {
-    return <Loader />;
+    return <Loader />
   }
 
   if (error) {
-    return <NotFoundPage />;
+    return <NotFoundPage />
   }
 
   return (
@@ -471,7 +475,7 @@ function ViewDiamondDialog({
         </div>
       </DialogContent>
     </Dialog>
-  );
+  )
 }
 
-export default ViewDiamondDialog;
+export default ViewDiamondDialog

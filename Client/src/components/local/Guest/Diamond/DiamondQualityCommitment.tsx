@@ -1,6 +1,8 @@
-import { ShieldCheck } from "lucide-react";
-import { projectName } from "@/lib/constants";
-import Section from "@/components/global/organisms/Section";
+import { ShieldCheck } from "lucide-react"
+
+import { projectName } from "@/lib/constants"
+
+import Section from "@/components/global/organisms/Section"
 
 function QualityCommitment() {
   return (
@@ -45,7 +47,7 @@ function QualityCommitment() {
         </li>
       </ul>
     </div>
-  );
+  )
 }
 
-export default QualityCommitment;
+export default QualityCommitment

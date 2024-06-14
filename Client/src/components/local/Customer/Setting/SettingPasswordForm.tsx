@@ -1,32 +1,35 @@
-import { useState } from "react";
-import { Eye, EyeOff, KeyRound, Mail } from "lucide-react";
-import AlertDialogComponent from "@/components/global/molecules/AlertDialogComponent";
-import { toast } from "sonner";
-import { IUser } from "@/types/user.interface";
+import { useState } from "react"
+
+import { Eye, EyeOff, KeyRound, Mail } from "lucide-react"
+import { toast } from "sonner"
+
+import { IUser } from "@/types/user.interface"
+
+import AlertDialogComponent from "@/components/global/molecules/AlertDialogComponent"
 
 interface SettingPasswordFormProps {
-  user: IUser;
+  user: IUser
 }
 
 function SettingPasswordForm({ user }: SettingPasswordFormProps) {
-  const [isShowOldPassword, setIsShowOldPassword] = useState(false);
-  const [isShowNewPassword, setIsShowNewPassword] = useState(false);
-  const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false);
+  const [isShowOldPassword, setIsShowOldPassword] = useState(false)
+  const [isShowNewPassword, setIsShowNewPassword] = useState(false)
+  const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false)
   const [passwordData, setPasswordData] = useState({
     oldPassword: "",
     newPassword: "",
-    confirmPassword: "",
-  });
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+    confirmPassword: ""
+  })
+  const [errors, setErrors] = useState<{ [key: string]: string }>({})
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setPasswordData({ ...passwordData, [name]: value });
-  };
+    const { name, value } = e.target
+    setPasswordData({ ...passwordData, [name]: value })
+  }
 
   const handlePasswordSubmit = () => {
     if (passwordData.newPassword !== passwordData.confirmPassword) {
-      toast.error("New password and confirm password do not match");
+      toast.error("New password and confirm password do not match")
     } else {
       // Assume changePassword is a function that changes the password
       // changePassword(passwordData).then(() => {
@@ -35,16 +38,16 @@ function SettingPasswordForm({ user }: SettingPasswordFormProps) {
       //   toast.error("Failed to change password");
       // });
     }
-  };
+  }
 
   const confirmCancel = () => {
     setPasswordData({
       oldPassword: "",
       newPassword: "",
-      confirmPassword: "",
-    });
-    setErrors({});
-  };
+      confirmPassword: ""
+    })
+    setErrors({})
+  }
 
   return (
     <form
@@ -190,7 +193,7 @@ function SettingPasswordForm({ user }: SettingPasswordFormProps) {
         />
       </div>
     </form>
-  );
+  )
 }
 
-export default SettingPasswordForm;
+export default SettingPasswordForm

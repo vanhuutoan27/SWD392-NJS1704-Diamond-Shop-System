@@ -1,5 +1,6 @@
-import { scrollToTop } from "@/lib/utils";
-import { ChevronUp } from "lucide-react";
+import { ChevronUp } from "lucide-react"
+
+import { scrollToTop } from "@/lib/utils"
 
 function FloatingButton() {
   return (
@@ -9,7 +10,7 @@ function FloatingButton() {
     >
       <ChevronUp />
     </div>
-  );
+  )
 }
 
-export default FloatingButton;
+export default FloatingButton

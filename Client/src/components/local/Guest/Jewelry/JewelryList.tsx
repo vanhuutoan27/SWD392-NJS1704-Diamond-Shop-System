@@ -1,19 +1,21 @@
-import { IJewelry } from "@/types/jewelry.interface";
-import ProductCard from "@/components/global/molecules/ProductCard";
-import JewelryListPagination from "./JewelryListPagination";
+import { IJewelry } from "@/types/jewelry.interface"
+
+import ProductCard from "@/components/global/molecules/ProductCard"
+
+import JewelryListPagination from "./JewelryListPagination"
 
 interface JewelryListProps {
-  jewelryItems: IJewelry[];
-  currentPage: number;
-  totalPages: number;
-  setCurrentPage: (page: number) => void;
+  jewelryItems: IJewelry[]
+  currentPage: number
+  totalPages: number
+  setCurrentPage: (page: number) => void
 }
 
 function JewelryList({
   jewelryItems,
   currentPage,
   totalPages,
-  setCurrentPage,
+  setCurrentPage
 }: JewelryListProps) {
   return (
     <div className="mt-10">
@@ -40,7 +42,7 @@ function JewelryList({
         <p className="text-center">No jewelry found.</p>
       )}
     </div>
-  );
+  )
 }
 
-export default JewelryList;
+export default JewelryList

@@ -1,11 +1,14 @@
+import { useEffect } from "react"
+
+import { PaymentFormProps } from "@/types/order.interface"
+
+import { formatCurrency } from "@/lib/utils"
+
+import { Button } from "@/components/global/atoms/button"
 import {
   RadioGroup,
-  RadioGroupItem,
-} from "@/components/global/atoms/radio-group";
-import { useEffect } from "react";
-import { Button } from "@/components/global/atoms/button";
-import { formatCurrency } from "@/lib/utils";
-import { PaymentFormProps } from "@/types/order.interface";
+  RadioGroupItem
+} from "@/components/global/atoms/radio-group"
 
 function PaymentForm({
   formData,
@@ -15,25 +18,25 @@ function PaymentForm({
   selectedPaymentMethod,
   setSelectedPaymentMethod,
   paymentError,
-  setTab,
+  setTab
 }: PaymentFormProps) {
   const handleSelectItem = (value: string) => {
-    setSelectedPaymentMethod(value);
-  };
+    setSelectedPaymentMethod(value)
+  }
 
   const selectedProvince = provinces.find(
-    (province) => province.id === formData.province,
-  )?.full_name;
+    (province) => province.id === formData.province
+  )?.full_name
   const selectedDistrict = districts.find(
-    (district) => district.id === formData.district,
-  )?.full_name;
+    (district) => district.id === formData.district
+  )?.full_name
   const selectedWard = wards.find(
-    (ward) => ward.id === formData.ward,
-  )?.full_name;
+    (ward) => ward.id === formData.ward
+  )?.full_name
 
   useEffect(() => {
-    console.log("Selected payment method:", selectedPaymentMethod);
-  }, [selectedPaymentMethod]);
+    console.log("Selected payment method:", selectedPaymentMethod)
+  }, [selectedPaymentMethod])
 
   return (
     <div className="flex flex-col gap-8">
@@ -141,7 +144,7 @@ function PaymentForm({
         )}
       </div>
     </div>
-  );
+  )
 }
 
-export default PaymentForm;
+export default PaymentForm

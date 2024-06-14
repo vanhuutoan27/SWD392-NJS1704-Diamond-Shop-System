@@ -6,7 +6,7 @@ function Section({ pageName }: { pageName: string }) {
       </h3>
       <div className="absolute inset-x-0 bottom-0 h-[2px] bg-primary" />
     </div>
-  );
+  )
 }
 
-export default Section;
+export default Section

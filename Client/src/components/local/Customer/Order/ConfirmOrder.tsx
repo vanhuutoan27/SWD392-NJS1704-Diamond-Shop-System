@@ -1,8 +1,5 @@
-
 function ConfirmOrder() {
-  return (
-    <div>ConfirmOrder</div>
-  )
+  return <div>ConfirmOrder</div>
 }
 
 export default ConfirmOrder

@@ -1,39 +1,44 @@
-import React, { useState } from "react";
-import { IUser } from "@/types/user.interface";
-import { Camera, Upload } from "lucide-react";
-import AlertDialogComponent from "@/components/global/molecules/AlertDialogComponent";
-import UploadPhotoDialog from "./UploadPhotoDialog";
-import { toast } from "sonner";
-import { userAvatar } from "@/lib/constants";
+import React, { useState } from "react"
+
+import { Camera, Upload } from "lucide-react"
+import { toast } from "sonner"
+
+import { IUser } from "@/types/user.interface"
+
+import { userAvatar } from "@/lib/constants"
+
+import AlertDialogComponent from "@/components/global/molecules/AlertDialogComponent"
+
+import UploadPhotoDialog from "./UploadPhotoDialog"
 
 interface SettingChangePhotoProps {
-  user: IUser;
-  onSave: (user: IUser) => void;
+  user: IUser
+  onSave: (user: IUser) => void
 }
 
 const SettingChangePhoto: React.FC<SettingChangePhotoProps> = ({
   user,
-  onSave,
+  onSave
 }) => {
-  const [formData, setFormData] = useState<IUser>(user);
-  const [showUploadPhotoDialog, setShowUploadPhotoDialog] = useState(false);
+  const [formData, setFormData] = useState<IUser>(user)
+  const [showUploadPhotoDialog, setShowUploadPhotoDialog] = useState(false)
 
   const handleSubmit = () => {
-    onSave(formData);
-    toast.success("Photo updated successfully");
-  };
+    onSave(formData)
+    toast.success("Photo updated successfully")
+  }
 
   const handleChangePhoto = () => {
-    setShowUploadPhotoDialog(true);
-  };
+    setShowUploadPhotoDialog(true)
+  }
 
   const confirmCancel = () => {
-    setFormData(user);
-  };
+    setFormData(user)
+  }
 
   const confirmSave = () => {
-    handleSubmit();
-  };
+    handleSubmit()
+  }
 
   return (
     <>
@@ -97,14 +102,14 @@ const SettingChangePhoto: React.FC<SettingChangePhotoProps> = ({
           open={showUploadPhotoDialog}
           onClose={() => setShowUploadPhotoDialog(false)}
           onUpload={(newPhoto) => {
-            setFormData({ ...formData, avatar: newPhoto });
-            setShowUploadPhotoDialog(false);
-            toast.success("Avatar updated successfully");
+            setFormData({ ...formData, avatar: newPhoto })
+            setShowUploadPhotoDialog(false)
+            toast.success("Avatar updated successfully")
           }}
         />
       )}
     </>
-  );
-};
+  )
+}
 
-export default SettingChangePhoto;
+export default SettingChangePhoto
