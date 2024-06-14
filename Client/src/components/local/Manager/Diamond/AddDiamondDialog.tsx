@@ -38,7 +38,7 @@ import {
   IDiamondCertification,
 } from "@/types/diamond.interface";
 import { Plus } from "lucide-react";
-import { usePostDiamond } from "@/api/diamondApi";
+import { usePostDiamond } from "@/apis/diamondApi";
 
 type DiamondFormValues = z.infer<typeof diamondSchema>;
 

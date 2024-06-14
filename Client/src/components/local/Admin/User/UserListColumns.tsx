@@ -23,7 +23,7 @@ import Chip from "@/components/global/atoms/Chip";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import ViewUserDialog from "./ViewUserDialog";
-import { useChangeUserStatus } from "@/api/userApi";
+import { useChangeUserStatus } from "@/apis/userApi";
 
 export const columns: ColumnDef<IUser>[] = [
   {

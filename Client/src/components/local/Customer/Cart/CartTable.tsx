@@ -11,8 +11,8 @@ import { TabsContent } from "./CartTabs";
 import { cartDiamondColumns } from "./CartDiamondColumns";
 import { toast } from "sonner";
 import { vatPercentage } from "@/lib/constants";
-import { useGetAllDiamonds } from "@/api/diamondApi";
-import { useGetAllJewelries } from "@/api/jewelryApi";
+import { useGetAllDiamonds } from "@/apis/diamondApi";
+import { useGetAllJewelries } from "@/apis/jewelryApi";
 import { Loader } from "@/components/global/atoms/Loader";
 
 interface RenderTabContentProps {

@@ -5,7 +5,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/global/atoms/dialog";
-import { useGetUserById } from "@/api/userApi";
+import { useGetUserById } from "@/apis/userApi";
 import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage";
 import { Loader } from "@/components/global/atoms/Loader";
 import { useState, useEffect } from "react";

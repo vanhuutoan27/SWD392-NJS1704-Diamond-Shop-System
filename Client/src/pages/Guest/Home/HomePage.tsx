@@ -1,30 +1,32 @@
-import { useGetAllDiamonds } from "@/api/diamondApi";
-import { Loader } from "@/components/global/atoms/Loader";
-import RelatedDiamonds from "@/components/local/Guest/Diamond/RelatedDiamonds";
-import CarouselSlider from "@/components/local/Guest/Home/CarouselSlider";
-import RelatedJewelry from "@/components/local/Guest/Jewelry/RelatedJewelry";
-import { useGetAllJewelries } from "@/api/jewelryApi";
-import { toast } from "sonner";
+import { toast } from "sonner"
+
+import { useGetAllDiamonds } from "@/apis/diamondApi"
+import { useGetAllJewelries } from "@/apis/jewelryApi"
+
+import { Loader } from "@/components/global/atoms/Loader"
+import RelatedDiamonds from "@/components/local/Guest/Diamond/RelatedDiamonds"
+import CarouselSlider from "@/components/local/Guest/Home/CarouselSlider"
+import RelatedJewelry from "@/components/local/Guest/Jewelry/RelatedJewelry"
 
 function HomePage() {
   const {
     data: allDiamonds,
     error: diamondsError,
-    isLoading: isDiamondsLoading,
-  } = useGetAllDiamonds();
+    isLoading: isDiamondsLoading
+  } = useGetAllDiamonds()
 
   const {
     data: allJewelries,
     error: jewelriesError,
-    isLoading: isJewelriesLoading,
-  } = useGetAllJewelries();
+    isLoading: isJewelriesLoading
+  } = useGetAllJewelries()
 
   if (isDiamondsLoading || isJewelriesLoading) {
-    return <Loader />;
+    return <Loader />
   }
 
   if (diamondsError || jewelriesError) {
-    toast.error("Failed to fetch data");
+    toast.error("Failed to fetch data")
   }
 
   return (
@@ -41,7 +43,7 @@ function HomePage() {
         relatedDiamonds={allDiamonds || []}
       />
     </div>
-  );
+  )
 }
 
-export default HomePage;
+export default HomePage

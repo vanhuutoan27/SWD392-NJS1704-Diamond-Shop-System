@@ -7,7 +7,7 @@ import JewelryDetails from "@/components/local/Guest/Jewelry/JewelryDetails";
 import RelatedJewelry from "@/components/local/Guest/Jewelry/RelatedJewelry";
 import JewelryFaqs from "@/components/local/Guest/Jewelry/JewelryFaqs";
 import JewelryQualityCommitment from "@/components/local/Guest/Jewelry/JewelryQualityCommitment";
-import { useGetAllJewelries, useGetJewelryById } from "@/api/jewelryApi";
+import { useGetAllJewelries, useGetJewelryById } from "@/apis/jewelryApi";
 import { toast } from "sonner";
 
 function JewelryDetailPage() {

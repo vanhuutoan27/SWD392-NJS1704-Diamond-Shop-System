@@ -6,7 +6,7 @@ import SettingForm from "@/components/local/Customer/Setting/SettingForm";
 import { Loader } from "@/components/global/atoms/Loader";
 import Section from "@/components/global/organisms/Section";
 import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
-import { useGetUserById } from "@/api/userApi";
+import { useGetUserById } from "@/apis/userApi";
 import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage";
 
 function SettingPage() {

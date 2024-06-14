@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useGetJewelryById } from "@/api/jewelryApi";
+import { useGetJewelryById } from "@/apis/jewelryApi";
 import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage";
 import {
   Dialog,

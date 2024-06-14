@@ -12,12 +12,12 @@ import { useParams } from "react-router-dom";
 import { vatPercentage } from "@/lib/constants";
 import InvoiceCard from "@/components/local/Customer/Invoice/InvoiceCard";
 import InvoiceItem from "@/components/local/Customer/Invoice/InvoiceItem";
-import { useGetAllDiamonds } from "@/api/diamondApi";
-import { useGetAllJewelries } from "@/api/jewelryApi";
+import { useGetAllDiamonds } from "@/apis/diamondApi";
+import { useGetAllJewelries } from "@/apis/jewelryApi";
 import { Loader } from "@/components/global/atoms/Loader";
 import { toast } from "sonner";
 import { useEffect } from "react";
-import { useGetAllUsers } from "@/api/userApi";
+import { useGetAllUsers } from "@/apis/userApi";
 
 function InvoicePage() {
   const { userId } = useParams<{ userId: string }>();

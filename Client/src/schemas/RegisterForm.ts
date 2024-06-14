@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "zod"
 
 export const registerSchema = z.object({
   fullName: z.string().nonempty({ message: "Full name is required" }),
@@ -11,15 +11,15 @@ export const registerSchema = z.object({
     .nonempty({ message: "Password is required" })
     .min(6, { message: "Password must be at least 6 characters long" })
     .refine((value) => /[A-Z]/.test(value), {
-      message: "Password must contain at least one uppercase letter (A-Z)",
+      message: "Password must contain at least one uppercase letter (A-Z)"
     })
     .refine((value) => /[a-z]/.test(value), {
-      message: "Password must contain at least one lowercase letter (a-z)",
+      message: "Password must contain at least one lowercase letter (a-z)"
     })
     .refine((value) => /[0-9]/.test(value), {
-      message: "Password must contain at least one number (0-9)",
+      message: "Password must contain at least one number (0-9)"
     })
     .refine((value) => /[^a-zA-Z0-9]/.test(value), {
-      message: "Password must contain at least one special character",
-    }),
-});
+      message: "Password must contain at least one special character"
+    })
+})

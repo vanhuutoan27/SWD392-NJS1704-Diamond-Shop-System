@@ -22,7 +22,7 @@ import {
 } from "@/components/global/atoms/select";
 import { INewUser } from "@/types/user.interface";
 import { toast } from "sonner";
-import { usePostUser } from "@/api/userApi";
+import { usePostUser } from "@/apis/userApi";
 
 function AddUserDialog() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);

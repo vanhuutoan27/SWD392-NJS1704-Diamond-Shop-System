@@ -5,7 +5,7 @@ import ProfileInfo from "@/components/local/Customer/Profile/ProfileInfo";
 import ProfileSocial from "@/components/local/Customer/Profile/ProfileSocial";
 import Section from "@/components/global/organisms/Section";
 import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
-import { useGetUserById } from "@/api/userApi";
+import { useGetUserById } from "@/apis/userApi";
 import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage";
 import { userAvatar } from "@/lib/constants";
 

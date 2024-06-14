@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useGetDiamondById } from "@/api/diamondApi";
+import { useGetDiamondById } from "@/apis/diamondApi";
 import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage";
 import {
   Dialog,

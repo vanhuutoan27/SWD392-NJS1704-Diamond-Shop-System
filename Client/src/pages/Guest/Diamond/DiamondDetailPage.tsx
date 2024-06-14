@@ -1,42 +1,46 @@
-import { useParams } from "react-router-dom";
-import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
-import { Loader } from "@/components/global/atoms/Loader";
-import DiamondQualityCommitment from "@/components/local/Guest/Diamond/DiamondQualityCommitment";
-import BuyingGuide from "@/components/local/Guest/Diamond/BuyingGuide";
-import RelatedProducts from "@/components/local/Guest/Diamond/RelatedDiamonds";
-import DiamondBanner from "@/components/local/Guest/Diamond/DiamondBanner";
-import DiamondDetails from "@/components/local/Guest/Diamond/DiamondDetails";
-import { useGetAllDiamonds, useGetDiamondById } from "@/api/diamondApi";
-import { IDiamond } from "@/types/diamond.interface";
-import NotFoundPage from "../HTTP/NotFoundPage";
+import { useParams } from "react-router-dom"
+
+import { IDiamond } from "@/types/diamond.interface"
+
+import { useGetAllDiamonds, useGetDiamondById } from "@/apis/diamondApi"
+
+import { Loader } from "@/components/global/atoms/Loader"
+import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent"
+import BuyingGuide from "@/components/local/Guest/Diamond/BuyingGuide"
+import DiamondBanner from "@/components/local/Guest/Diamond/DiamondBanner"
+import DiamondDetails from "@/components/local/Guest/Diamond/DiamondDetails"
+import DiamondQualityCommitment from "@/components/local/Guest/Diamond/DiamondQualityCommitment"
+import RelatedProducts from "@/components/local/Guest/Diamond/RelatedDiamonds"
+
+import NotFoundPage from "../HTTP/NotFoundPage"
 
 function DiamondDetailPage() {
-  const { diamondId } = useParams<{ diamondId: string }>();
+  const { diamondId } = useParams<{ diamondId: string }>()
 
   const {
     data: diamondDetails,
     error: diamondDetailsError,
-    isLoading: isDiamondDetailsLoading,
-  } = useGetDiamondById(diamondId || "");
+    isLoading: isDiamondDetailsLoading
+  } = useGetDiamondById(diamondId || "")
 
   const {
     data: diamondData,
     error: allDiamondsError,
-    isLoading: isAllDiamondsLoading,
-  } = useGetAllDiamonds();
+    isLoading: isAllDiamondsLoading
+  } = useGetAllDiamonds()
 
   if (isDiamondDetailsLoading || isAllDiamondsLoading) {
-    return <Loader />;
+    return <Loader />
   }
 
   if (diamondDetailsError || allDiamondsError || !diamondDetails) {
-    return <NotFoundPage />;
+    return <NotFoundPage />
   }
 
   const relatedProducts =
     diamondData?.filter(
-      (diamond: IDiamond) => diamond.diamondId !== diamondId,
-    ) || [];
+      (diamond: IDiamond) => diamond.diamondId !== diamondId
+    ) || []
 
   return (
     <div className="container">
@@ -57,7 +61,7 @@ function DiamondDetailPage() {
 
       <RelatedProducts relatedDiamonds={relatedProducts} />
     </div>
-  );
+  )
 }
 
-export default DiamondDetailPage;
+export default DiamondDetailPage

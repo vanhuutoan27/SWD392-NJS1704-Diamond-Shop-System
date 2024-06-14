@@ -4,7 +4,7 @@ import JewelryList from "@/components/local/Guest/Jewelry/JewelryList";
 import JewelryCategory from "@/components/local/Guest/Jewelry/JewelryCategory";
 import Section from "@/components/global/organisms/Section";
 import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
-import { useGetAllJewelries } from "@/api/jewelryApi";
+import { useGetAllJewelries } from "@/apis/jewelryApi";
 import { Loader } from "@/components/global/atoms/Loader";
 import { toast } from "sonner";
 

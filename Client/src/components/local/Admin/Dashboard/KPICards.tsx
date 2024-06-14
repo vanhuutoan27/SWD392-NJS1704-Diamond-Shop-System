@@ -1,6 +1,6 @@
-import { useGetAllDiamonds } from "@/api/diamondApi";
-import { useGetAllJewelries } from "@/api/jewelryApi";
-import { useGetAllUsers } from "@/api/userApi";
+import { useGetAllDiamonds } from "@/apis/diamondApi";
+import { useGetAllJewelries } from "@/apis/jewelryApi";
+import { useGetAllUsers } from "@/apis/userApi";
 import { Loader } from "@/components/global/atoms/Loader";
 import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage";
 import { Eye, DollarSign, Users, Gem } from "lucide-react";

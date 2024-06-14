@@ -3,7 +3,7 @@ import { getUsername } from "@/lib/utils";
 import { CircleUserRound, Mail, MapPin, Phone, User, Info } from "lucide-react";
 import AlertDialogComponent from "@/components/global/molecules/AlertDialogComponent";
 import { toast } from "sonner";
-import { usePutUser } from "@/api/userApi";
+import { usePutUser } from "@/apis/userApi";
 import { IUpdateUser, IUser } from "@/types/user.interface";
 
 interface SettingInformationFormProps {

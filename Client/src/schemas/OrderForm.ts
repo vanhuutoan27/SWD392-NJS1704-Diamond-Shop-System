@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "zod"
 
 export const informationSchema = z.object({
   email: z
@@ -13,5 +13,5 @@ export const informationSchema = z.object({
   address: z.string().nonempty({ message: "Address is required" }),
   province: z.string().nonempty({ message: "Province is required" }),
   district: z.string().nonempty({ message: "District is required" }),
-  ward: z.string().nonempty({ message: "Ward is required" }),
-});
+  ward: z.string().nonempty({ message: "Ward is required" })
+})

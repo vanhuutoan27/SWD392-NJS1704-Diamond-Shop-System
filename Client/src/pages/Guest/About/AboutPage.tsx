@@ -1,4 +1,4 @@
-import { useGetAllUsers } from "@/api/userApi";
+import { useGetAllUsers } from "@/apis/userApi";
 import { Loader } from "@/components/global/atoms/Loader";
 import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent";
 import Section from "@/components/global/organisms/Section";
