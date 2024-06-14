@@ -81,7 +81,7 @@ function ViewDiamondDialog({
         weight: diamondDetails.weight || 0,
         size: diamondDetails.size || 0,
         price: diamondDetails.price || 0,
-        image: diamondDetails.image || diamondImage || "",
+        image: diamondDetails.images || diamondImage || "",
         dateCreated: diamondDetails.dateCreated || "",
         dateModified: diamondDetails.dateModified || ""
       })
@@ -114,7 +114,7 @@ function ViewDiamondDialog({
         weight: diamondDetails.weight || 0,
         size: diamondDetails.size || 0,
         price: diamondDetails.price || 0,
-        image: diamondDetails.image || diamondImage || "",
+        image: diamondDetails.images || diamondImage || "",
         dateCreated: diamondDetails.dateCreated || "",
         dateModified: diamondDetails.dateModified || ""
       })

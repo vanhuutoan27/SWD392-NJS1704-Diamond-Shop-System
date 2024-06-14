@@ -47,7 +47,7 @@ function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
         skuID: diamondDetails.skuID,
         quantity: 1,
         price: diamondDetails.price,
-        image: diamondDetails.image,
+        image: diamondDetails.images,
         size: diamondDetails.size
       }
       const updatedCart = addToCart(cartItems, newItem)
