@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-
-namespace DiamonShop.API.Extensions
+﻿namespace DiamonShop.API.Extensions
 {
     public static class ServiceExtensions
     {
@@ -15,20 +12,6 @@ namespace DiamonShop.API.Extensions
                     .AllowAnyHeader());
             });
         }
-        public static void AddAuthen(this IServiceCollection services)
-        {
-            services.AddAuthentication(opt =>
-            {
-                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-               .AddJwtBearer(options =>
-                {
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        //Configuration in here
-                    };
-                });
-        }
+
     }
 }

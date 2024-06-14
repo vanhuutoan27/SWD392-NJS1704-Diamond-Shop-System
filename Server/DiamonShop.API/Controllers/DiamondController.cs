@@ -16,7 +16,6 @@ namespace DiamonShop.API.Controllers
             _services = services;
         }
         [HttpGet]
-
         public async Task<IActionResult> GetAll()
         {
 

@@ -75,10 +75,6 @@ builder.Services.AddExceptionHandler<GlobalExceptionHandlers>();
 //add Cors
 builder.Services.ConfigureCors();
 
-//Add authentication
-builder.Services.AddAuthen();
-
-
 //defalt config
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -125,28 +121,24 @@ builder.Services.AddSwaggerGen(options =>
 //    });
 //    //c.ParameterFilter<SwaggerNullableParameterFilter>();
 //});
+
 //add authen 
 builder.Services.AddAuthentication(o =>
 {
-    o.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
     o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer("mySchema", cfg =>
+}).AddJwtBearer(cfg =>
 {
     cfg.RequireHttpsMetadata = false;
     cfg.SaveToken = true;
     cfg.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateIssuer = false,
-        ValidateAudience = false,
         ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ClockSkew = TimeSpan.Zero,
+        ClockSkew = TimeSpan.FromSeconds(0),
+        ValidIssuer = configuration["JwtTokenSettings:Issuer"],
+        ValidAudience = configuration["JwtTokenSettings:Issuer"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtTokenSettings:Key"]))
 
-        //ValidIssuer = configuration["JwtTokenSettings:Issuer"],
-        //ValidAudience = configuration["JwtTokenSettings:Issuer"],
-        //IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JwtTokenSettings:Key"]))
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtTokenSettings:Key"]))
     };
 });
 

@@ -12,7 +12,7 @@ namespace DiamonShop.API.Mappings
         {
             CreateMap<Diamond, UpdateDiamondRequest>().ReverseMap();
             CreateMap<Diamond, DiamondResponses>()
-                .ForMember(dest => dest.Image, opt => opt.MapFrom(src => src.Product.Images.Select(i => i.Url)))
+                .ForMember(dest => dest.Images, opt => opt.MapFrom(src => src.Product.Images.Select(i => i.Url).FirstOrDefault()))
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Product.Status.ToString()));
             CreateMap<Diamond, CreateDiamondRequest>().ReverseMap();
             CreateMap<Jewelry, CreateUpdateJewelryRequest>().ReverseMap();
