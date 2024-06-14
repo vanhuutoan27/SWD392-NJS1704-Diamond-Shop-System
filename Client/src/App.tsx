@@ -25,6 +25,7 @@ function App() {
   )
   const Blog = lazy(() => import("./pages/Guest/Blog/BlogPage"))
   const BlogDetail = lazy(() => import("./pages/Guest/Blog/BlogDetailPage"))
+  const Promotion = lazy(() => import("./pages/Guest/Promotion/PromotionPage"))
   const Contact = lazy(() => import("./pages/Guest/Contact/ContactPage"))
   const Cart = lazy(() => import("./pages/Customer/Cart/CartPage"))
   const Order = lazy(() => import("./pages/Customer/Order/OrderPage"))
@@ -131,6 +132,15 @@ function App() {
           element={
             <Suspense fallback={<Loader />}>
               <BlogDetail />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/promotion"
+          element={
+            <Suspense fallback={<Loader />}>
+              <Promotion />
             </Suspense>
           }
         />
