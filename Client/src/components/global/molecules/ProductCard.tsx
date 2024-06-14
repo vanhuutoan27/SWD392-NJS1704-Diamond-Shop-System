@@ -1,17 +1,20 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { formatCurrency } from "@/lib/utils";
-import { Button } from "../atoms/button";
-import { diamondImage } from "@/lib/constants";
+import { useState } from "react"
+
+import { Link } from "react-router-dom"
+
+import { diamondImage } from "@/lib/constants"
+import { formatCurrency } from "@/lib/utils"
+
+import { Button } from "../atoms/button"
 
 interface ProductCardProps {
-  productId: string;
-  skuID: string;
-  image?: string;
-  images?: string[];
-  size?: number;
-  price: number;
-  jewelryName?: string;
+  productId: string
+  skuID: string
+  image?: string
+  images?: string[]
+  size?: number
+  price: number
+  jewelryName?: string
 }
 
 function ProductCard({
@@ -21,16 +24,19 @@ function ProductCard({
   images,
   size,
   price,
-  jewelryName,
+  jewelryName
 }: ProductCardProps) {
-  const [isHover, setIsHover] = useState(false);
+  const [isHover, setIsHover] = useState(false)
 
   const renderImage = () => {
     if (image) {
       // Render single image for diamond
       return (
-        <img src={diamondImage} className="h-48 w-full rounded object-cover" />
-      );
+        <img
+          src={image || diamondImage}
+          className="h-48 w-full rounded object-cover"
+        />
+      )
     } else if (images && images.length > 0) {
       // Render hover effect for jewelry images
       return (
@@ -48,15 +54,15 @@ function ProductCard({
             }`}
           />
         </div>
-      );
+      )
     }
-  };
+  }
 
   const renderLink = () => {
-    const href = size ? `/diamond/${productId}` : `/jewelry/${productId}`;
+    const href = size ? `/diamond/${productId}` : `/jewelry/${productId}`
     const linkText = size
       ? `Natural Diamond - ${size}mm`
-      : jewelryName || "View Details";
+      : jewelryName || "View Details"
 
     return (
       <Link
@@ -67,8 +73,8 @@ function ProductCard({
       >
         {linkText}
       </Link>
-    );
-  };
+    )
+  }
 
   return (
     <div className="ml-4 rounded-lg border-2 border-input p-4 shadow-md">
@@ -101,7 +107,7 @@ function ProductCard({
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default ProductCard;
+export default ProductCard

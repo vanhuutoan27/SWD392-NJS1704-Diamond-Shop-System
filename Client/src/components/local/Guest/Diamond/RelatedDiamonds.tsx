@@ -1,16 +1,16 @@
-import ProductCard from "@/components/global/molecules/ProductCard";
-import Section from "@/components/global/organisms/Section";
-import { IDiamond } from "@/types/diamond.interface";
+import { IDiamond } from "@/types/diamond.interface"
 
 import {
   Carousel,
   CarouselContent,
-  CarouselItem,
-} from "@/components/global/atoms/carousel";
+  CarouselItem
+} from "@/components/global/atoms/carousel"
+import ProductCard from "@/components/global/molecules/ProductCard"
+import Section from "@/components/global/organisms/Section"
 
 interface RelatedDiamondsProps {
-  pageName?: string;
-  relatedDiamonds: IDiamond[];
+  pageName?: string
+  relatedDiamonds: IDiamond[]
 }
 
 function RelatedDiamonds({ pageName, relatedDiamonds }: RelatedDiamondsProps) {
@@ -20,7 +20,7 @@ function RelatedDiamonds({ pageName, relatedDiamonds }: RelatedDiamondsProps) {
 
       <Carousel
         opts={{
-          align: "start",
+          align: "start"
         }}
         className="w-full"
       >
@@ -33,7 +33,7 @@ function RelatedDiamonds({ pageName, relatedDiamonds }: RelatedDiamondsProps) {
               <ProductCard
                 productId={diamond.diamondId}
                 skuID={diamond.skuID}
-                image={diamond.image}
+                image={diamond.images}
                 size={diamond.size}
                 price={diamond.price}
               />
@@ -42,7 +42,7 @@ function RelatedDiamonds({ pageName, relatedDiamonds }: RelatedDiamondsProps) {
         </CarouselContent>
       </Carousel>
     </div>
-  );
+  )
 }
 
-export default RelatedDiamonds;
+export default RelatedDiamonds
