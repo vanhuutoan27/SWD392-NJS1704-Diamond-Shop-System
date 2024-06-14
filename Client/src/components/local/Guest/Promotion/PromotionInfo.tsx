@@ -1,7 +1,9 @@
-import { useState } from "react"
+import { promotionData } from "@/constants/promotion"
+import { Ticket } from "lucide-react"
 
 import { formatCurrency, formatDate } from "@/lib/utils"
 
+import { Skeleton } from "@/components/global/atoms/skeleton"
 import {
   Tooltip,
   TooltipProvider,
@@ -9,37 +11,44 @@ import {
 } from "@/components/global/atoms/tooltip"
 import { TooltipContent } from "@/components/global/atoms/tooltip"
 
-import { promotionData } from "../../../../constants/promotion"
-
 function PromotionInfo() {
-  const [, setHoveredIndex] = useState<number | null>(null)
+  const promotionImage =
+    "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Images%2FDiamondSale.png?alt=media&token=e73fa245-ef96-4692-8278-50677328eb9f"
 
   return (
-    <div className="space-y-8">
+    <div className="flex flex-col gap-8">
       {promotionData.map((promotion, index) => (
-        <div key={index} className="relative flex border p-4 rounded shadow-sm">
-          <img
-            src="https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Images%2FDiamondSale.png?alt=media&token=e73fa245-ef96-4692-8278-50677328eb9f"
-            alt="Promotion"
-            className="w-1/4 h-auto rounded mr-4"
-          />
-          <div className="flex-1 px-5">
-            <p className="text-xl font-medium mb-2">
+        <div
+          key={index}
+          className="relative flex gap-6 border-2 border-input p-4 rounded-md shadow-md"
+        >
+          {!promotionImage ? (
+            <Skeleton className="w-[285px] h-[200px] rounded animate-pulse" />
+          ) : (
+            <img
+              src={promotionImage}
+              alt="Promotion"
+              className="min-w-[285px] h-[200px] rounded object-cover"
+            />
+          )}
+
+          <div className="flex flex-col justify-start">
+            <h4 className="text-xl font-medium mb-4">
               {promotion.description}. {promotion.value}% discount when
               purchasing orders from {formatCurrency(promotion.payAtLeast)}
-            </p>
+            </h4>
 
             <div
               onClick={() => {
                 navigator.clipboard.writeText(promotion.discountCode)
               }}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              className="pb-3 pt-2"
+              className="mb-2"
             >
               <TooltipProvider>
                 <Tooltip>
-                  <TooltipTrigger>{promotion.discountCode}</TooltipTrigger>
+                  <TooltipTrigger className="flex gap-2 items-center slow hover:text-secondary">
+                    <Ticket size={20} /> {promotion.discountCode}
+                  </TooltipTrigger>
                   <TooltipContent>
                     <p>Click to copy</p>
                   </TooltipContent>
@@ -47,15 +56,14 @@ function PromotionInfo() {
               </TooltipProvider>
             </div>
 
-            <p className="mb-1 text-xs">
-              Start date: {formatDate(promotion.dateToUse)} -{" "}
+            <p className="text-xs">
+              {formatDate(promotion.dateToUse)} -{" "}
               {formatDate(promotion.dateExpiration)}
             </p>
           </div>
+
           <div className="absolute bottom-4 right-5 text-[10px] text-secondary">
-            <div className="text-right">
-              <p className="mb-1">Remaining quantity: {promotion.quantity}</p>
-            </div>
+            <p>Remaining quantity: {promotion.quantity}</p>
           </div>
         </div>
       ))}
