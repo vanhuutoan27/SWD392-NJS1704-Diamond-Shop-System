@@ -16,8 +16,14 @@ namespace DiamonShop.Data.Repository
         {
             return await _context.Orders.AsNoTracking().AsQueryable()
                 .Include(o => o.Items).ThenInclude(oi => oi.Product).ThenInclude(p => p.Images)
-
                 .ToListAsync();
+        }
+
+        public async Task<Order> GetOrderByIdAsync(Guid orderId)
+        {
+            return await _context.Orders.AsNoTracking().AsQueryable()
+                .Include(o => o.Items).ThenInclude(oi => oi.Product).ThenInclude(p => p.Images)
+                .SingleOrDefaultAsync(o => o.OrderId == orderId);
         }
     }
 }

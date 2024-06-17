@@ -61,5 +61,15 @@ namespace DiamonShop.Data.Services
 
             return _mapper.Map<IEnumerable<OrderResponse>>(orders);
         }
+
+        public async Task<OrderResponse> GetOrderByIdAsync(Guid id)
+        {
+            var order = await _repositoryManager.Order.GetOrderByIdAsync(id);
+            if (order == null)
+            {
+                throw new Exception("Not Found Order");
+            }
+            return _mapper.Map<OrderResponse>(order);
+        }
     }
 }

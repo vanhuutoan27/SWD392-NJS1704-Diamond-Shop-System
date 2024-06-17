@@ -6,5 +6,6 @@ namespace DiamonShop.Core.Repository
     public interface IOrderRepository : IRepository<Order, Guid>
     {
         Task<IEnumerable<Order>> GetAllOrderAsync();
+        Task<Order> GetOrderByIdAsync(Guid orderId);
     }
 }

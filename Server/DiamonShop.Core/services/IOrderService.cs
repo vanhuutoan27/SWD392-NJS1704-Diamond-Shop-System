@@ -7,6 +7,6 @@ namespace DiamonShop.Core.services
     {
         Task<CreateOrderResponse> CreateOrder(CreateOrderRequest request);
         Task<IEnumerable<OrderResponse>> GetAllOrders();
-
+        Task<OrderResponse> GetOrderByIdAsync(Guid id);
     }
 }
