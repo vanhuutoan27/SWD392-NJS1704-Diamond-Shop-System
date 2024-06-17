@@ -8,7 +8,6 @@ using DiamonShop.API.Services;
 using DiamonShop.Core.ConfigOptions;
 using DiamonShop.Core.Domain.Identity;
 using DiamonShop.Core.SeedWorks;
-using DiamonShop.Core.services;
 using DiamonShop.Data;
 using DiamonShop.Data.SeedWorks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
