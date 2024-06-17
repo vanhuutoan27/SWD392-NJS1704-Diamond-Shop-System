@@ -34,6 +34,7 @@ namespace DiamonShop.Data.Services
                 Phone = request.Phone,
                 Status = true,
                 PaymentMethod = request.PaymentMethod,
+                ReceiptDay = request.ReceiptDay,
             };
             _repositoryManager.Order.Add(order);
             //add detail product
@@ -52,6 +53,13 @@ namespace DiamonShop.Data.Services
             }
             await _repositoryManager.SaveAsync();
             return new CreateOrderResponse() { OrderId = order.OrderId };
+        }
+
+        public async Task<IEnumerable<OrderResponse>> GetAllOrders()
+        {
+            var orders = await _repositoryManager.Order.GetAllOrderAsync();
+
+            return _mapper.Map<IEnumerable<OrderResponse>>(orders);
         }
     }
 }

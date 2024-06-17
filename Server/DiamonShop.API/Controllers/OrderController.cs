@@ -36,5 +36,26 @@ namespace DiamonShop.API.Controllers
             res.Data = order.OrderId;
             return res;
         }
+
+        [HttpGet]
+        public async Task<ActionResult<ResultModel>> GetAllOrders()
+        {
+
+            var orders = await _serviceManager.OrderService.GetAllOrders();
+            if (orders == null)
+            {
+                res.IsSuccess = false;
+                res.Message = "Not Found!";
+                res.Code = (int)StatusCodes.Status500InternalServerError;
+                return res;
+            }
+            res.IsSuccess = true;
+            res.Message = "Create Successful";
+            res.Code = (int)HttpStatusCode.OK;
+            res.Data = orders;
+
+            return res;
+        }
+
     }
 }

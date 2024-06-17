@@ -10,7 +10,8 @@ namespace DiamonShop.Core.Domain.Content
         [Required]
         public double Total { get; set; }
         public string? Note { get; set; }
-        public DateTime? ReceiptDay;
+
+        public DateTime? ReceiptDay { get; set; }
         public Guid CustomerId { get; set; }
         public string? CustomerName { get; set; }
         public string? Phone { get; set; }
@@ -27,5 +28,6 @@ namespace DiamonShop.Core.Domain.Content
         { get; set; }
         public ICollection<Payment> Payments { get; set; }
         public ICollection<Invoice> Invoices { get; set; }
+
     }
 }
