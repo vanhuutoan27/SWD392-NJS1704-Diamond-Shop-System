@@ -74,5 +74,17 @@ namespace DiamonShop.API.Controllers
             return res;
         }
 
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<ResultModel>> DeleteOrderById(Guid id)
+        {
+            await _serviceManager.OrderService.DeleteOrder(id);
+            res.IsSuccess = true;
+            res.Message = "Successful";
+            res.Code = (int)HttpStatusCode.OK;
+            res.Data = null;
+            return res;
+        }
+
+
     }
 }

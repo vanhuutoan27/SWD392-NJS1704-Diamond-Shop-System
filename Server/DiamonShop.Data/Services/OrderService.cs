@@ -55,6 +55,18 @@ namespace DiamonShop.Data.Services
             return new CreateOrderResponse() { OrderId = order.OrderId };
         }
 
+        public async Task DeleteOrder(Guid id)
+        {
+            var order = await _repositoryManager.Order.GetByIdAsync(id);
+            if (order == null)
+            {
+                throw new Exception("Not Found Order");
+            }
+
+            _repositoryManager.Order.Remove(order);
+            await _repositoryManager.SaveAsync();
+        }
+
         public async Task<IEnumerable<OrderResponse>> GetAllOrders()
         {
             var orders = await _repositoryManager.Order.GetAllOrderAsync();

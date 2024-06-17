@@ -12,6 +12,11 @@ namespace DiamonShop.Data.Repository
 
         }
 
+        public void DeleteOrder(Guid orderId)
+        {
+
+        }
+
         public async Task<IEnumerable<Order>> GetAllOrderAsync()
         {
             return await _context.Orders.AsNoTracking().AsQueryable()
@@ -25,5 +30,6 @@ namespace DiamonShop.Data.Repository
                 .Include(o => o.Items).ThenInclude(oi => oi.Product).ThenInclude(p => p.Images)
                 .SingleOrDefaultAsync(o => o.OrderId == orderId);
         }
+
     }
 }
