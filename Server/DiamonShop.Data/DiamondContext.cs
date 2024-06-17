@@ -22,6 +22,8 @@ namespace DiamonShop.Data
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

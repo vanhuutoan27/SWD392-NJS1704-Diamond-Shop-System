@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using DiamonShop.Core.Domain.Content;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
 namespace DiamonShop.Core.Domain.Identity
@@ -22,6 +23,9 @@ namespace DiamonShop.Core.Domain.Identity
         public DateTime? LastLoginDate { get; set; }
         public double Balance { get; set; }
         public double RoyaltyAmountPerPost { get; set; }
+
+        //navigate 
+        public ICollection<Invoice> Invoices { get; set; }
 
     }
 }

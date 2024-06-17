@@ -11,6 +11,7 @@ namespace DiamonShop.Core.SeedWorks
         ICategoryRepository Category { get; }
         IOrderRepository Order { get; }
         IOrderItemsRepository OrderItems { get; }
+        IInvoiceRepository Invoice { get; }
         Task SaveAsync();
 
     }

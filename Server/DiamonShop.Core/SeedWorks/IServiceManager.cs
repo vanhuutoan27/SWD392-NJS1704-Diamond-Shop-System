@@ -8,5 +8,6 @@ namespace DiamonShop.Core.SeedWorks
         IDiamondService DiamondService { get; }
         IJewelryService JewelryService { get; }
         IOrderService OrderService { get; }
+        IInvoiceService InvoiceService { get; }
     }
 }

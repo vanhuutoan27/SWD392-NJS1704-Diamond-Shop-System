@@ -28,6 +28,10 @@ namespace DiamonShop.API.Mappings
             .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items.ToList()));
             CreateMap<OrderItem, OrderDetailsResponse>()
             .ForMember(dest => dest.Images, opt => opt.MapFrom(src => src.Product.Images.Select(i => i.Url).ToList()));
+
+            CreateMap<Invoice, InvoiceResponse>()
+                .ForMember(dest => dest.Order, opt => opt.MapFrom(src => src.Order))
+                .ForMember(dest => dest.User, opt => opt.MapFrom(src => src.User));
         }
     }
 }

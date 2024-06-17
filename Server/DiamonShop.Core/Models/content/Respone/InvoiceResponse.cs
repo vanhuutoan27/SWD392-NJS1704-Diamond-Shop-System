@@ -1,10 +1,8 @@
-﻿using DiamonShop.Core.Domain.Identity;
-using DiamonShop.Core.Shared.Enum;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using DiamonShop.Core.Shared.Enum;
 
-namespace DiamonShop.Core.Domain.Content
+namespace DiamonShop.Core.Models.content.Respone
 {
-    public class Invoice
+    public class InvoiceResponse
     {
         public Guid InvoiceId { get; set; }
         public Guid UserId { get; set; }
@@ -17,11 +15,8 @@ namespace DiamonShop.Core.Domain.Content
         public InvoiceStatus StatusInvoice { get; set; }
         public double? AmountDue { get; set; }
 
-        //navigate
-        [ForeignKey(nameof(OrderId))]
-        public Order Order { get; set; }
+        public OrderResponse Order { get; set; }
+        public UserResponse User { get; set; }
 
-        [ForeignKey(nameof(UserId))]
-        public AppUser User { get; set; }
     }
 }

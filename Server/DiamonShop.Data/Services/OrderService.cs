@@ -37,6 +37,17 @@ namespace DiamonShop.Data.Services
                 ReceiptDay = request.ReceiptDay,
             };
             _repositoryManager.Order.Add(order);
+            //add invoice 
+
+            Invoice invoice = new Invoice()
+            {
+                UserId = request.CustomerId,
+                OrderId = order.OrderId,
+                CreateDate = DateTime.Now,
+                StatusInvoice = InvoiceStatus.Paid,
+            };
+            _repositoryManager.Invoice.Add(invoice);
+
             //add detail product
             foreach (var item in request.Products)
             {
