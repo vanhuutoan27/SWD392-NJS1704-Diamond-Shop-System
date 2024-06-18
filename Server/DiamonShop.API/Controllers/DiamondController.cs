@@ -1,6 +1,6 @@
 ﻿using DiamonShop.Core.Models.content.RequestModels;
 using DiamonShop.Core.Models.content.Respone;
-using DiamonShop.Core.services;
+using DiamonShop.Core.SeedWorks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DiamonShop.API.Controllers

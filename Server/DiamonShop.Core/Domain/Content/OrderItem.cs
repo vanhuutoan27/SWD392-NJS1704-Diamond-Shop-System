@@ -11,6 +11,8 @@ namespace DiamonShop.Core.Domain.Content
         public Guid ProductId { get; set; }
         [Required]
         public int Quantity { get; set; }
+        public double UnitPrice { get; set; }
+        public bool Status { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime? DateModified { get; set; }
 

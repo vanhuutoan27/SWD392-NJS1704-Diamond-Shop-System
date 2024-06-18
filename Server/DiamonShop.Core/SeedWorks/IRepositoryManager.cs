@@ -9,6 +9,9 @@ namespace DiamonShop.Core.SeedWorks
         IJewelryRepository Jewelry { get; }
         IUserRepository User { get; }
         ICategoryRepository Category { get; }
+        IOrderRepository Order { get; }
+        IOrderItemsRepository OrderItems { get; }
+        IInvoiceRepository Invoice { get; }
         Task SaveAsync();
 
     }

@@ -1,16 +1,12 @@
 ﻿using DiamonShop.Core.Shared.Enum;
-using System.ComponentModel.DataAnnotations;
 
-namespace DiamonShop.Core.Domain.Content
+namespace DiamonShop.Core.Models.content.Respone
 {
-    public class Order
+    public class OrderResponse
     {
-        [Key]
         public Guid OrderId { get; set; }
-        [Required]
         public double Total { get; set; }
         public string? Note { get; set; }
-
         public DateTime? ReceiptDay { get; set; }
         public Guid CustomerId { get; set; }
         public string? CustomerName { get; set; }
@@ -24,10 +20,6 @@ namespace DiamonShop.Core.Domain.Content
         public bool? Status { get; set; }
 
         //navigate
-        public ICollection<OrderItem> Items
-        { get; set; }
-        public ICollection<Payment> Payments { get; set; }
-        public ICollection<Invoice> Invoices { get; set; }
-
+        public List<OrderDetailsResponse> Items { get; set; }
     }
 }

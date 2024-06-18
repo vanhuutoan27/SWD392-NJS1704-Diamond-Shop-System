@@ -8,7 +8,6 @@ using DiamonShop.API.Services;
 using DiamonShop.Core.ConfigOptions;
 using DiamonShop.Core.Domain.Identity;
 using DiamonShop.Core.SeedWorks;
-using DiamonShop.Core.services;
 using DiamonShop.Data;
 using DiamonShop.Data.SeedWorks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -76,7 +75,11 @@ builder.Services.AddExceptionHandler<GlobalExceptionHandlers>();
 builder.Services.ConfigureCors();
 
 //defalt config
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
@@ -141,6 +144,7 @@ builder.Services.AddAuthentication(o =>
 
     };
 });
+
 
 
 
