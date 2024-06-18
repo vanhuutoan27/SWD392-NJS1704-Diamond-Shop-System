@@ -73,27 +73,8 @@ function InformationForm({
     }
   }, [formData.district, setWards, setFormData])
 
-  useEffect(() => {
-    if (formData.province && formData.district && formData.ward) {
-      const selectedProvince = provinces.find(
-        (province) => province.id === formData.province
-      )?.full_name
-      const selectedDistrict = districts.find(
-        (district) => district.id === formData.district
-      )?.full_name
-      const selectedWard = wards.find(
-        (ward) => ward.id === formData.ward
-      )?.full_name
-
-      console.log(
-        `${formData.address}, ${selectedWard}, ${selectedDistrict}, ${selectedProvince}`
-      )
-    }
-  }, [formData, provinces, districts, wards])
-
   const clearError = (field: string) => {
     setErrors((prevErrors) => {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
       const { [field]: removedError, ...restErrors } = prevErrors as any
       return restErrors
     })
@@ -128,30 +109,30 @@ function InformationForm({
             type="text"
             placeholder="Full name"
             className="input-field"
-            value={formData.fullName}
+            value={formData.customerName}
             onChange={(e) => {
-              setFormData({ ...formData, fullName: e.target.value })
-              clearError("fullName")
+              setFormData({ ...formData, customerName: e.target.value })
+              clearError("customerName")
             }}
           />
-          {errors?.fullName && (
+          {errors?.customerName && (
             <p className="ml-2 pb-2 text-xs text-red-500">
-              {errors.fullName._errors[0]}
+              {errors.customerName._errors[0]}
             </p>
           )}
           <input
-            type="number"
+            type="text"
             placeholder="Phone number"
             className="input-field"
-            value={formData.phoneNumber}
+            value={formData.phone}
             onChange={(e) => {
-              setFormData({ ...formData, phoneNumber: e.target.value })
-              clearError("phoneNumber")
+              setFormData({ ...formData, phone: e.target.value })
+              clearError("phone")
             }}
           />
-          {errors?.phoneNumber && (
+          {errors?.phone && (
             <p className="ml-2 pb-2 text-xs text-red-500">
-              {errors.phoneNumber._errors[0]}
+              {errors.phone._errors[0]}
             </p>
           )}
           <input

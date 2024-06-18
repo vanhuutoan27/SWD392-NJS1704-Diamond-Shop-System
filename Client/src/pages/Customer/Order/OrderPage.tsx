@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react"
 
+import { useAuthContext } from "@/contexts/AuthContext"
 import { informationSchema } from "@/schemas/OrderForm"
 import { useLocation } from "react-router-dom"
 
-import { District, FormData, Province, Ward } from "@/types/order.interface"
+import {
+  District,
+  IOrderPost,
+  OrderPaymentMethod,
+  Province,
+  Ward
+} from "@/types/order.interface"
 
-import { scrollToTop } from "@/lib/utils"
+import { getPaymentMethodNumber, scrollToTop } from "@/lib/utils"
 
 import { Button } from "@/components/global/atoms/button"
 import ProgressBar from "@/components/global/molecules/ProgressBar"
@@ -16,27 +23,41 @@ import OrderSummary from "@/components/local/Customer/Order/OrderSummary"
 import PaymentForm from "@/components/local/Customer/Order/PaymentForm"
 
 function OrderPage() {
+  const { user } = useAuthContext()
+
   const location = useLocation()
   const { state } = location
   const { cartItems } = state || { cartItems: [] }
 
   const [tab, setTab] = useState(0)
   const [isSticky, setIsSticky] = useState(false)
-  const [formData, setFormData] = useState<FormData>({
+  const [total, setTotal] = useState(0)
+  const [formData, setFormData] = useState<IOrderPost>({
+    products: cartItems.map((item: any) => ({
+      productId: item.productId,
+      quantity: item.quantity,
+      unitPrice: item.price
+    })),
+    total: 0,
+    note: "",
+    receiptDay: "",
+    customerId: user?.id || "",
+    customerName: "",
+    phone: "",
     email: "",
-    fullName: "",
-    phoneNumber: "",
     address: "",
     province: "",
     district: "",
-    ward: ""
+    ward: "",
+    paymentMethod: OrderPaymentMethod.BankTransfer
   })
 
   const [provinces, setProvinces] = useState<Province[]>([])
   const [districts, setDistricts] = useState<District[]>([])
   const [wards, setWards] = useState<Ward[]>([])
   const [errors, setErrors] = useState<any>({})
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("")
+  const [selectedPaymentMethod, setSelectedPaymentMethod] =
+    useState<OrderPaymentMethod>(OrderPaymentMethod.BankTransfer)
   const [paymentError, setPaymentError] = useState("")
 
   const headerHeight = 200
@@ -51,7 +72,6 @@ function OrderPage() {
     }
 
     window.addEventListener("scroll", handleScroll)
-
     return () => {
       window.removeEventListener("scroll", handleScroll)
     }
@@ -60,7 +80,6 @@ function OrderPage() {
   const nextStep = async () => {
     let output = true
 
-    // Validate form data based on the current tab
     if (tab === 0) {
       const validation = informationSchema.safeParse(formData)
       if (!validation.success) {
@@ -71,7 +90,6 @@ function OrderPage() {
       }
     }
 
-    // Validate payment method selection
     if (tab === 1 && !selectedPaymentMethod) {
       setPaymentError("Please select a payment method.")
       output = false
@@ -83,6 +101,26 @@ function OrderPage() {
     if (tab < tabs.length - 1) {
       setTab(tab + 1)
       scrollToTop()
+    } else {
+      const selectedProvince = provinces.find(
+        (province) => province.id === formData.province
+      )?.full_name
+      const selectedDistrict = districts.find(
+        (district) => district.id === formData.district
+      )?.full_name
+      const selectedWard = wards.find(
+        (ward) => ward.id === formData.ward
+      )?.full_name
+
+      const fullAddress = `${formData.address}, ${selectedWard}, ${selectedDistrict}, ${selectedProvince}`
+
+      const finalFormData = {
+        ...formData,
+        address: fullAddress,
+        total: total,
+        paymentMethod: getPaymentMethodNumber(selectedPaymentMethod)
+      }
+      console.log("Final form data:", JSON.stringify(finalFormData, null, 2))
     }
   }
 
@@ -96,9 +134,13 @@ function OrderPage() {
   const getButtonText = (tab: number) => {
     switch (tab) {
       case 0:
-        return "Continue To Choose Payment Method"
+        return "Payment Method"
+      case 1:
+        return "Confirm Order"
+      case 2:
+        return "Done"
       default:
-        return "Complete Order"
+        return "Next"
     }
   }
 
@@ -142,7 +184,7 @@ function OrderPage() {
             isSticky ? "top-28" : "top-0"
           } sticky h-fit w-2/5 rounded-md border-2 border-input bg-white p-5 shadow-md`}
         >
-          <OrderSummary cartItems={cartItems} />
+          <OrderSummary cartItems={cartItems} onTotalChange={setTotal} />
         </div>
       </div>
 
@@ -150,9 +192,7 @@ function OrderPage() {
         <Button disabled={tab === 0} onClick={prevStep}>
           Back
         </Button>
-        <Button disabled={tab === tabs.length - 1} onClick={nextStep}>
-          {getButtonText(tab)}
-        </Button>
+        <Button onClick={nextStep}>{getButtonText(tab)}</Button>
       </div>
     </div>
   )

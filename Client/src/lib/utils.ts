@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom"
 import { twMerge } from "tailwind-merge"
 
 import { ICart } from "@/types/cart.interface"
+import { OrderPaymentMethod } from "@/types/order.interface"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -109,5 +110,25 @@ export const formatInvoiceData = (invoiceData: any, vatPercentage: number) => {
     discount: formatCurrency(discount),
     vatAmount: formatCurrency(vatAmount),
     total: formatCurrency(total)
+  }
+}
+
+// Get payment method number
+export const getPaymentMethodNumber = (method: OrderPaymentMethod) => {
+  switch (method) {
+    case OrderPaymentMethod.Deposit500:
+      return 0
+    case OrderPaymentMethod.Deposit1000:
+      return 1
+    case OrderPaymentMethod.Deposit1500:
+      return 2
+    case OrderPaymentMethod.Deposit2000:
+      return 3
+    case OrderPaymentMethod.BankTransfer:
+      return 4
+    case OrderPaymentMethod.CreditCard:
+      return 5
+    default:
+      return 4
   }
 }

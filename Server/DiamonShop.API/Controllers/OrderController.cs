@@ -6,7 +6,7 @@ using System.Net;
 
 namespace DiamonShop.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class OrderController : ControllerBase
     {
@@ -19,7 +19,7 @@ namespace DiamonShop.API.Controllers
             res = new ResultModel();
         }
 
-        [HttpPost("create")]
+        [HttpPost]
         public async Task<ActionResult<ResultModel>> CreateOrder([FromBody] CreateOrderRequest request)
         {
             var order = await _serviceManager.OrderService.CreateOrder(request);
@@ -50,7 +50,7 @@ namespace DiamonShop.API.Controllers
                 return res;
             }
             res.IsSuccess = true;
-            res.Message = "Create Successful";
+            res.Message = "Get All Order Successful";
             res.Code = (int)HttpStatusCode.OK;
             res.Data = orders;
 

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import { X } from "lucide-react"
 import { toast } from "sonner"
@@ -12,6 +12,7 @@ import { Button } from "@/components/global/atoms/button"
 
 interface OrderSummaryProps {
   cartItems: ICart[]
+  onTotalChange: (total: number) => void
 }
 
 const COUPON_DISCOUNTS: { [key: string]: number } = {
@@ -19,7 +20,7 @@ const COUPON_DISCOUNTS: { [key: string]: number } = {
   ToanDepTrai: 1
 }
 
-function OrderSummary({ cartItems }: OrderSummaryProps) {
+function OrderSummary({ cartItems, onTotalChange }: OrderSummaryProps) {
   const [couponCode, setCouponCode] = useState("")
   const [discount, setDiscount] = useState(0)
 
@@ -40,19 +41,23 @@ function OrderSummary({ cartItems }: OrderSummaryProps) {
   }
 
   const subTotal = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
+    (sum, item: ICart) => sum + item.price * item.quantity,
     0
   )
   const vatAmount = subTotal * vatPercentage
   const discountAmount = subTotal * discount
   const total = subTotal + vatAmount - discountAmount
 
+  useEffect(() => {
+    onTotalChange(total)
+  }, [total, onTotalChange])
+
   return (
     <>
       <h3 className="mb-4 text-lg font-semibold">Order Summary</h3>
 
       <div className="flex flex-col gap-2">
-        {cartItems.map((item) => (
+        {cartItems.map((item: ICart) => (
           <div
             key={item.productId}
             className="flex w-full items-center justify-between"

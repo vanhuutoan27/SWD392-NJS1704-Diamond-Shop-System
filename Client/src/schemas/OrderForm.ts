@@ -5,8 +5,8 @@ export const informationSchema = z.object({
     .string()
     .nonempty({ message: "Email is required" })
     .email({ message: "Invalid email" }),
-  fullName: z.string().nonempty({ message: "Full name is required" }),
-  phoneNumber: z
+  customerName: z.string().nonempty({ message: "Full name is required" }),
+  phone: z
     .string()
     .nonempty({ message: "Phone number is required" })
     .regex(/^[0-9]+$/, { message: "Invalid phone number" }),

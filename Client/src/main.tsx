@@ -1,12 +1,13 @@
-import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
-import "./index.css";
-import { BrowserRouter } from "react-router-dom";
-import { Toaster } from "./components/global/atoms/sonner.tsx";
-import { AuthProvider } from "./contexts/AuthContext.tsx";
-import { QueryClient, QueryClientProvider } from "react-query";
+import ReactDOM from "react-dom/client"
+import { QueryClient, QueryClientProvider } from "react-query"
+import { BrowserRouter } from "react-router-dom"
 
-const queryClient = new QueryClient();
+import App from "./App.tsx"
+import { Toaster } from "./components/global/atoms/sonner.tsx"
+import { AuthProvider } from "./contexts/AuthContext.tsx"
+import "./index.css"
+
+const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
@@ -16,5 +17,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Toaster />
       </AuthProvider>
     </QueryClientProvider>
-  </BrowserRouter>,
-);
+  </BrowserRouter>
+)
