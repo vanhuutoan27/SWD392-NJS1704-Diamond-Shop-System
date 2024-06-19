@@ -10,5 +10,6 @@ namespace DiamonShop.Core.services
         Task<CreateUpdateJewelryRequest> CreateJewelry(CreateUpdateJewelryRequest jewelryDto);
         Task<bool> DeleteJewelry(Guid id);
         Task<bool> UpdateJewelry(Guid id, CreateUpdateJewelryRequest jewelryDto);
+        Task<bool> ChangeStatusAsync(Guid id);
     }
 }

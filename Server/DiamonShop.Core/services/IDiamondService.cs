@@ -10,5 +10,6 @@ namespace DiamonShop.Core.services
         Task<DiamondRespone> UpdateById(Guid id, UpdateDiamondRequest updateadiamond);
         Task<DiamondRespone> AddDiamond(CreateDiamondRequest createDiamondRequest);
         Task RemoveDiamondById(Guid id);
+        Task<bool> ChangeStatusAsync(Guid id);
     }
 }

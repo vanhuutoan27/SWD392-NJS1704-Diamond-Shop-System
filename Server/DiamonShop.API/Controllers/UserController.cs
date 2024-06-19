@@ -75,7 +75,7 @@ IMapper mapper)
                 PhoneNumber = request.Phone,
                 UserName = request.FullName.Replace(" ", ""),
                 Address = request.Address,
-                IsActive = true,
+                IsActive = false,
                 SecurityStamp = Guid.NewGuid().ToString(),
                 LockoutEnabled = false,
                 DateCreated = DateTime.Now
