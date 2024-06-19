@@ -143,7 +143,7 @@ function DiamondPage() {
 
   const suggestedProducts = ["D-IF-6.3", "D-VS1-5.4", "D-VVS1-5.0", "D-VS2-4.4"]
 
-  if (isLoading) {
+  if (!diamondData || isLoading) {
     return <Loader />
   }
 

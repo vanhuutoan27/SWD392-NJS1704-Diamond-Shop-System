@@ -6,6 +6,7 @@ import { diamondImage } from "@/lib/constants"
 import { formatCurrency } from "@/lib/utils"
 
 import { Button } from "../atoms/button"
+import { Skeleton } from "../atoms/skeleton"
 
 interface ProductCardProps {
   productId: string
@@ -34,13 +35,13 @@ function ProductCard({
       return (
         <img
           src={image || diamondImage}
-          className="h-48 w-full rounded object-cover"
+          className="h-48 w-full rounded-md object-cover"
         />
       )
     } else if (images && images.length > 0) {
       // Render hover effect for jewelry images
       return (
-        <div className="relative h-48 w-full overflow-hidden rounded">
+        <div className="relative h-48 w-full overflow-hidden rounded-md">
           <img
             src={images[0]}
             className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
@@ -55,6 +56,8 @@ function ProductCard({
           />
         </div>
       )
+    } else {
+      return <Skeleton className="h-48 rounded-md w-full animate-pulse" />
     }
   }
 

@@ -64,7 +64,7 @@ function PaymentForm({
             onClick={() => handleSelectItem(OrderPaymentMethod.Deposit500)}
           >
             <RadioGroupItem
-              value={OrderPaymentMethod.Deposit500}
+              value={OrderPaymentMethod.Deposit500.toString()}
               checked={selectedPaymentMethod === OrderPaymentMethod.Deposit500}
             />
             <span className="ml-4 text-sm">
@@ -77,7 +77,7 @@ function PaymentForm({
             onClick={() => handleSelectItem(OrderPaymentMethod.Deposit1000)}
           >
             <RadioGroupItem
-              value={OrderPaymentMethod.Deposit1000}
+              value={OrderPaymentMethod.Deposit1000.toString()}
               checked={selectedPaymentMethod === OrderPaymentMethod.Deposit1000}
             />
             <span className="ml-4 text-sm">
@@ -90,7 +90,7 @@ function PaymentForm({
             onClick={() => handleSelectItem(OrderPaymentMethod.Deposit1500)}
           >
             <RadioGroupItem
-              value={OrderPaymentMethod.Deposit1500}
+              value={OrderPaymentMethod.Deposit1500.toString()}
               checked={selectedPaymentMethod === OrderPaymentMethod.Deposit1500}
             />
             <span className="ml-4 text-sm">
@@ -103,7 +103,7 @@ function PaymentForm({
             onClick={() => handleSelectItem(OrderPaymentMethod.Deposit2000)}
           >
             <RadioGroupItem
-              value={OrderPaymentMethod.Deposit2000}
+              value={OrderPaymentMethod.Deposit2000.toString()}
               checked={selectedPaymentMethod === OrderPaymentMethod.Deposit2000}
             />
             <span className="ml-4 text-sm">
@@ -116,7 +116,7 @@ function PaymentForm({
             onClick={() => handleSelectItem(OrderPaymentMethod.BankTransfer)}
           >
             <RadioGroupItem
-              value={OrderPaymentMethod.BankTransfer}
+              value={OrderPaymentMethod.BankTransfer.toString()}
               checked={
                 selectedPaymentMethod === OrderPaymentMethod.BankTransfer
               }
@@ -129,7 +129,7 @@ function PaymentForm({
             onClick={() => handleSelectItem(OrderPaymentMethod.CreditCard)}
           >
             <RadioGroupItem
-              value={OrderPaymentMethod.CreditCard}
+              value={OrderPaymentMethod.CreditCard.toString()}
               checked={selectedPaymentMethod === OrderPaymentMethod.CreditCard}
             />
             <span className="ml-4 text-sm">Credit Card</span>

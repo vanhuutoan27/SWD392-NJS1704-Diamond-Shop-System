@@ -13,9 +13,9 @@ import JewelryCategory from "@/components/local/Guest/Jewelry/JewelryCategory"
 import JewelryList from "@/components/local/Guest/Jewelry/JewelryList"
 
 function JewelryPage() {
-  const [category, setCategory] = useState("")
-  const [priceRange, setPriceRange] = useState("")
-  const [sortOrder, setSortOrder] = useState("")
+  const [category, setCategory] = useState("all")
+  const [priceRange, setPriceRange] = useState("all")
+  const [sortOrder, setSortOrder] = useState("all")
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 8
 
@@ -28,13 +28,14 @@ function JewelryPage() {
   const filteredJewelry = useMemo(() => {
     if (!allJewelries) return []
 
-    let filtered = allJewelries.filter((jewelry) => jewelry.status === "Active")
+    let filtered = allJewelries.filter((jewelry) => jewelry.status === 1)
 
     if (category && category !== "all") {
       filtered = filtered.filter(
         (jewelry) =>
           jewelry.jewelryCategory.toLowerCase() === category.toLowerCase()
       )
+      console.log("After category filter: ", filtered)
     }
 
     if (priceRange && priceRange !== "all") {
@@ -48,6 +49,7 @@ function JewelryPage() {
         if (priceRange === "Over 200") return price > 200000000
         return true
       })
+      console.log("After price filter: ", filtered)
     }
 
     if (sortOrder && sortOrder !== "all") {
@@ -56,6 +58,7 @@ function JewelryPage() {
       } else if (sortOrder === "low-high") {
         filtered.sort((a, b) => a.price - b.price)
       }
+      console.log("After sort: ", filtered)
     }
 
     return filtered
@@ -71,7 +74,7 @@ function JewelryPage() {
     )
   }, [filteredJewelry, currentPage, itemsPerPage])
 
-  if (isLoading) {
+  if (!allJewelries || isLoading) {
     return <Loader />
   }
 

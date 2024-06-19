@@ -15,7 +15,7 @@ export interface IJewelry {
   price: number
   dateModified: string
   dateCreated: string
-  status: string
+  status: number
 }
 
 export interface IJewelryPost {

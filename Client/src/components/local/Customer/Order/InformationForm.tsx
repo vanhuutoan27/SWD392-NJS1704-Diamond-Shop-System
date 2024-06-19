@@ -249,7 +249,7 @@ function InformationForm({
 
       <div>
         <div className="flex justify-between px-4">
-          <h4 className="mb-2 font-semibold">Ship to a different address?</h4>
+          <h4 className="mb-2 font-semibold">Note?</h4>
           <Checkbox />
         </div>
 
