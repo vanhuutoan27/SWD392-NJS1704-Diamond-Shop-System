@@ -1,8 +1,6 @@
 import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage"
 import { useParams } from "react-router-dom"
 
-import { IUser } from "@/types/user.interface"
-
 import { useGetUserById } from "@/apis/userApi"
 
 import { cn, useIsAdminRoute } from "@/lib/utils"
@@ -13,7 +11,7 @@ import Section from "@/components/global/organisms/Section"
 import SettingChangePhoto from "@/components/local/Customer/Setting/SettingChangePhoto"
 import SettingForm from "@/components/local/Customer/Setting/SettingForm"
 
-function SettingPage() {
+function MySettingPage() {
   const isAdminRoute = useIsAdminRoute()
   const { userId } = useParams<{ userId: string }>()
 
@@ -24,11 +22,7 @@ function SettingPage() {
   }
 
   if (error) {
-    ;<NotFoundPage />
-  }
-
-  const handleSave = (updatedUser: IUser) => {
-    console.log("Updated user successfully!", updatedUser)
+    return <NotFoundPage />
   }
 
   return (
@@ -48,11 +42,11 @@ function SettingPage() {
           <SettingForm user={userDetails} />
         </div>
         <div className="w-1/3">
-          <SettingChangePhoto user={userDetails} onSave={handleSave} />
+          <SettingChangePhoto user={userDetails} />
         </div>
       </div>
     </div>
   )
 }
 
-export default SettingPage
+export default MySettingPage

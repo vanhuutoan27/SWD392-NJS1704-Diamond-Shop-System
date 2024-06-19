@@ -12,7 +12,7 @@ import Section from "@/components/global/organisms/Section"
 import ProfileInfo from "@/components/local/Customer/Profile/ProfileInfo"
 import ProfileSocial from "@/components/local/Customer/Profile/ProfileSocial"
 
-function ProfilePage() {
+function MyProfilePage() {
   const isAdminRoute = useIsAdminRoute()
   const { userId } = useParams<{ userId: string }>()
 
@@ -23,7 +23,7 @@ function ProfilePage() {
   }
 
   if (error) {
-    ;<NotFoundPage />
+    return <NotFoundPage />
   }
 
   return (
@@ -68,4 +68,4 @@ function ProfilePage() {
   )
 }
 
-export default ProfilePage
+export default MyProfilePage

@@ -36,13 +36,23 @@ export const usePostOrder = () => {
       return data
     },
     {
-      onSuccess: () => {
+      onSuccess: (_, variables) => {
         queryClient.invalidateQueries("orders")
-        toast.success("Order added successfully")
+        toast.success("Order successful, we are processing the order")
+
+        // Xóa các cartItems từ localStorage
+        const productIds = variables.products.map(
+          (product) => product.productId
+        )
+        const storedCart = JSON.parse(localStorage.getItem("cartItems") || "[]")
+        const updatedCart = storedCart.filter(
+          (item: any) => !productIds.includes(item.productId)
+        )
+        localStorage.setItem("cartItems", JSON.stringify(updatedCart))
       },
       onError: (error) => {
         console.error("Error posting order data:", error)
-        toast.error("Failed to add order")
+        toast.error("Order failed")
       }
     }
   )

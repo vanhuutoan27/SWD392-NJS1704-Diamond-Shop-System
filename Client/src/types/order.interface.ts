@@ -43,12 +43,12 @@ export interface IOrderPost {
 }
 
 export enum OrderPaymentMethod {
-  Deposit500 = "deposit-500",
-  Deposit1000 = "deposit-1000",
-  Deposit1500 = "deposit-1500",
-  Deposit2000 = "deposit-2000",
-  BankTransfer = "bank-transfer",
-  CreditCard = "credit-card"
+  Deposit500 = 0,
+  Deposit1000 = 1,
+  Deposit1500 = 2,
+  Deposit2000 = 3,
+  BankTransfer = 4,
+  CreditCard = 5
 }
 
 export interface OrderProductItem {

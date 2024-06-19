@@ -24,7 +24,7 @@ import Section from "@/components/global/organisms/Section"
 import InvoiceCard from "@/components/local/Customer/Invoice/InvoiceCard"
 import InvoiceItem from "@/components/local/Customer/Invoice/InvoiceItem"
 
-function InvoicePage() {
+function MyInvoicePage() {
   const { userId } = useParams<{ userId: string }>()
 
   const {
@@ -156,7 +156,7 @@ function InvoicePage() {
     )
   })
 
-  console.log(formattedInvoices)
+  // console.log(formattedInvoices)
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -193,4 +193,4 @@ function InvoicePage() {
   )
 }
 
-export default InvoicePage
+export default MyInvoicePage

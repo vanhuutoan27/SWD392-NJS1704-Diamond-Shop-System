@@ -3,7 +3,9 @@ import React, { useState } from "react"
 import { Camera, Upload } from "lucide-react"
 import { toast } from "sonner"
 
-import { IUser } from "@/types/user.interface"
+import { IUser, IUserUpdate } from "@/types/user.interface"
+
+import { usePutUser } from "@/apis/userApi"
 
 import { userAvatar } from "@/lib/constants"
 
@@ -13,19 +15,38 @@ import UploadPhotoDialog from "./UploadPhotoDialog"
 
 interface SettingChangePhotoProps {
   user: IUser
-  onSave: (user: IUser) => void
 }
 
-const SettingChangePhoto: React.FC<SettingChangePhotoProps> = ({
-  user,
-  onSave
-}) => {
+const SettingChangePhoto: React.FC<SettingChangePhotoProps> = ({ user }) => {
   const [formData, setFormData] = useState<IUser>(user)
   const [showUploadPhotoDialog, setShowUploadPhotoDialog] = useState(false)
 
+  const { mutate: saveUser } = usePutUser()
+
   const handleSubmit = () => {
-    onSave(formData)
-    toast.success("Photo updated successfully")
+    const { id, email, fullName, phoneNumber, address, avatar, roles } =
+      formData
+
+    if (!id) {
+      toast.error("User ID is missing, cannot update profile")
+      return
+    }
+
+    const role = roles.length > 0 ? roles[0] : ""
+
+    const newUserData: IUserUpdate = {
+      id,
+      email,
+      fullName,
+      phone: phoneNumber,
+      address,
+      avatar,
+      role
+    }
+
+    console.log(newUserData)
+
+    saveUser(newUserData)
   }
 
   const handleChangePhoto = () => {

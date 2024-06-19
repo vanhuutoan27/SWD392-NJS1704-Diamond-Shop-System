@@ -27,11 +27,12 @@ function App() {
   const BlogDetail = lazy(() => import("./pages/Guest/Blog/BlogDetailPage"))
   const Promotion = lazy(() => import("./pages/Guest/Promotion/PromotionPage"))
   const Contact = lazy(() => import("./pages/Guest/Contact/ContactPage"))
-  const Cart = lazy(() => import("./pages/Customer/Cart/CartPage"))
+  const Cart = lazy(() => import("./pages/Customer/Cart/MyCartPage"))
   const Order = lazy(() => import("./pages/Customer/Order/OrderPage"))
-  const Profile = lazy(() => import("./pages/Customer/Profile/ProfilePage"))
-  const Setting = lazy(() => import("./pages/Customer/Setting/SettingPage"))
-  const Invoice = lazy(() => import("./pages/Customer/Invoice/InvoicePage"))
+  const MyProfile = lazy(() => import("./pages/Customer/Profile/MyProfilePage"))
+  const MySetting = lazy(() => import("./pages/Customer/Setting/MySettingPage"))
+  const MyOrder = lazy(() => import("./pages/Customer/Order/MyOrderPage"))
+  const MyInvoice = lazy(() => import("./pages/Customer/Invoice/MyInvoicePage"))
 
   // Authenticated Routes
   const Dashboard = lazy(() => import("./pages/Admin/Dashboard/DashboardPage"))
@@ -176,7 +177,7 @@ function App() {
           path="/profile/:userId"
           element={
             <Suspense fallback={<Loader />}>
-              <Profile />
+              <MyProfile />
             </Suspense>
           }
         />
@@ -185,7 +186,16 @@ function App() {
           path="/settings/:userId"
           element={
             <Suspense fallback={<Loader />}>
-              <Setting />
+              <MySetting />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/orders/:userId"
+          element={
+            <Suspense fallback={<Loader />}>
+              <MyOrder />
             </Suspense>
           }
         />
@@ -194,7 +204,7 @@ function App() {
           path="/invoices/:userId"
           element={
             <Suspense fallback={<Loader />}>
-              <Invoice />
+              <MyInvoice />
             </Suspense>
           }
         />
@@ -214,7 +224,7 @@ function App() {
           path="/admin/profile/:userId"
           element={
             <Suspense fallback={<Loader />}>
-              <Profile />
+              <MyProfile />
             </Suspense>
           }
         />
@@ -223,7 +233,7 @@ function App() {
           path="/admin/settings/:userId"
           element={
             <Suspense fallback={<Loader />}>
-              <Setting />
+              <MySetting />
             </Suspense>
           }
         />

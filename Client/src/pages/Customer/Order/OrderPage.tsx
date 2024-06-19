@@ -4,6 +4,7 @@ import { useAuthContext } from "@/contexts/AuthContext"
 import { informationSchema } from "@/schemas/OrderForm"
 import { useLocation } from "react-router-dom"
 
+// Import hook usePostOrder
 import {
   District,
   IOrderPost,
@@ -11,6 +12,8 @@ import {
   Province,
   Ward
 } from "@/types/order.interface"
+
+import { usePostOrder } from "@/apis/orderApi"
 
 import { getPaymentMethodNumber, scrollToTop } from "@/lib/utils"
 
@@ -24,6 +27,7 @@ import PaymentForm from "@/components/local/Customer/Order/PaymentForm"
 
 function OrderPage() {
   const { user } = useAuthContext()
+  const postOrder = usePostOrder()
 
   const location = useLocation()
   const { state } = location
@@ -114,13 +118,16 @@ function OrderPage() {
 
       const fullAddress = `${formData.address}, ${selectedWard}, ${selectedDistrict}, ${selectedProvince}`
 
-      const finalFormData = {
+      const finalFormData: IOrderPost = {
         ...formData,
         address: fullAddress,
         total: total,
         paymentMethod: getPaymentMethodNumber(selectedPaymentMethod)
       }
-      console.log("Final form data:", JSON.stringify(finalFormData, null, 2))
+
+      // console.log("Final form data being sent:", finalFormData)
+
+      await postOrder.mutateAsync(finalFormData)
     }
   }
 

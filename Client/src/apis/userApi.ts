@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import { toast } from "sonner"
 
-import { INewUser, IUpdateUser, IUser } from "@/types/user.interface"
+import { IUser, IUserNew, IUserUpdate } from "@/types/user.interface"
 
 import diamoonAPI from "@/lib/diamoonAPI"
 
@@ -29,7 +29,7 @@ export const usePostUser = () => {
   const queryClient = useQueryClient()
 
   return useMutation(
-    async (newUserData: INewUser) => {
+    async (newUserData: IUserNew) => {
       const { data } = await diamoonAPI.post("/User/create", newUserData)
       return data
     },
@@ -45,7 +45,7 @@ export const usePutUser = () => {
   const queryClient = useQueryClient()
 
   return useMutation(
-    async (newUserData: IUpdateUser) => {
+    async (newUserData: IUserUpdate) => {
       const { id, ...data } = newUserData
       const response = await diamoonAPI.put(`/User/${id}`, data)
       return response.data

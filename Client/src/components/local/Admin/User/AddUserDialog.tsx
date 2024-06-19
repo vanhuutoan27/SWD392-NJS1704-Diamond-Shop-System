@@ -6,7 +6,7 @@ import { Eye, EyeOff, Plus } from "lucide-react"
 import { UseFormStateReturn, useForm } from "react-hook-form"
 import { toast } from "sonner"
 
-import { INewUser } from "@/types/user.interface"
+import { IUserNew } from "@/types/user.interface"
 
 import { usePostUser } from "@/apis/userApi"
 
@@ -38,7 +38,7 @@ function AddUserDialog() {
     handleSubmit,
     reset,
     formState: { errors, isDirty }
-  } = useForm<INewUser, UseFormStateReturn<INewUser>>({
+  } = useForm<IUserNew, UseFormStateReturn<IUserNew>>({
     resolver: zodResolver(userSchema),
     defaultValues: {
       email: "",
@@ -59,7 +59,7 @@ function AddUserDialog() {
 
   const { mutate: addNewUser } = usePostUser()
 
-  const onSubmit = async (data: INewUser) => {
+  const onSubmit = async (data: IUserNew) => {
     try {
       const formData = { ...data, role }
       // console.log("Submitting form data:", formData);

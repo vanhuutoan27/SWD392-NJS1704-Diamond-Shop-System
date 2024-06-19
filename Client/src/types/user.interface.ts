@@ -11,7 +11,7 @@ export interface IUser {
   isActive: boolean
 }
 
-export interface INewUser {
+export interface IUserNew {
   roles: string
   email: string
   fullName: string
@@ -20,12 +20,13 @@ export interface INewUser {
   address: string
 }
 
-export interface IUpdateUser {
+export interface IUserUpdate {
   id: string
   email: string
   fullName: string
   phone: string
   address: string
+  avatar?: string
   role: string
 }
 

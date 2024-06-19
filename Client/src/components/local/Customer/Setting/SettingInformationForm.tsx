@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { CircleUserRound, Info, Mail, MapPin, Phone, User } from "lucide-react"
 import { toast } from "sonner"
 
-import { IUpdateUser, IUser } from "@/types/user.interface"
+import { IUser, IUserUpdate } from "@/types/user.interface"
 
 import { usePutUser } from "@/apis/userApi"
 
@@ -42,7 +42,7 @@ function SettingInformationForm({ user }: SettingInformationFormProps) {
 
     const role = roles.length > 0 ? roles[0] : ""
 
-    const newUserData: IUpdateUser = {
+    const newUserData: IUserUpdate = {
       id,
       email,
       fullName,
