@@ -43,6 +43,7 @@ function App() {
     () => import("./pages/Manager/Diamond/DiamondListPage")
   )
   const UserList = lazy(() => import("./pages/Admin/User/UserListPage"))
+  const OrderList = lazy(() => import("./pages/Manager/Order/OrderListPage"))
 
   return (
     <Routes>
@@ -261,6 +262,15 @@ function App() {
           element={
             <Suspense fallback={<Loader />}>
               <UserList />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/admin/order-list"
+          element={
+            <Suspense fallback={<Loader />}>
+              <OrderList />
             </Suspense>
           }
         />
