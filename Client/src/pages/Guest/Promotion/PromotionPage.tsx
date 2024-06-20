@@ -1,4 +1,3 @@
-import { Skeleton } from "@/components/global/atoms/skeleton"
 import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent"
 import Section from "@/components/global/organisms/Section"
 import PromotionInfo from "@/components/local/Guest/Promotion/PromotionInfo"
@@ -20,7 +19,11 @@ function PromotionPage() {
         </div>
 
         <div className="w-[350px] shadow-md border-2 border-input rounded-md">
-          <Skeleton className="w-full h-full rounded animate-pulse" />
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Test%2FdiamondSaleBanner.png?alt=media&token=f75da601-b668-4e56-8d1c-88af5c498eca"
+            alt="Diamoon Promotion"
+            className="w-full rounded-md"
+          />
         </div>
       </div>
     </div>

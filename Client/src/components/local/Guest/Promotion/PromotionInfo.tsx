@@ -42,11 +42,11 @@ function PromotionInfo() {
               onClick={() => {
                 navigator.clipboard.writeText(promotion.discountCode)
               }}
-              className="mb-2"
+              className="mb-4"
             >
               <TooltipProvider>
                 <Tooltip>
-                  <TooltipTrigger className="flex gap-2 items-center slow hover:text-secondary">
+                  <TooltipTrigger className="flex gap-2 items-center slow hover:text-secondary border-2 border-input rounded-md px-4 py-2">
                     <Ticket size={20} /> {promotion.discountCode}
                   </TooltipTrigger>
                   <TooltipContent>
@@ -56,13 +56,13 @@ function PromotionInfo() {
               </TooltipProvider>
             </div>
 
-            <p className="text-xs">
+            <p className="text-sm">
               {formatDate(promotion.dateToUse)} -{" "}
               {formatDate(promotion.dateExpiration)}
             </p>
           </div>
 
-          <div className="absolute bottom-4 right-5 text-[10px] text-secondary">
+          <div className="absolute bottom-4 right-5 text-xs text-secondary">
             <p>Remaining quantity: {promotion.quantity}</p>
           </div>
         </div>

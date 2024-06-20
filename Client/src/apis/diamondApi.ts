@@ -47,3 +47,23 @@ export const usePostDiamond = () => {
     }
   )
 }
+
+export const useChangeDiamondStatus = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation(
+    async (id: string) => {
+      const { data } = await diamoonAPI.put(`/Diamond/change-status/${id}`)
+      return data
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("diamonds")
+        toast.success("Diamond status changed successfully")
+      },
+      onError: () => {
+        toast.error("Failed to change diamond status")
+      }
+    }
+  )
+}

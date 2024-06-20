@@ -32,7 +32,8 @@ function MyProfilePage() {
         <BreadcrumbComponent
           lastPage={"Home"}
           lastPageUrl="/"
-          currentPage="User Profile"
+          currentPage="User"
+          currentDetailPage="My Profile"
         />
       )}
 

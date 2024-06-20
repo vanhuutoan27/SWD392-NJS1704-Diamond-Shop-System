@@ -20,10 +20,10 @@ import { getPaymentMethodNumber, scrollToTop } from "@/lib/utils"
 import { Button } from "@/components/global/atoms/button"
 import ProgressBar from "@/components/global/molecules/ProgressBar"
 import Section from "@/components/global/organisms/Section"
-import ConfirmOrder from "@/components/local/Customer/Order/ConfirmOrder"
-import InformationForm from "@/components/local/Customer/Order/InformationForm"
+import ConfirmOrder from "@/components/local/Customer/Order/OrderConfirmation"
+import InformationForm from "@/components/local/Customer/Order/OrderInformationForm"
 import OrderSummary from "@/components/local/Customer/Order/OrderSummary"
-import PaymentForm from "@/components/local/Customer/Order/PaymentForm"
+import PaymentForm from "@/components/local/Customer/Order/OrderPaymentForm"
 
 function OrderPage() {
   const { user } = useAuthContext()

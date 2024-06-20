@@ -68,7 +68,7 @@ function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
           onMouseMove={handleMouseMove}
         >
           <img
-            src={diamondImage}
+            src={diamondDetails.images || diamondImage}
             alt="Diamond"
             className="w-full cursor-pointer"
           />

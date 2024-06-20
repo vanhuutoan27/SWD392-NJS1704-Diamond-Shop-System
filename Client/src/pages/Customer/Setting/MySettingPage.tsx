@@ -31,7 +31,8 @@ function MySettingPage() {
         <BreadcrumbComponent
           lastPage={"Home"}
           lastPageUrl="/"
-          currentPage="Account Settings"
+          currentPage="User"
+          currentDetailPage="My Settings"
         />
       )}
 

@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { type ClassValue, clsx } from "clsx"
 import { useLocation } from "react-router-dom"
 import { twMerge } from "tailwind-merge"
 
 import { ICart } from "@/types/cart.interface"
-import { OrderPaymentMethod } from "@/types/order.interface"
+import { OrderPaymentMethod, OrderStatus } from "@/types/order.interface"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -130,5 +129,43 @@ export const getPaymentMethodNumber = (method: OrderPaymentMethod) => {
       return 5
     default:
       return 4
+  }
+}
+
+// Get payment method string
+export const getPaymentMethodString = (number: number): string => {
+  switch (number) {
+    case 0:
+      return "Deposit500"
+    case 1:
+      return "Deposit1000"
+    case 2:
+      return "Deposit1500"
+    case 3:
+      return "Deposit2000"
+    case 4:
+      return "BankTransfer"
+    case 5:
+      return "CreditCard"
+    default:
+      return "BankTransfer"
+  }
+}
+
+// Get order status string
+export const getOrderStatusString = (status: number): string => {
+  switch (status) {
+    case OrderStatus.Pending:
+      return "Pending"
+    case OrderStatus.Processing:
+      return "Processing"
+    case OrderStatus.Shipping:
+      return "Shipping"
+    case OrderStatus.Completed:
+      return "Completed"
+    case OrderStatus.Cancelled:
+      return "Cancelled"
+    default:
+      return "Unknown Status"
   }
 }

@@ -10,7 +10,7 @@ export const useGetAllOrders = () => {
     queryKey: ["orders"],
     queryFn: async () => {
       const { data } = await diamoonAPI.get("/Order")
-      return data
+      return data.data
     }
   })
 }

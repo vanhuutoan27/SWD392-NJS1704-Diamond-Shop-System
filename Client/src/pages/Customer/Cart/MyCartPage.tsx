@@ -10,7 +10,8 @@ function CartPage() {
       <BreadcrumbComponent
         lastPage={"Home"}
         lastPageUrl="/"
-        currentPage="Cart"
+        currentPage="User"
+        currentDetailPage="My Cart"
       />
 
       <Section pageName={"Diamond Cart"} />

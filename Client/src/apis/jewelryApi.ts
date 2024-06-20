@@ -45,3 +45,23 @@ export const usePostJewelry = () => {
     }
   )
 }
+
+export const useChangeJewelryStatus = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation(
+    async (id: string) => {
+      const { data } = await diamoonAPI.put(`/Jewelry/change-status/${id}`)
+      return data
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("jewelries")
+        toast.success("Jewelry status changed successfully")
+      },
+      onError: () => {
+        toast.error("Failed to change jewelry status")
+      }
+    }
+  )
+}

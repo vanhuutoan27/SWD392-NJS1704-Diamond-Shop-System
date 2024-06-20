@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 import axios from "axios"
 
@@ -32,6 +32,8 @@ function InformationForm({
   errors,
   setErrors
 }: InformationFormProps) {
+  const [isNoteEnabled, setIsNoteEnabled] = useState(false)
+
   useEffect(() => {
     axios
       .get(API_PROVINCES)
@@ -250,13 +252,17 @@ function InformationForm({
       <div>
         <div className="flex justify-between px-4">
           <h4 className="mb-2 font-semibold">Note?</h4>
-          <Checkbox />
+          <Checkbox
+            checked={isNoteEnabled}
+            onCheckedChange={(checked) => setIsNoteEnabled(!!checked)}
+          />
         </div>
 
         <textarea
           rows={3}
           placeholder="Order notes (Optional)"
           className="input-field resize-none"
+          disabled={!isNoteEnabled}
         />
       </div>
     </div>
