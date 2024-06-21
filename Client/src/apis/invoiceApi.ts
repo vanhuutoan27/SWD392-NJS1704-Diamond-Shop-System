@@ -9,7 +9,7 @@ export const useGetInvoice = () => {
     queryKey: ["invoices"],
     queryFn: async () => {
       const { data } = await diamoonAPI.get("/Invoice")
-      return data
+      return data.data
     }
   })
 }

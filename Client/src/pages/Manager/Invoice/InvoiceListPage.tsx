@@ -19,8 +19,7 @@ function InvoiceListPage() {
 
   return (
     <div className="p-5">
-       {/* <DataTable columns={columns} data={invoiceData ?? []} /> */}
-       asdasd
+      <DataTable columns={columns} data={invoiceData ?? []} />
     </div>
   )
 }

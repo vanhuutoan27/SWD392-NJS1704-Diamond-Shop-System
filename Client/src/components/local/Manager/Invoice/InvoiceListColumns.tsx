@@ -7,6 +7,8 @@ import { ArrowUpDown, Copy, Eye, MoreHorizontal } from "lucide-react"
 
 import { IInvoiceItem } from "@/types/invoice.interface"
 
+import { formatCurrencyWithoutVND, formatDate } from "@/lib/utils"
+
 import { Button } from "@/components/global/atoms/button"
 import {
   DropdownMenu,
@@ -16,6 +18,7 @@ import {
   DropdownMenuTrigger
 } from "@/components/global/atoms/dropdown-menu"
 
+// import ViewInvoiceDialog from "./ViewInvoiceDialog"
 
 export const columns: ColumnDef<IInvoiceItem>[] = [
   {
@@ -37,73 +40,62 @@ export const columns: ColumnDef<IInvoiceItem>[] = [
       return <span className="font-semibold">{shortId}</span>
     }
   },
- 
-//   {
-//     accessorKey: "jewelryName",
-//     header: ({ column }) => {
-//       return (
-//         <div
-//           className="flex select-none items-center"
-//           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-//         >
-//           <span className="flex cursor-pointer text-white">Name</span>
-//           <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
-//         </div>
-//       )
-//     },
-//     cell: (info) => (
-//       <span className="font-semibold">{info.getValue() as string}</span>
-//     )
-//   },
-//   {
-//     accessorKey: "mainStoneSize",
-//     header: ({ column }) => {
-//       return (
-//         <div
-//           className="flex select-none items-center"
-//           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-//         >
-//           <span className="flex cursor-pointer text-white">
-//             Main Stone Size
-//           </span>
-//           <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
-//         </div>
-//       )
-//     },
-//     cell: (info) => <span>{info.getValue() as string}</span>
-//   },
-//   {
-//     accessorKey: "sideStoneType",
-//     header: ({ column }) => {
-//       return (
-//         <div
-//           className="flex select-none items-center"
-//           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-//         >
-//           <span className="flex cursor-pointer text-white">
-//             Side Stone Type
-//           </span>
-//           <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
-//         </div>
-//       )
-//     },
-//     cell: (info) => <span>{info.getValue() as string}</span>
-//   },
-//   {
-//     accessorKey: "goldType",
-//     header: ({ column }) => {
-//       return (
-//         <div
-//           className="flex select-none items-center"
-//           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-//         >
-//           <span className="flex cursor-pointer text-white">Gold Type</span>
-//           <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
-//         </div>
-//       )
-//     },
-//     cell: (info) => <span>{info.getValue() as string}</span>
-//   },
+  {
+    accessorKey: "order.customerName",
+    header: ({ column }) => {
+      return (
+        <div
+          className="flex select-none items-center"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          <span className="flex cursor-pointer text-white">Customer Name</span>
+          <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
+        </div>
+      )
+    },
+    cell: (info) => (
+      <span className="font-semibold">{info.getValue() as string}</span>
+    )
+  },
+  {
+    accessorKey: "createDate",
+    header: ({ column }) => {
+      return (
+        <div
+          className="flex select-none items-center"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          <span className="flex cursor-pointer text-white">Create date</span>
+          <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
+        </div>
+      )
+    },
+    cell: (info) => (
+      <span className="font-semibold">
+        {formatDate(info.getValue() as string)}
+      </span>
+    )
+  },
+  {
+    accessorKey: "order.total",
+    header: ({ column }) => {
+      return (
+        <div
+          className="flex select-none items-center"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          <span className="flex cursor-pointer text-white">Total</span>
+          <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
+        </div>
+      )
+    },
+    cell: (info) => (
+      <span className="font-semibold">
+        {formatCurrencyWithoutVND(info.getValue() as number)}
+      </span>
+    )
+  },
+
   {
     id: "actions",
     header: () => (
@@ -114,11 +106,11 @@ export const columns: ColumnDef<IInvoiceItem>[] = [
     cell: ({ row }) => {
       const invoice = row.original
       // eslint-disable-next-line react-hooks/rules-of-hooks
-    //   const [ setIsViewDialogOpen] = useState(false)
+      // const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
 
-      const handleViewDetailsClick = () => {
-      }
-
+      // const handleViewDetailsClick = () => {
+      //   setIsViewDialogOpen(true)
+      // }
       return (
         <div>
           <DropdownMenu>
@@ -138,7 +130,7 @@ export const columns: ColumnDef<IInvoiceItem>[] = [
                 <span>Copy ID</span>
               </DropdownMenuItem>
               <DropdownMenuItem
-                onClick={handleViewDetailsClick}
+                // onClick={handleViewDetailsClick}
                 className="text-sm"
               >
                 <Eye size={16} className="mr-2" />
@@ -146,7 +138,12 @@ export const columns: ColumnDef<IInvoiceItem>[] = [
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          
+          {/* {isViewDialogOpen && (
+            <ViewInvoiceDialog
+              invoiceId={invoice.invoiceId}
+              onClose={() => setIsViewDialogOpen(false)}
+            />
+          )} */}
         </div>
       )
     }

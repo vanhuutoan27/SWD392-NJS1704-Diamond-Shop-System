@@ -26,10 +26,8 @@ import {
 } from "@/components/global/atoms/table"
 import DataTablePagination from "@/components/global/molecules/DataTablePagination"
 
-
-
 interface InvoiceData {
-    invoiceId: string
+  invoiceId: string
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any
 }
@@ -98,7 +96,6 @@ export function DataTable<TData extends InvoiceData>({
             />
           </div>
         </div>
-
       </div>
 
       <div className="overflow-hidden rounded-md border bg-white shadow-md">
