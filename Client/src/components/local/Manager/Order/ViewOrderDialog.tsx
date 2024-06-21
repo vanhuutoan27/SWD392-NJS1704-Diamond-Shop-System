@@ -353,14 +353,16 @@ function ViewOrderDialog({
                       {item.productId}
                     </td>
                     <td className="py-2 px-4 col-span-2 flex justify-center items-center content-center">
-                      {item.images?.map((image, imgIndex) => (
+                      {item.images && item.images.length > 0 ? (
                         <img
-                          key={imgIndex}
-                          src={image}
-                          alt={`Product ${index + 1} Image ${imgIndex + 1}`}
+                          key={0} // Use a key that's unique for each image iteration
+                          src={item.images[0]} // Display only the first image
+                          alt={`Product ${index + 1} Image 1`} // Adjust alt text if needed
                           className="h-16 w-16 object-cover inline-block mr-2"
                         />
-                      )) ?? "No images"}
+                      ) : (
+                        "No images"
+                      )}
                     </td>
                     <td className="py-2 px-4 text-sm font-medium col-span-2 text-center content-center">
                       {item.quantity}
@@ -372,7 +374,7 @@ function ViewOrderDialog({
                 ))
               ) : (
                 <tr>
-                  <td className="py-2 px-4 text-center" colSpan={8}>
+                  <td className="py-2 px-4 text-center">
                     No items found.
                   </td>
                 </tr>
