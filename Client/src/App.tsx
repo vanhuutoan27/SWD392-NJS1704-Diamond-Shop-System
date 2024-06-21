@@ -42,6 +42,9 @@ function App() {
   const DiamondList = lazy(
     () => import("./pages/Manager/Diamond/DiamondListPage")
   )
+  const InvoiceList = lazy(
+    () => import("./pages/Manager/Invoice/InvoiceListPage")
+  )
   const UserList = lazy(() => import("./pages/Admin/User/UserListPage"))
 
   return (
@@ -261,6 +264,15 @@ function App() {
           element={
             <Suspense fallback={<Loader />}>
               <UserList />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/admin/invoice-list"
+          element={
+            <Suspense fallback={<Loader />}>
+              <InvoiceList />
             </Suspense>
           }
         />

@@ -8,6 +8,7 @@ import {
   LayoutDashboard,
   LogOut,
   Package,
+  ReceiptText,
   Settings,
   User
 } from "lucide-react"
@@ -46,6 +47,11 @@ const menuItems = [
     title: "Order",
     link: "/admin/order-list",
     icon: <Package />
+  },
+  {
+    title: "Invoice",
+    link: "/admin/invoice-list",
+    icon: <ReceiptText />
   }
 ]
 
