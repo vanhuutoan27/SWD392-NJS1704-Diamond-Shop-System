@@ -4,7 +4,6 @@ import { useAuthContext } from "@/contexts/AuthContext"
 import { informationSchema } from "@/schemas/OrderForm"
 import { useLocation } from "react-router-dom"
 
-// Import hook usePostOrder
 import {
   District,
   IOrderPost,
@@ -22,8 +21,8 @@ import ProgressBar from "@/components/global/molecules/ProgressBar"
 import Section from "@/components/global/organisms/Section"
 import ConfirmOrder from "@/components/local/Customer/Order/OrderConfirmation"
 import InformationForm from "@/components/local/Customer/Order/OrderInformationForm"
-import OrderSummary from "@/components/local/Customer/Order/OrderSummary"
 import PaymentForm from "@/components/local/Customer/Order/OrderPaymentForm"
+import OrderSummary from "@/components/local/Customer/Order/OrderSummary"
 
 function OrderPage() {
   const { user } = useAuthContext()

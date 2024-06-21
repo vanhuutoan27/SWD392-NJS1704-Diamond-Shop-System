@@ -8,8 +8,7 @@ import { IOrder } from "@/types/order.interface"
 import {
   formatCurrency,
   formatDate,
-  getOrderStatusString,
-  getPaymentMethodString
+  getOrderStatusString,getPaymentMethodString
 } from "@/lib/utils"
 
 import { Button } from "@/components/global/atoms/button"
@@ -21,7 +20,7 @@ import {
   DropdownMenuTrigger
 } from "@/components/global/atoms/dropdown-menu"
 import { useState } from "react"
-import ViewOrderDialog from "../../Manager/Order/ViewOrderDialog"
+import ViewOrderDialog from "./ViewOrderDialog"
 
 export const columns: ColumnDef<IOrder>[] = [
   {
@@ -39,11 +38,10 @@ export const columns: ColumnDef<IOrder>[] = [
     },
     cell: (info) => {
       const value: string = info.getValue() as string
-      const shortProductId = value.split("-")[0]
-      return <span>{shortProductId}</span>
+      const shortId = value.split("-")[0]
+      return <span className="font-semibold">{shortId}</span>
     }
   },
-
   {
     accessorKey: "customerName",
     header: () => {
@@ -58,13 +56,16 @@ export const columns: ColumnDef<IOrder>[] = [
       return <span>{value}</span>
     }
   },
-
   {
     accessorKey: "paymentMethod",
-    header: () => {
+    header: ({ column }) => {
       return (
-        <div className="flex select-none items-center">
+        <div
+          className="flex select-none items-center"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
           <span className="flex cursor-pointer text-white">Payment Method</span>
+          <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
         </div>
       )
     },
@@ -146,9 +147,9 @@ export const columns: ColumnDef<IOrder>[] = [
       const order = row.original
       const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
 
-      // const handleViewDetailsClick = () => {
-      //   setIsViewDialogOpen(true)
-      // }
+      const handleViewDetailsClick = () => {
+        setIsViewDialogOpen(true)
+      }
 
       return (
         <div>
@@ -169,7 +170,7 @@ export const columns: ColumnDef<IOrder>[] = [
                 <span>Copy ID</span>
               </DropdownMenuItem>
               <DropdownMenuItem
-                // onClick={handleViewDetailsClick}
+                onClick={handleViewDetailsClick}
                 className="text-sm"
               >
                 <Eye size={16} className="mr-2" />
@@ -177,13 +178,12 @@ export const columns: ColumnDef<IOrder>[] = [
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-
-          {/* {isViewDialogOpen && (
+          {isViewDialogOpen && (
             <ViewOrderDialog
               orderId={order.orderId}
               onClose={() => setIsViewDialogOpen(false)}
             />
-          )} */}
+          )}
         </div>
       )
     }

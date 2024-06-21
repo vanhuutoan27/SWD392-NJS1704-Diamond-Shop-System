@@ -28,7 +28,7 @@ function App() {
   const Promotion = lazy(() => import("./pages/Guest/Promotion/PromotionPage"))
   const Contact = lazy(() => import("./pages/Guest/Contact/ContactPage"))
   const Cart = lazy(() => import("./pages/Customer/Cart/MyCartPage"))
-  const Order = lazy(() => import("./pages/Customer/Order/OrderPage"))
+  const Order = lazy(() => import("./pages/Customer/Order/MyOrderPage"))
   const MyProfile = lazy(() => import("./pages/Customer/Profile/MyProfilePage"))
   const MySetting = lazy(() => import("./pages/Customer/Setting/MySettingPage"))
   const MyOrder = lazy(() => import("./pages/Customer/Order/MyOrderPage"))
@@ -43,6 +43,7 @@ function App() {
     () => import("./pages/Manager/Diamond/DiamondListPage")
   )
   const UserList = lazy(() => import("./pages/Admin/User/UserListPage"))
+  const OrderList = lazy(() => import("./pages/Manager/Order/OrderListPage"))
 
   return (
     <Routes>
@@ -261,6 +262,15 @@ function App() {
           element={
             <Suspense fallback={<Loader />}>
               <UserList />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/admin/order-list"
+          element={
+            <Suspense fallback={<Loader />}>
+              <OrderList />
             </Suspense>
           }
         />

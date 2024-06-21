@@ -19,10 +19,10 @@ export const useGetOrderById = (id: string) => {
   return useQuery<IOrder>({
     queryKey: ["order", id],
     queryFn: async () => {
-      const { data } = await diamoonAPI.get(`/Order/Detail/Id`, {
+      const { data } = await diamoonAPI.get(`/Order/${id}`, {
         params: { id }
       })
-      return data
+      return data.data
     }
   })
 }
