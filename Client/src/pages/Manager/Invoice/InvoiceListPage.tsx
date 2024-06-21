@@ -3,6 +3,8 @@ import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage"
 import { useGetInvoice } from "@/apis/invoiceApi"
 
 import { Loader } from "@/components/global/atoms/Loader"
+import { columns } from "@/components/local/Manager/Invoice/InvoiceListColumns"
+import { DataTable } from "@/components/local/Manager/Invoice/InvoiceListDataTable"
 
 function InvoiceListPage() {
   const { data: invoiceData, error, isLoading } = useGetInvoice()
@@ -17,7 +19,8 @@ function InvoiceListPage() {
 
   return (
     <div className="p-5">
-      thu
+       {/* <DataTable columns={columns} data={invoiceData ?? []} /> */}
+       asdasd
     </div>
   )
 }
