@@ -44,6 +44,9 @@ function App() {
   )
   const UserList = lazy(() => import("./pages/Admin/User/UserListPage"))
   const OrderList = lazy(() => import("./pages/Manager/Order/OrderListPage"))
+  const InvoiceList = lazy(
+    () => import("./pages/Manager/Invoice/InvoiceListPage")
+  )
 
   return (
     <Routes>
@@ -271,6 +274,15 @@ function App() {
           element={
             <Suspense fallback={<Loader />}>
               <OrderList />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/admin/invoice-list"
+          element={
+            <Suspense fallback={<Loader />}>
+              <InvoiceList />
             </Suspense>
           }
         />
