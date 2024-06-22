@@ -30,7 +30,7 @@ namespace DiamonShop.Data.Services
                 CustomerName = request.CustomerName,
                 Email = request.Email,
                 Note = request.Note == null ? "" : request.Note,
-                OrderStatus = OrderStatus.WatingConfirm,
+                OrderStatus = OrderStatus.Processing,
                 Phone = request.Phone,
                 Status = true,
                 PaymentMethod = request.PaymentMethod,
@@ -82,6 +82,17 @@ namespace DiamonShop.Data.Services
         {
             var orders = await _repositoryManager.Order.GetAllOrderAsync();
 
+            return _mapper.Map<IEnumerable<OrderResponse>>(orders);
+        }
+
+        public async Task<IEnumerable<OrderResponse>> GetOrderByCustomerIdAsync(Guid id)
+        {
+            var orders = await _repositoryManager.Order.GetOrderByCustomerIdAsync(id);
+            if (orders == null || !orders.Any())
+            {
+                throw new Exception("Not Found By Customer Id");
+
+            }
             return _mapper.Map<IEnumerable<OrderResponse>>(orders);
         }
 

@@ -9,5 +9,6 @@ namespace DiamonShop.Core.services
         Task<IEnumerable<OrderResponse>> GetAllOrders();
         Task<OrderResponse> GetOrderByIdAsync(Guid id);
         Task DeleteOrder(Guid id);
+        Task<IEnumerable<OrderResponse>> GetOrderByCustomerIdAsync(Guid id);
     }
 }

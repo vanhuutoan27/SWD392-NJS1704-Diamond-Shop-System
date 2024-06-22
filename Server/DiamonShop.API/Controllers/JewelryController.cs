@@ -150,5 +150,28 @@ namespace DiamonShop.API.Controllers
             };
             return res;
         }
+
+        [HttpPut("change-status/{id}")]
+        public async Task<ActionResult<ResultModel>> ChangeStatus(Guid id)
+        {
+            var result = await _service.JewelryService.ChangeStatusAsync(id);
+            if (!result)
+            {
+                res = new ResultModel
+                {
+                    IsSuccess = false,
+                    Code = (int)HttpStatusCode.NotFound,
+                    Message = "Update fail."
+                };
+                return res;
+            }
+            res = new ResultModel
+            {
+                IsSuccess = true,
+                Code = (int)HttpStatusCode.OK,
+                Message = "Update successfully"
+            };
+            return res;
+        }
     }
 }

@@ -85,6 +85,23 @@ namespace DiamonShop.API.Controllers
             return res;
         }
 
+        [HttpGet("by-customer/{id}")]
+        public async Task<ActionResult<ResultModel>> GetOrderByCustomerId(Guid id)
+        {
+            var result = await _serviceManager.OrderService.GetOrderByCustomerIdAsync(id);
+            if (result == null)
+            {
+                res.IsSuccess = false;
+                res.Message = "Not Found!";
+                res.Code = (int)StatusCodes.Status500InternalServerError;
+                return res;
+            }
+            res.IsSuccess = true;
+            res.Message = "Successful";
+            res.Code = (int)HttpStatusCode.OK;
+            res.Data = result;
+            return res;
+        }
 
     }
 }

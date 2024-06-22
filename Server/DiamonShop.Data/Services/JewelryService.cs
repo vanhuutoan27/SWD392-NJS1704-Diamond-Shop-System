@@ -19,6 +19,28 @@ namespace DiamonShop.Data.Services
             _mapper = mapper;
         }
 
+        public async Task<bool> ChangeStatusAsync(Guid id)
+        {
+            var jewelry = await _repositoryManager.Jewelry.GetJewelryAsync(id);
+            if (jewelry == null)
+            {
+                throw new Exception("Not Found Jewlry");
+
+            }
+            var check = jewelry.Product.Status;
+            if (check == EnumStatus.Status.Active)
+            {
+                jewelry.Product.Status = EnumStatus.Status.InActive;
+            }
+            else
+            {
+                jewelry.Product.Status = EnumStatus.Status.Active;
+            }
+            _repositoryManager.Jewelry.Update(jewelry);
+            await _repositoryManager.SaveAsync();
+            return true;
+        }
+
         public async Task<CreateUpdateJewelryRequest> CreateJewelry(CreateUpdateJewelryRequest createJewelryDto)
         {
             var productId = Guid.NewGuid();
@@ -53,7 +75,21 @@ namespace DiamonShop.Data.Services
                 DateModified = DateTime.Now
                 //updated
             };
+
+
             _repositoryManager.Product.Add(product);
+            //Add list Image 
+            foreach (var i in createJewelryDto.Images)
+            {
+                var image = new Image()
+                {
+                    ProductId = productId,
+                    Url = i,
+                    DateCreated = DateTime.Now
+
+                };
+                _repositoryManager.Image.Add(image);
+            }
             await _repositoryManager.SaveAsync();
             var result = _mapper.Map<CreateUpdateJewelryRequest>(newJewelry);
             return result;

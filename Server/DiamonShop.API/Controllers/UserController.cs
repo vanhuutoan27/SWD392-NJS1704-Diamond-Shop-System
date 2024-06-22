@@ -75,7 +75,8 @@ IMapper mapper)
                 PhoneNumber = request.Phone,
                 UserName = request.FullName.Replace(" ", ""),
                 Address = request.Address,
-                IsActive = true,
+                IsActive = false,
+                Avatar = request.Avatar,
                 SecurityStamp = Guid.NewGuid().ToString(),
                 LockoutEnabled = false,
                 DateCreated = DateTime.Now
@@ -133,7 +134,10 @@ IMapper mapper)
 
             if (UserToEdit.Address != request.Address)
                 UserToEdit.Address = request.Address;
-
+            if (UserToEdit.Avatar != request.Avatar)
+            {
+                UserToEdit.Avatar = request.Avatar;
+            }
             var result = await _userManager.UpdateAsync(UserToEdit);
             if (!result.Succeeded)
             {

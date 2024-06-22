@@ -7,6 +7,7 @@ namespace DiamonShop.Core.SeedWorks
         IProductRepository Product { get; }
         IDiamondRepository Diamond { get; }
         IJewelryRepository Jewelry { get; }
+        IImageRepository Image { get; }
         IUserRepository User { get; }
         ICategoryRepository Category { get; }
         IOrderRepository Order { get; }

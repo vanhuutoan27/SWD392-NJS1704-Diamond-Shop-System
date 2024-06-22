@@ -89,6 +89,17 @@ namespace DiamonShop.API.Controllers
             return NoContent();
 
         }
+
+        [HttpPut("chang-status/{id}")]
+        public async Task<IActionResult> ChangeStatus(Guid id)
+        {
+            var result = await _services.DiamondService.ChangeStatusAsync(id);
+            if (!result)
+            {
+                return Problem();
+            }
+            return Ok();
+        }
     }
 
 }

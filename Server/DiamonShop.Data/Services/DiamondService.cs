@@ -57,12 +57,20 @@ namespace DiamonShop.Data.Services
                 DateModified = DateTime.Now
             };
             _repositoryManager.Product.Add(product);
+            var image = new Image()
+            {
+                ProductId = product.ProductId,
+                Url = createDiamondRequest.image,
+                DateCreated = DateTime.Now
+            };
+            _repositoryManager.Image.Add(image);
+
             await _repositoryManager.SaveAsync();
             return new DiamondRespone
             {
                 Message = "Create Diamond Successfully",
                 Status = true,
-                Data = model,
+                //Data = model,
             };
         }
 
@@ -144,6 +152,28 @@ namespace DiamonShop.Data.Services
 
             _repositoryManager.Diamond.Remove(diamondid);
             await _repositoryManager.SaveAsync();
+        }
+
+        public async Task<bool> ChangeStatusAsync(Guid id)
+        {
+            var diamond = await _repositoryManager.Diamond.GetDiamondById(id);
+            if (diamond == null)
+            {
+                throw new Exception("Not Found Diamond");
+
+            }
+            var check = diamond.Product.Status;
+            if (check == EnumStatus.Status.Active)
+            {
+                diamond.Product.Status = EnumStatus.Status.InActive;
+            }
+            else
+            {
+                diamond.Product.Status = EnumStatus.Status.Active;
+            }
+            _repositoryManager.Diamond.Update(diamond);
+            await _repositoryManager.SaveAsync();
+            return true;
         }
     }
 }
