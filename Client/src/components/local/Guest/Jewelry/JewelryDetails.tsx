@@ -6,7 +6,7 @@ import { toast } from "sonner"
 import { ICart, IJewelryCart } from "@/types/cart.interface"
 import { IJewelry } from "@/types/jewelry.interface"
 
-import { addToCart, formatCurrency } from "@/lib/utils"
+import { addToCart, formatCurrency, handleMouseMove } from "@/lib/utils"
 
 import { Button } from "@/components/global/atoms/button"
 import Section from "@/components/global/organisms/Section"
@@ -16,7 +16,7 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
   const [cartItems, setCartItems] = useState<ICart[]>([])
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
-  const salePrice = 100000 // Placeholder for the sale price
+  const salePrice = null
 
   useEffect(() => {
     const storedCartItems = localStorage.getItem("cartItems")
@@ -24,15 +24,6 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
       setCartItems(JSON.parse(storedCartItems))
     }
   }, [])
-
-  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    const container = event.currentTarget
-    const rect = container.getBoundingClientRect()
-    const x = ((event.clientX - rect.left) / rect.width) * 100
-    const y = ((event.clientY - rect.top) / rect.height) * 100
-    container.style.setProperty("--x", `${x}%`)
-    container.style.setProperty("--y", `${y}%`)
-  }
 
   const selectImage = (index: number) => {
     setCurrentImageIndex(index)

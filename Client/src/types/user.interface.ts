@@ -26,7 +26,7 @@ export interface IUserUpdate {
   fullName: string
   phone: string
   address: string
-  avatar?: string
+  avatar: string
   role: string
 }
 

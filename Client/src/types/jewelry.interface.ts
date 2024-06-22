@@ -28,4 +28,5 @@ export interface IJewelryPost {
   goldKarat: string
   goldWeight: number
   price: number
+  images: string[]
 }

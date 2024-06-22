@@ -1,10 +1,13 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function InvoiceCard({ formattedInvoiceData }: { formattedInvoiceData: any }) {
+import { IInvoice } from "@/types/invoice.interface"
+
+import { formatDate } from "@/lib/utils"
+
+function InvoiceCard({ invoiceItem }: { invoiceItem: IInvoice }) {
   return (
     <div className="flex w-full justify-between text-base">
-      <span>#{formattedInvoiceData.invoiceId}</span>
+      <span>#{invoiceItem.invoiceId}</span>
       <span className="mr-4 font-medium">
-        {formattedInvoiceData.dateCreated}
+        {formatDate(invoiceItem.createDate)}
       </span>
     </div>
   )

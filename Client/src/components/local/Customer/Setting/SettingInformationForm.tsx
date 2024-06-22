@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 
+import { useAuthContext } from "@/contexts/AuthContext"
 import { CircleUserRound, Info, Mail, MapPin, Phone, User } from "lucide-react"
 import { toast } from "sonner"
 
@@ -16,6 +17,8 @@ interface SettingInformationFormProps {
 }
 
 function SettingInformationForm({ user }: SettingInformationFormProps) {
+  const { setUser } = useAuthContext()
+
   const [formData, setFormData] = useState<IUser>(user)
   const [username, setUsername] = useState<string>("")
 
@@ -46,14 +49,21 @@ function SettingInformationForm({ user }: SettingInformationFormProps) {
       id,
       email,
       fullName,
-      phone: phoneNumber,
-      address,
+      phone: phoneNumber || "NaN",
+      address: address || "NaN",
+      avatar: user.avatar,
       role
     }
 
-    // console.log("newUserData", newUserData);
+    // console.log("newUserData", JSON.stringify(newUserData, null, 2))
 
     saveUser(newUserData)
+
+    const updatedUser: IUser = {
+      ...formData
+    }
+
+    setUser(updatedUser)
   }
 
   const confirmCancel = () => {
@@ -94,7 +104,7 @@ function SettingInformationForm({ user }: SettingInformationFormProps) {
             <input
               name="phoneNumber"
               type="text"
-              value={formData.phoneNumber}
+              value={formData.phoneNumber || "NaN"}
               placeholder="Phone"
               onChange={handleChange}
               className="input-field bg-slate-100 pl-12"
@@ -114,8 +124,8 @@ function SettingInformationForm({ user }: SettingInformationFormProps) {
             type="email"
             value={formData.email}
             placeholder="Email"
-            onChange={handleChange}
             className="input-field bg-slate-100 pl-12"
+            readOnly
           />
           <Mail
             size={20}
@@ -147,7 +157,7 @@ function SettingInformationForm({ user }: SettingInformationFormProps) {
           <input
             name="address"
             type="text"
-            value={formData.address}
+            value={formData.address || "NaN"}
             placeholder="Address"
             onChange={handleChange}
             className="input-field bg-slate-100 pl-12"

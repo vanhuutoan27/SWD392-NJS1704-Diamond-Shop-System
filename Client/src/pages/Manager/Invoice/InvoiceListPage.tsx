@@ -1,13 +1,13 @@
 import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage"
 
-import { useGetInvoice } from "@/apis/invoiceApi"
+import { useGetAllInvoices } from "@/apis/invoiceApi"
 
 import { Loader } from "@/components/global/atoms/Loader"
 import { columns } from "@/components/local/Manager/Invoice/InvoiceListColumns"
 import { DataTable } from "@/components/local/Manager/Invoice/InvoiceListDataTable"
 
 function InvoiceListPage() {
-  const { data: invoiceData, error, isLoading } = useGetInvoice()
+  const { data: invoiceData, error, isLoading } = useGetAllInvoices()
 
   if (isLoading) {
     return <Loader />

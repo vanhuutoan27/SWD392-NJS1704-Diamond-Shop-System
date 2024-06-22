@@ -24,9 +24,7 @@ import { TabsContent } from "./CartTabs"
 interface RenderTabContentProps {
   type: string
   title: string
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   columns: any[]
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any[]
   subTotal: number
 }

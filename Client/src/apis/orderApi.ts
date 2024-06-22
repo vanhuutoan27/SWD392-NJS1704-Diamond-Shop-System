@@ -40,7 +40,6 @@ export const usePostOrder = () => {
         queryClient.invalidateQueries("orders")
         toast.success("Order successful, we are processing the order")
 
-        // Xóa các cartItems từ localStorage
         const productIds = variables.products.map(
           (product) => product.productId
         )
@@ -56,4 +55,21 @@ export const usePostOrder = () => {
       }
     }
   )
+}
+
+export const useGetOrderByUserId = (userId: string) => {
+  return useQuery<IOrder[]>({
+    queryKey: ["order", userId],
+    queryFn: async () => {
+      try {
+        const { data } = await diamoonAPI.get(`/Order/by-customer/${userId}`, {
+          params: { userId }
+        })
+        return data.data ?? []
+      } catch (error) {
+        console.error("Error fetching orders:", error)
+        return []
+      }
+    }
+  })
 }

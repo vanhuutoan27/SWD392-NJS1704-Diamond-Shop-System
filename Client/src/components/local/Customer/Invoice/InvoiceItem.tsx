@@ -2,9 +2,10 @@ import { useRef } from "react"
 
 import { toPng } from "html-to-image"
 import { jsPDF } from "jspdf"
+import { toast } from "sonner"
 
-import { IInvoiceItem } from "@/types/invoice.interface"
-import { IUser } from "@/types/user.interface"
+import { IInvoice } from "@/types/invoice.interface"
+import { IOrderProductItem } from "@/types/order.interface"
 
 import { projectName } from "@/lib/constants"
 import { formatCurrency } from "@/lib/utils"
@@ -12,15 +13,10 @@ import { formatCurrency } from "@/lib/utils"
 import { Button } from "@/components/global/atoms/button"
 
 interface InvoiceItemProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  formattedInvoiceData: any
-  billingToUser: IUser | undefined
+  invoiceItem: IInvoice
 }
 
-function InvoiceItem({
-  formattedInvoiceData,
-  billingToUser
-}: InvoiceItemProps) {
+function InvoiceItem({ invoiceItem }: InvoiceItemProps) {
   const invoiceRef = useRef<HTMLDivElement>(null)
 
   const downloadPDF = () => {
@@ -33,7 +29,8 @@ function InvoiceItem({
           const imgProps = pdf.getImageProperties(dataUrl)
           const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width
           pdf.addImage(dataUrl, "PNG", 0, 0, pdfWidth, pdfHeight)
-          pdf.save(`INVOICE-${formattedInvoiceData.invoiceId}.pdf`)
+          pdf.save(`DIAMOON-${invoiceItem.invoiceId}.pdf`)
+          toast.success("Downloaded PDF successfully!")
         })
         .catch((error) => {
           console.error("Error generating PDF: ", error)
@@ -44,7 +41,9 @@ function InvoiceItem({
   return (
     <div className="rounded-md border-2 border-input shadow-md">
       <div className="flex w-full justify-end p-10 pb-0">
-        <Button onClick={downloadPDF}>Download</Button>
+        <Button type="button" onClick={downloadPDF}>
+          Download
+        </Button>
       </div>
 
       <div className="p-10" ref={invoiceRef}>
@@ -67,15 +66,15 @@ function InvoiceItem({
           <div className="w-1/2">
             <p className="mb-1.5 font-medium">Billing To:</p>
             <h4 className="mb-3 text-xl font-semibold text-primary">
-              {billingToUser?.fullName}
+              {invoiceItem.order.customerName}
             </h4>
             <p className="text-sm text-secondary">
               <span className="font-medium text-primary">Email: </span>
-              {billingToUser?.email}
+              {invoiceItem.order.email}
             </p>
             <p className="mt-1.5 text-sm text-secondary">
               <span className="font-medium text-primary">Address: </span>
-              {billingToUser?.address}
+              {invoiceItem.order.address}
             </p>
           </div>
         </div>
@@ -83,20 +82,18 @@ function InvoiceItem({
         <div className="mb-10 grid grid-cols-1 rounded-md border-2 border-input sm:grid-cols-3">
           <div className="border-r-2 border-input px-5 py-4">
             <h5 className="mb-1.5 font-semibold">Invoice ID:</h5>
-            <span className="text-sm font-medium">
-              #{formattedInvoiceData.invoiceId}
-            </span>
+            <span className="text-sm font-medium">{invoiceItem.invoiceId}</span>
           </div>
           <div className="border-r-2 border-input px-5 py-4">
             <h5 className="mb-1.5 font-semibold">Date Created:</h5>
             <span className="text-sm font-medium">
-              {formattedInvoiceData.dateCreated}
+              {invoiceItem.order.dateCreated}
             </span>
           </div>
           <div className="border-input px-5 py-4">
-            <h5 className="mb-1.5 font-semibold">Date of Payment:</h5>
+            <h5 className="mb-1.5 font-semibold">Date of Receipt:</h5>
             <span className="text-sm font-medium">
-              {formattedInvoiceData.paymentDate}
+              {invoiceItem.order.receiptDay}
             </span>
           </div>
         </div>
@@ -119,20 +116,20 @@ function InvoiceItem({
           </div>
         </div>
 
-        {formattedInvoiceData.items.map((item: IInvoiceItem, index: number) => (
+        {invoiceItem.order.items.map((item: IOrderProductItem, index) => (
           <div
             key={index}
             className={`grid grid-cols-12 border-2 border-t-0 border-input py-3.5 pl-5 pr-6 ${
-              index === formattedInvoiceData.items.length - 1 && "rounded-b-md"
+              index === invoiceItem.order.items.length - 1 && "rounded-b-md"
             }`}
           >
             <div className="col-span-2">
-              <p className="text-sm font-medium text-secondary">{item.skuID}</p>
+              <p className="text-sm font-medium text-secondary">
+                {item.productId}
+              </p>
             </div>
             <div className="col-span-4">
-              <p className="text-sm font-medium text-secondary">
-                {item.description}
-              </p>
+              <p className="text-sm font-medium text-secondary"></p>
             </div>
             <div className="col-span-2">
               <p className="text-sm font-medium text-secondary">
@@ -141,12 +138,12 @@ function InvoiceItem({
             </div>
             <div className="col-span-2">
               <p className="text-sm font-medium text-secondary">
-                {formatCurrency(item.price!)}
+                {formatCurrency(item.unitPrice)}
               </p>
             </div>
             <div className="col-span-2">
               <p className="text-sm font-medium text-secondary">
-                {formatCurrency(item.total!)}
+                {formatCurrency(item.quantity * item.unitPrice)}
               </p>
             </div>
           </div>
@@ -158,24 +155,28 @@ function InvoiceItem({
             <div className="flex w-1/2 flex-col gap-4">
               <p className="flex justify-between font-medium">
                 <span>Subtotal</span>
-                <span>{formattedInvoiceData.subtotal}</span>
+                <span>
+                  {formatCurrency(
+                    invoiceItem.order.total - invoiceItem.order.total * 0.1
+                  )}
+                </span>
               </p>
               <p className="flex justify-between font-medium">
                 <span>
-                  Coupon Discount <span className="text-meta-3">(10%)</span>
+                  Coupon Discount <span className="text-meta-3">(0%)</span>
                 </span>
-                <span>{formattedInvoiceData.discount}</span>
+                <span>{invoiceItem.order.discount || "0 VND"}</span>
               </p>
               <p className="flex justify-between font-medium">
                 <span>
                   Vat <span className="text-red">(10%)</span>
                 </span>
-                <span>{formattedInvoiceData.vatAmount}</span>
+                <span>{formatCurrency(invoiceItem.order.total * 0.1)}</span>
               </p>
               <p className="flex justify-between">
                 <span className="font-medium">Total</span>
                 <span className="text-meta-3 font-semibold">
-                  {formattedInvoiceData.total}
+                  {formatCurrency(invoiceItem.order.total)}
                 </span>
               </p>
             </div>

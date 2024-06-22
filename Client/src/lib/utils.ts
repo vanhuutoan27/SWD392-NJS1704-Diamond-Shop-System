@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom"
 import { twMerge } from "tailwind-merge"
 
 import { ICart } from "@/types/cart.interface"
-import { OrderPaymentMethod, OrderStatus } from "@/types/order.interface"
+import { IOrderPaymentMethod, OrderStatus } from "@/types/order.interface"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -48,6 +48,16 @@ export const formatDate = (dateStr: string): string => {
 export const useIsAdminRoute = (): boolean => {
   const location = useLocation()
   return location.pathname.startsWith("/admin")
+}
+
+// Zoom in image on hover
+export const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+  const container = event.currentTarget
+  const rect = container.getBoundingClientRect()
+  const x = ((event.clientX - rect.left) / rect.width) * 100
+  const y = ((event.clientY - rect.top) / rect.height) * 100
+  container.style.setProperty("--x", `${x}%`)
+  container.style.setProperty("--y", `${y}%`)
 }
 
 // Add item to cart
@@ -113,19 +123,19 @@ export const formatInvoiceData = (invoiceData: any, vatPercentage: number) => {
 }
 
 // Get payment method number
-export const getPaymentMethodNumber = (method: OrderPaymentMethod) => {
+export const getPaymentMethodNumber = (method: IOrderPaymentMethod) => {
   switch (method) {
-    case OrderPaymentMethod.Deposit500:
+    case IOrderPaymentMethod.Deposit500:
       return 0
-    case OrderPaymentMethod.Deposit1000:
+    case IOrderPaymentMethod.Deposit1000:
       return 1
-    case OrderPaymentMethod.Deposit1500:
+    case IOrderPaymentMethod.Deposit1500:
       return 2
-    case OrderPaymentMethod.Deposit2000:
+    case IOrderPaymentMethod.Deposit2000:
       return 3
-    case OrderPaymentMethod.BankTransfer:
+    case IOrderPaymentMethod.BankTransfer:
       return 4
-    case OrderPaymentMethod.CreditCard:
+    case IOrderPaymentMethod.CreditCard:
       return 5
     default:
       return 4

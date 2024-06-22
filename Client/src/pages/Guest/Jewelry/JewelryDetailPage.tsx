@@ -12,6 +12,8 @@ import JewelryFaqs from "@/components/local/Guest/Jewelry/JewelryFaqs"
 import JewelryQualityCommitment from "@/components/local/Guest/Jewelry/JewelryQualityCommitment"
 import RelatedJewelry from "@/components/local/Guest/Jewelry/RelatedJewelry"
 
+import NotFoundPage from "../HTTP/NotFoundPage"
+
 function JewelryDetailPage() {
   const { jewelryId } = useParams<{ jewelryId: string }>()
 
@@ -38,6 +40,10 @@ function JewelryDetailPage() {
   const relatedProducts = (jewelryData || []).filter(
     (jewelry) => jewelry.jewelryId !== jewelryId
   )
+
+  if (jewelryDetails.status === 0) {
+    return <NotFoundPage />
+  }
 
   return (
     <div className="container">

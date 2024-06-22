@@ -4,7 +4,6 @@ import { Eye, EyeOff } from "lucide-react"
 import { UseFormRegister } from "react-hook-form"
 
 interface PasswordInputProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   register: UseFormRegister<any>
   placeholder: string
 }

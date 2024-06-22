@@ -45,7 +45,7 @@ function AddJewelryDialog() {
 
   const handleSave = () => {
     if (newPhoto) {
-      const storageRef = ref(diamoonDB, `Test/${newPhoto.name}`)
+      const storageRef = ref(diamoonDB, `/Products/Jewelry/${newPhoto.name}`)
       const uploadTask = uploadBytesResumable(storageRef, newPhoto)
 
       uploadTask.on(

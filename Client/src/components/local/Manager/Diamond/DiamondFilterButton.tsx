@@ -1,6 +1,7 @@
 import { useState } from "react"
 
 import {
+  IDiamond,
   IDiamondClarity,
   IDiamondColor,
   IDiamondShape,
@@ -17,7 +18,6 @@ import {
 
 interface FilterOptionGroupProps {
   title: string
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   options: Array<{ shapeName?: string; [key: string]: any } | string>
   selectedOption: string
   handleSelection: (value: string) => void
@@ -70,6 +70,8 @@ interface DiamondFilterButtonProps {
   setColumnFilters: (
     filters: Array<{ id: string; value: string | number[] }>
   ) => void
+  setFilteredData: (data: IDiamond[]) => void
+  data: IDiamond[]
 }
 
 type Filters = {
@@ -80,7 +82,11 @@ type Filters = {
   size: string
 }
 
-function DiamondFilterButton({ setColumnFilters }: DiamondFilterButtonProps) {
+function DiamondFilterButton({
+  setColumnFilters,
+  setFilteredData,
+  data
+}: DiamondFilterButtonProps) {
   const [filters, setFilters] = useState<Filters>({
     shape: "",
     weight: "",
@@ -124,7 +130,21 @@ function DiamondFilterButton({ setColumnFilters }: DiamondFilterButtonProps) {
       }))
 
     setColumnFilters(filterArray)
-    setIsPopoverOpen(false) // Close the popover
+    setIsPopoverOpen(false)
+
+    // Filter the data and log it
+    const filteredData = data.filter((item) => {
+      return filterArray.every((filter) => {
+        if (filter.id === "weight" || filter.id === "size") {
+          const [min, max] = filter.value as number[]
+          return item[filter.id] >= min && item[filter.id] <= max
+        }
+        return item[filter.id as keyof IDiamond] === filter.value
+      })
+    })
+
+    setFilteredData(filteredData)
+    // console.log("Filtered Data: ", filteredData)
   }
 
   const resetFilters = () => {
@@ -137,6 +157,7 @@ function DiamondFilterButton({ setColumnFilters }: DiamondFilterButtonProps) {
     })
     setColumnFilters([])
     setIsPopoverOpen(false)
+    setFilteredData(data)
   }
 
   return (

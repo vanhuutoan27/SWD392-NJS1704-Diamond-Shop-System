@@ -15,6 +15,7 @@ import diamoonAPI from "@/lib/diamoonAPI"
 
 interface AuthContextProps {
   user: IUser | null
+  setUser: (value: IUser | null) => void
   login: (accessToken: string, refreshToken: string) => Promise<void>
   logout: () => void
 }
@@ -83,7 +84,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, setUser, login, logout }}>
       {children}
     </AuthContext.Provider>
   )

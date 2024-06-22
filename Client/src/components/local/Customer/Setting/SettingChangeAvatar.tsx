@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 
+import { useAuthContext } from "@/contexts/AuthContext"
 import { Camera, Upload } from "lucide-react"
 import { toast } from "sonner"
 
@@ -11,13 +12,16 @@ import { userAvatar } from "@/lib/constants"
 
 import AlertDialogComponent from "@/components/global/molecules/AlertDialogComponent"
 
+import AlertDeleteAvatar from "./AlertDeleteAvatar"
 import UploadPhotoDialog from "./UploadPhotoDialog"
 
-interface SettingChangePhotoProps {
+interface SettingChangeAvatarProps {
   user: IUser
 }
 
-const SettingChangePhoto: React.FC<SettingChangePhotoProps> = ({ user }) => {
+const SettingChangeAvatar: React.FC<SettingChangeAvatarProps> = ({ user }) => {
+  const { setUser } = useAuthContext()
+
   const [formData, setFormData] = useState<IUser>(user)
   const [showUploadPhotoDialog, setShowUploadPhotoDialog] = useState(false)
 
@@ -38,19 +42,31 @@ const SettingChangePhoto: React.FC<SettingChangePhotoProps> = ({ user }) => {
       id,
       email,
       fullName,
-      phone: phoneNumber,
-      address,
+      phone: phoneNumber || "NaN",
+      address: address || "NaN",
       avatar,
       role
     }
 
-    console.log(newUserData)
+    // console.log("newUserData", JSON.stringify(newUserData, null, 2))
 
     saveUser(newUserData)
+
+    const updatedUser: IUser = {
+      ...formData
+    }
+
+    setUser(updatedUser)
   }
 
   const handleChangePhoto = () => {
     setShowUploadPhotoDialog(true)
+  }
+
+  const handleDeletePhoto = () => {
+    setFormData({ ...formData, avatar: userAvatar })
+    toast.success("Avatar deleted successfully")
+    setUser({ ...user, avatar: userAvatar })
   }
 
   const confirmCancel = () => {
@@ -78,9 +94,13 @@ const SettingChangePhoto: React.FC<SettingChangePhotoProps> = ({ user }) => {
 
           <div className="flex flex-col justify-center gap-2">
             <span>Update Your Avatar</span>
-            <span className="slow flex w-fit cursor-pointer text-sm text-red-600 hover:underline">
-              Delete
-            </span>
+
+            <AlertDeleteAvatar
+              title="Confirm Delete"
+              description="Are you sure you want to delete your avatar?"
+              action="Delete"
+              onConfirm={handleDeletePhoto}
+            />
           </div>
         </div>
         <div
@@ -133,4 +153,4 @@ const SettingChangePhoto: React.FC<SettingChangePhotoProps> = ({ user }) => {
   )
 }
 
-export default SettingChangePhoto
+export default SettingChangeAvatar

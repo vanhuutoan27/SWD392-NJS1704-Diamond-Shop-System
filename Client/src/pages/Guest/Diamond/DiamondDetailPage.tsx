@@ -42,6 +42,10 @@ function DiamondDetailPage() {
       (diamond: IDiamond) => diamond.diamondId !== diamondId
     ) || []
 
+  if (diamondDetails.status === 0) {
+    return <NotFoundPage />
+  }
+
   return (
     <div className="container">
       <BreadcrumbComponent

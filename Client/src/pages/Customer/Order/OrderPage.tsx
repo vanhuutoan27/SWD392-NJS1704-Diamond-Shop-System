@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom"
 import {
   District,
   IOrderPost,
-  OrderPaymentMethod,
+  IOrderPaymentMethod,
   Province,
   Ward
 } from "@/types/order.interface"
@@ -52,7 +52,7 @@ function OrderPage() {
     province: "",
     district: "",
     ward: "",
-    paymentMethod: OrderPaymentMethod.BankTransfer
+    paymentMethod: IOrderPaymentMethod.BankTransfer
   })
 
   const [provinces, setProvinces] = useState<Province[]>([])
@@ -60,7 +60,7 @@ function OrderPage() {
   const [wards, setWards] = useState<Ward[]>([])
   const [errors, setErrors] = useState<any>({})
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
-    useState<OrderPaymentMethod>(OrderPaymentMethod.BankTransfer)
+    useState<IOrderPaymentMethod>(IOrderPaymentMethod.BankTransfer)
   const [paymentError, setPaymentError] = useState("")
 
   const headerHeight = 200

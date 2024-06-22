@@ -8,7 +8,7 @@ import { cn, useIsAdminRoute } from "@/lib/utils"
 import { Loader } from "@/components/global/atoms/Loader"
 import BreadcrumbComponent from "@/components/global/molecules/BreadcrumbComponent"
 import Section from "@/components/global/organisms/Section"
-import SettingChangePhoto from "@/components/local/Customer/Setting/SettingChangePhoto"
+import SettingChangeAvatar from "@/components/local/Customer/Setting/SettingChangeAvatar"
 import SettingForm from "@/components/local/Customer/Setting/SettingForm"
 
 function MySettingPage() {
@@ -36,14 +36,14 @@ function MySettingPage() {
         />
       )}
 
-      <Section pageName="Settings" />
+      <Section pageName="Diamoon Settings" />
 
       <div className="flex w-full flex-col gap-8 md:flex-row">
         <div className="w-2/3">
           <SettingForm user={userDetails} />
         </div>
         <div className="w-1/3">
-          <SettingChangePhoto user={userDetails} />
+          <SettingChangeAvatar user={userDetails} />
         </div>
       </div>
     </div>

@@ -15,8 +15,6 @@ import {
   DropdownMenuTrigger
 } from "@/components/global/atoms/dropdown-menu"
 
-import { Skeleton } from "../atoms/skeleton"
-
 interface UserProfileProps {
   userData: IUser | null
   onLogout: () => void
@@ -28,13 +26,13 @@ function UserProfile({ userData, onLogout }: UserProfileProps) {
   const menuItems = [
     {
       icon: User,
-      label: "My Profile",
+      label: "Profile",
       link: `/profile/${userId}`,
       hoverColor: "group-hover:text-secondary"
     },
     {
       icon: PackageCheck,
-      label: "My Order",
+      label: "Orders",
       link: `/orders/${userId}`,
       hoverColor: "group-hover:text-secondary"
     },
@@ -60,31 +58,22 @@ function UserProfile({ userData, onLogout }: UserProfileProps) {
     }
   ]
 
-  if (!userData)
-    return (
-      <div className="flex gap-4">
-        <div className="flex flex-col items-end gap-1">
-          <Skeleton className="h-5 w-20 rounded-md" />
-          <Skeleton className="h-4 w-24 rounded-md" />
-        </div>
-        <Skeleton className="h-10 w-10 rounded-full" />
-      </div>
-    )
-
   return (
     <DropdownMenu>
       <div className="flex items-center gap-4">
         <span className="hidden text-right md:block">
           <span className="slow block cursor-pointer text-sm font-medium text-primary hover:text-secondary">
-            {userData.fullName}
+            {userData?.fullName}
           </span>
-          <span className="block text-xs text-secondary">{userData.email}</span>
+          <span className="block text-xs text-secondary">
+            {userData?.email}
+          </span>
         </span>
         <DropdownMenuTrigger asChild className="relative select-none">
           <Avatar className="cursor-pointer">
             <AvatarImage
               src={
-                userData.avatar ||
+                userData?.avatar ||
                 "https://firebasestorage.googleapis.com/v0/b/diamoondb-1412.appspot.com/o/Test%2F3fab077cc8865e75354d5fbf20b35488.jpg?alt=media&token=fa6a539e-1f0f-4a6f-83f6-d03ad9b39eea"
               }
             />

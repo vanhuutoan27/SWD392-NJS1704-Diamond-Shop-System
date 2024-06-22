@@ -30,12 +30,10 @@ import AddJewelryDialog from "./AddJewelryDialog"
 
 interface JewelryData {
   jewelryId: string
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any
 }
 
 interface DataTableProps<TData> {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   columns: ColumnDef<TData, any>[]
   data: TData[]
 }

@@ -1,7 +1,7 @@
 import { z } from "zod"
 
 export const diamondSchema = z.object({
-  image: z.string().url({ message: "Invalid image URL" }),
+  images: z.string().optional(),
   shape: z.string().min(1, { message: "Shape is required" }),
   weight: z.number().positive({ message: "Weight must be a positive number" }),
   colorLevel: z.string().min(1, { message: "Color Level is required" }),

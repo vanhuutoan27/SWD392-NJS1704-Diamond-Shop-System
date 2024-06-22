@@ -1,5 +1,7 @@
 "use client"
 
+// import { useState } from "react"
+
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown, Copy, Eye, MoreHorizontal } from "lucide-react"
 
@@ -20,8 +22,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger
 } from "@/components/global/atoms/dropdown-menu"
-import { useState } from "react"
-import ViewOrderDialog from "../../Manager/Order/ViewOrderDialog"
+// import ViewOrderDialog from "@/components/local/Manager/Order/ViewOrderDialog"
 
 export const columns: ColumnDef<IOrder>[] = [
   {
@@ -144,7 +145,7 @@ export const columns: ColumnDef<IOrder>[] = [
     ),
     cell: ({ row }) => {
       const order = row.original
-      const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
+      // const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
 
       // const handleViewDetailsClick = () => {
       //   setIsViewDialogOpen(true)

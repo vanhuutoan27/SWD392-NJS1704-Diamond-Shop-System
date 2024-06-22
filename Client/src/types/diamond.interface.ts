@@ -14,7 +14,7 @@ export interface IDiamond {
   price: number
   dateCreated: string
   dateModified: string
-  status: string
+  status: number
 }
 
 export interface IDiamondPost {
@@ -27,6 +27,7 @@ export interface IDiamondPost {
   fluorescence: string
   qualityOfCut: string
   price: number
+  images: string
 }
 
 export const IDiamondShape = [

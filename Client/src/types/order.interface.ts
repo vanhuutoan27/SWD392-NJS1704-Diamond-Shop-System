@@ -10,12 +10,13 @@ export interface IOrder {
   phone: string
   email: string
   address: string
+  discount?: number
   orderStatus: OrderStatus
-  paymentMethod: OrderPaymentMethod
+  paymentMethod: IOrderPaymentMethod
   dateCreated: string
   dateModified: string
   status: boolean
-  items: OrderProductItem[]
+  items: IOrderProductItem[]
 }
 
 export enum OrderStatus {
@@ -27,7 +28,7 @@ export enum OrderStatus {
 }
 
 export interface IOrderPost {
-  products: OrderProductItem[]
+  products: IOrderProductItem[]
   total: number
   note: string
   receiptDay: string
@@ -39,10 +40,10 @@ export interface IOrderPost {
   province: string
   district: string
   ward: string
-  paymentMethod: OrderPaymentMethod
+  paymentMethod: IOrderPaymentMethod
 }
 
-export enum OrderPaymentMethod {
+export enum IOrderPaymentMethod {
   Deposit500 = 0,
   Deposit1000 = 1,
   Deposit1500 = 2,
@@ -51,7 +52,7 @@ export enum OrderPaymentMethod {
   CreditCard = 5
 }
 
-export interface OrderProductItem {
+export interface IOrderProductItem {
   orderItemId?: string
   productId: string
   quantity: number
@@ -93,8 +94,8 @@ export interface PaymentFormProps {
   provinces: Province[]
   districts: District[]
   wards: Ward[]
-  selectedPaymentMethod: OrderPaymentMethod
-  setSelectedPaymentMethod: Dispatch<SetStateAction<OrderPaymentMethod>>
+  selectedPaymentMethod: IOrderPaymentMethod
+  setSelectedPaymentMethod: Dispatch<SetStateAction<IOrderPaymentMethod>>
   paymentError: string
   setTab: Dispatch<SetStateAction<number>>
 }

@@ -5,7 +5,7 @@ import { useState } from "react"
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown, Copy, Eye, MoreHorizontal } from "lucide-react"
 
-import { IInvoiceItem } from "@/types/invoice.interface"
+import { IInvoice } from "@/types/invoice.interface"
 
 import { formatCurrencyWithoutVND, formatDate } from "@/lib/utils"
 
@@ -20,7 +20,7 @@ import {
 
 // import ViewInvoiceDialog from "./ViewInvoiceDialog"
 
-export const columns: ColumnDef<IInvoiceItem>[] = [
+export const columns: ColumnDef<IInvoice>[] = [
   {
     accessorKey: "invoiceId",
     header: ({ column }) => {
@@ -105,7 +105,6 @@ export const columns: ColumnDef<IInvoiceItem>[] = [
     ),
     cell: ({ row }) => {
       const invoice = row.original
-      // eslint-disable-next-line react-hooks/rules-of-hooks
       // const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
 
       // const handleViewDetailsClick = () => {

@@ -60,7 +60,7 @@ namespace DiamonShop.Data.Services
             var image = new Image()
             {
                 ProductId = product.ProductId,
-                Url = createDiamondRequest.image,
+                Url = createDiamondRequest.Images,
                 DateCreated = DateTime.Now
             };
             _repositoryManager.Image.Add(image);

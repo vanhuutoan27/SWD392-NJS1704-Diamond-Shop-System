@@ -2,7 +2,7 @@
 
 // import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage"
 
-// import { IInvoiceItem } from "@/types/invoice.interface"
+// import { IInvoice } from "@/types/invoice.interface"
 
 // import {  } from "@/apis/invoiceApi"
 

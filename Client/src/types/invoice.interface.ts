@@ -1,7 +1,7 @@
 import { IOrder } from "./order.interface"
 import { IUser } from "./user.interface"
 
-export interface IInvoiceItem {
+export interface IInvoice {
   invoiceId: string
   userId: string
   orderId: string

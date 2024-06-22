@@ -4,7 +4,7 @@ import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage"
 
 import {
   IOrder,
-  OrderPaymentMethod,
+  IOrderPaymentMethod,
   OrderStatus
 } from "@/types/order.interface"
 
@@ -53,7 +53,7 @@ function ViewOrderDialog({
     email: "",
     address: "",
     orderStatus: OrderStatus.Pending,
-    paymentMethod: OrderPaymentMethod.Deposit500,
+    paymentMethod: IOrderPaymentMethod.Deposit500,
     dateCreated: "",
     dateModified: "",
     status: false,
@@ -76,7 +76,7 @@ function ViewOrderDialog({
         address: orderDetails.address || "",
         orderStatus: orderDetails.orderStatus || OrderStatus.Pending,
         paymentMethod:
-          orderDetails.paymentMethod || OrderPaymentMethod.Deposit500,
+          orderDetails.paymentMethod || IOrderPaymentMethod.Deposit500,
         dateCreated: orderDetails.dateCreated || "",
         dateModified: orderDetails.dateModified || "",
         status: orderDetails.status || false,
@@ -107,7 +107,7 @@ function ViewOrderDialog({
         address: orderDetails.address || "",
         orderStatus: orderDetails.orderStatus || OrderStatus.Pending,
         paymentMethod:
-          orderDetails.paymentMethod || OrderPaymentMethod.Deposit500,
+          orderDetails.paymentMethod || IOrderPaymentMethod.Deposit500,
         dateCreated: orderDetails.dateCreated || "",
         dateModified: orderDetails.dateModified || "",
         status: orderDetails.status || false,

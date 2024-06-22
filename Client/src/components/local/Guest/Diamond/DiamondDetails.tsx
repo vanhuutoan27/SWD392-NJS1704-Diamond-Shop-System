@@ -7,13 +7,15 @@ import { ICart, IDiamondCart } from "@/types/cart.interface"
 import { IDiamond } from "@/types/diamond.interface"
 
 import { diamondImage } from "@/lib/constants"
-import { addToCart, formatCurrency } from "@/lib/utils"
+import { addToCart, formatCurrency, handleMouseMove } from "@/lib/utils"
 
 import { Button } from "@/components/global/atoms/button"
 import Section from "@/components/global/organisms/Section"
 
 function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
   const { user } = useAuthContext()
+
+  console.log(diamondDetails)
 
   const salePrice = null
 
@@ -25,15 +27,6 @@ function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
       setCartItems(JSON.parse(storedCartItems))
     }
   }, [])
-
-  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    const container = event.currentTarget
-    const rect = container.getBoundingClientRect()
-    const x = ((event.clientX - rect.left) / rect.width) * 100
-    const y = ((event.clientY - rect.top) / rect.height) * 100
-    container.style.setProperty("--x", `${x}%`)
-    container.style.setProperty("--y", `${y}%`)
-  }
 
   const handleAddToCart = () => {
     if (!user) {

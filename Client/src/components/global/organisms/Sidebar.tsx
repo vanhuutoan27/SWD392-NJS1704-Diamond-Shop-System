@@ -25,13 +25,13 @@ const menuItems = [
     icon: <LayoutDashboard />
   },
   {
-    title: "Jewelry",
-    link: "/admin/jewelry-list",
+    title: "Diamond",
+    link: "/admin/diamond-list",
     icon: <Gem />
   },
   {
-    title: "Diamond",
-    link: "/admin/diamond-list",
+    title: "Jewelry",
+    link: "/admin/jewelry-list",
     icon: <Gem />
   },
   {

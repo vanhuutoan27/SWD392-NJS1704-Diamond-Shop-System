@@ -36,7 +36,10 @@ function DiamondPage() {
 
   useEffect(() => {
     if (diamondData) {
-      setFilteredDiamonds(diamondData)
+      const validDiamonds = diamondData.filter(
+        (diamond) => diamond.status === 1
+      )
+      setFilteredDiamonds(validDiamonds)
     }
   }, [diamondData])
 

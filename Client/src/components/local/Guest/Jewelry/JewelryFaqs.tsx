@@ -15,10 +15,10 @@ function JewelryFaqs() {
 
       <Accordion type="multiple">
         <AccordionItem value="item-1">
-          <AccordionTrigger className="text-base">
+          <AccordionTrigger className="text-base border-b">
             Why should you choose {projectName}?
           </AccordionTrigger>
-          <AccordionContent>
+          <AccordionContent className="mt-4">
             <ul className="list-disc pl-5">
               <h4 className="mb-1 text-base font-semibold">
                 Diamond Jewelry At {projectName}
@@ -44,10 +44,10 @@ function JewelryFaqs() {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-2">
-          <AccordionTrigger className="text-base">
+          <AccordionTrigger className="text-base border-b">
             Post-purchase service
           </AccordionTrigger>
-          <AccordionContent>
+          <AccordionContent className="mt-4">
             <ul className="list-disc pl-5">
               <li className="text-secondary">
                 Free lifetime product polishing and renewing service.
@@ -79,10 +79,10 @@ function JewelryFaqs() {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-3">
-          <AccordionTrigger className="text-base">
+          <AccordionTrigger className="text-base border-b">
             Frequently asked questions
           </AccordionTrigger>
-          <AccordionContent>
+          <AccordionContent className="mt-4">
             <ul className="list-disc pl-5">
               <h4 className="mb-1 font-semibold">
                 What if I receive the goods and the product is not of good
@@ -134,10 +134,10 @@ function JewelryFaqs() {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-4">
-          <AccordionTrigger className="text-base">
+          <AccordionTrigger className="text-base border-b">
             Comments & reviews
           </AccordionTrigger>
-          <AccordionContent>
+          <AccordionContent className="mt-4">
             <ul className="mt-4 list-disc pl-5">
               <h4 className="mb-1 font-semibold">No comment</h4>
             </ul>

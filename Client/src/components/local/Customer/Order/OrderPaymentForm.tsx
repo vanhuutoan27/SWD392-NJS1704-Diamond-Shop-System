@@ -1,4 +1,4 @@
-import { OrderPaymentMethod, PaymentFormProps } from "@/types/order.interface"
+import { IOrderPaymentMethod, PaymentFormProps } from "@/types/order.interface"
 
 import { formatCurrency } from "@/lib/utils"
 
@@ -18,7 +18,7 @@ function PaymentForm({
   paymentError,
   setTab
 }: PaymentFormProps) {
-  const handleSelectItem = (value: OrderPaymentMethod) => {
+  const handleSelectItem = (value: IOrderPaymentMethod) => {
     setSelectedPaymentMethod(value)
   }
 
@@ -61,11 +61,11 @@ function PaymentForm({
         <RadioGroup className="rounded-md border-2 border-input">
           <div
             className="flex cursor-pointer items-center rounded-md border-b-2 px-5 py-4"
-            onClick={() => handleSelectItem(OrderPaymentMethod.Deposit500)}
+            onClick={() => handleSelectItem(IOrderPaymentMethod.Deposit500)}
           >
             <RadioGroupItem
-              value={OrderPaymentMethod.Deposit500.toString()}
-              checked={selectedPaymentMethod === OrderPaymentMethod.Deposit500}
+              value={IOrderPaymentMethod.Deposit500.toString()}
+              checked={selectedPaymentMethod === IOrderPaymentMethod.Deposit500}
             />
             <span className="ml-4 text-sm">
               Deposit {formatCurrency(500000)}
@@ -74,11 +74,11 @@ function PaymentForm({
 
           <div
             className="flex cursor-pointer items-center rounded-md border-b-2 px-5 py-4"
-            onClick={() => handleSelectItem(OrderPaymentMethod.Deposit1000)}
+            onClick={() => handleSelectItem(IOrderPaymentMethod.Deposit1000)}
           >
             <RadioGroupItem
-              value={OrderPaymentMethod.Deposit1000.toString()}
-              checked={selectedPaymentMethod === OrderPaymentMethod.Deposit1000}
+              value={IOrderPaymentMethod.Deposit1000.toString()}
+              checked={selectedPaymentMethod === IOrderPaymentMethod.Deposit1000}
             />
             <span className="ml-4 text-sm">
               Deposit {formatCurrency(1000000)}
@@ -87,11 +87,11 @@ function PaymentForm({
 
           <div
             className="flex cursor-pointer items-center rounded-md border-b-2 px-5 py-4"
-            onClick={() => handleSelectItem(OrderPaymentMethod.Deposit1500)}
+            onClick={() => handleSelectItem(IOrderPaymentMethod.Deposit1500)}
           >
             <RadioGroupItem
-              value={OrderPaymentMethod.Deposit1500.toString()}
-              checked={selectedPaymentMethod === OrderPaymentMethod.Deposit1500}
+              value={IOrderPaymentMethod.Deposit1500.toString()}
+              checked={selectedPaymentMethod === IOrderPaymentMethod.Deposit1500}
             />
             <span className="ml-4 text-sm">
               Deposit {formatCurrency(1500000)}
@@ -100,11 +100,11 @@ function PaymentForm({
 
           <div
             className="flex cursor-pointer items-center rounded-md border-b-2 px-5 py-4"
-            onClick={() => handleSelectItem(OrderPaymentMethod.Deposit2000)}
+            onClick={() => handleSelectItem(IOrderPaymentMethod.Deposit2000)}
           >
             <RadioGroupItem
-              value={OrderPaymentMethod.Deposit2000.toString()}
-              checked={selectedPaymentMethod === OrderPaymentMethod.Deposit2000}
+              value={IOrderPaymentMethod.Deposit2000.toString()}
+              checked={selectedPaymentMethod === IOrderPaymentMethod.Deposit2000}
             />
             <span className="ml-4 text-sm">
               Deposit {formatCurrency(2000000)}
@@ -113,12 +113,12 @@ function PaymentForm({
 
           <div
             className="flex cursor-pointer items-center rounded-md border-b-2 px-5 py-4"
-            onClick={() => handleSelectItem(OrderPaymentMethod.BankTransfer)}
+            onClick={() => handleSelectItem(IOrderPaymentMethod.BankTransfer)}
           >
             <RadioGroupItem
-              value={OrderPaymentMethod.BankTransfer.toString()}
+              value={IOrderPaymentMethod.BankTransfer.toString()}
               checked={
-                selectedPaymentMethod === OrderPaymentMethod.BankTransfer
+                selectedPaymentMethod === IOrderPaymentMethod.BankTransfer
               }
             />
             <span className="ml-4 text-sm">Bank Transfer (VNPay)</span>
@@ -126,11 +126,11 @@ function PaymentForm({
 
           <div
             className="flex cursor-pointer items-center rounded-md border-b-2 px-5 py-4"
-            onClick={() => handleSelectItem(OrderPaymentMethod.CreditCard)}
+            onClick={() => handleSelectItem(IOrderPaymentMethod.CreditCard)}
           >
             <RadioGroupItem
-              value={OrderPaymentMethod.CreditCard.toString()}
-              checked={selectedPaymentMethod === OrderPaymentMethod.CreditCard}
+              value={IOrderPaymentMethod.CreditCard.toString()}
+              checked={selectedPaymentMethod === IOrderPaymentMethod.CreditCard}
             />
             <span className="ml-4 text-sm">Credit Card</span>
           </div>

@@ -66,7 +66,6 @@ function ContactForm() {
         const fieldErrors = error.flatten().fieldErrors
         const formattedErrors: Errors = {}
         for (const key in fieldErrors) {
-          // eslint-disable-next-line no-prototype-builtins
           if (fieldErrors.hasOwnProperty(key)) {
             formattedErrors[key as keyof Errors] = fieldErrors[key]?.join(" ")
           }

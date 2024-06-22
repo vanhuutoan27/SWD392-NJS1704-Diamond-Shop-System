@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 import { diamondSchema } from "@/schemas/AddDiamondForm"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -48,35 +48,38 @@ import {
 type DiamondFormValues = z.infer<typeof diamondSchema>
 
 function AddDiamondDialog() {
-  const [imageUrl, setImageUrl] = useState<string>("")
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
   const [newPhoto, setNewPhoto] = useState<File | null>(null)
   const [uploadProgress, setUploadProgress] = useState(0)
-  const [imageMethod, setImageMethod] = useState<"upload" | "url">("upload")
 
   const postDiamond = usePostDiamond()
 
-  const handleSave = () => {
-    if (newPhoto) {
-      const storageRef = ref(diamoonDB, `/Products/Diamond/${newPhoto.name}`)
-      const uploadTask = uploadBytesResumable(storageRef, newPhoto)
+  const handleSave = async () => {
+    return new Promise<string | null>((resolve, reject) => {
+      if (newPhoto) {
+        const storageRef = ref(diamoonDB, `/Products/Diamond/${newPhoto.name}`)
+        const uploadTask = uploadBytesResumable(storageRef, newPhoto)
 
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          setUploadProgress(progress)
-        },
-        (error) => {
-          console.error("Upload failed:", error)
-        },
-        async () => {
-          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
-          setImageUrl(downloadURL)
-        }
-      )
-    }
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            const progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            setUploadProgress(progress)
+          },
+          (error) => {
+            console.error("Upload failed:", error)
+            reject(error)
+          },
+          async () => {
+            const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
+            resolve(downloadURL)
+          }
+        )
+      } else {
+        resolve(null)
+      }
+    })
   }
 
   const {
@@ -84,39 +87,33 @@ function AddDiamondDialog() {
     handleSubmit,
     control,
     reset,
-    watch,
     formState: { errors, isDirty }
   } = useForm<DiamondFormValues>({
     resolver: zodResolver(diamondSchema)
   })
 
-  const watchImageUrl = watch("image")
+  const onSubmit: SubmitHandler<DiamondFormValues> = async (data) => {
+    try {
+      const downloadURL = await handleSave()
 
-  useEffect(() => {
-    if (imageMethod === "url") {
-      setImageUrl(watchImageUrl)
-    }
-  }, [watchImageUrl, imageMethod])
+      const diamondData = {
+        shape: data.shape,
+        weight: data.weight,
+        colorLevel: data.colorLevel,
+        clarity: data.clarity,
+        certification: data.certification,
+        size: data.size,
+        fluorescence: data.fluorescence,
+        qualityOfCut: data.qualityOfCut,
+        price: data.price,
+        images: downloadURL || ""
+      }
 
-  const onSubmit: SubmitHandler<DiamondFormValues> = (data) => {
-    const diamondData = {
-      shape: data.shape,
-      weight: data.weight,
-      colorLevel: data.colorLevel,
-      clarity: data.clarity,
-      certification: data.certification,
-      size: data.size,
-      fluorescence: data.fluorescence,
-      qualityOfCut: data.qualityOfCut,
-      price: data.price
-    }
-
-    if (imageMethod === "upload") {
-      handleSave()
-    } else {
-      // console.log("Diamond data:", diamondData);
-
+      console.log("Diamond data:", JSON.stringify(diamondData, null, 2))
       postDiamond.mutate(diamondData)
+      setIsDialogOpen(false)
+    } catch (error) {
+      console.error("Error saving diamond:", error)
     }
   }
 
@@ -130,12 +127,11 @@ function AddDiamondDialog() {
       size: 0,
       fluorescence: "",
       qualityOfCut: "",
-      image: "",
+      images: "",
       price: 0
     })
     setUploadProgress(0)
     setNewPhoto(null)
-    setImageUrl("")
   }
 
   const handleConfirmCancel = () => {
@@ -171,37 +167,25 @@ function AddDiamondDialog() {
           <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 p-2">
             <div className="flex justify-between gap-4">
               <div className="flex min-h-40 min-w-40 items-center justify-center rounded-md border-2 border-gray-800">
-                {imageMethod === "url" && imageUrl ? (
-                  <img
-                    src={imageUrl}
-                    alt="Diamond"
-                    className="h-40 w-40 rounded-md border-2 border-gray-800 object-cover"
-                  />
-                ) : newPhoto ? (
+                {newPhoto ? (
                   <img
                     src={URL.createObjectURL(newPhoto)}
                     alt="Diamond"
-                    className="h-40 w-40 rounded-md border-2 border-gray-800 object-cover"
+                    className="h-40 w-40 rounded-md border-[1px] border-gray-800 object-cover"
                   />
                 ) : (
                   "No Image"
                 )}
               </div>
 
-              <Tabs
-                defaultValue="upload"
-                className="w-full"
-                onValueChange={(value) =>
-                  setImageMethod(value as "upload" | "url")
-                }
-              >
-                <span className="ml-1 text-sm font-medium">
+              <Tabs defaultValue="upload" className="w-full">
+                {/* <span className="ml-1 text-sm font-medium">
                   Choose 1 of the 2 ways below to set an image for the product
-                </span>
+                </span> */}
 
                 <TabsList className="mt-1 grid w-full grid-cols-2 gap-4">
                   <TabsTrigger value="upload">Upload</TabsTrigger>
-                  <TabsTrigger value="url">URL</TabsTrigger>
+                  {/* <TabsTrigger value="url">URL</TabsTrigger> */}
                 </TabsList>
                 <TabsContent value="upload">
                   <Input
@@ -227,17 +211,10 @@ function AddDiamondDialog() {
                 <TabsContent value="url">
                   <Input
                     type="text"
-                    {...register("image")}
                     placeholder="Image URL"
                     className="input-field mt-1"
                   />
                 </TabsContent>
-
-                {errors.image && (
-                  <p className="mt-1 text-sm text-red-600">
-                    {errors.image.message}
-                  </p>
-                )}
               </Tabs>
             </div>
 

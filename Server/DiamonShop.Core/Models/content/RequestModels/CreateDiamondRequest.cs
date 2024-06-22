@@ -20,7 +20,7 @@
 
         public double Price { get; set; }
 
-        public string? image { get; set; }
+        public string? Images { get; set; }
 
     }
 }
