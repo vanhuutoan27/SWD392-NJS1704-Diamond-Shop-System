@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom"
-import { toast } from "sonner"
+
+import { IJewelry } from "@/types/jewelry.interface"
 
 import { useGetAllJewelries, useGetJewelryById } from "@/apis/jewelryApi"
 
@@ -25,25 +26,23 @@ function JewelryDetailPage() {
 
   const {
     data: jewelryData,
-    error: allJewelrysError,
+    error: allJewelriesError,
     isLoading: isAllJewelriesLoading
   } = useGetAllJewelries()
 
-  if (isJewelryDetailsLoading || isAllJewelriesLoading) {
+  if (!jewelryDetails || isJewelryDetailsLoading || isAllJewelriesLoading) {
     return <Loader />
   }
 
-  if (jewelryDetailsError || allJewelrysError) {
-    toast.error("Failed to fetch diamonds")
-  }
-
-  const relatedProducts = (jewelryData || []).filter(
-    (jewelry) => jewelry.jewelryId !== jewelryId
-  )
-
-  if (jewelryDetails.status === 0) {
+  if (jewelryDetailsError || allJewelriesError || jewelryDetails.status === 0) {
     return <NotFoundPage />
   }
+
+  const relatedProducts =
+    jewelryData?.filter(
+      (jewelry: IJewelry) =>
+        jewelry.jewelryId !== jewelryId && jewelry.status === 1
+    ) || []
 
   return (
     <div className="container">
@@ -52,10 +51,10 @@ function JewelryDetailPage() {
         lastPageUrl="/"
         currentPage="Jewelry"
         currentPageUrl="/jewelry"
-        currentDetailPage={jewelryDetails?.skuID}
+        currentDetailPage={jewelryDetails.skuID}
       />
 
-      {jewelryDetails && <JewelryDetails jewelryDetails={jewelryDetails} />}
+      <JewelryDetails jewelryDetails={jewelryDetails} />
 
       <JewelryQualityCommitment />
 

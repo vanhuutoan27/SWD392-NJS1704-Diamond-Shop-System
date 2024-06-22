@@ -1,7 +1,5 @@
 "use client"
 
-import { useState } from "react"
-
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown, Copy, Eye, MoreHorizontal } from "lucide-react"
 

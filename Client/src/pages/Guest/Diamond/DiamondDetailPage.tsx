@@ -10,7 +10,7 @@ import BuyingGuide from "@/components/local/Guest/Diamond/BuyingGuide"
 import DiamondBanner from "@/components/local/Guest/Diamond/DiamondBanner"
 import DiamondDetails from "@/components/local/Guest/Diamond/DiamondDetails"
 import DiamondQualityCommitment from "@/components/local/Guest/Diamond/DiamondQualityCommitment"
-import RelatedProducts from "@/components/local/Guest/Diamond/RelatedDiamonds"
+import RelatedDiamonds from "@/components/local/Guest/Diamond/RelatedDiamonds"
 
 import NotFoundPage from "../HTTP/NotFoundPage"
 
@@ -29,22 +29,20 @@ function DiamondDetailPage() {
     isLoading: isAllDiamondsLoading
   } = useGetAllDiamonds()
 
-  if (isDiamondDetailsLoading || isAllDiamondsLoading) {
+  if (!diamondDetails || isDiamondDetailsLoading || isAllDiamondsLoading) {
     return <Loader />
   }
 
-  if (diamondDetailsError || allDiamondsError || !diamondDetails) {
+  if (diamondDetailsError || allDiamondsError || diamondDetails.status === 0) {
     return <NotFoundPage />
   }
 
   const relatedProducts =
     diamondData?.filter(
-      (diamond: IDiamond) => diamond.diamondId !== diamondId
+      (diamond: IDiamond) => (
+        diamond.diamondId !== diamondId, diamond.status === 1
+      )
     ) || []
-
-  if (diamondDetails.status === 0) {
-    return <NotFoundPage />
-  }
 
   return (
     <div className="container">
@@ -63,7 +61,7 @@ function DiamondDetailPage() {
 
       <DiamondBanner />
 
-      <RelatedProducts relatedDiamonds={relatedProducts} />
+      <RelatedDiamonds relatedDiamonds={relatedProducts} />
     </div>
   )
 }
