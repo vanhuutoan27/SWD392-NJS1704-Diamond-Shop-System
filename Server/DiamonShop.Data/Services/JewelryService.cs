@@ -75,7 +75,21 @@ namespace DiamonShop.Data.Services
                 DateModified = DateTime.Now
                 //updated
             };
+
+
             _repositoryManager.Product.Add(product);
+            //Add list Image 
+            foreach (var i in createJewelryDto.Images)
+            {
+                var image = new Image()
+                {
+                    ProductId = productId,
+                    Url = i,
+                    DateCreated = DateTime.Now
+
+                };
+                _repositoryManager.Image.Add(image);
+            }
             await _repositoryManager.SaveAsync();
             var result = _mapper.Map<CreateUpdateJewelryRequest>(newJewelry);
             return result;

@@ -8,5 +8,6 @@ namespace DiamonShop.Core.Repository
         Task<IEnumerable<Order>> GetAllOrderAsync();
         Task<Order> GetOrderByIdAsync(Guid orderId);
         void DeleteOrder(Guid orderId);
+        Task<IEnumerable<Order>> GetOrderByCustomerIdAsync(Guid id);
     }
 }

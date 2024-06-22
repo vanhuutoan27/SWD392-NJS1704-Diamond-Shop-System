@@ -24,6 +24,13 @@ namespace DiamonShop.Data.Repository
                 .ToListAsync();
         }
 
+        public async Task<IEnumerable<Order>> GetOrderByCustomerIdAsync(Guid id)
+        {
+            return await _context.Orders.AsNoTracking().AsQueryable()
+                .Include(o => o.Items).ThenInclude(oi => oi.Product).ThenInclude(p => p.Images)
+                .Where(o => o.CustomerId == id).ToListAsync();
+        }
+
         public async Task<Order> GetOrderByIdAsync(Guid orderId)
         {
             return await _context.Orders.AsNoTracking().AsQueryable()

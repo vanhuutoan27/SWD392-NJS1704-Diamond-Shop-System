@@ -57,12 +57,20 @@ namespace DiamonShop.Data.Services
                 DateModified = DateTime.Now
             };
             _repositoryManager.Product.Add(product);
+            var image = new Image()
+            {
+                ProductId = product.ProductId,
+                Url = createDiamondRequest.image,
+                DateCreated = DateTime.Now
+            };
+            _repositoryManager.Image.Add(image);
+
             await _repositoryManager.SaveAsync();
             return new DiamondRespone
             {
                 Message = "Create Diamond Successfully",
                 Status = true,
-                Data = model,
+                //Data = model,
             };
         }
 

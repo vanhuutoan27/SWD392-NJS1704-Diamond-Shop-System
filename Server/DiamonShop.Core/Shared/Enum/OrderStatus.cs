@@ -2,14 +2,11 @@
 {
     public enum OrderStatus
     {
-        Draft,
-        WatingConfirm,
+        Pending,
+        Processing,
         Shipping,
-        Remboursement,
-        SuccessRemboursement,
-        SuccessOrder,
-        OrderCancel,
-        WatingCancel
+        Completed,
+        Cancelled
 
     }
 }
