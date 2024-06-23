@@ -60,6 +60,7 @@ export const useChangeDiamondStatus = () => {
       onSuccess: () => {
         queryClient.invalidateQueries("diamonds")
         toast.success("Diamond status changed successfully")
+        // window.location.reload()
       },
       onError: () => {
         toast.error("Failed to change diamond status")

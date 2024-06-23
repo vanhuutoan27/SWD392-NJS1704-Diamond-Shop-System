@@ -48,7 +48,7 @@ export function DataTable<TData extends JewelryData>({
   )
   const [currentPage, setCurrentPage] = React.useState(1)
   const [searchValue, setSearchValue] = React.useState<string>("")
-  const itemsPerPage = 7
+  const itemsPerPage = 10
 
   const filteredData = React.useMemo(() => {
     return data.filter((item) =>
@@ -56,11 +56,26 @@ export function DataTable<TData extends JewelryData>({
     )
   }, [data, searchValue])
 
+  const sortedData = React.useMemo(() => {
+    if (sorting.length === 0) return filteredData
+
+    return [...filteredData].sort((a, b) => {
+      for (let sort of sorting) {
+        const columnId = sort.id
+        const direction = sort.desc ? -1 : 1
+
+        if (a[columnId] < b[columnId]) return -1 * direction
+        if (a[columnId] > b[columnId]) return 1 * direction
+      }
+      return 0
+    })
+  }, [filteredData, sorting])
+
   const paginatedData = React.useMemo(() => {
     const startIndex = (currentPage - 1) * itemsPerPage
     const endIndex = startIndex + itemsPerPage
-    return filteredData.slice(startIndex, endIndex)
-  }, [filteredData, currentPage])
+    return sortedData.slice(startIndex, endIndex)
+  }, [sortedData, currentPage])
 
   const table = useReactTable({
     data: paginatedData,

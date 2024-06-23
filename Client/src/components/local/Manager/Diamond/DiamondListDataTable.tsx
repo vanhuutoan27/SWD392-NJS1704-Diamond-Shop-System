@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 
 import {
@@ -27,7 +29,6 @@ import {
 import DataTablePagination from "@/components/global/molecules/DataTablePagination"
 
 import AddDiamondDialog from "./AddDiamondDialog"
-import DiamondFilterButton from "./DiamondFilterButton"
 
 interface DataTableProps<TData extends IDiamond> {
   columns: ColumnDef<TData, any>[]
@@ -44,20 +45,34 @@ export function DataTable<TData extends IDiamond>({
   )
   const [currentPage, setCurrentPage] = React.useState(1)
   const [searchValue, setSearchValue] = React.useState<string>("")
-  const [filteredData, setFilteredData] = React.useState<TData[]>(data)
-  const itemsPerPage = 7
+  const itemsPerPage = 10
 
-  const filteredSearchData = React.useMemo(() => {
-    return filteredData.filter((item) =>
+  const filteredData = React.useMemo(() => {
+    return data.filter((item) =>
       item.diamondId.toLowerCase().includes(searchValue.toLowerCase())
     )
-  }, [filteredData, searchValue])
+  }, [data, searchValue])
+
+  const sortedData = React.useMemo(() => {
+    if (sorting.length === 0) return filteredData
+
+    return [...filteredData].sort((a, b) => {
+      for (let sort of sorting) {
+        const columnId = sort.id as keyof IDiamond
+        const direction = sort.desc ? -1 : 1
+
+        if (a[columnId] < b[columnId]) return -1 * direction
+        if (a[columnId] > b[columnId]) return 1 * direction
+      }
+      return 0
+    })
+  }, [filteredData, sorting])
 
   const paginatedData = React.useMemo(() => {
     const startIndex = (currentPage - 1) * itemsPerPage
     const endIndex = startIndex + itemsPerPage
-    return filteredSearchData.slice(startIndex, endIndex)
-  }, [filteredSearchData, currentPage])
+    return sortedData.slice(startIndex, endIndex)
+  }, [sortedData, currentPage])
 
   const table = useReactTable({
     data: paginatedData,
@@ -74,7 +89,7 @@ export function DataTable<TData extends IDiamond>({
     }
   })
 
-  const totalPages = Math.ceil(filteredSearchData.length / itemsPerPage)
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage)
 
   return (
     <>
@@ -92,11 +107,11 @@ export function DataTable<TData extends IDiamond>({
               className="w-[400px] max-w-sm border border-secondary bg-white pl-10"
             />
           </div>
-          <DiamondFilterButton
+          {/* <DiamondFilterButton
             setColumnFilters={setColumnFilters}
             setFilteredData={setFilteredData as (data: IDiamond[]) => void}
             data={data}
-          />
+          /> */}
         </div>
         <div className="flex gap-4">
           <AddDiamondDialog />
@@ -130,7 +145,7 @@ export function DataTable<TData extends IDiamond>({
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className="text-center">
+                    <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()

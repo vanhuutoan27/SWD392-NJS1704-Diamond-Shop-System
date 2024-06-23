@@ -37,7 +37,7 @@ function MyProfilePage() {
         />
       )}
 
-      <Section pageName="Profile" />
+      <Section pageName="Diamoon Profile" />
 
       <div className="overflow-hidden rounded-md border-2 border-input bg-white p-5 pb-10 shadow-md">
         <div className="relative h-[250px]">

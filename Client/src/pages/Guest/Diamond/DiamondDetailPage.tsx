@@ -39,9 +39,8 @@ function DiamondDetailPage() {
 
   const relatedProducts =
     diamondData?.filter(
-      (diamond: IDiamond) => (
-        diamond.diamondId !== diamondId, diamond.status === 1
-      )
+      (diamond: IDiamond) =>
+        diamond.diamondId !== diamondId && diamond.status === 1
     ) || []
 
   return (

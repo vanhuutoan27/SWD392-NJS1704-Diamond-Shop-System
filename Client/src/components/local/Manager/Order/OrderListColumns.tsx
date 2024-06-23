@@ -1,15 +1,13 @@
 "use client"
 
+import { useState } from "react"
+
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown, Copy, Eye, MoreHorizontal } from "lucide-react"
 
-import { IOrder } from "@/types/order.interface"
+import { IOrder, OrderStatus } from "@/types/order.interface"
 
-import {
-  formatCurrency,
-  formatDate,
-  getOrderStatusString,getPaymentMethodString
-} from "@/lib/utils"
+import { formatCurrency, formatDate, getPaymentMethodString } from "@/lib/utils"
 
 import { Button } from "@/components/global/atoms/button"
 import {
@@ -19,7 +17,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger
 } from "@/components/global/atoms/dropdown-menu"
-import { useState } from "react"
+
+import OrderStatusChip from "./OrderStatusChip"
 import ViewOrderDialog from "./ViewOrderDialog"
 
 export const columns: ColumnDef<IOrder>[] = [
@@ -61,7 +60,7 @@ export const columns: ColumnDef<IOrder>[] = [
     header: ({ column }) => {
       return (
         <div
-          className="flex select-none items-center"
+          className="flex select-none items-center justify-center"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           <span className="flex cursor-pointer text-white">Payment Method</span>
@@ -71,21 +70,27 @@ export const columns: ColumnDef<IOrder>[] = [
     },
     cell: (info) => {
       const value: number = info.getValue() as number
-      return <span>{getPaymentMethodString(value)}</span>
+      return (
+        <span className="flex justify-center">
+          {getPaymentMethodString(value)}
+        </span>
+      )
     }
   },
   {
     accessorKey: "total",
     header: () => {
       return (
-        <div className="flex select-none items-center">
+        <div className="flex select-none items-center justify-center">
           <span className="flex cursor-pointer text-white">Total</span>
         </div>
       )
     },
     cell: (info) => {
       const value: number = info.getValue() as number
-      return <span>{formatCurrency(value)}</span>
+      return (
+        <span className="flex justify-center">{formatCurrency(value)}</span>
+      )
     }
   },
   {
@@ -93,7 +98,7 @@ export const columns: ColumnDef<IOrder>[] = [
     header: ({ column }) => {
       return (
         <div
-          className="flex select-none items-center"
+          className="flex select-none items-center justify-center"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           <span className="flex cursor-pointer text-white">Date Created</span>
@@ -101,14 +106,18 @@ export const columns: ColumnDef<IOrder>[] = [
         </div>
       )
     },
-    cell: (info) => <span>{formatDate(info.getValue() as string)}</span>
+    cell: (info) => (
+      <span className="flex justify-center">
+        {formatDate(info.getValue() as string)}
+      </span>
+    )
   },
   {
     accessorKey: "receiptDay",
     header: ({ column }) => {
       return (
         <div
-          className="flex select-none items-center"
+          className="flex select-none items-center justify-center"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           <span className="flex cursor-pointer text-white">Date Receipt</span>
@@ -116,14 +125,18 @@ export const columns: ColumnDef<IOrder>[] = [
         </div>
       )
     },
-    cell: (info) => <span>{formatDate(info.getValue() as string)}</span>
+    cell: (info) => (
+      <span className="flex justify-center">
+        {formatDate(info.getValue() as string)}
+      </span>
+    )
   },
   {
     accessorKey: "orderStatus",
     header: ({ column }) => {
       return (
         <div
-          className="flex select-none items-center"
+          className="flex select-none items-center justify-center"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           <span className="flex cursor-pointer text-white">Status</span>
@@ -133,7 +146,11 @@ export const columns: ColumnDef<IOrder>[] = [
     },
     cell: (info) => {
       const value: number = info.getValue() as number
-      return <span>{getOrderStatusString(value)}</span>
+      return (
+        <span className="flex justify-center">
+          <OrderStatusChip content={value as OrderStatus} />
+        </span>
+      )
     }
   },
   {

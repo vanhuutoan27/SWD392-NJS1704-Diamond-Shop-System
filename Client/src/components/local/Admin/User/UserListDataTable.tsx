@@ -41,7 +41,7 @@ export function DataTable<TData, TValue>({
     []
   )
   const [currentPage, setCurrentPage] = React.useState(1)
-  const itemsPerPage = 7
+  const itemsPerPage = 10
 
   const table = useReactTable({
     data,

@@ -46,7 +46,7 @@ export function DataTable<TData extends OrderData>({
   )
   const [currentPage, setCurrentPage] = React.useState(1)
   const [searchValue, setSearchValue] = React.useState<string>("")
-  const itemsPerPage = 7
+  const itemsPerPage = 10
 
   const filteredData = React.useMemo(() => {
     return data.filter((item) =>

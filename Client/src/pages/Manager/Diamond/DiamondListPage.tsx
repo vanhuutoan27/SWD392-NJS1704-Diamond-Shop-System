@@ -9,7 +9,7 @@ import { DataTable } from "@/components/local/Manager/Diamond/DiamondListDataTab
 function DiamondListPage() {
   const { data: diamondData, error, isLoading } = useGetAllDiamonds()
 
-  if (isLoading) {
+  if (!diamondData || isLoading) {
     return <Loader />
   }
 

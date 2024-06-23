@@ -3,10 +3,19 @@
 import { useState } from "react"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { ArrowUpDown, Copy, Eye, MoreHorizontal } from "lucide-react"
+import {
+  ArrowUpDown,
+  Copy,
+  Eye,
+  MoreHorizontal,
+  UserRoundCog
+} from "lucide-react"
 
 import { IDiamond } from "@/types/diamond.interface"
 
+import { useChangeDiamondStatus } from "@/apis/diamondApi"
+
+import Chip from "@/components/global/atoms/Chip"
 import { Button } from "@/components/global/atoms/button"
 import {
   DropdownMenu,
@@ -34,8 +43,7 @@ export const columns: ColumnDef<IDiamond>[] = [
     },
     cell: (info) => {
       const value: string = info.getValue() as string
-      const shortId = value.split("-")[0]
-      return <span className="font-semibold">{shortId}</span>
+      return <span className="font-semibold">{value}</span>
     }
   },
   {
@@ -49,7 +57,9 @@ export const columns: ColumnDef<IDiamond>[] = [
         <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
       </div>
     ),
-    cell: (info) => <span>{info.getValue() as string}</span>
+    cell: (info) => (
+      <span className="flex justify-center">{info.getValue() as string}</span>
+    )
   },
   {
     accessorKey: "weight",
@@ -62,7 +72,9 @@ export const columns: ColumnDef<IDiamond>[] = [
         <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
       </div>
     ),
-    cell: (info) => <span>{info.getValue() as string}</span>
+    cell: (info) => (
+      <span className="flex justify-center">{info.getValue() as string}</span>
+    )
   },
   {
     accessorKey: "colorLevel",
@@ -75,7 +87,9 @@ export const columns: ColumnDef<IDiamond>[] = [
         <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
       </div>
     ),
-    cell: (info) => <span>{info.getValue() as string}</span>
+    cell: (info) => (
+      <span className="flex justify-center">{info.getValue() as string}</span>
+    )
   },
   {
     accessorKey: "clarity",
@@ -88,7 +102,9 @@ export const columns: ColumnDef<IDiamond>[] = [
         <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
       </div>
     ),
-    cell: (info) => <span>{info.getValue() as string}</span>
+    cell: (info) => (
+      <span className="flex justify-center">{info.getValue() as string}</span>
+    )
   },
   {
     accessorKey: "certification",
@@ -101,7 +117,9 @@ export const columns: ColumnDef<IDiamond>[] = [
         <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
       </div>
     ),
-    cell: (info) => <span>{info.getValue() as string}</span>
+    cell: (info) => (
+      <span className="flex justify-center">{info.getValue() as string}</span>
+    )
   },
   {
     accessorKey: "size",
@@ -114,7 +132,9 @@ export const columns: ColumnDef<IDiamond>[] = [
         <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
       </div>
     ),
-    cell: (info) => <span>{info.getValue() as string}</span>
+    cell: (info) => (
+      <span className="flex justify-center">{info.getValue() as string}</span>
+    )
   },
   {
     accessorKey: "fluorescence",
@@ -128,7 +148,9 @@ export const columns: ColumnDef<IDiamond>[] = [
       </div>
     ),
     cell: (info) => (
-      <span className="uppercase">{info.getValue() as string}</span>
+      <span className="uppercase flex justify-center">
+        {info.getValue() as string}
+      </span>
     )
   },
   {
@@ -142,7 +164,33 @@ export const columns: ColumnDef<IDiamond>[] = [
         <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
       </div>
     ),
-    cell: (info) => <span>{info.getValue() as string}</span>
+    cell: (info) => (
+      <span className="flex justify-center">{info.getValue() as string}</span>
+    )
+  },
+  {
+    accessorKey: "status",
+    header: ({ column }) => (
+      <div
+        className="flex select-none items-center justify-center"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        <span className="flex cursor-pointer text-white">Status</span>
+        <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
+      </div>
+    ),
+    cell: (info) => {
+      const value: number = info.getValue() as number
+
+      return (
+        <span className="flex justify-center">
+          <Chip
+            content={value === 1 ? "Active" : "Inactive"}
+            color={value === 1 ? "#16a34a" : "#f44336"}
+          />
+        </span>
+      )
+    }
   },
   {
     id: "actions",
@@ -154,6 +202,11 @@ export const columns: ColumnDef<IDiamond>[] = [
     cell: ({ row }) => {
       const diamond = row.original
       const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
+      const { mutate: changeDiamondStatus } = useChangeDiamondStatus()
+
+      const handleStatusChange = () => {
+        changeDiamondStatus(diamond.diamondId)
+      }
 
       const handleViewDetailsClick = () => {
         setIsViewDialogOpen(true)
@@ -178,6 +231,13 @@ export const columns: ColumnDef<IDiamond>[] = [
                 <span>Copy ID</span>
               </DropdownMenuItem>
               <DropdownMenuItem
+                onClick={handleStatusChange}
+                className="text-sm"
+              >
+                <UserRoundCog size={16} className="mr-2" />
+                <span>{diamond.status === 1 ? "Deactivate" : "Activate"}</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem
                 onClick={handleViewDetailsClick}
                 className="text-sm"
               >
@@ -186,7 +246,6 @@ export const columns: ColumnDef<IDiamond>[] = [
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-
           {isViewDialogOpen && (
             <ViewDiamondDialog
               diamondId={diamond.diamondId}

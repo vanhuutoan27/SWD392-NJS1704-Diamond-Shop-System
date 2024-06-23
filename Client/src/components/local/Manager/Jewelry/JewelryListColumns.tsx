@@ -3,10 +3,19 @@
 import { useState } from "react"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { ArrowUpDown, Copy, Eye, MoreHorizontal } from "lucide-react"
+import {
+  ArrowUpDown,
+  Copy,
+  Eye,
+  MoreHorizontal,
+  UserRoundCog
+} from "lucide-react"
 
 import { IJewelry } from "@/types/jewelry.interface"
 
+import { useChangeJewelryStatus } from "@/apis/jewelryApi"
+
+import Chip from "@/components/global/atoms/Chip"
 import { Button } from "@/components/global/atoms/button"
 import {
   DropdownMenu,
@@ -120,6 +129,30 @@ export const columns: ColumnDef<IJewelry>[] = [
     cell: (info) => <span>{info.getValue() as string}</span>
   },
   {
+    accessorKey: "status",
+    header: ({ column }) => (
+      <div
+        className="flex select-none items-center justify-center"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        <span className="flex cursor-pointer text-white">Status</span>
+        <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
+      </div>
+    ),
+    cell: (info) => {
+      const value: number = info.getValue() as number
+
+      return (
+        <span className="flex justify-center">
+          <Chip
+            content={value === 1 ? "Active" : "Inactive"}
+            color={value === 1 ? "#16a34a" : "#f44336"}
+          />
+        </span>
+      )
+    }
+  },
+  {
     id: "actions",
     header: () => (
       <div className="flex cursor-pointer select-none pl-1 text-white">
@@ -129,6 +162,12 @@ export const columns: ColumnDef<IJewelry>[] = [
     cell: ({ row }) => {
       const jewelry = row.original
       const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
+
+      const { mutate: changeJewelryStatus } = useChangeJewelryStatus()
+
+      const handleStatusChange = () => {
+        changeJewelryStatus(jewelry.jewelryId)
+      }
 
       const handleViewDetailsClick = () => {
         setIsViewDialogOpen(true)
@@ -151,6 +190,13 @@ export const columns: ColumnDef<IJewelry>[] = [
               >
                 <Copy size={16} className="mr-2" />
                 <span>Copy ID</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={handleStatusChange}
+                className="text-sm"
+              >
+                <UserRoundCog size={16} className="mr-2" />
+                <span>{jewelry.status === 1 ? "Deactivate" : "Activate"}</span>
               </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={handleViewDetailsClick}

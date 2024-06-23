@@ -1,29 +1,34 @@
-"use client";
+"use client"
 
-import { formatDate } from "@/lib/utils";
-import { IUser } from "@/types/user.interface";
-import { ColumnDef } from "@tanstack/react-table";
+import { useState } from "react"
+
+import { ColumnDef } from "@tanstack/react-table"
 import {
   ArrowUpDown,
   Copy,
   Eye,
   MoreHorizontal,
-  UserRoundCog,
-} from "lucide-react";
+  UserRoundCog
+} from "lucide-react"
+import { Link } from "react-router-dom"
 
-import { Button } from "@/components/global/atoms/button";
+import { IUser } from "@/types/user.interface"
+
+import { useChangeUserStatus } from "@/apis/userApi"
+
+import { formatDate } from "@/lib/utils"
+
+import Chip from "@/components/global/atoms/Chip"
+import { Button } from "@/components/global/atoms/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/global/atoms/dropdown-menu";
-import Chip from "@/components/global/atoms/Chip";
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import ViewUserDialog from "./ViewUserDialog";
-import { useChangeUserStatus } from "@/apis/userApi";
+  DropdownMenuTrigger
+} from "@/components/global/atoms/dropdown-menu"
+
+import ViewUserDialog from "./ViewUserDialog"
 
 export const columns: ColumnDef<IUser>[] = [
   {
@@ -37,13 +42,13 @@ export const columns: ColumnDef<IUser>[] = [
           <span className="flex cursor-pointer text-white">User ID</span>
           <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
         </div>
-      );
+      )
     },
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      const shortId = value.split("-")[0];
-      return <span className="font-semibold">{shortId}</span>;
-    },
+      const value: string = info.getValue() as string
+      const shortId = value.split("-")[0]
+      return <span className="font-semibold">{shortId}</span>
+    }
   },
   {
     accessorKey: "fullName",
@@ -56,20 +61,20 @@ export const columns: ColumnDef<IUser>[] = [
           <span className="flex cursor-pointer text-white">Full Name</span>
           <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
         </div>
-      );
+      )
     },
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      const userId = info.row.original.id;
+      const value: string = info.getValue() as string
+      const userId = info.row.original.id
       return (
         <Link
-          to={`/admin/${userId}`}
+          to={`/profile/${userId}`}
           className="slow cursor-pointer text-left font-semibold hover:text-secondary"
         >
           {value}
         </Link>
-      );
-    },
+      )
+    }
   },
   {
     accessorKey: "email",
@@ -82,52 +87,54 @@ export const columns: ColumnDef<IUser>[] = [
           <span className="flex cursor-pointer text-white">Email</span>
           <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
         </div>
-      );
+      )
     },
-    cell: (info) => <span>{info.getValue() as string}</span>,
+    cell: (info) => <span>{info.getValue() as string}</span>
   },
   {
     accessorKey: "dateCreated",
     header: ({ column }) => {
       return (
         <div
-          className="flex select-none items-center"
+          className="flex select-none items-center justify-center"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           <span className="flex cursor-pointer text-white">Created On</span>
           <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
         </div>
-      );
+      )
     },
     cell: (info) => {
-      const value: string = info.getValue() as string;
-      return <span>{formatDate(value)}</span>;
-    },
+      const value: string = info.getValue() as string
+      return <span className="flex justify-center">{formatDate(value)}</span>
+    }
   },
   {
     accessorKey: "isActive",
     header: ({ column }) => {
       return (
         <div
-          className="flex select-none items-center"
+          className="flex select-none items-center justify-center"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           <span className="flex cursor-pointer text-white">Status</span>
           <ArrowUpDown className="ml-2 cursor-pointer text-white" size={16} />
         </div>
-      );
+      )
     },
     cell: (info) => {
-      const value: boolean = info.getValue() as boolean;
+      const value: boolean = info.getValue() as boolean
       // console.log(value);
 
       return (
-        <Chip
-          content={value === true ? "Active" : "Inactive"}
-          color={value === true ? "#16a34a" : "#f44336"}
-        />
-      );
-    },
+        <span className="flex justify-center">
+          <Chip
+            content={value === true ? "Active" : "Inactive"}
+            color={value === true ? "#16a34a" : "#f44336"}
+          />
+        </span>
+      )
+    }
   },
   {
     id: "actions",
@@ -137,18 +144,18 @@ export const columns: ColumnDef<IUser>[] = [
       </div>
     ),
     cell: ({ row }) => {
-      const user = row.original;
-      const [isViewDialogOpen, setIsViewDialogOpen] = useState(false);
+      const user = row.original
+      const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
 
-      const { mutate: changeUserStatus } = useChangeUserStatus();
+      const { mutate: changeUserStatus } = useChangeUserStatus()
 
       const handleStatusChange = () => {
-        changeUserStatus(user.id);
-      };
+        changeUserStatus(user.id)
+      }
 
       const handleViewDetailsClick = () => {
-        setIsViewDialogOpen(true);
-      };
+        setIsViewDialogOpen(true)
+      }
 
       return (
         <div>
@@ -163,7 +170,7 @@ export const columns: ColumnDef<IUser>[] = [
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuItem
                 onClick={() => {
-                  navigator.clipboard.writeText(user.id);
+                  navigator.clipboard.writeText(user.id)
                 }}
                 className="text-sm"
               >
@@ -175,7 +182,7 @@ export const columns: ColumnDef<IUser>[] = [
                 className="text-sm"
               >
                 <UserRoundCog size={16} className="mr-2" />
-                <span>{user.isActive ? "Deactive" : "Active"}</span>
+                <span>{user.isActive ? "Deactivate" : "Activate"}</span>
               </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={handleViewDetailsClick}
@@ -194,7 +201,7 @@ export const columns: ColumnDef<IUser>[] = [
             />
           )}
         </div>
-      );
-    },
-  },
-];
+      )
+    }
+  }
+]
