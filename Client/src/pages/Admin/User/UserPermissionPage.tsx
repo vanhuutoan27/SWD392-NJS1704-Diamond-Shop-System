@@ -1,22 +1,14 @@
 import { useAuthContext } from "@/contexts/AuthContext"
 import ForbiddenPage from "@/pages/Guest/HTTP/ForbiddenPage"
 
-import KPICards from "@/components/local/Admin/Dashboard/KPICards"
-
-function DashboardPage() {
+function UserPermissionPage() {
   const { user } = useAuthContext()
 
   if (!user || !user.roles || !user.roles.includes("Admin")) {
     return <ForbiddenPage />
   }
 
-  return (
-    <div className="flex h-[1000px] w-full flex-col gap-8 p-5">
-      <KPICards />
-
-      <div>asd</div>
-    </div>
-  )
+  return <div className="p-5">UserPermissionPage</div>
 }
 
-export default DashboardPage
+export default UserPermissionPage

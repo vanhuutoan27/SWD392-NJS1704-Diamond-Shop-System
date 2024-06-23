@@ -1,3 +1,5 @@
+import { useAuthContext } from "@/contexts/AuthContext"
+import ForbiddenPage from "@/pages/Guest/HTTP/ForbiddenPage"
 import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage"
 
 import { useGetAllUsers } from "@/apis/userApi"
@@ -7,6 +9,12 @@ import { columns } from "@/components/local/Admin/User/UserListColumns"
 import { DataTable } from "@/components/local/Admin/User/UserListDataTable"
 
 function UserListPage() {
+  const { user } = useAuthContext()
+
+  if (!user || !user.roles || !user.roles.includes("Admin")) {
+    return <ForbiddenPage />
+  }
+
   const { data: userData, error, isLoading } = useGetAllUsers()
 
   // console.log(userData);

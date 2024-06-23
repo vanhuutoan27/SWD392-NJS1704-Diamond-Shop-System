@@ -16,10 +16,8 @@ function RedirectPage() {
     return <Navigate to="/admin/dashboard" />
   } else if (roles.includes("Manager")) {
     return <Navigate to="/admin/jewelry-list" />
-  } else if (roles.includes("SalesStaff")) {
-    return <Navigate to="/sales-staff/dashboard" />
-  } else if (roles.includes("DeliveryStaff")) {
-    return <Navigate to="/delivery-staff/dashboard" />
+  } else if (roles.includes("SalesStaff") || roles.includes("DeliveryStaff")) {
+    return <Navigate to="/staff/dashboard" />
   } else if (roles.includes("Customer")) {
     return <Navigate to="/" />
   }

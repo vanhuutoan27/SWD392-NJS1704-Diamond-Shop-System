@@ -43,9 +43,17 @@ function App() {
     () => import("./pages/Manager/Diamond/DiamondListPage")
   )
   const UserList = lazy(() => import("./pages/Admin/User/UserListPage"))
+  const UserPermission = lazy(
+    () => import("./pages/Admin/User/UserPermissionPage")
+  )
   const OrderList = lazy(() => import("./pages/Manager/Order/OrderListPage"))
   const InvoiceList = lazy(
     () => import("./pages/Manager/Invoice/InvoiceListPage")
+  )
+
+  // Staff Routes
+  const StaffDashboard = lazy(
+    () => import("./pages/Staff/Dashboard/DashboardPage")
   )
 
   return (
@@ -270,6 +278,15 @@ function App() {
         />
 
         <Route
+          path="/admin/user-permission"
+          element={
+            <Suspense fallback={<Loader />}>
+              <UserPermission />
+            </Suspense>
+          }
+        />
+
+        <Route
           path="/admin/order-list"
           element={
             <Suspense fallback={<Loader />}>
@@ -283,6 +300,24 @@ function App() {
           element={
             <Suspense fallback={<Loader />}>
               <InvoiceList />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/staff/dashboard"
+          element={
+            <Suspense fallback={<Loader />}>
+              <StaffDashboard />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/admin/order-list"
+          element={
+            <Suspense fallback={<Loader />}>
+              <OrderList />
             </Suspense>
           }
         />
