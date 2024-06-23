@@ -6,5 +6,6 @@ namespace DiamonShop.Core.Repository
     public interface IInvoiceRepository : IRepository<Invoice, Guid>
     {
         Task<IEnumerable<Invoice>> GetAllInvoiceAsync();
+        Task<IEnumerable<Invoice>> GetInvoiceByUserId(Guid userId);
     }
 }

@@ -26,8 +26,15 @@ namespace DiamonShop.API.Mappings
 
             CreateMap<Order, OrderResponse>()
             .ForMember(dest => dest.Items, opt => opt.MapFrom(src => src.Items.ToList()));
+
             CreateMap<OrderItem, OrderDetailsResponse>()
-            .ForMember(dest => dest.Images, opt => opt.MapFrom(src => src.Product.Images.Select(i => i.Url).ToList()));
+            .ForMember(dest => dest.Images, opt => opt.MapFrom(src => src.Product.Images.Select(i => i.Url).ToList()))
+            .ForMember(dest => dest.ProductType, opt => opt.MapFrom(src => (src.Product.Jewelry != null) ? src.Product.Jewelry.ProductType : src.Product.Diamond.ProductType)
+              )
+
+            .ForMember(dest => dest.SkuId, opt => opt.MapFrom(src => (src.Product.Jewelry != null) ? src.Product.Jewelry.SkuID : src.Product.Diamond.SkuID));
+
+
 
             CreateMap<Invoice, InvoiceResponse>()
                 .ForMember(dest => dest.Order, opt => opt.MapFrom(src => src.Order))

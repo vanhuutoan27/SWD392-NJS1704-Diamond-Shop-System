@@ -54,6 +54,7 @@ namespace DiamonShop.API.Controllers
 
             if (result == null)
             {
+
                 return NotFound($"Diamond with id {id} not found.");
             }
 
