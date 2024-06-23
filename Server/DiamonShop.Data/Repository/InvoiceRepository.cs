@@ -18,5 +18,12 @@ namespace DiamonShop.Data.Repository
                 .Include(i => i.Order).ThenInclude(o => o.Items).ThenInclude(oi => oi.Product).ThenInclude(p => p.Images)
                 .Include(i => i.User).ToListAsync();
         }
+
+        public async Task<IEnumerable<Invoice>> GetInvoiceByUserId(Guid userId)
+        {
+            return await _context.Invoices.AsNoTracking().AsQueryable()
+           .Include(i => i.Order).ThenInclude(o => o.Items).ThenInclude(oi => oi.Product).ThenInclude(p => p.Images)
+           .Include(i => i.User).Where(i => i.UserId == userId).ToListAsync();
+        }
     }
 }

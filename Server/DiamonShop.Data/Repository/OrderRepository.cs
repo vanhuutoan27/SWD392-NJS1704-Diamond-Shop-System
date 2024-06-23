@@ -21,6 +21,9 @@ namespace DiamonShop.Data.Repository
         {
             return await _context.Orders.AsNoTracking().AsQueryable()
                 .Include(o => o.Items).ThenInclude(oi => oi.Product).ThenInclude(p => p.Images)
+                .Include(o => o.Items).ThenInclude(oi => oi.Product).ThenInclude(p => p.Diamond)
+                .Include(o => o.Items).ThenInclude(oi => oi.Product).ThenInclude(p => p.Jewelry)
+
                 .ToListAsync();
         }
 
