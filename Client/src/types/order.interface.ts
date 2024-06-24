@@ -54,6 +54,7 @@ export enum IOrderPaymentMethod {
 
 export interface IOrderProductItem {
   orderItemId?: string
+  skuId: string
   productId: string
   quantity: number
   unitPrice: number

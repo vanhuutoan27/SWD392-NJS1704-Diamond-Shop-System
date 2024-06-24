@@ -68,11 +68,7 @@ export const columns: ColumnDef<IInvoice>[] = [
         </div>
       )
     },
-    cell: (info) => (
-      <span className="font-semibold">
-        {formatDate(info.getValue() as string)}
-      </span>
-    )
+    cell: (info) => <span>{formatDate(info.getValue() as string)}</span>
   },
   {
     accessorKey: "order.total",
@@ -88,9 +84,7 @@ export const columns: ColumnDef<IInvoice>[] = [
       )
     },
     cell: (info) => (
-      <span className="font-semibold">
-        {formatCurrencyWithoutVND(info.getValue() as number)}
-      </span>
+      <span>{formatCurrencyWithoutVND(info.getValue() as number)}</span>
     )
   },
 

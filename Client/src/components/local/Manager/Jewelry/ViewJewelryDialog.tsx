@@ -169,7 +169,7 @@ function ViewDiamondDialog({
                 <input
                   type="text"
                   name="jewelryId"
-                  value={formData.jewelryId}
+                  value={formData.skuID}
                   readOnly
                   className="input-field mt-1 w-full"
                   tabIndex={-1}
