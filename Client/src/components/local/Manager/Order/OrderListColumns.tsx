@@ -52,7 +52,7 @@ export const columns: ColumnDef<IOrder>[] = [
     },
     cell: (info) => {
       const value: string = info.getValue() as string
-      return <span>{value}</span>
+      return <span className="font-semibold">{value}</span>
     }
   },
   {
