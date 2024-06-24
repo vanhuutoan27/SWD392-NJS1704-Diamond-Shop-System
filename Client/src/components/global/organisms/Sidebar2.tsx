@@ -24,7 +24,7 @@ const menuItems: Item[] = [
   },
   {
     title: "Order",
-    link: "/admin/order-list",
+    link: "/staff/order-list",
     icon: <Package />
   }
 ]

@@ -54,11 +54,21 @@ function ViewOrderDialog({
     email: "",
     address: "",
     orderStatus: OrderStatus.Pending,
-    paymentMethod: IOrderPaymentMethod.Deposit500,
+    paymentMethod: IOrderPaymentMethod.BankTransfer,
     dateCreated: "",
     dateModified: "",
     status: false,
-    items: []
+    items: [
+      {
+        orderItemId: "",
+        productId: "",
+        productType: "",
+        skuId: "",
+        images: [],
+        quantity: 0,
+        unitPrice: 0
+      }
+    ]
   })
 
   const dialogRef = useRef<HTMLDivElement | null>(null)
@@ -126,20 +136,19 @@ function ViewOrderDialog({
     return <NotFoundPage />
   }
 
-  // Convert Enum to Array of strings
   const OrderStatusStrings = Object.keys(OrderStatus).filter((key) =>
     isNaN(Number(key))
   )
 
   return (
     <Dialog onOpenChange={onClose} open>
-      <DialogContent ref={dialogRef} className="min-w-[1200px] max-h-[90vh]">
+      <DialogContent ref={dialogRef} className="min-w-[1200px]">
         <DialogHeader>
           <DialogTitle className="text-center text-xl font-semibold">
             View Order Details
           </DialogTitle>
         </DialogHeader>
-        <ScrollArea className="p-4 max-h-[70vh]">
+        <ScrollArea className="max-h-[70vh] p-4">
           <div className="grid grid-cols-5 gap-4">
             <div className="col-span-2">
               <div>
@@ -331,62 +340,58 @@ function ViewOrderDialog({
             </div>
           </div>
 
-          <div>
-            <table className="min-w-full bg-white border border-gray-200 ">
-              <thead>
-                <tr className="grid grid-cols-8 gap-4 border-b">
-                  <th className="py-2 text-sm font-medium col-span-2">
-                    Product Id
-                  </th>
-                  <th className="py-2 text-sm font-medium col-span-2">
-                    Images
-                  </th>
-                  <th className="py-2 text-sm font-medium col-span-2">
-                    Quantity
-                  </th>
-                  <th className="py-2 text-sm font-medium col-span-2">
-                    Unit Price
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {formData.items?.length > 0 ? (
-                  formData.items.map((item, index) => (
-                    <tr key={index} className="grid grid-cols-8 gap-4 border-b">
-                      <td className="py-2 px-4 text-sm font-medium col-span-2 text-center content-center">
-                        {item.skuId}
-                      </td>
-                      <td className="py-2 px-4 col-span-2 flex justify-center items-center content-center">
-                        {item.images && item.images.length > 0 ? (
-                          <img
-                            key={0} // Use a key that's unique for each image iteration
-                            src={item.images[0]} // Display only the first image
-                            alt={`Product ${index + 1} Image 1`} // Adjust alt text if needed
-                            className="h-16 w-16 object-cover inline-block mr-2"
-                          />
-                        ) : (
-                          "No images"
-                        )}
-                      </td>
-                      <td className="py-2 px-4 text-sm font-medium col-span-2 text-center content-center">
-                        {item.quantity}
-                      </td>
-                      <td className="py-2 px-4 text-sm font-medium col-span-2 text-center content-center">
-                        {formatCurrency(item.unitPrice)}
-                      </td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td className="py-2 px-4 text-center">No items found.</td>
+          <table className="mt-4 min-w-full border border-gray-200 bg-white ">
+            <thead>
+              <tr className="grid grid-cols-8 gap-4 border-b">
+                <th className="col-span-2 py-2 text-sm font-medium">
+                  Product Id
+                </th>
+                <th className="col-span-2 py-2 text-sm font-medium">Images</th>
+                <th className="col-span-2 py-2 text-sm font-medium">
+                  Quantity
+                </th>
+                <th className="col-span-2 py-2 text-sm font-medium">
+                  Unit Price
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {formData.items?.length > 0 ? (
+                formData.items.map((item, index) => (
+                  <tr key={index} className="grid grid-cols-8 gap-4 border-b">
+                    <td className="col-span-2 content-center px-4 py-2 text-center text-sm font-medium">
+                      {item.skuId}
+                    </td>
+                    <td className="col-span-2 flex content-center items-center justify-center px-4 py-2">
+                      {item.images && item.images.length > 0 ? (
+                        <img
+                          key={0}
+                          src={item.images[0]}
+                          alt={`Product ${index + 1} Image 1`}
+                          className="mr-2 inline-block h-16 w-16 object-cover"
+                        />
+                      ) : (
+                        "No images"
+                      )}
+                    </td>
+                    <td className="col-span-2 content-center px-4 py-2 text-center text-sm font-medium">
+                      {item.quantity}
+                    </td>
+                    <td className="col-span-2 content-center px-4 py-2 text-center text-sm font-medium">
+                      {formatCurrency(item.unitPrice)}
+                    </td>
                   </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
+                ))
+              ) : (
+                <tr>
+                  <td className="px-4 py-2 text-center">No items found.</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
         </ScrollArea>
 
-        <div className="flex justify-between gap-4 mt-4">
+        <div className="mt-4 flex justify-between gap-4">
           <div className="flex justify-between gap-4">
             <Button type="button" onClick={handleEditClick}>
               {isEditing ? "Save" : "Edit"}

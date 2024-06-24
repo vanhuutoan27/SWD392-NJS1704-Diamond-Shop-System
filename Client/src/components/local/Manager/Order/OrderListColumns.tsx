@@ -192,10 +192,7 @@ export const columns: ColumnDef<IOrder>[] = [
                 <Copy size={16} className="mr-2" />
                 <span>Copy ID</span>
               </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={handleViewDetailsClick}
-                className="text-sm"
-              >
+              <DropdownMenuItem className="text-sm">
                 <PencilLine size={16} className="mr-2" />
                 <span>Change Status</span>
               </DropdownMenuItem>

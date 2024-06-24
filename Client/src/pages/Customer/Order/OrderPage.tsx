@@ -6,8 +6,8 @@ import { useLocation } from "react-router-dom"
 
 import {
   District,
-  IOrderPost,
   IOrderPaymentMethod,
+  IOrderPost,
   Province,
   Ward
 } from "@/types/order.interface"

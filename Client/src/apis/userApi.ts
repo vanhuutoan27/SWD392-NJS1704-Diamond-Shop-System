@@ -62,6 +62,26 @@ export const usePutUser = () => {
   )
 }
 
+export const useChangePasswordUser = () => {
+  return useMutation(
+    async (data: { oldPassword: string; newPassword: string }) => {
+      const response = await diamoonAPI.put("/User/change-password/", {
+        oldPassword: data.oldPassword,
+        newPassword: data.newPassword
+      })
+      return response.data
+    },
+    {
+      onSuccess: () => {
+        toast.success("Password changed successfully")
+      },
+      onError: () => {
+        toast.error("Failed to change password")
+      }
+    }
+  )
+}
+
 export const useChangeUserStatus = () => {
   const queryClient = useQueryClient()
 
