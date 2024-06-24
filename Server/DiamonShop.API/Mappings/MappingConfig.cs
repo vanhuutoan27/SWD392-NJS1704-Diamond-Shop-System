@@ -34,8 +34,6 @@ namespace DiamonShop.API.Mappings
 
             .ForMember(dest => dest.SkuId, opt => opt.MapFrom(src => (src.Product.Jewelry != null) ? src.Product.Jewelry.SkuID : src.Product.Diamond.SkuID));
 
-
-
             CreateMap<Invoice, InvoiceResponse>()
                 .ForMember(dest => dest.Order, opt => opt.MapFrom(src => src.Order))
                 .ForMember(dest => dest.User, opt => opt.MapFrom(src => src.User));
