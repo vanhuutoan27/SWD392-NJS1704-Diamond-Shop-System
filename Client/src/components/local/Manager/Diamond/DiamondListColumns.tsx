@@ -8,7 +8,7 @@ import {
   Copy,
   Eye,
   MoreHorizontal,
-  UserRoundCog
+  PencilLine
 } from "lucide-react"
 
 import { IDiamond } from "@/types/diamond.interface"
@@ -148,7 +148,7 @@ export const columns: ColumnDef<IDiamond>[] = [
       </div>
     ),
     cell: (info) => (
-      <span className="uppercase flex justify-center">
+      <span className="flex justify-center uppercase">
         {info.getValue() as string}
       </span>
     )
@@ -234,7 +234,7 @@ export const columns: ColumnDef<IDiamond>[] = [
                 onClick={handleStatusChange}
                 className="text-sm"
               >
-                <UserRoundCog size={16} className="mr-2" />
+                <PencilLine size={16} className="mr-2" />
                 <span>{diamond.status === 1 ? "Deactivate" : "Activate"}</span>
               </DropdownMenuItem>
               <DropdownMenuItem

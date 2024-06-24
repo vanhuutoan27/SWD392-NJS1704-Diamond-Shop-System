@@ -31,12 +31,9 @@ export const useGetInvoiceByUserId = (userId: string) => {
     queryKey: ["invoice", userId],
     queryFn: async () => {
       try {
-        const { data } = await diamoonAPI.get(
-          `/Invoice/by-customer/${userId}`,
-          {
-            params: { userId }
-          }
-        )
+        const { data } = await diamoonAPI.get(`/Invoice/user/${userId}`, {
+          params: { userId }
+        })
         return data.data ?? []
       } catch (error) {
         console.error("Error fetching invoices:", error)

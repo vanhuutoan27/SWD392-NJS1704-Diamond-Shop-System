@@ -8,7 +8,7 @@ import {
   Copy,
   Eye,
   MoreHorizontal,
-  UserRoundCog
+  PencilLine
 } from "lucide-react"
 import { Link } from "react-router-dom"
 
@@ -181,7 +181,7 @@ export const columns: ColumnDef<IUser>[] = [
                 onClick={handleStatusChange}
                 className="text-sm"
               >
-                <UserRoundCog size={16} className="mr-2" />
+                <PencilLine size={16} className="mr-2" />
                 <span>{user.isActive ? "Deactivate" : "Activate"}</span>
               </DropdownMenuItem>
               <DropdownMenuItem

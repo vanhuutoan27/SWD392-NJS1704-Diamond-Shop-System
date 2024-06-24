@@ -3,7 +3,13 @@
 import { useState } from "react"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { ArrowUpDown, Copy, Eye, MoreHorizontal } from "lucide-react"
+import {
+  ArrowUpDown,
+  Copy,
+  Eye,
+  MoreHorizontal,
+  PencilLine
+} from "lucide-react"
 
 import { IOrder, OrderStatus } from "@/types/order.interface"
 
@@ -185,6 +191,13 @@ export const columns: ColumnDef<IOrder>[] = [
               >
                 <Copy size={16} className="mr-2" />
                 <span>Copy ID</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={handleViewDetailsClick}
+                className="text-sm"
+              >
+                <PencilLine size={16} className="mr-2" />
+                <span>Change Status</span>
               </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={handleViewDetailsClick}

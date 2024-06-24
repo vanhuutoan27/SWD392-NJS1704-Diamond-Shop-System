@@ -78,7 +78,9 @@ function PaymentForm({
           >
             <RadioGroupItem
               value={IOrderPaymentMethod.Deposit1000.toString()}
-              checked={selectedPaymentMethod === IOrderPaymentMethod.Deposit1000}
+              checked={
+                selectedPaymentMethod === IOrderPaymentMethod.Deposit1000
+              }
             />
             <span className="ml-4 text-sm">
               Deposit {formatCurrency(1000000)}
@@ -91,7 +93,9 @@ function PaymentForm({
           >
             <RadioGroupItem
               value={IOrderPaymentMethod.Deposit1500.toString()}
-              checked={selectedPaymentMethod === IOrderPaymentMethod.Deposit1500}
+              checked={
+                selectedPaymentMethod === IOrderPaymentMethod.Deposit1500
+              }
             />
             <span className="ml-4 text-sm">
               Deposit {formatCurrency(1500000)}
@@ -104,7 +108,9 @@ function PaymentForm({
           >
             <RadioGroupItem
               value={IOrderPaymentMethod.Deposit2000.toString()}
-              checked={selectedPaymentMethod === IOrderPaymentMethod.Deposit2000}
+              checked={
+                selectedPaymentMethod === IOrderPaymentMethod.Deposit2000
+              }
             />
             <span className="ml-4 text-sm">
               Deposit {formatCurrency(2000000)}

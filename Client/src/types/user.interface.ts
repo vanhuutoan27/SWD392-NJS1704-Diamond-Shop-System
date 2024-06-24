@@ -47,3 +47,24 @@ export interface IUserAdmin {
   roles: string[]
   isActive: boolean
 }
+
+export interface IUserRoleConfigItem {
+  userId: string
+  permissionId: string
+  permissionName: string
+  diamond: IUserPermission
+  jewelry: IUserPermission
+  user: IUserPermission
+  order: IUserPermission
+  invoice: IUserPermission
+}
+
+export type IUserRoleConfig = IUserRoleConfigItem[]
+
+export enum IUserPermission {
+  AccessDenied = 0,
+  View = 1,
+  Modify = 2,
+  Create = 3,
+  FullAccess = 4
+}

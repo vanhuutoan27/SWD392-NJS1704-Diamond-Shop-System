@@ -21,7 +21,7 @@ const OrderStatusChip: React.FC<OrderStatusChipProps> = ({ content }) => {
 
   return (
     <div
-      className="inline-flex select-none cursor-pointer items-center rounded-[50px] px-4 py-[6px] text-xs text-white"
+      className="inline-flex cursor-pointer select-none items-center rounded-[50px] px-4 py-[6px] text-xs text-white"
       style={{ backgroundColor }}
     >
       <span>{getOrderStatusString(content)}</span>

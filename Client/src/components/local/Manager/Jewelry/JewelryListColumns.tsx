@@ -8,7 +8,7 @@ import {
   Copy,
   Eye,
   MoreHorizontal,
-  UserRoundCog
+  PencilLine
 } from "lucide-react"
 
 import { IJewelry } from "@/types/jewelry.interface"
@@ -195,7 +195,7 @@ export const columns: ColumnDef<IJewelry>[] = [
                 onClick={handleStatusChange}
                 className="text-sm"
               >
-                <UserRoundCog size={16} className="mr-2" />
+                <PencilLine size={16} className="mr-2" />
                 <span>{jewelry.status === 1 ? "Deactivate" : "Activate"}</span>
               </DropdownMenuItem>
               <DropdownMenuItem

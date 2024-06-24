@@ -165,7 +165,7 @@ function AddUserDialog() {
               </div>
             </div>
 
-            <div className="grid grid-cols-4 items-center">
+            <div className=" grid grid-cols-4 items-center">
               <span className="text-sm font-medium">Phone</span>
               <div className="col-span-3">
                 <input

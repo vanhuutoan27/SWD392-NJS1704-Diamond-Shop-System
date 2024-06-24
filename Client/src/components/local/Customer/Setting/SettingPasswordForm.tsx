@@ -81,7 +81,7 @@ function SettingPasswordForm({ user }: SettingPasswordFormProps) {
             name="oldPassword"
             type={isShowOldPassword ? "text" : "password"}
             value={passwordData.oldPassword}
-            placeholder="Old Password"
+            placeholder="Current Password"
             onChange={handlePasswordChange}
             className="mb-1 w-full select-none rounded-md border-[1.5px] bg-slate-100 py-3 pl-10 pr-5 text-sm outline-none"
           />

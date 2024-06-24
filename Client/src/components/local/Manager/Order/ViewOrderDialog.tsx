@@ -330,17 +330,17 @@ function ViewOrderDialog({
         </div>
 
         <div>
-          <table className="min-w-full bg-white border border-gray-200">
+          <table className="min-w-full border border-gray-200 bg-white">
             <thead>
               <tr className="grid grid-cols-8 gap-4 border-b">
-                <th className="py-2 text-sm font-medium col-span-2">
+                <th className="col-span-2 py-2 text-sm font-medium">
                   Product Id
                 </th>
-                <th className="py-2 text-sm font-medium col-span-2">Images</th>
-                <th className="py-2 text-sm font-medium col-span-2">
+                <th className="col-span-2 py-2 text-sm font-medium">Images</th>
+                <th className="col-span-2 py-2 text-sm font-medium">
                   Quantity
                 </th>
-                <th className="py-2 text-sm font-medium col-span-2">
+                <th className="col-span-2 py-2 text-sm font-medium">
                   Unit Price
                 </th>
               </tr>
@@ -349,34 +349,32 @@ function ViewOrderDialog({
               {formData.items?.length > 0 ? (
                 formData.items.map((item, index) => (
                   <tr key={index} className="grid grid-cols-8 gap-4 border-b">
-                    <td className="py-2 px-4 text-sm font-medium col-span-2 text-center content-center">
+                    <td className="col-span-2 content-center px-4 py-2 text-center text-sm font-medium">
                       {item.productId}
                     </td>
-                    <td className="py-2 px-4 col-span-2 flex justify-center items-center content-center">
+                    <td className="col-span-2 flex content-center items-center justify-center px-4 py-2">
                       {item.images && item.images.length > 0 ? (
                         <img
                           key={0} // Use a key that's unique for each image iteration
                           src={item.images[0]} // Display only the first image
                           alt={`Product ${index + 1} Image 1`} // Adjust alt text if needed
-                          className="h-16 w-16 object-cover inline-block mr-2"
+                          className="mr-2 inline-block h-16 w-16 object-cover"
                         />
                       ) : (
                         "No images"
                       )}
                     </td>
-                    <td className="py-2 px-4 text-sm font-medium col-span-2 text-center content-center">
+                    <td className="col-span-2 content-center px-4 py-2 text-center text-sm font-medium">
                       {item.quantity}
                     </td>
-                    <td className="py-2 px-4 text-sm font-medium col-span-2 text-center content-center">
+                    <td className="col-span-2 content-center px-4 py-2 text-center text-sm font-medium">
                       {formatCurrency(item.unitPrice)}
                     </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td className="py-2 px-4 text-center">
-                    No items found.
-                  </td>
+                  <td className="px-4 py-2 text-center">No items found.</td>
                 </tr>
               )}
             </tbody>

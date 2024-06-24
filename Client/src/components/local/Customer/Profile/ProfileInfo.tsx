@@ -2,7 +2,7 @@ import { projectName } from "@/lib/constants"
 
 function ProfileInfo() {
   return (
-    <div className="flex mt-10 flex-col items-center justify-center">
+    <div className="mt-10 flex flex-col items-center justify-center">
       <h3 className="flex justify-center font-medium">About Me</h3>
       <p className="mt-4 w-3/5 text-center text-sm text-secondary">
         The web manager for {projectName}, a leading online destination for
