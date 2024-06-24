@@ -16,6 +16,9 @@ namespace DiamonShop.Data.Repository
         {
             return await _context.Invoices.AsNoTracking().AsQueryable()
                 .Include(i => i.Order).ThenInclude(o => o.Items).ThenInclude(oi => oi.Product).ThenInclude(p => p.Images)
+                .Include(i => i.Order).ThenInclude(o => o.Items).ThenInclude(oi => oi.Product).ThenInclude(p => p.Jewelry)
+                .Include(i => i.Order).ThenInclude(o => o.Items).ThenInclude(oi => oi.Product).ThenInclude(p => p.Diamond)
+
                 .Include(i => i.User).ToListAsync();
         }
 
@@ -23,6 +26,9 @@ namespace DiamonShop.Data.Repository
         {
             return await _context.Invoices.AsNoTracking().AsQueryable()
            .Include(i => i.Order).ThenInclude(o => o.Items).ThenInclude(oi => oi.Product).ThenInclude(p => p.Images)
+           .Include(i => i.Order).ThenInclude(o => o.Items).ThenInclude(oi => oi.Product).ThenInclude(p => p.Jewelry)
+           .Include(i => i.Order).ThenInclude(o => o.Items).ThenInclude(oi => oi.Product).ThenInclude(p => p.Diamond)
+
            .Include(i => i.User).Where(i => i.UserId == userId).ToListAsync();
         }
     }

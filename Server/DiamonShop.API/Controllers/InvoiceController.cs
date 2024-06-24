@@ -47,7 +47,7 @@ namespace DiamonShop.API.Controllers
         public async Task<ActionResult<ResultModel>> GetInvoicesByUserId(Guid id)
         {
             var result = await _serviceManager.InvoiceService.GetInvoiceByUserIdAsync(id);
-            if (result == null)
+            if (result == null || !result.Any())
             {
                 res.IsSuccess = false;
                 res.Message = "Not Found Invoice Lists";
