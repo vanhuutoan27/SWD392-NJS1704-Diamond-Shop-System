@@ -33,14 +33,14 @@ import AlertDialogComponent from "@/components/global/molecules/AlertDialogCompo
 
 function ViewOrderDialog({
   orderId,
+  isAllowEdit,
   onClose
 }: {
   orderId: string
+  isAllowEdit: boolean
   onClose: () => void
 }) {
   const { data: orderDetails, isLoading, error } = useGetOrderById(orderId)
-
-  console.log(orderDetails)
 
   const [isEditing, setIsEditing] = useState(false)
   const [formData, setFormData] = useState<IOrder>({
@@ -54,7 +54,7 @@ function ViewOrderDialog({
     email: "",
     address: "",
     orderStatus: OrderStatus.Pending,
-    paymentMethod: IOrderPaymentMethod.BankTransfer,
+    paymentMethod: IOrderPaymentMethod.CreditCard,
     dateCreated: "",
     dateModified: "",
     status: false,
@@ -392,21 +392,25 @@ function ViewOrderDialog({
         </ScrollArea>
 
         <div className="mt-4 flex justify-between gap-4">
-          <div className="flex justify-between gap-4">
-            <Button type="button" onClick={handleEditClick}>
-              {isEditing ? "Save" : "Edit"}
-            </Button>
-            {isEditing && (
-              <AlertDialogComponent
-                variant="secondary"
-                actionBtn="Cancel"
-                title="Discard changes?"
-                description="You have unsaved changes. Are you sure you want to discard them?"
-                action="Discard"
-                onConfirm={handleConfirmCancel}
-              />
-            )}
-          </div>
+          {isAllowEdit ? (
+            <div className="flex justify-between gap-4">
+              <Button type="button" onClick={handleEditClick}>
+                {isEditing ? "Save" : "Edit"}
+              </Button>
+              {isEditing && (
+                <AlertDialogComponent
+                  variant="secondary"
+                  actionBtn="Cancel"
+                  title="Discard changes?"
+                  description="You have unsaved changes. Are you sure you want to discard them?"
+                  action="Discard"
+                  onConfirm={handleConfirmCancel}
+                />
+              )}
+            </div>
+          ) : (
+            <div></div>
+          )}
           <Button type="button" onClick={onClose}>
             Close
           </Button>

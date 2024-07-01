@@ -6,7 +6,6 @@
         Deposit1000,
         Deposit1500,
         Deposit2000,
-        BankTransfer,
         CreditCard
     }
 }

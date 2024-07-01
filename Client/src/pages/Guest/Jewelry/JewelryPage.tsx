@@ -35,7 +35,7 @@ function JewelryPage() {
         (jewelry) =>
           jewelry.jewelryCategory.toLowerCase() === category.toLowerCase()
       )
-      console.log("After category filter: ", filtered)
+      // console.log("After category filter: ", filtered)
     }
 
     if (priceRange && priceRange !== "all") {
@@ -49,7 +49,7 @@ function JewelryPage() {
         if (priceRange === "Over 200") return price > 200000000
         return true
       })
-      console.log("After price filter: ", filtered)
+      // console.log("After price filter: ", filtered)
     }
 
     if (sortOrder && sortOrder !== "all") {
@@ -58,7 +58,7 @@ function JewelryPage() {
       } else if (sortOrder === "low-high") {
         filtered.sort((a, b) => a.price - b.price)
       }
-      console.log("After sort: ", filtered)
+      // console.log("After sort: ", filtered)
     }
 
     return filtered

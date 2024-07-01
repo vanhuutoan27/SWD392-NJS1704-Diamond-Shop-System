@@ -15,8 +15,6 @@ import Section from "@/components/global/organisms/Section"
 function DiamondDetails({ diamondDetails }: { diamondDetails: IDiamond }) {
   const { user } = useAuthContext()
 
-  console.log(diamondDetails)
-
   const salePrice = null
 
   const [cartItems, setCartItems] = useState<ICart[]>([])

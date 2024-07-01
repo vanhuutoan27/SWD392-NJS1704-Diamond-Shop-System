@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 import { jewelrySchema } from "@/schemas/AddJewelryForm"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -6,6 +6,10 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage"
 import { Plus } from "lucide-react"
 import { Controller, SubmitHandler, useForm } from "react-hook-form"
 import { z } from "zod"
+
+import { IJewelryPost } from "@/types/jewelry.interface"
+
+import { usePostJewelry } from "@/apis/jewelryApi"
 
 import { diamoonDB } from "@/lib/firebase"
 
@@ -37,33 +41,38 @@ import {
 type JewelryFormValues = z.infer<typeof jewelrySchema>
 
 function AddJewelryDialog() {
-  const [imageUrl, setImageUrl] = useState<string>("")
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
   const [newPhoto, setNewPhoto] = useState<File | null>(null)
   const [uploadProgress, setUploadProgress] = useState(0)
-  const [imageMethod, setImageMethod] = useState<"upload" | "url">("upload")
 
-  const handleSave = () => {
-    if (newPhoto) {
-      const storageRef = ref(diamoonDB, `/Products/Jewelry/${newPhoto.name}`)
-      const uploadTask = uploadBytesResumable(storageRef, newPhoto)
+  const postJewelry = usePostJewelry()
 
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          setUploadProgress(progress)
-        },
-        (error) => {
-          console.error("Upload failed:", error)
-        },
-        async () => {
-          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
-          setImageUrl(downloadURL)
-        }
-      )
-    }
+  const handleSave = async () => {
+    return new Promise<string | null>((resolve, reject) => {
+      if (newPhoto) {
+        const storageRef = ref(diamoonDB, `/Products/Diamond/${newPhoto.name}`)
+        const uploadTask = uploadBytesResumable(storageRef, newPhoto)
+
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            const progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            setUploadProgress(progress)
+          },
+          (error) => {
+            console.error("Upload failed:", error)
+            reject(error)
+          },
+          async () => {
+            const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
+            resolve(downloadURL)
+          }
+        )
+      } else {
+        resolve(null)
+      }
+    })
   }
 
   const {
@@ -71,44 +80,46 @@ function AddJewelryDialog() {
     handleSubmit,
     control,
     reset,
-    watch,
     formState: { errors, isDirty }
   } = useForm<JewelryFormValues>({
     resolver: zodResolver(jewelrySchema)
   })
 
-  const watchImageUrl = watch("images")
+  const onSubmit: SubmitHandler<JewelryFormValues> = async (data) => {
+    try {
+      const downloadURL = await handleSave()
 
-  useEffect(() => {
-    if (imageMethod === "url") {
-      setImageUrl(watchImageUrl)
-    }
-  }, [watchImageUrl, imageMethod])
+      const generatedJewelryName = `${data.goldKarat} ${data.sideStoneType} ${data.jewelryCategory}`
 
-  const onSubmit: SubmitHandler<JewelryFormValues> = (data) => {
-    if (imageMethod === "upload") {
-      handleSave()
+      const jewelryData: IJewelryPost = {
+        jewelryCategory: data.jewelryCategory,
+        jewelryName: generatedJewelryName,
+        mainStoneSize: data.mainStoneSize,
+        sideStoneType: data.sideStoneType,
+        sideStoneQuantity: data.sideStoneQuantity,
+        stoneWeight: data.stoneWeight,
+        goldType: data.goldType,
+        goldKarat: data.goldKarat,
+        goldWeight: data.goldWeight,
+        price: data.price,
+        images: downloadURL ? [downloadURL] : []
+      }
+
+      console.log("Jewelry data:", JSON.stringify(jewelryData, null, 2))
+      postJewelry.mutate(jewelryData, {
+        onSuccess: () => {
+          setIsDialogOpen(false)
+        }
+      })
+    } catch (error) {
+      console.error("Error saving jewelry:", error)
     }
-    console.log("Jewelry data:", data)
-    setIsDialogOpen(false)
   }
 
   const handleClear = () => {
-    reset({
-      jewelryCategory: "",
-      jewelryName: "",
-      mainStoneSize: "",
-      sideStoneType: "",
-      sideStoneQuantity: undefined,
-      stoneWeight: undefined,
-      goldType: "",
-      goldKarat: undefined,
-      goldWeight: undefined,
-      images: ""
-    })
+    reset({})
     setUploadProgress(0)
     setNewPhoto(null)
-    setImageUrl("")
   }
 
   const handleConfirmCancel = () => {
@@ -144,37 +155,20 @@ function AddJewelryDialog() {
           <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 p-2">
             <div className="flex justify-between gap-4">
               <div className="flex min-h-40 min-w-40 items-center justify-center rounded-md border-2 border-gray-800">
-                {imageMethod === "url" && imageUrl ? (
-                  <img
-                    src={imageUrl}
-                    alt="Diamond"
-                    className="h-40 w-40 rounded-md border-2 border-gray-800 object-cover"
-                  />
-                ) : newPhoto ? (
+                {newPhoto ? (
                   <img
                     src={URL.createObjectURL(newPhoto)}
-                    alt="Diamond"
-                    className="h-40 w-40 rounded-md border-2 border-gray-800 object-cover"
+                    alt="New Jewelry"
+                    className="h-40 w-40 rounded-md border-[1px] border-gray-800 object-cover"
                   />
                 ) : (
                   "No Image"
                 )}
               </div>
 
-              <Tabs
-                defaultValue="upload"
-                className="w-full"
-                onValueChange={(value) =>
-                  setImageMethod(value as "upload" | "url")
-                }
-              >
-                <span className="ml-1 text-sm font-medium">
-                  Choose 1 of the 2 ways below to set an image for the product
-                </span>
-
+              <Tabs defaultValue="upload" className="w-full">
                 <TabsList className="mt-1 grid w-full grid-cols-2 gap-4">
                   <TabsTrigger value="upload">Upload</TabsTrigger>
-                  <TabsTrigger value="url">URL</TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="upload">
@@ -253,20 +247,6 @@ function AddJewelryDialog() {
               </div>
 
               <div className="col-span-1">
-                <span className="ml-1 text-sm font-medium">Jewelry Name</span>
-                <input
-                  type="text"
-                  className="input-field mt-1"
-                  {...register("jewelryName")}
-                />
-                {errors.jewelryName && (
-                  <p className="mt-1 text-sm text-red-600">
-                    {errors.jewelryName.message}
-                  </p>
-                )}
-              </div>
-
-              <div className="col-span-1">
                 <span className="ml-1 text-sm font-medium">
                   Main Stone Size
                 </span>
@@ -337,7 +317,7 @@ function AddJewelryDialog() {
                   Side Stone Weight
                 </span>
                 <input
-                  type="number"
+                  type="text"
                   placeholder="e.g., 0.04"
                   className="input-field mt-1"
                   {...register("stoneWeight", { valueAsNumber: true })}
@@ -414,7 +394,7 @@ function AddJewelryDialog() {
               <div className="col-span-1">
                 <span className="ml-1 text-sm font-medium">Gold Weight</span>
                 <input
-                  type="number"
+                  type="text"
                   placeholder="e.g., 1.04"
                   {...register("goldWeight", { valueAsNumber: true })}
                   className="input-field mt-1"

@@ -1,9 +1,8 @@
 import { z } from "zod"
 
 export const jewelrySchema = z.object({
-  images: z.string().url({ message: "Invalid image URL" }),
+  images: z.string().optional(),
   jewelryCategory: z.string().min(1, { message: "Category is required" }),
-  jewelryName: z.string().min(1, { message: "Category is required" }),
   mainStoneSize: z.string().min(1, { message: "Stone size is required" }),
   sideStoneType: z.string().min(1, { message: "Stone type is required" }),
   sideStoneQuantity: z

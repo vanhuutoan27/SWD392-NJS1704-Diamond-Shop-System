@@ -48,8 +48,7 @@ export enum IOrderPaymentMethod {
   Deposit1000 = 1,
   Deposit1500 = 2,
   Deposit2000 = 3,
-  BankTransfer = 4,
-  CreditCard = 5
+  CreditCard = 4
 }
 
 export interface IOrderProductItem {

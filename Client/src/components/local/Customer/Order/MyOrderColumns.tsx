@@ -1,17 +1,14 @@
 "use client"
 
 // import { useState } from "react"
+import { useState } from "react"
+
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown, Copy, Eye, MoreHorizontal } from "lucide-react"
 
-import { IOrder } from "@/types/order.interface"
+import { IOrder, OrderStatus } from "@/types/order.interface"
 
-import {
-  formatCurrency,
-  formatDate,
-  getOrderStatusString,
-  getPaymentMethodString
-} from "@/lib/utils"
+import { formatCurrency, formatDate, getPaymentMethodString } from "@/lib/utils"
 
 import { Button } from "@/components/global/atoms/button"
 import {
@@ -22,7 +19,8 @@ import {
   DropdownMenuTrigger
 } from "@/components/global/atoms/dropdown-menu"
 
-// import ViewOrderDialog from "@/components/local/Manager/Order/ViewOrderDialog"
+import OrderStatusChip from "../../Manager/Order/OrderStatusChip"
+import ViewOrderDialog from "../../Manager/Order/ViewOrderDialog"
 
 export const columns: ColumnDef<IOrder>[] = [
   {
@@ -116,7 +114,13 @@ export const columns: ColumnDef<IOrder>[] = [
         </div>
       )
     },
-    cell: (info) => <span>{formatDate(info.getValue() as string)}</span>
+    cell: (info) => (
+      <span>
+        {info.getValue() === null
+          ? "NaN"
+          : formatDate(info.getValue() as string)}
+      </span>
+    )
   },
   {
     accessorKey: "orderStatus",
@@ -133,7 +137,11 @@ export const columns: ColumnDef<IOrder>[] = [
     },
     cell: (info) => {
       const value: number = info.getValue() as number
-      return <span>{getOrderStatusString(value)}</span>
+      return (
+        <span className="flex justify-center">
+          <OrderStatusChip content={value as OrderStatus} />
+        </span>
+      )
     }
   },
   {
@@ -145,11 +153,11 @@ export const columns: ColumnDef<IOrder>[] = [
     ),
     cell: ({ row }) => {
       const order = row.original
-      // const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
+      const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
 
-      // const handleViewDetailsClick = () => {
-      //   setIsViewDialogOpen(true)
-      // }
+      const handleViewDetailsClick = () => {
+        setIsViewDialogOpen(true)
+      }
 
       return (
         <div>
@@ -170,7 +178,7 @@ export const columns: ColumnDef<IOrder>[] = [
                 <span>Copy ID</span>
               </DropdownMenuItem>
               <DropdownMenuItem
-                // onClick={handleViewDetailsClick}
+                onClick={handleViewDetailsClick}
                 className="text-sm"
               >
                 <Eye size={16} className="mr-2" />
@@ -179,12 +187,13 @@ export const columns: ColumnDef<IOrder>[] = [
             </DropdownMenuContent>
           </DropdownMenu>
 
-          {/* {isViewDialogOpen && (
+          {isViewDialogOpen && (
             <ViewOrderDialog
               orderId={order.orderId}
+              isAllowEdit={false}
               onClose={() => setIsViewDialogOpen(false)}
             />
-          )} */}
+          )}
         </div>
       )
     }

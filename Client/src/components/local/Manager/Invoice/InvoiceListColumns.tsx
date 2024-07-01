@@ -1,5 +1,7 @@
 "use client"
 
+import { useState } from "react"
+
 import { ColumnDef } from "@tanstack/react-table"
 import { ArrowUpDown, Copy, Eye, MoreHorizontal } from "lucide-react"
 
@@ -16,7 +18,7 @@ import {
   DropdownMenuTrigger
 } from "@/components/global/atoms/dropdown-menu"
 
-// import ViewInvoiceDialog from "./ViewInvoiceDialog"
+import ViewInvoiceDialog from "./ViewInvoiceDialog"
 
 export const columns: ColumnDef<IInvoice>[] = [
   {
@@ -97,11 +99,11 @@ export const columns: ColumnDef<IInvoice>[] = [
     ),
     cell: ({ row }) => {
       const invoice = row.original
-      // const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
+      const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
 
-      // const handleViewDetailsClick = () => {
-      //   setIsViewDialogOpen(true)
-      // }
+      const handleViewDetailsClick = () => {
+        setIsViewDialogOpen(true)
+      }
       return (
         <div>
           <DropdownMenu>
@@ -121,7 +123,7 @@ export const columns: ColumnDef<IInvoice>[] = [
                 <span>Copy ID</span>
               </DropdownMenuItem>
               <DropdownMenuItem
-                // onClick={handleViewDetailsClick}
+                onClick={handleViewDetailsClick}
                 className="text-sm"
               >
                 <Eye size={16} className="mr-2" />
@@ -129,12 +131,12 @@ export const columns: ColumnDef<IInvoice>[] = [
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          {/* {isViewDialogOpen && (
+          {isViewDialogOpen && (
             <ViewInvoiceDialog
               invoiceId={invoice.invoiceId}
               onClose={() => setIsViewDialogOpen(false)}
             />
-          )} */}
+          )}
         </div>
       )
     }

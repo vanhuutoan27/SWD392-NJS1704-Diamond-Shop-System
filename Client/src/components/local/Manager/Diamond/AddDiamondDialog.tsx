@@ -12,6 +12,7 @@ import {
   IDiamondClarity,
   IDiamondColor,
   IDiamondFluorescence,
+  IDiamondPost,
   IDiamondQualityOfCut,
   IDiamondShape
 } from "@/types/diamond.interface"
@@ -96,7 +97,7 @@ function AddDiamondDialog() {
     try {
       const downloadURL = await handleSave()
 
-      const diamondData = {
+      const diamondData: IDiamondPost = {
         shape: data.shape,
         weight: data.weight,
         colorLevel: data.colorLevel,
@@ -109,9 +110,12 @@ function AddDiamondDialog() {
         images: downloadURL || ""
       }
 
-      console.log("Diamond data:", JSON.stringify(diamondData, null, 2))
-      postDiamond.mutate(diamondData)
-      setIsDialogOpen(false)
+      // console.log("Diamond data:", JSON.stringify(diamondData, null, 2))
+      postDiamond.mutate(diamondData, {
+        onSuccess: () => {
+          setIsDialogOpen(false)
+        }
+      })
     } catch (error) {
       console.error("Error saving diamond:", error)
     }
@@ -170,7 +174,7 @@ function AddDiamondDialog() {
                 {newPhoto ? (
                   <img
                     src={URL.createObjectURL(newPhoto)}
-                    alt="Diamond"
+                    alt="New Diamond"
                     className="h-40 w-40 rounded-md border-[1px] border-gray-800 object-cover"
                   />
                 ) : (

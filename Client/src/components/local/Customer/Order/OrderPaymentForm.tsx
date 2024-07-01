@@ -119,26 +119,13 @@ function PaymentForm({
 
           <div
             className="flex cursor-pointer items-center rounded-md border-b-2 px-5 py-4"
-            onClick={() => handleSelectItem(IOrderPaymentMethod.BankTransfer)}
-          >
-            <RadioGroupItem
-              value={IOrderPaymentMethod.BankTransfer.toString()}
-              checked={
-                selectedPaymentMethod === IOrderPaymentMethod.BankTransfer
-              }
-            />
-            <span className="ml-4 text-sm">Bank Transfer (VNPay)</span>
-          </div>
-
-          <div
-            className="flex cursor-pointer items-center rounded-md border-b-2 px-5 py-4"
             onClick={() => handleSelectItem(IOrderPaymentMethod.CreditCard)}
           >
             <RadioGroupItem
               value={IOrderPaymentMethod.CreditCard.toString()}
               checked={selectedPaymentMethod === IOrderPaymentMethod.CreditCard}
             />
-            <span className="ml-4 text-sm">Credit Card</span>
+            <span className="ml-4 text-sm">Credit Card (VNPay)</span>
           </div>
         </RadioGroup>
         {paymentError && (

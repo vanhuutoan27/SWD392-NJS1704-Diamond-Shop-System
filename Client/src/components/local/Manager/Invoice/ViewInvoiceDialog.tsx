@@ -1,103 +1,60 @@
-// import { useEffect, useRef, useState } from "react"
+import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage"
 
-// import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage"
+import "@/apis/invoiceApi"
+import { useGetInvoiceById } from "@/apis/invoiceApi"
 
-// import { IInvoice } from "@/types/invoice.interface"
+import { Loader } from "@/components/global/atoms/Loader"
+import { Button } from "@/components/global/atoms/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle
+} from "@/components/global/atoms/dialog"
 
-// import {  } from "@/apis/invoiceApi"
+import InvoiceItem from "../../Customer/Invoice/InvoiceItem"
 
-// import { diamondImage } from "@/lib/constants"
-// import { formatCurrencyWithoutVND, formatDate } from "@/lib/utils"
+function ViewInvoiceDialog({
+  invoiceId,
+  onClose
+}: {
+  invoiceId: string
+  onClose: () => void
+}) {
+  const {
+    data: invoiceDetails,
+    isLoading,
+    error
+  } = useGetInvoiceById(invoiceId)
 
-// import { Loader } from "@/components/global/atoms/Loader"
-// import { Button } from "@/components/global/atoms/button"
-// import {
-//   Dialog,
-//   DialogContent,
-//   DialogHeader,
-//   DialogTitle
-// } from "@/components/global/atoms/dialog"
+  if (!invoiceDetails || isLoading) {
+    return <Loader />
+  }
 
-// function ViewInvoiceDialog({
-//   invoiceId
-// }: {
-//   invoiceId: string
-//   onClose: () => void
-// }) {
-//   const {
-//     data: diamondDetails,
-//     isLoading,
-//     error
-//   } = useGetDiamondById(invoiceId)
+  if (error) {
+    return <NotFoundPage />
+  }
 
-//   const [formData, setFormData] = useState({
-//     diamondId: "",
-//     shape: "",
-//     colorLevel: "",
-//     clarity: "",
-//     certification: "",
-//     fluorescence: "",
-//     qualityOfCut: "",
-//     weight: 0,
-//     size: 0,
-//     price: 0,
-//     image: diamondImage,
-//     dateCreated: "",
-//     dateModified: ""
-//   })
+  return (
+    <Dialog onOpenChange={onClose} open>
+      <DialogContent className="min-w-[800px]">
+        <DialogHeader>
+          <DialogTitle className="text-center text-xl font-semibold">
+            View InVoice Details
+          </DialogTitle>
+        </DialogHeader>
+        <div className="mt-4">
+          <InvoiceItem invoiceItem={invoiceDetails} />
 
-//   const dialogRef = useRef<HTMLDivElement | null>(null)
+          <div className="mt-4 flex justify-between gap-4">
+            <Button type="button" onClick={onClose}>
+              Close
+            </Button>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  )
+}
 
-//   useEffect(() => {
-//     if (diamondDetails) {
-//       setFormData({
-//         diamondId: diamondDetails.diamondId || "",
-//         shape: diamondDetails.shape || "",
-//         colorLevel: diamondDetails.colorLevel || "",
-//         clarity: diamondDetails.clarity || "",
-//         certification: diamondDetails.certification || "",
-//         fluorescence: diamondDetails.fluorescence.toUpperCase() || "",
-//         qualityOfCut: diamondDetails.qualityOfCut || "",
-//         weight: diamondDetails.weight || 0,
-//         size: diamondDetails.size || 0,
-//         price: diamondDetails.price || 0,
-//         image: diamondDetails.images || diamondImage || "",
-//         dateCreated: diamondDetails.dateCreated || "",
-//         dateModified: diamondDetails.dateModified || ""
-//       })
-//     }
-//   }, [diamondDetails])
-
-//   if (!diamondDetails || isLoading) {
-//     return <Loader />
-//   }
-
-//   if (error) {
-//     return <NotFoundPage />
-//   }
-
-//   return (
-//     <Dialog open>
-//       <DialogContent ref={dialogRef} className="min-w-[800px]">
-//         <DialogHeader>
-//           <DialogTitle className="text-center text-xl font-semibold">
-//             View InVoice Details
-//           </DialogTitle>
-//         </DialogHeader>
-//         <div className="mb-4">
-//           <span className="ml-1 text-sm font-medium">Jewelry ID</span>
-//           <input
-//             type="text"
-//             name="jewelryId"
-//             value={formData.jewelryId}
-//             readOnly
-//             className="input-field mt-1 w-full"
-//             tabIndex={-1}
-//           />
-//         </div>
-//       </DialogContent>
-//     </Dialog>
-//   )
-// }
-
-// export default ViewInvoiceDialog
+export default ViewInvoiceDialog

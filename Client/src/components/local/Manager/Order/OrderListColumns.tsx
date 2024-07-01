@@ -132,8 +132,10 @@ export const columns: ColumnDef<IOrder>[] = [
       )
     },
     cell: (info) => (
-      <span className="flex justify-center">
-        {formatDate(info.getValue() as string)}
+      <span>
+        {info.getValue() === null
+          ? "NaN"
+          : formatDate(info.getValue() as string)}
       </span>
     )
   },
@@ -208,6 +210,7 @@ export const columns: ColumnDef<IOrder>[] = [
           {isViewDialogOpen && (
             <ViewOrderDialog
               orderId={order.orderId}
+              isAllowEdit={true}
               onClose={() => setIsViewDialogOpen(false)}
             />
           )}

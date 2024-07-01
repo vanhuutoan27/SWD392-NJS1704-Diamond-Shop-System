@@ -19,7 +19,8 @@ export interface IJewelry {
 }
 
 export interface IJewelryPost {
-  name: string
+  jewelryCategory: string
+  jewelryName: string
   mainStoneSize: string
   sideStoneType: string
   sideStoneQuantity: number

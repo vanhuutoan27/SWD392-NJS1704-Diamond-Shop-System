@@ -133,10 +133,8 @@ export const getPaymentMethodNumber = (method: IOrderPaymentMethod) => {
       return 2
     case IOrderPaymentMethod.Deposit2000:
       return 3
-    case IOrderPaymentMethod.BankTransfer:
-      return 4
     case IOrderPaymentMethod.CreditCard:
-      return 5
+      return 4
     default:
       return 4
   }
@@ -154,11 +152,9 @@ export const getPaymentMethodString = (number: number): string => {
     case 3:
       return "Deposit2000"
     case 4:
-      return "BankTransfer"
-    case 5:
       return "CreditCard"
     default:
-      return "BankTransfer"
+      return "CreditCard"
   }
 }
 
