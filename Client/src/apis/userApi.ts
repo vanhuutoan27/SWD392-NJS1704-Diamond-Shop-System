@@ -1,3 +1,4 @@
+import axios from "axios"
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import { toast } from "sonner"
 
@@ -75,8 +76,20 @@ export const useChangePasswordUser = () => {
       onSuccess: () => {
         toast.success("Password changed successfully")
       },
-      onError: () => {
-        toast.error("Failed to change password")
+      onError: (error: unknown) => {
+        if (axios.isAxiosError(error)) {
+          if (error.response && error.response.status === 401) {
+            toast.error("Unauthorized. Please check your credentials.")
+          } else if (error.response && error.response.data) {
+            toast.error(
+              `Failed to change password: ${error.response.data.message}`
+            )
+          } else {
+            toast.error("Failed to change password. Please try again.")
+          }
+        } else {
+          toast.error("An unexpected error occurred. Please try again.")
+        }
       }
     }
   )

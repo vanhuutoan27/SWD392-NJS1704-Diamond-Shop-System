@@ -10,6 +10,15 @@ const diamoonAPI = axios.create({
 
 diamoonAPI.interceptors.request.use(
   (config) => {
+    if (!config.headers["Authorization"]) {
+      const token = document.cookie
+        .split("; ")
+        .find((row) => row.startsWith("accessToken="))
+      if (token) {
+        const accessToken = token.split("=")[1]
+        config.headers["Authorization"] = `Bearer ${accessToken}`
+      }
+    }
     return config
   },
   (error) => {

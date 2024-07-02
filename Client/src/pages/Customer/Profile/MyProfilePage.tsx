@@ -1,3 +1,4 @@
+import { useAuthContext } from "@/contexts/AuthContext"
 import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage"
 import { useParams } from "react-router-dom"
 
@@ -13,6 +14,7 @@ import ProfileInfo from "@/components/local/Customer/Profile/ProfileInfo"
 import ProfileSocial from "@/components/local/Customer/Profile/ProfileSocial"
 
 function MyProfilePage() {
+  const { user } = useAuthContext()
   const isAdminRoute = useIsAdminRoute()
   const { userId } = useParams<{ userId: string }>()
 
@@ -22,7 +24,7 @@ function MyProfilePage() {
     return <Loader />
   }
 
-  if (error) {
+  if (!user || error) {
     return <NotFoundPage />
   }
 

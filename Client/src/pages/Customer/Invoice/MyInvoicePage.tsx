@@ -1,3 +1,4 @@
+import { useAuthContext } from "@/contexts/AuthContext"
 import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage"
 import { useParams } from "react-router-dom"
 
@@ -18,6 +19,7 @@ import InvoiceCard from "@/components/local/Customer/Invoice/InvoiceCard"
 import InvoiceItem from "@/components/local/Customer/Invoice/InvoiceItem"
 
 function MyInvoicePage() {
+  const { user } = useAuthContext()
   const { userId } = useParams<{ userId: string }>()
 
   const {
@@ -49,7 +51,7 @@ function MyInvoicePage() {
     return <Loader />
   }
 
-  if (isInvoicesError || isDiamondsError || isJewelriesError) {
+  if (!user || isInvoicesError || isDiamondsError || isJewelriesError) {
     return <NotFoundPage />
   }
 

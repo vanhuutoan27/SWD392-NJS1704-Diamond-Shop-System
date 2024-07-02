@@ -1,3 +1,4 @@
+import { useAuthContext } from "@/contexts/AuthContext"
 import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage"
 import { useParams } from "react-router-dom"
 
@@ -12,6 +13,7 @@ import SettingChangeAvatar from "@/components/local/Customer/Setting/SettingChan
 import SettingForm from "@/components/local/Customer/Setting/SettingForm"
 
 function MySettingPage() {
+  const { user } = useAuthContext()
   const isAdminRoute = useIsAdminRoute()
   const { userId } = useParams<{ userId: string }>()
 
@@ -21,7 +23,7 @@ function MySettingPage() {
     return <Loader />
   }
 
-  if (error) {
+  if (!user || error) {
     return <NotFoundPage />
   }
 

@@ -45,10 +45,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           try {
             const response = await diamoonAPI.get(`/User/${userId}`)
             const { data } = response.data
-            // console.log("User data fetched from API:", data); // Log data here
             setUser(data)
           } catch (error) {
-            // console.error("Failed to fetch user data:", error);
             setUser(null)
           }
         }
@@ -69,10 +67,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       const response = await diamoonAPI.get(`/User/${userId}`)
       const { data } = response.data
-      // console.log("User data fetched from API:", data);
       setUser(data)
     } catch (error) {
-      // console.error("Failed to fetch user data:", error);
       setUser(null)
     }
   }

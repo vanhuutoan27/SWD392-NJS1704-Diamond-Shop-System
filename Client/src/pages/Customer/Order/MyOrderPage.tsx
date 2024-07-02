@@ -22,7 +22,7 @@ function MyOrderPage() {
     return <Loader />
   }
 
-  if (isError) {
+  if (!user || isError) {
     return <NotFoundPage />
   }
 
