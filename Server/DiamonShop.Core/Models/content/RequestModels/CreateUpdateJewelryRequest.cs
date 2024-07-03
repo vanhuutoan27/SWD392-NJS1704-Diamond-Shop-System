@@ -4,8 +4,8 @@ namespace DiamonShop.Core.Models.content.RequestModels
 {
     public class CreateUpdateJewelryRequest
     {
-        public string Name { get; set; }
-        public string ProductType { get; set; }
+        public string JewelryName { get; set; }
+        public string JewelryCategory { get; set; }
 
         [Required(ErrorMessage = "MainStoneSize name is a required field.")]
         [MaxLength(100)]
