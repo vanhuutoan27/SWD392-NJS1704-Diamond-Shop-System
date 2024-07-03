@@ -6,5 +6,6 @@ namespace DiamonShop.Core.services
     {
         Task<IEnumerable<InvoiceResponse>> GetAllInvoiceAsync();
         Task<IEnumerable<InvoiceResponse>> GetInvoiceByUserIdAsync(Guid userId);
+        Task<InvoiceResponse> GetInvoiceByIdAsync(Guid id);
     }
 }

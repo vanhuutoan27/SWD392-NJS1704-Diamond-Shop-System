@@ -26,6 +26,13 @@ namespace DiamonShop.Data.Services
             return _mapper.Map<IEnumerable<InvoiceResponse>>(invoices);
         }
 
+        public async Task<InvoiceResponse> GetInvoiceByIdAsync(Guid id)
+        {
+            var invoice = await _repositoryManager.Invoice.GetInvoiceById(id);
+            if (invoice == null) throw new Exception("Not Found Invoice");
+            return _mapper.Map<InvoiceResponse>(invoice);
+        }
+
         public async Task<IEnumerable<InvoiceResponse>> GetInvoiceByUserIdAsync(Guid userId)
         {
             var invoices = await _repositoryManager.Invoice.GetInvoiceByUserId(userId);

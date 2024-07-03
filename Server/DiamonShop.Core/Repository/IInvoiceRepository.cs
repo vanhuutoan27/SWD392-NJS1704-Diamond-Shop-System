@@ -7,5 +7,6 @@ namespace DiamonShop.Core.Repository
     {
         Task<IEnumerable<Invoice>> GetAllInvoiceAsync();
         Task<IEnumerable<Invoice>> GetInvoiceByUserId(Guid userId);
+        Task<Invoice> GetInvoiceById(Guid id);
     }
 }
