@@ -1,9 +1,12 @@
 ﻿using DiamonShop.API.Extensions;
 using DiamonShop.API.Services;
 using DiamonShop.Core.Domain.Identity;
+using DiamonShop.Core.Models;
 using DiamonShop.Core.Models.auth;
 using DiamonShop.Core.Models.system;
 using DiamonShop.Core.SeedWorks.Constants;
+using DiamonShop.Core.services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
@@ -21,16 +24,23 @@ namespace DiamonShop.API.Controllers
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ITokenService _tokenService;
         private readonly RoleManager<AppRole> _roleManager;
-
-        public AuthController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ITokenService tokenService, RoleManager<AppRole> roleManager)
+        private readonly IEmailSender emailSender;
+        private readonly IConfiguration _config;
+        private readonly ResultModel _resp;
+        public AuthController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ITokenService tokenService,
+            RoleManager<AppRole> roleManager, IEmailSender emailSender, IConfiguration config)
         {
             _userManager = userManager;
             this._signInManager = signInManager;
             this._tokenService = tokenService;
             this._roleManager = roleManager;
+            this.emailSender = emailSender;
+            this._config = config;
+            _resp = new ResultModel();
         }
         [HttpPost]
         [Route("login")]
+        [AllowAnonymous]
         public async Task<ActionResult<AuthenticatedResult>> Login([FromBody] LoginRequests request)
         {
             if (request == null)
@@ -92,9 +102,16 @@ namespace DiamonShop.API.Controllers
                 DateCreated = DateTime.Now
             };
             var result = await _userManager.CreateAsync(users, request.Password);
+
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(users, Roles.Customer);
+                users = await _userManager.FindByEmailAsync(request.Email);
+                var token = await _userManager.GenerateEmailConfirmationTokenAsync(users);
+                var confirmationLink = Url.Action(nameof(ConfirmEmail), "Auth", new { token, email = users.Email }, Request.Scheme);
+                var message = new Message(new string[] { users.Email! }, "Confirmation email link", confirmationLink!);
+                await emailSender.SendEmailAsync(message);
+
+                await _userManager.AddToRoleAsync(users, Core.SeedWorks.Constants.Roles.Customer);
                 return Ok(new { Message = "Register Succesfull!" });
             }
             foreach (var error in result.Errors)
@@ -102,6 +119,40 @@ namespace DiamonShop.API.Controllers
                 ModelState.AddModelError(string.Empty, error.Description);
             }
             return BadRequest(ModelState);
+        }
+        [HttpGet("ConfirmEmail")]
+        public async Task<ActionResult<ResultModel>> ConfirmEmail(string token, string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user != null)
+            {
+                var result = await _userManager.ConfirmEmailAsync(user, token);
+                if (result.Succeeded)
+                {
+                    _resp.IsSuccess = true;
+                    _resp.Message = "Confirmation Succesfull, You can login now!";
+                    _resp.Code = 200;
+
+                    return _resp;
+                }
+
+            }
+            _resp.Message = "Verify Token Fail";
+            _resp.IsSuccess = false;
+            _resp.Code = 500;
+            return _resp;
+
+        }
+
+
+        [HttpGet("Test")]
+        public async Task<IActionResult> TestEmail()
+        {
+            var message = new Message(new string[] { "dainqse160959@fpt.edu.vn", "duyphse160496@fpt.edu.vn",
+                "khanhnpse160945@fpt.edu.vn" }, "Warning about project", "<h1>Hello nha ku, code PRN toi dau roi </h1>");
+
+            await emailSender.SendEmailAsync(message);
+            return StatusCode(StatusCodes.Status200OK);
         }
 
         private async Task<List<string>> GetPermissionsByUserIdAsync(string userId)
@@ -111,7 +162,7 @@ namespace DiamonShop.API.Controllers
             var permissions = new List<string>();
 
             var allPermissions = new List<RoleClaimsDto>();
-            if (roles.Contains(Roles.Admin))
+            if (roles.Contains(Core.SeedWorks.Constants.Roles.Admin))
             {
                 var types = typeof(Permission).GetTypeInfo().DeclaredNestedTypes;
                 foreach (var type in types)

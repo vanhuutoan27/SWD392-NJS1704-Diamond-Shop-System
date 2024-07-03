@@ -7,6 +7,7 @@ using DiamonShop.Core.Models.content.Respone;
 
 
 using DiamonShop.Core.SeedWorks;
+using DiamonShop.Core.services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -25,14 +26,17 @@ namespace DiamonShop.API.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly IRepositoryManager _repositoryManager;
         private readonly IMapper _mapper;
+        private readonly IEmailSender emailSender;
+
         public UserController(UserManager<AppUser> userManager,
 IRepositoryManager repositoryManager,
-IMapper mapper)
+IMapper mapper, IEmailSender emailSender)
         {
             this._userManager = userManager;
             resp = new ResultModel();
             _repositoryManager = repositoryManager;
             _mapper = mapper;
+            this.emailSender = emailSender;
         }
 
         [HttpGet(Name = "GetUsers")]
@@ -88,6 +92,7 @@ IMapper mapper)
                 DateCreated = DateTime.Now
             };
             var result = await _userManager.CreateAsync(user, request.Password);
+            user = await _userManager.FindByEmailAsync(request.Email);
             if (!result.Succeeded)
             {
                 foreach (var error in result.Errors)
@@ -97,12 +102,29 @@ IMapper mapper)
                 return BadRequest(ModelState);
             }
             await _userManager.AddToRoleAsync(user, request.Role);
+
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            //send email to confirm
+            var confirmationLink = Url.ActionLink("ConfirmEmail", "Identity", new { userId = user.Id, @token = token });
+            //await emailSender.SendEmailAsync("quocdai904@gmail.com", user.Email, "Confirm your email address", confirmationLink);
+
+
             resp.IsSuccess = true;
             resp.Message = "Successfull";
             resp.Code = (int)HttpStatusCode.OK;
             return resp;
         }
+        private async Task<IActionResult> ConfirmEmail(string userId, string token)
+        {
+            var user = await _userManager.FindByEmailAsync(userId);
+            var result = await _userManager.ConfirmEmailAsync(user, token);
+            if (result.Succeeded)
+            {
+                return new OkResult();
 
+            }
+            return NotFound(result);
+        }
         [HttpPut("{id}")]
         public async Task<ActionResult<ResultModel>> UpdateUser(Guid id, [FromBody] UpdateUserRequest request)
         {
