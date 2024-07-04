@@ -60,5 +60,25 @@ namespace DiamonShop.API.Controllers
             res.Data = result;
             return res;
         }
+
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ResultModel>> GetInvoiceById(Guid id)
+        {
+            var result = await _serviceManager.InvoiceService.GetInvoiceByIdAsync(id);
+            if (result == null)
+            {
+                res.IsSuccess = false;
+                res.Message = "Not Found Invoice Lists";
+                res.Code = (int)StatusCodes.Status500InternalServerError;
+                return res;
+            }
+            res.IsSuccess = true;
+            res.Message = "Successful";
+            res.Code = (int)HttpStatusCode.OK;
+            res.Data = result;
+            return res;
+        }
+
     }
 }

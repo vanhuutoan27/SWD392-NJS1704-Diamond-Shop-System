@@ -44,7 +44,7 @@ namespace DiamonShop.Data.Services
         public async Task<CreateUpdateJewelryRequest> CreateJewelry(CreateUpdateJewelryRequest createJewelryDto)
         {
             var productId = Guid.NewGuid();
-            var productName = createJewelryDto.Name;
+            var productName = createJewelryDto.JewelryName;
             var skudId = await _repositoryManager.Jewelry.GenerateSkuAsync();
             var newJewelry = new Jewelry()
             {
@@ -62,7 +62,7 @@ namespace DiamonShop.Data.Services
                 Price = createJewelryDto.Price,
             };
             _repositoryManager.Jewelry.Add(newJewelry);
-            var category = await _repositoryManager.Category.GetByNameAsync(createJewelryDto.ProductType);
+            var category = await _repositoryManager.Category.GetByNameAsync(createJewelryDto.JewelryCategory);
             Product product = new Product()
             {
                 ProductId = productId,
@@ -138,7 +138,7 @@ namespace DiamonShop.Data.Services
                 return false;
             }
 
-            updateJewelry.Name = jewelryDto.Name;
+            updateJewelry.Name = jewelryDto.JewelryName;
             updateJewelry.MainStoneSize = jewelryDto.MainStoneSize;
             updateJewelry.sideStoneType = jewelryDto.SideStoneType;
             updateJewelry.sideStoneQuantity = jewelryDto.SideStoneQuantity;
@@ -152,10 +152,10 @@ namespace DiamonShop.Data.Services
             var product = await _repositoryManager.Product.GetByIdAsync(id);
             Category category = null;
             if (product == null) throw new ArgumentException("not found product");
-            product.Name = jewelryDto.Name;
-            if (product.Category.Name != jewelryDto.Name)
+            product.Name = jewelryDto.JewelryName;
+            if (product.Category.Name != jewelryDto.JewelryName)
             {
-                category = await _repositoryManager.Category.GetByNameAsync(jewelryDto.ProductType);
+                category = await _repositoryManager.Category.GetByNameAsync(jewelryDto.JewelryCategory);
 
                 product.CategoryId = category != null ? category.CategoryId : throw new ArgumentNullException(nameof(category),
                         "Category cannot be null");

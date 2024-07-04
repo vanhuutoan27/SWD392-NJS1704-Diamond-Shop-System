@@ -37,7 +37,8 @@ namespace DiamonShop.Data
                     IsActive = true,
                     SecurityStamp = Guid.NewGuid().ToString(),
                     LockoutEnabled = false,
-                    DateCreated = DateTime.Now
+                    DateCreated = DateTime.Now,
+                    EmailConfirmed = true,
                 };
                 user.PasswordHash = passwordHasher.HashPassword(user, "Admin@123");
                 await context.Users.AddAsync(user);

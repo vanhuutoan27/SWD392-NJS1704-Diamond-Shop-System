@@ -8,8 +8,10 @@ using DiamonShop.API.Services;
 using DiamonShop.Core.ConfigOptions;
 using DiamonShop.Core.Domain.Identity;
 using DiamonShop.Core.SeedWorks;
+using DiamonShop.Core.services;
 using DiamonShop.Data;
 using DiamonShop.Data.SeedWorks;
+using DiamonShop.Data.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
@@ -25,7 +27,8 @@ builder.Services.AddDataServices(configuration);
 
 // ============== add service identity
 builder.Services.AddIdentity<AppUser, AppRole>(options => options.SignIn.RequireConfirmedAccount = false)
-    .AddEntityFrameworkStores<DiamondContext>();
+    .AddEntityFrameworkStores<DiamondContext>()
+    .AddDefaultTokenProviders();
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -46,6 +49,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.User.AllowedUserNameCharacters =
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
     options.User.RequireUniqueEmail = true;
+    options.SignIn.RequireConfirmedEmail = true;
 });
 
 //config token 
@@ -110,20 +114,7 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 });
-//builder.Services.AddSwaggerGen(c =>
-//{
-//    c.CustomOperationIds(apiDesc =>
-//    {
-//        return apiDesc.TryGetMethodInfo(out MethodInfo methodInfo) ? methodInfo.Name : null;
-//    });
-//    c.SwaggerDoc("AdminAPI", new Microsoft.OpenApi.Models.OpenApiInfo
-//    {
-//        Version = "v1",
-//        Title = "API for Administrators",
-//        Description = "API for CMS core domain. This domain keeps track of campaigns, campaign rules, and campaign execution."
-//    });
-//    //c.ParameterFilter<SwaggerNullableParameterFilter>();
-//});
+
 
 //add authen 
 builder.Services.AddAuthentication(o =>
@@ -145,7 +136,12 @@ builder.Services.AddAuthentication(o =>
     };
 });
 
-
+//add service smtp
+//builder.Services.Configure<SmtpOptions>(configuration.GetSection("Smtp"));
+var emailOptions = configuration.GetSection("EmailConfiguration").Get<SmtpOptions>();
+builder.Services.AddSingleton(emailOptions);
+//add
+builder.Services.AddSingleton<IEmailSender, SmtpEmailSender>();
 
 
 var app = builder.Build();
