@@ -90,7 +90,7 @@ IMapper mapper, IEmailSender emailSender)
                 SecurityStamp = Guid.NewGuid().ToString(),
                 LockoutEnabled = false,
                 DateCreated = DateTime.Now,
-                EmailConfirmed = true
+                EmailConfirmed = true,
             };
             var result = await _userManager.CreateAsync(user, request.Password);
             user = await _userManager.FindByEmailAsync(request.Email);
