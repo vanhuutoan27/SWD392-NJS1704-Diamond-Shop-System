@@ -85,7 +85,7 @@ namespace DiamonShop.API.Controllers
             return res;
         }
 
-        [HttpGet("by-customer/{id}")]
+        [HttpGet("user/{id}")]
         public async Task<ActionResult<ResultModel>> GetOrderByCustomerId(Guid id)
         {
             var result = await _serviceManager.OrderService.GetOrderByCustomerIdAsync(id);

@@ -62,7 +62,7 @@ export const useGetOrderByUserId = (userId: string) => {
     queryKey: ["order", userId],
     queryFn: async () => {
       try {
-        const { data } = await diamoonAPI.get(`/Order/by-customer/${userId}`, {
+        const { data } = await diamoonAPI.get(`/Order/user/${userId}`, {
           params: { userId }
         })
         return data.data ?? []

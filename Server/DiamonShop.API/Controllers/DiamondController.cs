@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DiamonShop.API.Controllers
 {
     [ApiController]
-    [Route("/api/v1/Diamond")]
+    [Route("/api/v1/[controller]")]
     public class DiamondController : ControllerBase
     {
         private readonly IServiceManager _services;
@@ -27,7 +27,7 @@ namespace DiamonShop.API.Controllers
             return Ok(diamonds);
         }
         [HttpGet]
-        [Route("Detail/Id")]
+        [Route("{id}")]
         public async Task<IActionResult> GetDiamondbyId(Guid id)
         {
             try

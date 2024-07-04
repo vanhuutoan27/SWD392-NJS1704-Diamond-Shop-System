@@ -19,9 +19,7 @@ export const useGetDiamondById = (id: string) => {
   return useQuery<IDiamond>({
     queryKey: ["diamond", id],
     queryFn: async () => {
-      const { data } = await diamoonAPI.get(`/Diamond/Detail/Id`, {
-        params: { id }
-      })
+      const { data } = await diamoonAPI.get(`/Diamond/${id}`)
       return data
     }
   })
