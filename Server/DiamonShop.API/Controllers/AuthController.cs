@@ -13,6 +13,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
 using System.Security.Claims;
 using System.Text.Json;
+using static DiamonShop.Core.SeedWorks.Constants.Permission;
 
 namespace DiamonShop.API.Controllers
 {
@@ -107,7 +108,7 @@ namespace DiamonShop.API.Controllers
             {
                 users = await _userManager.FindByEmailAsync(request.Email);
                 var token = await _userManager.GenerateEmailConfirmationTokenAsync(users);
-                var confirmationLink = Url.Action(nameof(ConfirmEmail), "Auth", new { token, email = users.Email }, Request.Scheme);
+                var confirmationLink = $"http://localhost:1412/?token={Uri.EscapeDataString(token)}&email={Uri.EscapeDataString(user.Email)}&success=true";
                 var message = new Message(new string[] { users.Email! }, "Confirmation email link", confirmationLink!);
                 await emailSender.SendEmailAsync(message);
 
@@ -120,7 +121,7 @@ namespace DiamonShop.API.Controllers
             }
             return BadRequest(ModelState);
         }
-        [HttpGet("ConfirmEmail")]
+        [HttpPost("ConfirmEmail")]
         public async Task<ActionResult<ResultModel>> ConfirmEmail(string token, string email)
         {
             var user = await _userManager.FindByEmailAsync(email);

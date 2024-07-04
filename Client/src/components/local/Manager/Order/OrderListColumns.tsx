@@ -132,7 +132,7 @@ export const columns: ColumnDef<IOrder>[] = [
       )
     },
     cell: (info) => (
-      <span>
+      <span className="flex justify-center">
         {info.getValue() === null
           ? "NaN"
           : formatDate(info.getValue() as string)}

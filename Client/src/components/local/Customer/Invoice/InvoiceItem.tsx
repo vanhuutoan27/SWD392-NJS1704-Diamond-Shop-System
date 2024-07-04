@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 
 import { toPng } from "html-to-image"
 import { jsPDF } from "jspdf"
@@ -8,7 +8,8 @@ import { IInvoice } from "@/types/invoice.interface"
 import { IOrderProductItem } from "@/types/order.interface"
 
 import { projectName } from "@/lib/constants"
-import { formatCurrency } from "@/lib/utils"
+import diamoonAPI from "@/lib/diamoonAPI"
+import { formatCurrency, formatDate } from "@/lib/utils"
 
 import { Button } from "@/components/global/atoms/button"
 
@@ -16,8 +17,51 @@ interface InvoiceItemProps {
   invoiceItem: IInvoice
 }
 
+const fetchDiamondById = async (id: string) => {
+  const { data } = await diamoonAPI.get(`/Diamond/${id}`)
+  return data
+}
+
+const fetchJewelryById = async (id: string) => {
+  const { data } = await diamoonAPI.get(`/Jewelry/${id}`)
+  return data.data
+}
+
 function InvoiceItem({ invoiceItem }: InvoiceItemProps) {
   const invoiceRef = useRef<HTMLDivElement>(null)
+
+  const [updatedInvoiceItem, setUpdatedInvoiceItem] =
+    useState<IInvoice>(invoiceItem)
+
+  useEffect(() => {
+    const fetchProductDetails = async () => {
+      const updatedItems = await Promise.all(
+        invoiceItem.order.items.map(async (item) => {
+          let name = ""
+          if (item.productType === "Jewelry") {
+            const data = await fetchJewelryById(item.productId)
+            if (data) {
+              name = data.jewelryName
+            }
+          } else if (item.productType === "Diamond") {
+            const data = await fetchDiamondById(item.productId)
+            if (data) {
+              name = `NATURAL DIAMOND ${data.size}MM`
+            }
+          }
+          return { ...item, name }
+        })
+      )
+      setUpdatedInvoiceItem((prevInvoice) => ({
+        ...prevInvoice,
+        order: {
+          ...prevInvoice.order,
+          items: updatedItems
+        }
+      }))
+    }
+    fetchProductDetails()
+  }, [invoiceItem])
 
   const downloadPDF = () => {
     const input = invoiceRef.current
@@ -87,7 +131,7 @@ function InvoiceItem({ invoiceItem }: InvoiceItemProps) {
           <div className="border-r-2 border-input px-5 py-4">
             <h5 className="mb-1.5 font-semibold">Date Created:</h5>
             <span className="text-sm font-medium">
-              {invoiceItem.order.dateCreated}
+              {formatDate(invoiceItem.order.dateCreated)}
             </span>
           </div>
           <div className="border-input px-5 py-4">
@@ -116,38 +160,43 @@ function InvoiceItem({ invoiceItem }: InvoiceItemProps) {
           </div>
         </div>
 
-        {invoiceItem.order.items.map((item: IOrderProductItem, index) => (
-          <div
-            key={index}
-            className={`grid grid-cols-12 border-2 border-t-0 border-input py-3.5 pl-5 pr-6 ${
-              index === invoiceItem.order.items.length - 1 && "rounded-b-md"
-            }`}
-          >
-            <div className="col-span-2">
-              <p className="text-sm font-medium text-secondary">
-                {item.productId}
-              </p>
+        {updatedInvoiceItem.order.items.map(
+          (item: IOrderProductItem, index) => (
+            <div
+              key={index}
+              className={`grid grid-cols-12 border-2 border-t-0 border-input py-3.5 pl-5 pr-6 ${
+                index === updatedInvoiceItem.order.items.length - 1 &&
+                "rounded-b-md"
+              }`}
+            >
+              <div className="col-span-2">
+                <p className="text-sm font-medium text-secondary">
+                  {item.skuId}
+                </p>
+              </div>
+              <div className="col-span-4">
+                <p className="text-sm font-medium text-secondary">
+                  {item.name}
+                </p>
+              </div>
+              <div className="col-span-2">
+                <p className="text-sm font-medium text-secondary">
+                  {item.quantity}
+                </p>
+              </div>
+              <div className="col-span-2">
+                <p className="text-sm font-medium text-secondary">
+                  {formatCurrency(item.unitPrice)}
+                </p>
+              </div>
+              <div className="col-span-2">
+                <p className="text-sm font-medium text-secondary">
+                  {formatCurrency(item.quantity * item.unitPrice)}
+                </p>
+              </div>
             </div>
-            <div className="col-span-4">
-              <p className="text-sm font-medium text-secondary"></p>
-            </div>
-            <div className="col-span-2">
-              <p className="text-sm font-medium text-secondary">
-                {item.quantity}
-              </p>
-            </div>
-            <div className="col-span-2">
-              <p className="text-sm font-medium text-secondary">
-                {formatCurrency(item.unitPrice)}
-              </p>
-            </div>
-            <div className="col-span-2">
-              <p className="text-sm font-medium text-secondary">
-                {formatCurrency(item.quantity * item.unitPrice)}
-              </p>
-            </div>
-          </div>
-        ))}
+          )
+        )}
 
         <div className="mt-10">
           <div className="flex justify-between px-4">

@@ -56,6 +56,7 @@ export interface IOrderProductItem {
   productId: string
   productType: string
   skuId: string
+  name?: string
   quantity: number
   unitPrice: number
   images?: string[]

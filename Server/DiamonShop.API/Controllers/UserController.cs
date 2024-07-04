@@ -89,7 +89,8 @@ IMapper mapper, IEmailSender emailSender)
                 Avatar = request.Avatar,
                 SecurityStamp = Guid.NewGuid().ToString(),
                 LockoutEnabled = false,
-                DateCreated = DateTime.Now
+                DateCreated = DateTime.Now,
+                EmailConfirmed = true
             };
             var result = await _userManager.CreateAsync(user, request.Password);
             user = await _userManager.FindByEmailAsync(request.Email);
