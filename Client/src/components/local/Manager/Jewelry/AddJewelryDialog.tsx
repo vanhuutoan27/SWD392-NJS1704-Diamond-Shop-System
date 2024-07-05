@@ -42,37 +42,52 @@ type JewelryFormValues = z.infer<typeof jewelrySchema>
 
 function AddJewelryDialog() {
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
-  const [newPhoto, setNewPhoto] = useState<File | null>(null)
-  const [uploadProgress, setUploadProgress] = useState(0)
+  const [newPhotos, setNewPhotos] = useState<(File | null)[]>([null, null])
+  const [uploadProgress, setUploadProgress] = useState([0, 0])
 
   const postJewelry = usePostJewelry()
 
   const handleSave = async () => {
-    return new Promise<string | null>((resolve, reject) => {
-      if (newPhoto) {
-        const storageRef = ref(diamoonDB, `/Products/Diamond/${newPhoto.name}`)
-        const uploadTask = uploadBytesResumable(storageRef, newPhoto)
+    const urls = await Promise.all(
+      newPhotos.map(
+        (photo, index) =>
+          new Promise<string | null>((resolve, reject) => {
+            if (photo) {
+              const storageRef = ref(
+                diamoonDB,
+                `/Products/Diamond/${photo.name}`
+              )
+              const uploadTask = uploadBytesResumable(storageRef, photo)
 
-        uploadTask.on(
-          "state_changed",
-          (snapshot) => {
-            const progress =
-              (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-            setUploadProgress(progress)
-          },
-          (error) => {
-            console.error("Upload failed:", error)
-            reject(error)
-          },
-          async () => {
-            const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
-            resolve(downloadURL)
-          }
-        )
-      } else {
-        resolve(null)
-      }
-    })
+              uploadTask.on(
+                "state_changed",
+                (snapshot) => {
+                  const progress =
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                  setUploadProgress((prev) => {
+                    const newProgress = [...prev]
+                    newProgress[index] = progress
+                    return newProgress
+                  })
+                },
+                (error) => {
+                  console.error("Upload failed:", error)
+                  reject(error)
+                },
+                async () => {
+                  const downloadURL = await getDownloadURL(
+                    uploadTask.snapshot.ref
+                  )
+                  resolve(downloadURL)
+                }
+              )
+            } else {
+              resolve(null)
+            }
+          })
+      )
+    )
+    return urls.filter((url) => url !== null) as string[]
   }
 
   const {
@@ -87,7 +102,7 @@ function AddJewelryDialog() {
 
   const onSubmit: SubmitHandler<JewelryFormValues> = async (data) => {
     try {
-      const downloadURL = await handleSave()
+      const downloadURLs = await handleSave()
 
       const generatedJewelryName = `${data.goldKarat} ${data.sideStoneType} ${data.jewelryCategory}`
 
@@ -102,7 +117,7 @@ function AddJewelryDialog() {
         goldKarat: data.goldKarat,
         goldWeight: data.goldWeight,
         price: data.price,
-        images: downloadURL ? [downloadURL] : []
+        images: downloadURLs
       }
 
       console.log("Jewelry data:", JSON.stringify(jewelryData, null, 2))
@@ -118,8 +133,8 @@ function AddJewelryDialog() {
 
   const handleClear = () => {
     reset({})
-    setUploadProgress(0)
-    setNewPhoto(null)
+    setUploadProgress([0, 0])
+    setNewPhotos([null, null])
   }
 
   const handleConfirmCancel = () => {
@@ -154,17 +169,22 @@ function AddJewelryDialog() {
           </DialogHeader>
           <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 p-2">
             <div className="flex justify-between gap-4">
-              <div className="flex min-h-40 min-w-40 items-center justify-center rounded-md border-2 border-gray-800">
-                {newPhoto ? (
-                  <img
-                    src={URL.createObjectURL(newPhoto)}
-                    alt="New Jewelry"
-                    className="h-40 w-40 rounded-md border-[1px] border-gray-800 object-cover"
-                  />
-                ) : (
-                  "No Image"
-                )}
-              </div>
+              {newPhotos.map((photo, index) => (
+                <div
+                  key={index}
+                  className="flex min-h-40 min-w-40 items-center justify-center rounded-md border-2 border-gray-800"
+                >
+                  {photo ? (
+                    <img
+                      src={URL.createObjectURL(photo)}
+                      alt={`New Jewelry ${index + 1}`}
+                      className="h-40 w-40 rounded-md border-[1px] border-gray-800 object-cover"
+                    />
+                  ) : (
+                    "No Image"
+                  )}
+                </div>
+              ))}
 
               <Tabs defaultValue="upload" className="w-full">
                 <TabsList className="mt-1 grid w-full grid-cols-2 gap-4">
@@ -172,25 +192,33 @@ function AddJewelryDialog() {
                 </TabsList>
 
                 <TabsContent value="upload">
-                  <Input
-                    type="file"
-                    accept="image/*"
-                    className="input-field mt-1"
-                    onChange={(e) => {
-                      if (e.target.files && e.target.files[0]) {
-                        setNewPhoto(e.target.files[0])
-                      }
-                    }}
-                  />
+                  {[0, 1].map((_, index) => (
+                    <div key={index}>
+                      <Input
+                        type="file"
+                        accept="image/*"
+                        className="input-field mt-1"
+                        onChange={(e) => {
+                          if (e.target.files && e.target.files[0]) {
+                            setNewPhotos((prev) => {
+                              const newPhotos = [...prev]
+                              newPhotos[index] = e.target.files![0]
+                              return newPhotos
+                            })
+                          }
+                        }}
+                      />
 
-                  {uploadProgress > 0 && (
-                    <div className="mt-2 h-2.5 w-full rounded-full bg-gray-200">
-                      <div
-                        className="h-2.5 rounded-full bg-gray-900"
-                        style={{ width: `${uploadProgress}%` }}
-                      ></div>
+                      {uploadProgress[index] > 0 && (
+                        <div className="mt-2 h-2.5 w-full rounded-full bg-gray-200">
+                          <div
+                            className="h-2.5 rounded-full bg-gray-900"
+                            style={{ width: `${uploadProgress[index]}%` }}
+                          ></div>
+                        </div>
+                      )}
                     </div>
-                  )}
+                  ))}
                 </TabsContent>
 
                 <TabsContent value="url">
