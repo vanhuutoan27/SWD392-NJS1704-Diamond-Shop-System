@@ -45,9 +45,7 @@ function ViewDiamondDialog({
   const updateJewelry = useUpdateJewelry()
 
   const [newPhotos, setNewPhotos] = useState<(File | null)[]>([null, null])
-  const [uploadProgress, setUploadProgress] = useState([0, 0])
-
-  console.log(uploadProgress)
+  const [_, setUploadProgress] = useState([0, 0])
 
   const handleSave = async () => {
     const urls = await Promise.all(

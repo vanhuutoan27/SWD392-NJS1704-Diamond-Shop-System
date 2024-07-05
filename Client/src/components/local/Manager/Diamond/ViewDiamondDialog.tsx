@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 
 import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage"
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage"
 
 import {
   IDiamondCertification,
@@ -11,9 +12,10 @@ import {
   IDiamondShape
 } from "@/types/diamond.interface"
 
-import { useGetDiamondById } from "@/apis/diamondApi"
+import { useGetDiamondById, useUpdateDiamond } from "@/apis/diamondApi"
 
 import { diamondImage } from "@/lib/constants"
+import { diamoonDB } from "@/lib/firebase"
 import { formatCurrencyWithoutVND, formatDate } from "@/lib/utils"
 
 import { Loader } from "@/components/global/atoms/Loader"
@@ -48,8 +50,12 @@ function ViewDiamondDialog({
     error
   } = useGetDiamondById(diamondId)
 
+  const updateDiamond = useUpdateDiamond()
+
   const [imageLoaded, setImageLoaded] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
+  const [newImage, setNewImage] = useState<File | null>(null)
+  const [_, setUploadProgress] = useState(0)
   const [formData, setFormData] = useState({
     diamondId: "",
     shape: "",
@@ -63,7 +69,11 @@ function ViewDiamondDialog({
     price: 0,
     image: diamondImage,
     dateCreated: "",
-    dateModified: ""
+    dateModified: "",
+    productType: "",
+    skuID: "",
+    images: "",
+    status: 0
   })
 
   const dialogRef = useRef<HTMLDivElement | null>(null)
@@ -83,13 +93,36 @@ function ViewDiamondDialog({
         price: diamondDetails.price || 0,
         image: diamondDetails.images || diamondImage || "",
         dateCreated: diamondDetails.dateCreated || "",
-        dateModified: diamondDetails.dateModified || ""
+        dateModified: diamondDetails.dateModified || "",
+        productType: diamondDetails.productType || "",
+        skuID: diamondDetails.skuID || "",
+        images: diamondDetails.images || "",
+        status: diamondDetails.status || 0
       })
     }
   }, [diamondDetails])
 
-  const handleEditClick = () => {
-    setIsEditing((prev) => !prev)
+  const handleEditClick = async () => {
+    if (isEditing) {
+      try {
+        let updatedImage = formData.image
+        if (newImage) {
+          updatedImage = await handleImageUpload(newImage)
+        }
+        const updatedFormData = {
+          ...formData,
+          image: updatedImage
+        }
+        await updateDiamond.mutateAsync(updatedFormData)
+        setFormData(updatedFormData)
+        console.log("Updated Data:", updatedFormData)
+        setIsEditing(false)
+      } catch (error) {
+        console.error("Error updating diamond:", error)
+      }
+    } else {
+      setIsEditing(true)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -99,6 +132,39 @@ function ViewDiamondDialog({
 
   const handleSelectChange = (name: string, value: string) => {
     setFormData((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setNewImage(e.target.files[0])
+      // Immediately update the image preview
+      const newImageUrl = URL.createObjectURL(e.target.files[0])
+      setFormData((prev) => ({ ...prev, image: newImageUrl }))
+    }
+  }
+
+  const handleImageUpload = (image: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const storageRef = ref(diamoonDB, `/Products/Diamonds/${image.name}`)
+      const uploadTask = uploadBytesResumable(storageRef, image)
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          setUploadProgress(progress)
+        },
+        (error) => {
+          console.error("Upload failed:", error)
+          reject(error)
+        },
+        async () => {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref)
+          resolve(downloadURL)
+        }
+      )
+    })
   }
 
   const handleConfirmCancel = () => {
@@ -116,7 +182,11 @@ function ViewDiamondDialog({
         price: diamondDetails.price || 0,
         image: diamondDetails.images || diamondImage || "",
         dateCreated: diamondDetails.dateCreated || "",
-        dateModified: diamondDetails.dateModified || ""
+        dateModified: diamondDetails.dateModified || "",
+        productType: diamondDetails.productType || "",
+        skuID: diamondDetails.skuID || "",
+        images: diamondDetails.images || "",
+        status: diamondDetails.status || 0
       })
     }
     setIsEditing(false)
@@ -139,7 +209,7 @@ function ViewDiamondDialog({
           </DialogTitle>
         </DialogHeader>
         <div className="mt-4 grid grid-cols-6 gap-4">
-          <div className="col-span-2 row-span-2 flex items-center justify-center rounded-md">
+          <div className="relative col-span-2 row-span-2 flex flex-col items-center justify-center rounded-md">
             {!imageLoaded && (
               <Skeleton className="h-[200px] w-[200px] rounded-md border-2 border-gray-800" />
             )}
@@ -147,8 +217,19 @@ function ViewDiamondDialog({
               src={formData.image || diamondImage}
               alt="Diamond"
               onLoad={() => setImageLoaded(true)}
-              className={`h-[200px] w-[200px] rounded-md border-2 border-gray-800 object-cover ${imageLoaded ? "block" : "hidden"}`}
+              className={`h-[200px] w-[200px] rounded-md border-2 border-gray-800 object-cover ${
+                imageLoaded ? "block" : "hidden"
+              }`}
             />
+            {isEditing && (
+              <input
+                type="file"
+                id="fileInput"
+                className="absolute inset-0 cursor-pointer opacity-0"
+                accept="image/*"
+                onChange={handleImageChange}
+              />
+            )}
           </div>
           <div className="col-span-4">
             <span className="ml-1 text-sm font-medium">Diamond ID</span>

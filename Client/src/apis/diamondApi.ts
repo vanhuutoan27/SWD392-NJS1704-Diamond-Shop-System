@@ -46,6 +46,30 @@ export const usePostDiamond = () => {
   )
 }
 
+export const useUpdateDiamond = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation(
+    async (diamond: IDiamond) => {
+      const { data } = await diamoonAPI.put(
+        `/Diamond/${diamond.diamondId}`,
+        diamond
+      )
+      return data
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("diamonds")
+        toast.success("Diamond updated successfully")
+      },
+      onError: (error) => {
+        console.error("Error updating diamond data:", error)
+        toast.error("Failed to update diamond")
+      }
+    }
+  )
+}
+
 export const useChangeDiamondStatus = () => {
   const queryClient = useQueryClient()
 
