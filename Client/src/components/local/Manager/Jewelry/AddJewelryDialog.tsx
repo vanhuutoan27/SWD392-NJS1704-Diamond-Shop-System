@@ -55,7 +55,7 @@ function AddJewelryDialog() {
             if (photo) {
               const storageRef = ref(
                 diamoonDB,
-                `/Products/Diamond/${photo.name}`
+                `/Products/Jewelry/${photo.name}`
               )
               const uploadTask = uploadBytesResumable(storageRef, photo)
 
@@ -374,7 +374,7 @@ function AddJewelryDialog() {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
-                          <SelectItem value="WhiteGold">White gold</SelectItem>
+                          <SelectItem value="White gold">White gold</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>

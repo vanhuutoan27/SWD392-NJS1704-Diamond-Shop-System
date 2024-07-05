@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react"
 
 import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage"
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage"
 
-import { useGetJewelryById } from "@/apis/jewelryApi"
+import { useGetJewelryById, useUpdateJewelry } from "@/apis/jewelryApi"
 
+import { diamoonDB } from "@/lib/firebase"
 import { formatCurrencyWithoutVND, formatDate } from "@/lib/utils"
 
 import { Loader } from "@/components/global/atoms/Loader"
@@ -38,13 +40,64 @@ function ViewDiamondDialog({
     error
   } = useGetJewelryById(jewelryId)
 
-  const [imageLoaded, setImageLoaded] = useState(false)
+  console.log(jewelryDetails)
+
+  const updateJewelry = useUpdateJewelry()
+
+  const [newPhotos, setNewPhotos] = useState<(File | null)[]>([null, null])
+  const [uploadProgress, setUploadProgress] = useState([0, 0])
+
+  console.log(uploadProgress)
+
+  const handleSave = async () => {
+    const urls = await Promise.all(
+      newPhotos.map(
+        (photo, index) =>
+          new Promise<string | null>((resolve, reject) => {
+            if (photo) {
+              const storageRef = ref(
+                diamoonDB,
+                `/Products/Jewelry/${photo.name}`
+              )
+              const uploadTask = uploadBytesResumable(storageRef, photo)
+
+              uploadTask.on(
+                "state_changed",
+                (snapshot) => {
+                  const progress =
+                    (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                  setUploadProgress((prev) => {
+                    const newProgress = [...prev]
+                    newProgress[index] = progress
+                    return newProgress
+                  })
+                },
+                (error) => {
+                  console.error("Upload failed:", error)
+                  reject(error)
+                },
+                async () => {
+                  const downloadURL = await getDownloadURL(
+                    uploadTask.snapshot.ref
+                  )
+                  resolve(downloadURL)
+                }
+              )
+            } else {
+              resolve(null)
+            }
+          })
+      )
+    )
+    return urls.filter((url) => url !== null) as string[]
+  }
+
   const [isEditing, setIsEditing] = useState(false)
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
   const [formData, setFormData] = useState({
     jewelryId: "",
     skuID: "",
-    images: "",
+    images: [""],
     jewelryCategory: "",
     jewelryName: "",
     mainStoneSize: "",
@@ -56,7 +109,9 @@ function ViewDiamondDialog({
     goldWeight: 0,
     price: 0,
     dateCreated: "",
-    dateModified: ""
+    dateModified: "",
+    productType: "",
+    status: 0
   })
 
   const dialogRef = useRef<HTMLDivElement | null>(null)
@@ -78,15 +133,34 @@ function ViewDiamondDialog({
         goldKarat: jewelryDetails.goldKarat || "",
         goldWeight: jewelryDetails.goldWeight || 0,
         price: jewelryDetails.price || 0,
-        images: jewelryDetails.images[0] || "",
+        images: jewelryDetails.images || [""],
         dateCreated: jewelryDetails.dateCreated || "",
-        dateModified: jewelryDetails.dateModified || ""
+        dateModified: jewelryDetails.dateModified || "",
+        productType: jewelryDetails.productType || "",
+        status: jewelryDetails.status || 0
       })
     }
   }, [jewelryDetails])
 
-  const handleEditClick = () => {
-    setIsEditing((prev) => !prev)
+  const handleEditClick = async () => {
+    if (isEditing) {
+      try {
+        const imageUrls = await handleSave()
+        const updatedFormData = {
+          ...formData,
+          images: imageUrls.length ? imageUrls : formData.images
+        }
+        await updateJewelry.mutateAsync(updatedFormData)
+        setFormData(updatedFormData)
+        console.log("Updated Data:", updatedFormData)
+        setIsEditing(false)
+        onClose()
+      } catch (error) {
+        console.error("Error updating jewelry:", error)
+      }
+    } else {
+      setIsEditing(true)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -96,6 +170,24 @@ function ViewDiamondDialog({
 
   const handleSelectChange = (name: string, value: string) => {
     setFormData((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handleImageChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    if (e.target.files && e.target.files[0]) {
+      setNewPhotos((prev) => {
+        const newPhotos = [...prev]
+        newPhotos[index] = e.target.files![0]
+        return newPhotos
+      })
+
+      // Immediately update the image preview
+      const newImages = [...formData.images]
+      newImages[index] = URL.createObjectURL(e.target.files[0])
+      setFormData((prev) => ({ ...prev, images: newImages }))
+    }
   }
 
   const handleConfirmCancel = () => {
@@ -113,9 +205,11 @@ function ViewDiamondDialog({
         goldKarat: jewelryDetails.goldKarat || "",
         goldWeight: jewelryDetails.goldWeight || 0,
         price: jewelryDetails.price || 0,
-        images: jewelryDetails.images[0] || "",
+        images: jewelryDetails.images || [""],
         dateCreated: jewelryDetails.dateCreated || "",
-        dateModified: jewelryDetails.dateModified || ""
+        dateModified: jewelryDetails.dateModified || "",
+        productType: jewelryDetails.productType || "",
+        status: jewelryDetails.status || 0
       })
     }
     setIsEditing(false)
@@ -140,16 +234,34 @@ function ViewDiamondDialog({
         <div>
           <div className="grid grid-cols-8 gap-4">
             <div className="col-span-2 flex flex-col items-center rounded-md">
-              {!imageLoaded && (
-                <Skeleton className="h-[250px] w-[250px] rounded-md border-2 border-gray-800" />
-              )}
-              <img
-                src={jewelryDetails.images[selectedImageIndex]}
-                onLoad={() => setImageLoaded(true)}
-                className={`h-[250px] w-[250px] rounded-md border-2 border-gray-800 object-cover ${imageLoaded ? "block" : "hidden"}`}
-              />
+              <div className="relative mb-4 flex flex-col items-center">
+                {formData.images[selectedImageIndex] ? (
+                  <img
+                    src={formData.images[selectedImageIndex]}
+                    alt={`Jewelry ${selectedImageIndex + 1}`}
+                    className="h-[250px] w-[250px] cursor-pointer rounded-md border-2 border-gray-800 object-cover"
+                    onClick={() =>
+                      isEditing &&
+                      document
+                        .getElementById(`fileInput-${selectedImageIndex}`)
+                        ?.click()
+                    }
+                  />
+                ) : (
+                  <Skeleton className="h-[250px] w-[250px] rounded-md border-2 border-gray-800" />
+                )}
+                {isEditing && (
+                  <input
+                    type="file"
+                    id={`fileInput-${selectedImageIndex}`}
+                    className="hidden"
+                    accept="image/*"
+                    onChange={(e) => handleImageChange(e, selectedImageIndex)}
+                  />
+                )}
+              </div>
               <div className="mt-2">
-                {jewelryDetails.images.map((_image: string, index: number) => (
+                {formData.images.map((_image: string, index: number) => (
                   <button
                     key={index}
                     onClick={() => setSelectedImageIndex(index)}
@@ -169,7 +281,7 @@ function ViewDiamondDialog({
                 <input
                   type="text"
                   name="jewelryId"
-                  value={formData.skuID}
+                  value={formData.jewelryId}
                   readOnly
                   className="input-field mt-1 w-full"
                   tabIndex={-1}
@@ -194,7 +306,11 @@ function ViewDiamondDialog({
                   <input
                     type="text"
                     name="dateModified"
-                    value={formatDate(formData.dateModified)}
+                    value={
+                      formData.dateModified
+                        ? formatDate(formData.dateModified)
+                        : "NaN"
+                    }
                     readOnly
                     className="input-field mt-1"
                     tabIndex={-1}

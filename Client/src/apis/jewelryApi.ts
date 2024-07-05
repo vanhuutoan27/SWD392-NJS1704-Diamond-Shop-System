@@ -46,6 +46,30 @@ export const usePostJewelry = () => {
   )
 }
 
+export const useUpdateJewelry = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation(
+    async (jewelry: IJewelry) => {
+      const { data } = await diamoonAPI.put(
+        `/Jewelry/${jewelry.jewelryId}`,
+        jewelry
+      )
+      return data
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("jewelries")
+        toast.success("Jewelry updated successfully")
+      },
+      onError: (error) => {
+        console.error("Error updating jewelry data:", error)
+        toast.error("Failed to update jewelry")
+      }
+    }
+  )
+}
+
 export const useChangeJewelryStatus = () => {
   const queryClient = useQueryClient()
 
