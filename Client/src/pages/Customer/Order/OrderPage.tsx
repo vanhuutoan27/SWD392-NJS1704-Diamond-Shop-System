@@ -161,9 +161,13 @@ function OrderPage() {
           language: "en"
         }
       )
-      window.location.href = response.data.url
+      if (response.data && response.data.url) {
+        window.location.href = response.data.url
+      } else {
+        throw new Error("Payment URL not received")
+      }
     } catch (error) {
-      console.error("Có lỗi xảy ra khi tạo URL thanh toán!", error)
+      console.error("Error creating payment URL:", error)
     }
   }
 

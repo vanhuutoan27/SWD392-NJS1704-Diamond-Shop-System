@@ -18,7 +18,6 @@ import { diamondImage } from "@/lib/constants"
 import { diamoonDB } from "@/lib/firebase"
 import { formatCurrencyWithoutVND, formatDate } from "@/lib/utils"
 
-import { Loader } from "@/components/global/atoms/Loader"
 import { Button } from "@/components/global/atoms/button"
 import {
   Dialog,
@@ -44,11 +43,7 @@ function ViewDiamondDialog({
   diamondId: string
   onClose: () => void
 }) {
-  const {
-    data: diamondDetails,
-    isLoading,
-    error
-  } = useGetDiamondById(diamondId)
+  const { data: diamondDetails, error } = useGetDiamondById(diamondId)
 
   const updateDiamond = useUpdateDiamond()
 
@@ -190,10 +185,6 @@ function ViewDiamondDialog({
       })
     }
     setIsEditing(false)
-  }
-
-  if (!diamondDetails || isLoading) {
-    return <Loader />
   }
 
   if (error) {
@@ -500,11 +491,8 @@ function ViewDiamondDialog({
           </div>
         </div>
 
-        <div className="mt-4 flex justify-between gap-4">
+        <div className="mt-4 flex justify-end gap-4">
           <div className="flex justify-between gap-4">
-            <Button type="button" onClick={handleEditClick}>
-              {isEditing ? "Save" : "Edit"}
-            </Button>
             {isEditing && (
               <AlertDialogComponent
                 variant="secondary"
@@ -515,10 +503,10 @@ function ViewDiamondDialog({
                 onConfirm={handleConfirmCancel}
               />
             )}
+            <Button type="button" onClick={handleEditClick}>
+              {isEditing ? "Save" : "Edit"}
+            </Button>
           </div>
-          <Button type="button" onClick={onClose}>
-            Close
-          </Button>
         </div>
       </DialogContent>
     </Dialog>

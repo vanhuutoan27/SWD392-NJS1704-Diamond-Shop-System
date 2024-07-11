@@ -114,6 +114,7 @@ function AddDiamondDialog() {
       postDiamond.mutate(diamondData, {
         onSuccess: () => {
           setIsDialogOpen(false)
+          handleClear()
         }
       })
     } catch (error) {

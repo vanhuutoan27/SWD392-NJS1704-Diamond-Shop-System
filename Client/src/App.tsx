@@ -198,7 +198,7 @@ function App() {
         />
 
         <Route
-          path="/profile/:userId"
+          path="/my-profile/:userId"
           element={
             <Suspense fallback={<Loader />}>
               <MyProfile />
@@ -207,7 +207,7 @@ function App() {
         />
 
         <Route
-          path="/settings/:userId"
+          path="/my-settings/:userId"
           element={
             <Suspense fallback={<Loader />}>
               <MySetting />
@@ -216,7 +216,7 @@ function App() {
         />
 
         <Route
-          path="/orders/:userId"
+          path="/my-orders/:userId"
           element={
             <Suspense fallback={<Loader />}>
               <MyOrder />
@@ -225,7 +225,7 @@ function App() {
         />
 
         <Route
-          path="/invoices/:userId"
+          path="/my-invoices/:userId"
           element={
             <Suspense fallback={<Loader />}>
               <MyInvoice />

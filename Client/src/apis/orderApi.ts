@@ -73,3 +73,24 @@ export const useGetOrderByUserId = (userId: string) => {
     }
   })
 }
+
+export const useUpdateOrderStatus = () => {
+  const queryClient = useQueryClient()
+
+  return useMutation(
+    async (orderId: string) => {
+      const { data } = await diamoonAPI.put(`/Order/change-status/${orderId}`)
+      return data
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries("orders")
+        toast.success("Order status updated successfully")
+      },
+      onError: (error) => {
+        console.error("Error updating order status:", error)
+        toast.error("Failed to update order status")
+      }
+    }
+  )
+}

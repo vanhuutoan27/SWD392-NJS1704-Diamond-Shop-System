@@ -8,7 +8,6 @@ import { useGetJewelryById, useUpdateJewelry } from "@/apis/jewelryApi"
 import { diamoonDB } from "@/lib/firebase"
 import { formatCurrencyWithoutVND, formatDate } from "@/lib/utils"
 
-import { Loader } from "@/components/global/atoms/Loader"
 import { Button } from "@/components/global/atoms/button"
 import {
   Dialog,
@@ -34,11 +33,7 @@ function ViewDiamondDialog({
   jewelryId: string
   onClose: () => void
 }) {
-  const {
-    data: jewelryDetails,
-    isLoading,
-    error
-  } = useGetJewelryById(jewelryId)
+  const { data: jewelryDetails, error } = useGetJewelryById(jewelryId)
 
   console.log(jewelryDetails)
 
@@ -211,10 +206,6 @@ function ViewDiamondDialog({
       })
     }
     setIsEditing(false)
-  }
-
-  if (!jewelryDetails || isLoading) {
-    return <Loader />
   }
 
   if (error) {
@@ -566,11 +557,8 @@ function ViewDiamondDialog({
             </div>
           </div>
 
-          <div className="mt-4 flex justify-between gap-4">
+          <div className="mt-4 flex justify-end gap-4">
             <div className="flex justify-between gap-4">
-              <Button type="button" onClick={handleEditClick}>
-                {isEditing ? "Save" : "Edit"}
-              </Button>
               {isEditing && (
                 <AlertDialogComponent
                   variant="secondary"
@@ -581,10 +569,10 @@ function ViewDiamondDialog({
                   onConfirm={handleConfirmCancel}
                 />
               )}
+              <Button type="button" onClick={handleEditClick}>
+                {isEditing ? "Save" : "Edit"}
+              </Button>
             </div>
-            <Button type="button" onClick={onClose}>
-              Close
-            </Button>
           </div>
         </div>
       </DialogContent>

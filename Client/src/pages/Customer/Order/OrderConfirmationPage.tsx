@@ -13,20 +13,26 @@ function OrderConfirmation() {
 
   useEffect(() => {
     const handleOrder = () => {
-      const orderResult = localStorage.getItem("orderResult")
-      const orderFormData = localStorage.getItem("orderFormData")
+      const urlParams = new URLSearchParams(window.location.search)
+      const vnpResponseCode = urlParams.get("vnp_ResponseCode")
 
-      console.log("Order result:", orderResult)
-      console.log("Order form data:", orderFormData)
+      console.log("VNPay response code:", vnpResponseCode)
 
-      if (orderResult === "success" && orderFormData) {
+      if (vnpResponseCode === "00") {
         setMessage("Order placed successfully!")
+        localStorage.setItem("orderResult", "success")
       } else {
         setMessage("Payment failed or canceled.")
+        localStorage.setItem("orderResult", "failure")
       }
 
-      localStorage.removeItem("orderFormData")
-      localStorage.removeItem("orderResult")
+      const orderFormData = localStorage.getItem("orderFormData")
+
+      console.log("Order form data:", orderFormData)
+
+      if (orderFormData) {
+        localStorage.removeItem("orderFormData")
+      }
       setLoading(false)
     }
 

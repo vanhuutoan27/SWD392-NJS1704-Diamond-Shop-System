@@ -12,7 +12,6 @@ import { useGetOrderById } from "@/apis/orderApi"
 
 import { formatCurrency, formatDate, getPaymentMethodString } from "@/lib/utils"
 
-import { Loader } from "@/components/global/atoms/Loader"
 import { Button } from "@/components/global/atoms/button"
 import {
   Dialog,
@@ -40,7 +39,7 @@ function ViewOrderDialog({
   isAllowEdit: boolean
   onClose: () => void
 }) {
-  const { data: orderDetails, isLoading, error } = useGetOrderById(orderId)
+  const { data: orderDetails, error } = useGetOrderById(orderId)
 
   const [isEditing, setIsEditing] = useState(false)
   const [formData, setFormData] = useState<IOrder>({
@@ -126,10 +125,6 @@ function ViewOrderDialog({
       })
     }
     setIsEditing(false)
-  }
-
-  if (!orderDetails || isLoading) {
-    return <Loader />
   }
 
   if (error) {

@@ -124,6 +124,7 @@ function AddJewelryDialog() {
       postJewelry.mutate(jewelryData, {
         onSuccess: () => {
           setIsDialogOpen(false)
+          handleClear()
         }
       })
     } catch (error) {

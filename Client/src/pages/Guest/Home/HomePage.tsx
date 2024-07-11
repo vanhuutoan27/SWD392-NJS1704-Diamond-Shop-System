@@ -1,5 +1,8 @@
 import { toast } from "sonner"
 
+import { IDiamond } from "@/types/diamond.interface"
+import { IJewelry } from "@/types/jewelry.interface"
+
 import { useGetAllDiamonds } from "@/apis/diamondApi"
 import { useGetAllJewelries } from "@/apis/jewelryApi"
 
@@ -29,18 +32,24 @@ function HomePage() {
     toast.error("Failed to fetch data")
   }
 
+  const filteredDiamonds =
+    allDiamonds?.filter((diamond: IDiamond) => diamond.status === 1) || []
+
+  const filteredJewelries =
+    allJewelries?.filter((jewelry: IJewelry) => jewelry.status === 1) || []
+
   return (
     <div className="container flex w-full flex-col">
       <CarouselSlider />
 
       <RelatedJewelry
         pageName={"Natural Diamond Jewelry"}
-        relatedJewelries={allJewelries || []}
+        relatedJewelries={filteredJewelries || []}
       />
 
       <RelatedDiamonds
         pageName={"Natural Diamond"}
-        relatedDiamonds={allDiamonds || []}
+        relatedDiamonds={filteredDiamonds || []}
       />
     </div>
   )

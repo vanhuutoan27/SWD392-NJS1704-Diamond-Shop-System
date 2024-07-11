@@ -27,25 +27,25 @@ function UserProfile({ userData, onLogout }: UserProfileProps) {
     {
       icon: User,
       label: "Profile",
-      link: `/profile/${userId}`,
+      link: `/my-profile/${userId}`,
       hoverColor: "group-hover:text-secondary"
     },
     {
       icon: PackageCheck,
       label: "Orders",
-      link: `/orders/${userId}`,
+      link: `/my-orders/${userId}`,
       hoverColor: "group-hover:text-secondary"
     },
     {
       icon: ReceiptText,
       label: "Invoices",
-      link: `/invoices/${userId}`,
+      link: `/my-invoices/${userId}`,
       hoverColor: "group-hover:text-secondary"
     },
     {
       icon: Settings,
       label: "Settings",
-      link: `/settings/${userId}`,
+      link: `/my-settings/${userId}`,
       hoverColor: "group-hover:text-secondary"
     },
     {

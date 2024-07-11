@@ -93,7 +93,7 @@ function CartButton() {
                   >
                     <img
                       src={
-                        isDiamondCart(cartItem) ? diamondImage : cartItem.image
+                        isDiamondCart(cartItem) ? cartItem.image : diamondImage
                       }
                       alt={
                         isDiamondCart(cartItem)
