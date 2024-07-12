@@ -16,17 +16,6 @@ export const cartJewelryColumns = (
   decrementQuantity: (productId: string) => void
 ): ColumnDef<ICart>[] => [
   {
-    accessorKey: "productId",
-    header: () => (
-      <div className="flex cursor-pointer justify-center text-white">ID</div>
-    ),
-    cell: (info) => {
-      const value: string = info.getValue() as string
-      const shortProductId = value.split("-")[0]
-      return <div className="text-center">{shortProductId}</div>
-    }
-  },
-  {
     accessorKey: "image",
     header: () => (
       <div className="flex cursor-pointer justify-center text-white">Image</div>

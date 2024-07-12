@@ -1,74 +1,55 @@
-import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage"
-import { DollarSign, Eye, Gem, Users } from "lucide-react"
+import { DollarSign, Gem, Users } from "lucide-react"
 
-import { useGetAllDiamonds } from "@/apis/diamondApi"
-import { useGetAllJewelries } from "@/apis/jewelryApi"
-import { useGetAllUsers } from "@/apis/userApi"
+import { IDiamond } from "@/types/diamond.interface"
+import { IJewelry } from "@/types/jewelry.interface"
+import { IOrder } from "@/types/order.interface"
+import { IUser } from "@/types/user.interface"
 
-import { Loader } from "@/components/global/atoms/Loader"
+import { formatCurrency } from "@/lib/utils"
 
-function KPICards() {
-  const {
-    data: diamondData,
-    error: diamondError,
-    isLoading: diamondLoading
-  } = useGetAllDiamonds()
+interface KPICardsProps {
+  diamondData: IDiamond[]
+  jewelryData: IJewelry[]
+  userData: IUser[]
+  orderData: IOrder[]
+}
 
-  const {
-    data: jewelryData,
-    error: jewelryError,
-    isLoading: jewelryLoading
-  } = useGetAllJewelries()
-
-  const {
-    data: userData,
-    error: userError,
-    isLoading: userLoading
-  } = useGetAllUsers()
-
-  if (
-    !diamondData ||
-    !jewelryData ||
-    !userData ||
-    diamondLoading ||
-    jewelryLoading ||
-    userLoading
-  ) {
-    return <Loader />
-  }
-
-  if (diamondError || jewelryError || userError) {
-    return <NotFoundPage />
-  }
+function KPICards({
+  diamondData,
+  jewelryData,
+  userData,
+  orderData
+}: KPICardsProps) {
+  const totalProfit = orderData.reduce((sum, order) => sum + order.total, 0)
+  const totalDiamonds = diamondData?.length
+  const totalJewelries = jewelryData?.length
+  const totalUsers = userData?.length
 
   const kpiCards = [
     {
-      title: "Total Views",
-      value: "3.456K",
-      icon: <Eye />,
-      percentage: "0.43%",
-      trend: "up"
-    },
-    {
-      title: "Total Profit",
-      value: "$45.2K",
+      title: "Total Revenue",
+      value: formatCurrency(totalProfit),
       icon: <DollarSign />,
       percentage: "4.35%",
       trend: "up"
     },
     {
-      title: "Total Products",
-      value:
-        diamondData?.length.toString() ??
-        "0" + jewelryData?.length.toString() ??
-        "0",
+      title: "Total Diamonds",
+      value: totalDiamonds,
+      icon: <Gem />,
+      percentage: "2.59%",
+      trend: "up"
+    },
+    {
+      title: "Total Jewelries",
+      value: totalJewelries,
       icon: <Gem />,
       percentage: "2.59%",
       trend: "up"
     },
     {
       title: "Total Users",
-      value: userData?.length.toString() ?? "0",
+      value: totalUsers,
       icon: <Users />,
       percentage: "0.95%",
       trend: "down"

@@ -4,9 +4,10 @@ import { ShoppingCart, X } from "lucide-react"
 import { Link } from "react-router-dom"
 import { toast } from "sonner"
 
-import { ICart, IDiamondCart } from "@/types/cart.interface"
+import { ICart, IDiamondCart, IJewelryCart } from "@/types/cart.interface"
 
-import { diamondImage, vatPercentage } from "@/lib/constants"
+import { vatPercentage } from "@/lib/constants"
+import diamoonAPI from "@/lib/diamoonAPI"
 import { calculateCartTotal, formatCurrency, scrollToTop } from "@/lib/utils"
 
 import { Button } from "@/components/global/atoms/button"
@@ -19,13 +20,20 @@ import {
 } from "@/components/global/atoms/dropdown-menu"
 import { Separator } from "@/components/global/atoms/separator"
 
-function isDiamondCart(item: ICart): item is IDiamondCart {
-  return item.productType === "Diamond"
+const fetchDiamondById = async (id: string) => {
+  const { data } = await diamoonAPI.get(`/Diamond/${id}`)
+  return data.data
+}
+
+const fetchJewelryById = async (id: string) => {
+  const { data } = await diamoonAPI.get(`/Jewelry/${id}`)
+  return data.data
 }
 
 function CartButton() {
   const [isOpen, setIsOpen] = useState(false)
   const [cartItems, setCartItems] = useState<ICart[]>([])
+  const [enrichedItems, setEnrichedItems] = useState<ICart[]>([])
 
   const loadCartItems = () => {
     const storedCartItems = localStorage.getItem("cartItems")
@@ -50,16 +58,49 @@ function CartButton() {
     }
   }, [])
 
+  useEffect(() => {
+    const enrichCartItemsWithApiData = async () => {
+      const enrichedItems = await Promise.all(
+        cartItems.map(async (item) => {
+          if (item.productType === "Diamond") {
+            const productDetails = await fetchDiamondById(item.productId)
+            return { ...item, ...productDetails }
+          } else if (item.productType === "Jewelry") {
+            const productDetails = await fetchJewelryById(item.productId)
+            return { ...item, ...productDetails }
+          }
+          return item
+        })
+      )
+      setEnrichedItems(enrichedItems)
+    }
+
+    if (cartItems.length > 0) {
+      enrichCartItemsWithApiData()
+    }
+  }, [cartItems])
+
+  const isDiamondCart = (item: ICart): item is IDiamondCart => {
+    return item.productType === "Diamond"
+  }
+
   const handleRemoveItem = (cartId: string) => {
     const updatedCartItems = cartItems.filter((item) => item.cartId !== cartId)
+    const updatedEnrichedItems = enrichedItems.filter(
+      (item) => item.cartId !== cartId
+    )
+
     setCartItems(updatedCartItems)
+    setEnrichedItems(updatedEnrichedItems)
+
     localStorage.setItem("cartItems", JSON.stringify(updatedCartItems))
     window.dispatchEvent(new CustomEvent("cartChanged"))
+    window.dispatchEvent(new CustomEvent("cartItemRemoved", { detail: cartId }))
 
     toast.success("Item removed from cart!")
   }
 
-  const subTotal = calculateCartTotal(cartItems)
+  const subTotal = calculateCartTotal(enrichedItems)
   const vatAmount = subTotal * vatPercentage
   const total = subTotal + vatAmount
 
@@ -71,14 +112,14 @@ function CartButton() {
         <div className="slow relative flex cursor-pointer select-none items-center gap-4 text-primary hover:text-secondary">
           <ShoppingCart strokeWidth={2.5} />
           <span className="mt-1 text-sm font-medium">
-            Cart ({cartItems.length})
+            Cart ({enrichedItems.length})
           </span>
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="absolute -right-12 mt-4 flex min-h-32 w-[450px] flex-col items-center justify-center gap-4 shadow-md">
-        {cartItems.length > 0 ? (
+        {enrichedItems.length > 0 ? (
           <>
-            {cartItems.map((cartItem) => (
+            {enrichedItems.map((cartItem) => (
               <DropdownMenuGroup
                 key={cartItem.cartId}
                 className="flex w-full items-center gap-4"
@@ -90,15 +131,15 @@ function CartButton() {
                         ? `/diamond/${cartItem.productId}`
                         : `/jewelry/${cartItem.productId}`
                     }
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <img
-                      src={
-                        isDiamondCart(cartItem) ? cartItem.image : diamondImage
-                      }
+                      src={cartItem.images}
                       alt={
                         isDiamondCart(cartItem)
-                          ? `Natural Diamond x ${cartItem.size}mm`
-                          : cartItem.jewelryName
+                          ? `Natural Diamond ${cartItem.size}mm`
+                          : (cartItem as IJewelryCart).jewelryName
                       }
                       className="rounded-md object-cover uppercase"
                     />
@@ -114,11 +155,13 @@ function CartButton() {
                             ? `/diamond/${cartItem.productId}`
                             : `/jewelry/${cartItem.productId}`
                         }
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="slow mr-2 text-sm font-semibold uppercase hover:text-secondary"
                       >
                         {isDiamondCart(cartItem)
-                          ? `Natural Diamond x ${cartItem.size}mm`
-                          : cartItem.jewelryName}
+                          ? `Natural Diamond ${cartItem.size}mm`
+                          : (cartItem as IJewelryCart).jewelryName}
                       </Link>
                       <span className="text-sm">x {cartItem.quantity}</span>
                     </div>

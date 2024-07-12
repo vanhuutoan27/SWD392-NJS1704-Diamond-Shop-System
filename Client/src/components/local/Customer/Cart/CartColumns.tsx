@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 
 import { ICart, IDiamondCart, IJewelryCart } from "@/types/cart.interface"
 
-import { diamondImage } from "@/lib/constants"
 import { formatCurrency } from "@/lib/utils"
 
 import { Button } from "@/components/global/atoms/button"
@@ -15,31 +14,18 @@ export const cartColumns = (
   decrementQuantity: (productId: string) => void
 ): ColumnDef<ICart>[] => [
   {
-    accessorKey: "productId",
-    header: () => (
-      <div className="flex cursor-pointer justify-center text-white">ID</div>
-    ),
-    cell: (info) => {
-      const value: string = info.getValue() as string
-      const shortProductId = value.split("-")[0]
-      return <div className="text-center">{shortProductId}</div>
-    }
-  },
-  {
-    accessorKey: "image",
+    accessorKey: "images",
     header: () => (
       <div className="flex cursor-pointer justify-center text-white">Image</div>
     ),
     cell: (info) => {
-      const row = info.row.original
       const value: string = info.getValue() as string
-      const imageUrl = row.productType === "Diamond" ? diamondImage : value
       return (
         <div className="flex cursor-pointer justify-center">
           <img
-            src={imageUrl}
-            alt="Product"
-            className="h-14 w-14 object-cover"
+            src={value}
+            alt="No Image"
+            className="h-14 w-14 rounded-sm object-cover"
           />
         </div>
       )
@@ -57,7 +43,7 @@ export const cartColumns = (
 
       const productName =
         row.productType === "Diamond"
-          ? `Natural Diamond x ${(row as IDiamondCart).size}mm`
+          ? `Natural Diamond ${(row as IDiamondCart).size}mm`
           : (row as IJewelryCart).jewelryName
 
       return (

@@ -5,13 +5,10 @@ import { toast } from "sonner"
 
 import { ICart } from "@/types/cart.interface"
 
-import { useGetAllDiamonds } from "@/apis/diamondApi"
-import { useGetAllJewelries } from "@/apis/jewelryApi"
-
 import { vatPercentage } from "@/lib/constants"
+import diamoonAPI from "@/lib/diamoonAPI"
 import { calculateCartTotal, formatCurrency, scrollToTop } from "@/lib/utils"
 
-import { Loader } from "@/components/global/atoms/Loader"
 import { Button } from "@/components/global/atoms/button"
 import { ScrollArea, ScrollBar } from "@/components/global/atoms/scroll-area"
 import { cartColumns } from "@/components/local/Customer/Cart/CartColumns"
@@ -20,6 +17,16 @@ import { DataTable } from "@/components/local/Customer/Cart/CartDataTable"
 import { cartDiamondColumns } from "./CartDiamondColumns"
 import { cartJewelryColumns } from "./CartJewelryColumns"
 import { TabsContent } from "./CartTabs"
+
+const fetchDiamondById = async (id: string) => {
+  const { data } = await diamoonAPI.get(`/Diamond/${id}`)
+  return data
+}
+
+const fetchJewelryById = async (id: string) => {
+  const { data } = await diamoonAPI.get(`/Jewelry/${id}`)
+  return data.data
+}
 
 interface RenderTabContentProps {
   type: string
@@ -31,44 +38,80 @@ interface RenderTabContentProps {
 
 function CartTable() {
   const [cartItems, setCartItems] = useState<ICart[]>([])
+  const [enrichedItems, setEnrichedItems] = useState<ICart[]>([])
   const navigate = useNavigate()
 
-  const {
-    data: allDiamonds,
-    error: diamondsError,
-    isLoading: isDiamondsLoading
-  } = useGetAllDiamonds()
-
-  const {
-    data: allJewelries,
-    error: jewelriesError,
-    isLoading: isJewelriesLoading
-  } = useGetAllJewelries()
-
-  useEffect(() => {
+  const loadCartItems = () => {
     const storedCartItems = localStorage.getItem("cartItems")
     if (storedCartItems) {
       setCartItems(JSON.parse(storedCartItems))
     }
+  }
+
+  useEffect(() => {
+    loadCartItems()
+
+    const handleStorageChange = () => {
+      loadCartItems()
+    }
+
+    window.addEventListener("storage", handleStorageChange)
+    window.addEventListener("cartChanged", handleStorageChange)
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange)
+      window.removeEventListener("cartChanged", handleStorageChange)
+    }
   }, [])
 
-  const getProductDetails = (productId: string, type: string) => {
-    if (type === "Diamond") {
-      return allDiamonds?.find((diamond) => diamond.diamondId === productId)
-    } else if (type === "Jewelry") {
-      return allJewelries?.find((jewelry) => jewelry.jewelryId === productId)
+  useEffect(() => {
+    const enrichCartItemsWithApiData = async () => {
+      const enrichedItems = await Promise.all(
+        cartItems.map(async (item) => {
+          if (item.productType === "Diamond") {
+            const productDetails = await fetchDiamondById(item.productId)
+            return { ...item, ...productDetails }
+          } else if (item.productType === "Jewelry") {
+            const productDetails = await fetchJewelryById(item.productId)
+            return { ...item, ...productDetails }
+          }
+          return item
+        })
+      )
+      setEnrichedItems(enrichedItems)
     }
-  }
 
-  const enrichCartItems = (items: ICart[]) => {
-    return items.map((item) => {
-      const productDetails = getProductDetails(item.productId, item.productType)
-      return { ...item, ...productDetails }
-    })
-  }
+    if (cartItems.length > 0) {
+      enrichCartItemsWithApiData()
+    }
+  }, [cartItems])
+
+  useEffect(() => {
+    const handleDiamondStatusChange = () => {
+      const storedCartItems = localStorage.getItem("cartItems")
+      if (storedCartItems) {
+        const cartItems = JSON.parse(storedCartItems)
+        const updatedCartItems = cartItems.filter(
+          (item: ICart) => item.status !== 0
+        )
+        setCartItems(updatedCartItems)
+        localStorage.setItem("cartItems", JSON.stringify(updatedCartItems))
+      }
+    }
+
+    window.addEventListener("storage", handleDiamondStatusChange)
+
+    return () => {
+      window.removeEventListener("storage", handleDiamondStatusChange)
+    }
+  }, [cartItems])
 
   const updateItemQuantity = (productId: string, newQuantity: number) => {
-    if (newQuantity < 1) return
+    if (newQuantity < 1) {
+      handleRemoveItem(productId)
+      return
+    }
+
     const updatedCartItems = cartItems.map((item) =>
       item.productId === productId ? { ...item, quantity: newQuantity } : item
     )
@@ -87,9 +130,23 @@ function CartTable() {
 
   const decrementQuantity = (productId: string) => {
     const item = cartItems.find((item) => item.productId === productId)
-    if (item && item.quantity > 1) {
+    if (item) {
       updateItemQuantity(productId, item.quantity - 1)
     }
+  }
+
+  const handleRemoveItem = (productId: string) => {
+    const updatedCartItems = cartItems.filter(
+      (item) => item.productId !== productId
+    )
+    setCartItems(updatedCartItems)
+    localStorage.setItem("cartItems", JSON.stringify(updatedCartItems))
+    window.dispatchEvent(new CustomEvent("cartChanged"))
+    window.dispatchEvent(
+      new CustomEvent("cartItemRemoved", { detail: productId })
+    )
+
+    toast.success("Item removed from cart!")
   }
 
   const handleCheckout = () => {
@@ -97,20 +154,13 @@ function CartTable() {
     scrollToTop()
   }
 
-  if (isDiamondsLoading || isJewelriesLoading) {
-    return <Loader />
-  }
+  const allItemsInCart = enrichedItems.filter((item) => item.quantity > 0)
 
-  if (diamondsError || jewelriesError) {
-    toast.error("Failed to fetch data")
-  }
-
-  const allItemsInCart = cartItems.filter((item) => item.quantity > 0)
-  const diamondsInCart = enrichCartItems(
-    allItemsInCart.filter((item) => item.productType === "Diamond")
+  const diamondsInCart = allItemsInCart.filter(
+    (item) => item.productType === "Diamond"
   )
-  const jewelriesInCart = enrichCartItems(
-    allItemsInCart.filter((item) => item.productType === "Jewelry")
+  const jewelriesInCart = allItemsInCart.filter(
+    (item) => item.productType === "Jewelry"
   )
 
   const tabData = [

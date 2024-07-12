@@ -5,6 +5,7 @@ import { informationSchema } from "@/schemas/OrderForm"
 import axios from "axios"
 import { useLocation, useNavigate } from "react-router-dom"
 
+import { ICart } from "@/types/cart.interface"
 import {
   District,
   IOrderPaymentMethod,
@@ -35,14 +36,16 @@ function OrderPage() {
   const [isSticky, setIsSticky] = useState(false)
   const [total, setTotal] = useState(0)
   const [formData, setFormData] = useState<IOrderPost>({
-    products: cartItems.map((item: any) => ({
+    items: cartItems.map((item: ICart) => ({
       productId: item.productId,
+      productType: item.productType || "",
+      skuId: item.skuID || "",
       quantity: item.quantity,
-      unitPrice: item.price
+      unitPrice: item.price,
+      images: Array.isArray(item.images) ? item.images : [item.images]
     })),
     total: 0,
     note: "",
-    receiptDay: "",
     customerId: user?.id || "",
     customerName: "",
     phone: "",
@@ -84,6 +87,25 @@ function OrderPage() {
   useEffect(() => {
     setFormData((prevData) => ({ ...prevData, total: total }))
   }, [total])
+
+  useEffect(() => {
+    const handleCartItemRemoved = (event: CustomEvent<string>) => {
+      const removedCartId = event.detail
+      if (cartItems.some((item: ICart) => item.cartId === removedCartId)) {
+        navigate(-1)
+      }
+    }
+
+    const customEventListener = (event: Event) => {
+      handleCartItemRemoved(event as CustomEvent<string>)
+    }
+
+    window.addEventListener("cartItemRemoved", customEventListener)
+
+    return () => {
+      window.removeEventListener("cartItemRemoved", customEventListener)
+    }
+  }, [cartItems, navigate])
 
   const nextStep = async () => {
     let output = true
@@ -129,8 +151,6 @@ function OrderPage() {
         paymentMethod: getPaymentMethodNumber(selectedPaymentMethod)
       }
 
-      console.log("Final form data being sent:", finalFormData)
-
       setFormData(finalFormData)
 
       try {
@@ -170,26 +190,6 @@ function OrderPage() {
       console.error("Error creating payment URL:", error)
     }
   }
-
-  useEffect(() => {
-    const checkPaymentStatus = async () => {
-      const urlParams = new URLSearchParams(window.location.search)
-      const vnpResponseCode = urlParams.get("vnp_ResponseCode")
-
-      console.log("VNPay response code:", vnpResponseCode)
-
-      if (vnpResponseCode === "00") {
-        localStorage.setItem("orderResult", "success")
-      } else {
-        localStorage.setItem("orderResult", "failure")
-      }
-      navigate("/order-confirmation")
-    }
-
-    if (window.location.pathname === "/order-confirmation") {
-      checkPaymentStatus()
-    }
-  }, [navigate])
 
   const getButtonText = (tab: number) => {
     switch (tab) {
@@ -239,9 +239,7 @@ function OrderPage() {
           />
         </div>
         <div
-          className={`${
-            isSticky ? "top-28" : "top-0"
-          } sticky h-fit w-2/5 rounded-md border-2 border-input bg-white p-5 shadow-md`}
+          className={`${isSticky ? "top-28" : "top-0"} sticky h-fit w-2/5 rounded-md border-2 border-input bg-white p-5 shadow-md`}
         >
           <OrderSummary cartItems={cartItems} onTotalChange={setTotal} />
         </div>

@@ -4,9 +4,11 @@
 import { useState } from "react"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { ArrowUpDown, Copy, Eye, MoreHorizontal } from "lucide-react"
+import { ArrowUpDown, Ban, Copy, Eye, MoreHorizontal } from "lucide-react"
 
 import { IOrder, OrderStatus } from "@/types/order.interface"
+
+import { useUpdateOrderStatus } from "@/apis/orderApi"
 
 import { formatCurrency, formatDate, getPaymentMethodString } from "@/lib/utils"
 
@@ -154,9 +156,27 @@ export const columns: ColumnDef<IOrder>[] = [
     cell: ({ row }) => {
       const order = row.original
       const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
+      const [isAlertDialogOpen, setIsAlertDialogOpen] = useState(false)
+      const updateOrderStatusMutation = useUpdateOrderStatus()
 
       const handleViewDetailsClick = () => {
         setIsViewDialogOpen(true)
+      }
+
+      const handleCancelOrderClick = () => {
+        setIsAlertDialogOpen(true)
+      }
+
+      const handleConfirmCancelOrder = () => {
+        updateOrderStatusMutation.mutate(
+          { orderId: order.orderId, orderStatus: 4 },
+          {
+            onSuccess: () => {
+              window.location.reload()
+            }
+          }
+        )
+        setIsAlertDialogOpen(false)
       }
 
       return (
@@ -184,6 +204,14 @@ export const columns: ColumnDef<IOrder>[] = [
                 <Eye size={16} className="mr-2" />
                 <span>View Details</span>
               </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={handleCancelOrderClick}
+                className="text-sm"
+                disabled={order.orderStatus === 4}
+              >
+                <Ban size={16} className="mr-2" />
+                <span>Cancel Order</span>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
 
@@ -193,6 +221,41 @@ export const columns: ColumnDef<IOrder>[] = [
               isAllowEdit={false}
               onClose={() => setIsViewDialogOpen(false)}
             />
+          )}
+
+          {isAlertDialogOpen && (
+            <AlertDialog
+              open={isAlertDialogOpen}
+              onOpenChange={setIsAlertDialogOpen}
+            >
+              <AlertDialogTrigger asChild />
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle className="text-xl">
+                    Cancel Order
+                  </AlertDialogTitle>
+                  <AlertDialogDescription className="text-secondary">
+                    Are you sure you want to cancel this order?
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter className="mt-2">
+                  <AlertDialogCancel
+                    onClick={() => setIsAlertDialogOpen(false)}
+                  >
+                    Cancel
+                  </AlertDialogCancel>
+                  <AlertDialogAction asChild>
+                    <Button
+                      type="button"
+                      onClick={handleConfirmCancelOrder}
+                      variant="destructive"
+                    >
+                      Confirm
+                    </Button>
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           )}
         </div>
       )

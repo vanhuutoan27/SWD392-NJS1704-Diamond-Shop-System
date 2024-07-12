@@ -28,7 +28,7 @@ export enum OrderStatus {
 }
 
 export interface IOrderPost {
-  products: IOrderProductItem[]
+  items: IOrderProductItem[]
   total: number
   note: string
   receiptDay: string
