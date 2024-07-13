@@ -5,6 +5,6 @@ namespace DiamonShop.Core.Repository
 {
     public interface IImageRepository : IRepository<Image, Guid>
     {
-
+        Task<IEnumerable<Image>> GetImagesByProductIdAsync(Guid productId);
     }
 }

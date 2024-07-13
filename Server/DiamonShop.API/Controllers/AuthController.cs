@@ -95,7 +95,7 @@ namespace DiamonShop.API.Controllers
             var users = new AppUser
             {
                 FullName = request.FullName,
-                UserName = request.FullName.Replace(" ", ""),
+                UserName = request.Email,
                 Email = request.Email,
                 IsActive = true,
                 SecurityStamp = Guid.NewGuid().ToString(),
@@ -109,7 +109,7 @@ namespace DiamonShop.API.Controllers
                 users = await _userManager.FindByEmailAsync(request.Email);
                 var token = await _userManager.GenerateEmailConfirmationTokenAsync(users);
                 var confirmationLink = $"http://localhost:1412/?token={Uri.EscapeDataString(token)}&email={Uri.EscapeDataString(users.Email)}&success=true";
-                var message = new Message(new string[] { users.Email! }, "Confirmation email link", confirmationLink!);
+                var message = new Message(new string[] { users.Email! }, "Confirmation email link", $"Please confirm your account by <a href='{confirmationLink}'>clicking here</a>;.");
                 await emailSender.SendEmailAsync(message);
 
                 await _userManager.AddToRoleAsync(users, Core.SeedWorks.Constants.Roles.Customer);
@@ -121,7 +121,7 @@ namespace DiamonShop.API.Controllers
             }
             return BadRequest(ModelState);
         }
-        [HttpGet("ConfirmEmail")]
+        [HttpPost("ConfirmEmail")]
         public async Task<ActionResult<ResultModel>> ConfirmEmail(string token, string email)
         {
             var user = await _userManager.FindByEmailAsync(email);
