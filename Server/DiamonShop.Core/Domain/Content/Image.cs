@@ -7,7 +7,7 @@ namespace DiamonShop.Core.Domain.Content
     {
         [Key]
         public Guid ImageId { get; set; }
-        public Guid ProductId { get; set; }
+        public Guid? ProductId { get; set; }
         public string? Url { get; set; }
         public string? Description { get; set; }
         public DateTime DateCreated { get; set; }
@@ -15,6 +15,6 @@ namespace DiamonShop.Core.Domain.Content
 
         //FK
         [ForeignKey(nameof(ProductId))]
-        public Product Product { get; set; }
+        public Product? Product { get; set; }
     }
 }

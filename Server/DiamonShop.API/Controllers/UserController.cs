@@ -83,7 +83,7 @@ IMapper mapper, IEmailSender emailSender)
                 FullName = request.FullName,
                 Email = request.Email,
                 PhoneNumber = request.Phone,
-                UserName = request.FullName.Replace(" ", ""),
+                UserName = request.Email,
                 Address = request.Address,
                 IsActive = false,
                 Avatar = request.Avatar,

@@ -33,7 +33,7 @@ namespace DiamonShop.Core.Models.content.RequestModels
         public double Price { get; set; }
         //public Product? Product { get; set; }
 
-        public List<string> Images { get; set; }
+        public List<string>? Images { get; set; }
 
     }
 }

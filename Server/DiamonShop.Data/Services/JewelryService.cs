@@ -162,6 +162,34 @@ namespace DiamonShop.Data.Services
 
             }
             _repositoryManager.Product.Update(product);
+
+
+
+            if (jewelryDto.Images != null && jewelryDto.Images.Any())
+            {
+                //update Image 
+                List<Image> images = (await _repositoryManager.Image.GetImagesByProductIdAsync(id)).ToList();
+                if (images != null && images.Any())
+                {
+                    foreach (Image i in images)
+                    {
+                        i.ProductId = null;
+                    }
+                }
+                //Add image
+                foreach (var i in jewelryDto.Images)
+                {
+                    var image = new Image()
+                    {
+                        ProductId = id,
+                        Url = i,
+                        DateCreated = DateTime.Now
+
+                    };
+                    _repositoryManager.Image.Add(image);
+                }
+            }
+
             await _repositoryManager.SaveAsync();
             return true;
         }
