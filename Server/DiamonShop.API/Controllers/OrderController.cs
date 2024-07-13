@@ -1,6 +1,7 @@
 ﻿using DiamonShop.Core.Models;
 using DiamonShop.Core.Models.content.RequestModels;
 using DiamonShop.Core.SeedWorks;
+using DiamonShop.Core.Shared.Enum;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -100,6 +101,22 @@ namespace DiamonShop.API.Controllers
             res.Message = "Successful";
             res.Code = (int)HttpStatusCode.OK;
             res.Data = result;
+            return res;
+        }
+        [HttpPut("Change-status-order/{id}")]
+        public async Task<ActionResult<ResultModel>> ChangeOrderStatus(Guid id, OrderStatus orderStatus)
+        {
+            var result = await _serviceManager.OrderService.ChangeOrderStatusAsync(id, orderStatus);
+            if (!result)
+            {
+                res.IsSuccess = false;
+                res.Message = "Update Fail!";
+                res.Code = 500;
+                return res;
+            }
+            res.IsSuccess = false;
+            res.Message = "Update Succesful!";
+            res.Code = (int)StatusCodes.Status200OK;
             return res;
         }
 

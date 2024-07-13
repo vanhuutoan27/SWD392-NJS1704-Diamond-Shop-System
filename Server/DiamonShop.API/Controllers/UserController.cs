@@ -104,28 +104,13 @@ IMapper mapper, IEmailSender emailSender)
             }
             await _userManager.AddToRoleAsync(user, request.Role);
 
-            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            //send email to confirm
-            var confirmationLink = Url.ActionLink("ConfirmEmail", "Identity", new { userId = user.Id, @token = token });
-            //await emailSender.SendEmailAsync("quocdai904@gmail.com", user.Email, "Confirm your email address", confirmationLink);
-
 
             resp.IsSuccess = true;
             resp.Message = "Successfull";
             resp.Code = (int)HttpStatusCode.OK;
             return resp;
         }
-        private async Task<IActionResult> ConfirmEmail(string userId, string token)
-        {
-            var user = await _userManager.FindByEmailAsync(userId);
-            var result = await _userManager.ConfirmEmailAsync(user, token);
-            if (result.Succeeded)
-            {
-                return new OkResult();
 
-            }
-            return NotFound(result);
-        }
         [HttpPut("{id}")]
         public async Task<ActionResult<ResultModel>> UpdateUser(Guid id, [FromBody] UpdateUserRequest request)
         {
@@ -242,6 +227,22 @@ IMapper mapper, IEmailSender emailSender)
             resp.Code = (int)HttpStatusCode.OK;
             return resp;
 
+
+        }
+        [HttpPost("SendEmail")]
+        public async Task<ActionResult<ResultModel>> SendEmailToUserAsync([FromBody] SendMailRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Content Not Valid ");
+
+            }
+            var message = new Message(request.ToEmail, request.Subject, request.Body);
+            await emailSender.SendEmailAsync(message);
+            resp.IsSuccess = true;
+            resp.Message = "Send Email Successfuly";
+            resp.Code = (int)HttpStatusCode.OK;
+            return resp;
 
         }
     }

@@ -4,6 +4,7 @@ using DiamonShop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DiamonShop.Data.Migrations
 {
     [DbContext(typeof(DiamondContext))]
-    partial class DiamondContextModelSnapshot : ModelSnapshot
+    [Migration("20240713133856_updateStatusOfOrder")]
+    partial class updateStatusOfOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,7 +50,7 @@ namespace DiamonShop.Data.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("Categorys", (string)null);
+                    b.ToTable("Categorys");
 
                     b.HasData(
                         new
@@ -142,7 +145,7 @@ namespace DiamonShop.Data.Migrations
 
                     b.HasKey("DiamondId");
 
-                    b.ToTable("Diamonds", (string)null);
+                    b.ToTable("Diamonds");
 
                     b.HasData(
                         new
@@ -427,7 +430,7 @@ namespace DiamonShop.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Images", (string)null);
+                    b.ToTable("Images");
 
                     b.HasData(
                         new
@@ -727,7 +730,7 @@ namespace DiamonShop.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("Inventorys", (string)null);
+                    b.ToTable("Inventorys");
                 });
 
             modelBuilder.Entity("DiamonShop.Core.Domain.Content.Invoice", b =>
@@ -763,7 +766,7 @@ namespace DiamonShop.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Invoices", (string)null);
+                    b.ToTable("Invoices");
                 });
 
             modelBuilder.Entity("DiamonShop.Core.Domain.Content.Jewelry", b =>
@@ -819,7 +822,7 @@ namespace DiamonShop.Data.Migrations
 
                     b.HasKey("JewelryId");
 
-                    b.ToTable("Jewelrys", (string)null);
+                    b.ToTable("Jewelrys");
 
                     b.HasData(
                         new
@@ -1075,7 +1078,7 @@ namespace DiamonShop.Data.Migrations
 
                     b.HasKey("OrderId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("DiamonShop.Core.Domain.Content.OrderItem", b =>
@@ -1111,7 +1114,7 @@ namespace DiamonShop.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderItems", (string)null);
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("DiamonShop.Core.Domain.Content.Payment", b =>
@@ -1140,7 +1143,7 @@ namespace DiamonShop.Data.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("Payments", (string)null);
+                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("DiamonShop.Core.Domain.Content.Product", b =>
@@ -1176,7 +1179,7 @@ namespace DiamonShop.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
 
                     b.HasData(
                         new
@@ -1500,7 +1503,7 @@ namespace DiamonShop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles", (string)null);
+                    b.ToTable("Roles");
 
                     b.HasData(
                         new
@@ -1625,7 +1628,7 @@ namespace DiamonShop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
