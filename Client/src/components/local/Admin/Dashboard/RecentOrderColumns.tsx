@@ -6,11 +6,11 @@ import { IOrder, OrderStatus } from "@/types/order.interface"
 
 import { formatCurrency, getPaymentMethodString } from "@/lib/utils"
 
-import OrderStatusChip from "../../Admin/Order/OrderStatusChip"
+import OrderStatusChip from "../../Manager/Order/OrderStatusChip"
 
 export const columns: ColumnDef<IOrder>[] = [
   {
-    accessorKey: "_id",
+    accessorKey: "orderId",
     header: () => {
       return (
         <div className="flex select-none items-center">

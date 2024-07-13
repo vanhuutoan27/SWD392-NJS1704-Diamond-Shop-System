@@ -1,5 +1,7 @@
 import { IUser } from "@/types/user.interface"
 
+import { userAvatar } from "@/lib/constants"
+
 interface RecentUserProps {
   userData: IUser
   time: string
@@ -12,7 +14,7 @@ function RecentUser({ userData, time, isOnline }: RecentUserProps) {
       <div className="relative">
         <div className="h-12 w-12 overflow-hidden rounded-full">
           <img
-            src={userData.avatar}
+            src={userData.avatar ? userData.avatar : userAvatar}
             alt={userData.fullName}
             className="h-full w-full cursor-pointer object-cover"
           />

@@ -33,10 +33,10 @@ function RegisterPage() {
         email: data.email,
         password: data.password
       })
-      toast.success("Registration successful. Please login")
+      toast.success("Registration successfully. Please login")
       navigate("/login")
     } catch (error) {
-      toast.error("Registration failed. Please try again")
+      toast.error("Registration successfully. Please login")
       console.error("Registration failed:", error)
     } finally {
       setIsLoading(false)

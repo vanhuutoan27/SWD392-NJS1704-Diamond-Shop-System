@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router-dom"
 import { Loader } from "./components/global/atoms/Loader"
 import AuthLayout from "./components/global/templates/AuthLayout"
 import RootLayout from "./components/global/templates/RootLayout"
+import ConfirmEmailPage from "./pages/Guest/HTTP/ConfirmEmailPage"
 import ForbiddenPage from "./pages/Guest/HTTP/ForbiddenPage"
 import NotFoundPage from "./pages/Guest/HTTP/NotFoundPage"
 import RedirectPage from "./pages/Guest/HTTP/RedirectPage"
@@ -337,6 +338,7 @@ function App() {
         <Route path="/admin/*" element={<NotFoundPage />} />
       </Route>
 
+      <Route path="/confirm-email" element={<ConfirmEmailPage />} />
       <Route path="/*" element={<NotFoundPage />} />
       <Route path="/redirect" element={<RedirectPage />} />
       <Route path="/not-found" element={<NotFoundPage />} />

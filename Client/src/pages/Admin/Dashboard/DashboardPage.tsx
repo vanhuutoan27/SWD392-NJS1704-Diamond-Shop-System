@@ -98,9 +98,7 @@ const formatCurrencyM = (value: number) => {
 const DashboardPage = () => {
   const { user } = useAuthContext()
 
-  const roleName = user && user.role && user.role.Name ? user.role.Name : ""
-
-  if (!user || !user.role || roleName !== "Admin") {
+  if (!user || !user.roles || !user.roles.includes("Admin")) {
     return <ForbiddenPage />
   }
 
@@ -153,7 +151,12 @@ const DashboardPage = () => {
       y: {
         beginAtZero: true,
         ticks: {
-          callback: (value: number) => formatCurrencyM(value),
+          callback: function (value: any) {
+            if (typeof value === "number") {
+              return formatCurrencyM(value)
+            }
+            return value
+          },
           stepSize: 100000000
         }
       }
@@ -165,7 +168,12 @@ const DashboardPage = () => {
       y: {
         beginAtZero: true,
         ticks: {
-          callback: (value: number) => value,
+          callback: function (value: any) {
+            if (typeof value === "number") {
+              return value
+            }
+            return value
+          },
           stepSize: 1
         }
       }
@@ -207,7 +215,7 @@ const DashboardPage = () => {
           {recentUsers.length > 0 ? (
             <ul>
               {recentUsers.map((user) => (
-                <li key={user._id} className="mb-2">
+                <li key={user.id} className="mb-2">
                   <RecentUser userData={user} time="Just now" isOnline={true} />
                 </li>
               ))}

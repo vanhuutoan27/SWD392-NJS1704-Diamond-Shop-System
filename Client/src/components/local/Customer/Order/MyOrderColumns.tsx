@@ -12,6 +12,17 @@ import { useUpdateOrderStatus } from "@/apis/orderApi"
 
 import { formatCurrency, formatDate, getPaymentMethodString } from "@/lib/utils"
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger
+} from "@/components/global/atoms/alert-dialog"
 import { Button } from "@/components/global/atoms/button"
 import {
   DropdownMenu,
@@ -169,7 +180,7 @@ export const columns: ColumnDef<IOrder>[] = [
 
       const handleConfirmCancelOrder = () => {
         updateOrderStatusMutation.mutate(
-          { orderId: order.orderId, orderStatus: 4 },
+          { orderId: order.orderId, orderStatus: "Cancel" },
           {
             onSuccess: () => {
               window.location.reload()

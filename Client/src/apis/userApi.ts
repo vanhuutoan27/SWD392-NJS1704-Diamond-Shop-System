@@ -114,3 +114,22 @@ export const useChangeUserStatus = () => {
     }
   )
 }
+
+export const useConfirmEmail = () => {
+  return useMutation(
+    async (data: { token: string; email: string }) => {
+      const response = await diamoonAPI.post("/Auth/ConfirmEmail", null, {
+        params: data
+      })
+      return response.data
+    },
+    {
+      onSuccess: () => {
+        toast.success("Email confirmed successfully")
+      },
+      onError: () => {
+        toast.error("Failed to confirm email")
+      }
+    }
+  )
+}

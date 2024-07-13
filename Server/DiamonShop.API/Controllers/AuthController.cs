@@ -108,7 +108,7 @@ namespace DiamonShop.API.Controllers
             {
                 users = await _userManager.FindByEmailAsync(request.Email);
                 var token = await _userManager.GenerateEmailConfirmationTokenAsync(users);
-                var confirmationLink = $"http://localhost:1412/?token={Uri.EscapeDataString(token)}&email={Uri.EscapeDataString(users.Email)}&success=true";
+                var confirmationLink = $"http://localhost:1412/confirm-email?token={Uri.EscapeDataString(token)}&email={Uri.EscapeDataString(users.Email)}&success=true";
                 var message = new Message(new string[] { users.Email! }, "Confirmation email link", $"Please confirm your account by <a href='{confirmationLink}'>clicking here</a>;.");
                 await emailSender.SendEmailAsync(message);
 

@@ -40,9 +40,7 @@ export const usePostOrder = () => {
         queryClient.invalidateQueries("orders")
         toast.success("Order successful, we are processing the order")
 
-        const productIds = variables.products.map(
-          (product) => product.productId
-        )
+        const productIds = variables.items.map((product) => product.productId)
         const storedCart = JSON.parse(localStorage.getItem("cartItems") || "[]")
         const updatedCart = storedCart.filter(
           (item: any) => !productIds.includes(item.productId)
@@ -78,8 +76,16 @@ export const useUpdateOrderStatus = () => {
   const queryClient = useQueryClient()
 
   return useMutation(
-    async (orderId: string) => {
-      const { data } = await diamoonAPI.put(`/Order/change-status/${orderId}`)
+    async ({
+      orderId,
+      orderStatus
+    }: {
+      orderId: string
+      orderStatus: string
+    }) => {
+      const { data } = await diamoonAPI.put(`/Order/change-status/${orderId}`, {
+        status: orderStatus
+      })
       return data
     },
     {

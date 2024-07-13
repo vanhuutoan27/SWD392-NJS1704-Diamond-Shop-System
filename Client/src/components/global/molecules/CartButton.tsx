@@ -135,7 +135,7 @@ function CartButton() {
                     rel="noopener noreferrer"
                   >
                     <img
-                      src={cartItem.images}
+                      src={cartItem.image}
                       alt={
                         isDiamondCart(cartItem)
                           ? `Natural Diamond ${cartItem.size}mm`

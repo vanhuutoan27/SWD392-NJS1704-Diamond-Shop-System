@@ -6,6 +6,7 @@ export interface ICartBase {
   quantity: number
   price: number
   image: string
+  status?: number
 }
 
 export interface IDiamondCart extends ICartBase {
