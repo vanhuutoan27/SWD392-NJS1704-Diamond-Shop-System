@@ -19,7 +19,6 @@ namespace DiamonShop.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = Roles.Admin)]
     public class UserController : ControllerBase
     {
         ResultModel resp;
@@ -41,6 +40,7 @@ IMapper mapper, IEmailSender emailSender)
         }
 
         [HttpGet(Name = "GetUsers")]
+        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
         public async Task<ActionResult<ResultModel>> GetUsers()
         {
             var query = _userManager.Users;
@@ -59,6 +59,8 @@ IMapper mapper, IEmailSender emailSender)
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
+
         public async Task<ActionResult<ResultModel>> GetUserById(Guid id)
         {
             var user = await _userManager.FindByIdAsync(id.ToString());
@@ -75,6 +77,7 @@ IMapper mapper, IEmailSender emailSender)
 
         [HttpPost]
         [Route("create")]
+        [Authorize(Roles = Roles.Admin)]
         public async Task<ActionResult<ResultModel>> CreateUser([FromBody] CreateUserRequest request)
         {
             ResultModel resp = new ResultModel();
@@ -113,6 +116,8 @@ IMapper mapper, IEmailSender emailSender)
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = Roles.Admin)]
+
         public async Task<ActionResult<ResultModel>> UpdateUser(Guid id, [FromBody] UpdateUserRequest request)
         {
             if (!ModelState.IsValid || id == null) { return BadRequest(ModelState); }
@@ -167,6 +172,8 @@ IMapper mapper, IEmailSender emailSender)
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = Roles.Admin)]
+
         public async Task<ActionResult<ResultModel>> DeleteUser(Guid id)
         {
             if (id == null) return BadRequest(ModelState);
@@ -183,6 +190,8 @@ IMapper mapper, IEmailSender emailSender)
         }
 
         [HttpPut("change-status/{id}")]
+        [Authorize(Roles = Roles.Admin)]
+
         public async Task<ActionResult<ResultModel>> EnableUser(Guid id)
         {
             if (id == null) return BadRequest(ModelState);
@@ -209,6 +218,8 @@ IMapper mapper, IEmailSender emailSender)
 
 
         [HttpPost("SendEmail")]
+        [Authorize(Roles = Roles.Admin)]
+
         public async Task<ActionResult<ResultModel>> SendEmailToUserAsync([FromBody] SendMailRequest request)
         {
             if (!ModelState.IsValid)
