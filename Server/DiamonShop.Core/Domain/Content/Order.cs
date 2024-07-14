@@ -22,7 +22,7 @@ namespace DiamonShop.Core.Domain.Content
         public DateTime DateCreated { get; set; }
         public DateTime? DateModified { get; set; }
         public bool? Status { get; set; }
-
+        public int? Discount { get; set; }
         //navigate
         public ICollection<OrderItem> Items
         { get; set; }
