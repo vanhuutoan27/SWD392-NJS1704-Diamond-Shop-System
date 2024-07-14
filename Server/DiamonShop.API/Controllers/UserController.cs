@@ -59,7 +59,7 @@ IMapper mapper, IEmailSender emailSender)
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
+        [Authorize(Roles = "Admin,Manager")]
 
         public async Task<ActionResult<ResultModel>> GetUserById(Guid id)
         {

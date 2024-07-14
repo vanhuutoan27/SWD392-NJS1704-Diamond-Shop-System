@@ -111,6 +111,7 @@ namespace DiamonShop.API.Controllers
         }
 
         [HttpPut("Change-status-order/{id}")]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<ActionResult<ResultModel>> ChangeOrderStatus([FromBody] ChangeOrderStatusRequest request)
         {
             var result = await _serviceManager.OrderService.ChangeOrderStatusAsync(request);
