@@ -2,7 +2,6 @@
 using DiamonShop.Core.Models.content.RequestModels;
 using DiamonShop.Core.SeedWorks;
 using DiamonShop.Core.SeedWorks.Constants;
-using DiamonShop.Core.Shared.Enum;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -11,7 +10,6 @@ namespace DiamonShop.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class OrderController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;
@@ -113,10 +111,9 @@ namespace DiamonShop.API.Controllers
         }
 
         [HttpPut("Change-status-order/{id}")]
-        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
-        public async Task<ActionResult<ResultModel>> ChangeOrderStatus(Guid id, OrderStatus orderStatus)
+        public async Task<ActionResult<ResultModel>> ChangeOrderStatus([FromBody] ChangeOrderStatusRequest request)
         {
-            var result = await _serviceManager.OrderService.ChangeOrderStatusAsync(id, orderStatus);
+            var result = await _serviceManager.OrderService.ChangeOrderStatusAsync(request);
             if (!result)
             {
                 res.IsSuccess = false;

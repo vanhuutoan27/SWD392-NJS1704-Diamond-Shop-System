@@ -19,18 +19,18 @@ namespace DiamonShop.Data.Services
             _mapper = mapper;
         }
 
-        public async Task<bool> ChangeOrderStatusAsync(Guid id, OrderStatus status)
+        public async Task<bool> ChangeOrderStatusAsync(ChangeOrderStatusRequest request)
         {
-            var order = await _repositoryManager.Order.GetOrderByIdAsync(id);
+            var order = await _repositoryManager.Order.GetOrderByIdAsync(request.OrderId);
             if (order == null)
             {
                 return false;
             }
-            if (status.Equals(order.OrderStatus))
+            if (request.orderStatus.Equals(order.OrderStatus))
             {
                 return false;
             }
-            switch (status)
+            switch (request.orderStatus)
             {
                 case OrderStatus.Pending:
                     order.OrderStatus = OrderStatus.Pending;
@@ -52,7 +52,7 @@ namespace DiamonShop.Data.Services
 
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(status), status, null);
+                    throw new ArgumentOutOfRangeException(nameof(request.orderStatus), request.orderStatus, null);
             }
             _repositoryManager.Order.Update(order);
             await _repositoryManager.SaveAsync();
