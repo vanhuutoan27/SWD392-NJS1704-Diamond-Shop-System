@@ -7,18 +7,19 @@ using DiamonShop.Core.Models.content.Respone;
 
 
 using DiamonShop.Core.SeedWorks;
+using DiamonShop.Core.SeedWorks.Constants;
 using DiamonShop.Core.services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using System.Security.Claims;
 
 
 namespace DiamonShop.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = Roles.Admin)]
     public class UserController : ControllerBase
     {
         ResultModel resp;
@@ -206,29 +207,7 @@ IMapper mapper, IEmailSender emailSender)
 
         }
 
-        [HttpPut("change-password")]
-        [Authorize]
-        public async Task<ActionResult<ResultModel>> ChangeMyPassword([FromBody] ChangePasswordRequest request)
-        {
-            if (request.OldPassword.ToLower().Equals(request.NewPassword.ToLower()))
-            {
-                return BadRequest("Old Password is The Same with New Password");
-            }
-            var userId = ((ClaimsIdentity)User.Identity).FindFirst("Id").Value;
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null) return NotFound();
-            var result = await _userManager.ChangePasswordAsync(user, request.OldPassword, request.NewPassword);
-            if (!result.Succeeded)
-            {
-                return BadRequest(string.Join("<br>", result.Errors.Select(x => x.Description)));
-            }
-            resp.IsSuccess = true;
-            resp.Message = "Change Successfull";
-            resp.Code = (int)HttpStatusCode.OK;
-            return resp;
 
-
-        }
         [HttpPost("SendEmail")]
         public async Task<ActionResult<ResultModel>> SendEmailToUserAsync([FromBody] SendMailRequest request)
         {

@@ -2,10 +2,10 @@
 {
     public class Roles
     {
-        public static string Admin = "Admin";
-        public static string Customer = "Customer";
-        public static string Manager = "Manager";
-        public static string SaleStaff = "SaleStaff";
-        public static string DeliveryStaff = "DeliveryStaff";
+        public const string Admin = "Admin";
+        public const string Customer = "Customer";
+        public const string Manager = "Manager";
+        public const string SaleStaff = "SaleStaff";
+        public const string DeliveryStaff = "DeliveryStaff";
     }
 }
