@@ -2,6 +2,8 @@
 using DiamonShop.Core.Models;
 using DiamonShop.Core.Models.content.RequestModels;
 using DiamonShop.Core.SeedWorks;
+using DiamonShop.Core.SeedWorks.Constants;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -67,6 +69,7 @@ namespace DiamonShop.API.Controllers
             return res;
         }
         [HttpPost]
+        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
         public async Task<ActionResult<ResultModel>> CreateJewelry([FromBody] CreateUpdateJewelryRequest createUpdateJewelry)
         {
             if (!ModelState.IsValid)
@@ -97,6 +100,8 @@ namespace DiamonShop.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
+
         public async Task<ActionResult<ResultModel>> Delete(Guid id)
         {
             if (id == null)
@@ -119,6 +124,8 @@ namespace DiamonShop.API.Controllers
             return res;
         }
         [HttpPut("{id}")]
+        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
+
         public async Task<ActionResult<ResultModel>> Update(Guid id, CreateUpdateJewelryRequest jewelryDto)
         {
             //if (id != jewelryDto.JewelryId)
@@ -152,6 +159,8 @@ namespace DiamonShop.API.Controllers
         }
 
         [HttpPut("change-status/{id}")]
+        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
+
         public async Task<ActionResult<ResultModel>> ChangeStatus(Guid id)
         {
             var result = await _service.JewelryService.ChangeStatusAsync(id);

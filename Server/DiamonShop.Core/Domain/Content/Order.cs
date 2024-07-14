@@ -21,7 +21,7 @@ namespace DiamonShop.Core.Domain.Content
         public PaymentMethod PaymentMethod { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime? DateModified { get; set; }
-        public OrderStatus? Status { get; set; }
+        public bool? Status { get; set; }
 
         //navigate
         public ICollection<OrderItem> Items

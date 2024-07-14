@@ -73,9 +73,9 @@ namespace DiamonShop.Data.Services
                 CustomerName = request.CustomerName,
                 Email = request.Email,
                 Note = request.Note == null ? "" : request.Note,
-                OrderStatus = OrderStatus.Processing,
+                OrderStatus = OrderStatus.Pending,
                 Phone = request.Phone,
-                Status = OrderStatus.Pending,
+                Status = true,
                 PaymentMethod = request.PaymentMethod,
                 ReceiptDay = request.ReceiptDay,
             };

@@ -1,7 +1,9 @@
 ﻿using DiamonShop.Core.Models;
 using DiamonShop.Core.Models.content.RequestModels;
 using DiamonShop.Core.SeedWorks;
+using DiamonShop.Core.SeedWorks.Constants;
 using DiamonShop.Core.Shared.Enum;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -9,6 +11,7 @@ namespace DiamonShop.API.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
+    [Authorize]
     public class OrderController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;
@@ -20,7 +23,8 @@ namespace DiamonShop.API.Controllers
             res = new ResultModel();
         }
 
-        [HttpPost]
+        [HttpPost("create")]
+        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
         public async Task<ActionResult<ResultModel>> CreateOrder([FromBody] CreateOrderRequest request)
         {
             var order = await _serviceManager.OrderService.CreateOrder(request);
@@ -39,6 +43,7 @@ namespace DiamonShop.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
         public async Task<ActionResult<ResultModel>> GetAllOrders()
         {
 
@@ -58,6 +63,7 @@ namespace DiamonShop.API.Controllers
             return res;
         }
         [HttpGet("{id}")]
+        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
         public async Task<ActionResult<ResultModel>> GetOrderById(Guid id)
         {
             var order = await _serviceManager.OrderService.GetOrderByIdAsync(id);
@@ -76,6 +82,7 @@ namespace DiamonShop.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
         public async Task<ActionResult<ResultModel>> DeleteOrderById(Guid id)
         {
             await _serviceManager.OrderService.DeleteOrder(id);
@@ -87,6 +94,7 @@ namespace DiamonShop.API.Controllers
         }
 
         [HttpGet("user/{id}")]
+        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
         public async Task<ActionResult<ResultModel>> GetOrderByCustomerId(Guid id)
         {
             var result = await _serviceManager.OrderService.GetOrderByCustomerIdAsync(id);
@@ -103,7 +111,9 @@ namespace DiamonShop.API.Controllers
             res.Data = result;
             return res;
         }
+
         [HttpPut("Change-status-order/{id}")]
+        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
         public async Task<ActionResult<ResultModel>> ChangeOrderStatus(Guid id, OrderStatus orderStatus)
         {
             var result = await _serviceManager.OrderService.ChangeOrderStatusAsync(id, orderStatus);
