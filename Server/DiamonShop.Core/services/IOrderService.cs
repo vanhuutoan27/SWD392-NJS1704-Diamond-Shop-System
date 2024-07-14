@@ -1,6 +1,5 @@
 ﻿using DiamonShop.Core.Models.content.RequestModels;
 using DiamonShop.Core.Models.content.Respone;
-using DiamonShop.Core.Shared.Enum;
 
 namespace DiamonShop.Core.services
 {
@@ -11,7 +10,7 @@ namespace DiamonShop.Core.services
         Task<OrderResponse> GetOrderByIdAsync(Guid id);
         Task DeleteOrder(Guid id);
         Task<IEnumerable<OrderResponse>> GetOrderByCustomerIdAsync(Guid id);
-        Task<bool> ChangeOrderStatusAsync(Guid id, OrderStatus status);
+        Task<bool> ChangeOrderStatusAsync(ChangeOrderStatusRequest request);
 
     }
 }
