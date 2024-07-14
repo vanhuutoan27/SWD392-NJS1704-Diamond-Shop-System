@@ -69,7 +69,7 @@ namespace DiamonShop.API.Controllers
             return res;
         }
         [HttpPost]
-        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
+        
         public async Task<ActionResult<ResultModel>> CreateJewelry([FromBody] CreateUpdateJewelryRequest createUpdateJewelry)
         {
             if (!ModelState.IsValid)
@@ -100,7 +100,7 @@ namespace DiamonShop.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
+        
 
         public async Task<ActionResult<ResultModel>> Delete(Guid id)
         {
@@ -124,7 +124,7 @@ namespace DiamonShop.API.Controllers
             return res;
         }
         [HttpPut("{id}")]
-        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
+        
 
         public async Task<ActionResult<ResultModel>> Update(Guid id, CreateUpdateJewelryRequest jewelryDto)
         {
@@ -159,7 +159,7 @@ namespace DiamonShop.API.Controllers
         }
 
         [HttpPut("change-status/{id}")]
-        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
+        
 
         public async Task<ActionResult<ResultModel>> ChangeStatus(Guid id)
         {

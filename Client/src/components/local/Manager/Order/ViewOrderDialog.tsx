@@ -8,7 +8,7 @@ import {
   OrderStatus
 } from "@/types/order.interface"
 
-import { useGetOrderById } from "@/apis/orderApi"
+import { useGetOrderById, useUpdateOrderStatus } from "@/apis/orderApi"
 
 import { formatCurrency, formatDate, getPaymentMethodString } from "@/lib/utils"
 
@@ -40,6 +40,7 @@ function ViewOrderDialog({
   onClose: () => void
 }) {
   const { data: orderDetails, error } = useGetOrderById(orderId)
+  const updateOrderStatusMutation = useUpdateOrderStatus()
 
   const [isEditing, setIsEditing] = useState(false)
   const [formData, setFormData] = useState<IOrder>({
@@ -96,7 +97,19 @@ function ViewOrderDialog({
   }, [orderDetails])
 
   const handleEditClick = () => {
-    setIsEditing((prev) => !prev)
+    if (isEditing) {
+      updateOrderStatusMutation.mutate(
+        { orderId: formData.orderId, orderStatus: formData.orderStatus },
+        {
+          onSuccess: () => {
+            setIsEditing(false)
+            onClose()
+          }
+        }
+      )
+    } else {
+      setIsEditing(true)
+    }
   }
 
   const handleSelectChange = (name: string, value: OrderStatus) => {
@@ -387,11 +400,16 @@ function ViewOrderDialog({
         </ScrollArea>
 
         <div className="mt-4 flex justify-between gap-4">
-          {isAllowEdit ? (
-            <div className="flex justify-between gap-4">
-              <Button type="button" onClick={handleEditClick}>
-                {isEditing ? "Save" : "Edit"}
+          {!isAllowEdit && (
+            <div className="flex w-full justify-end">
+              <Button type="button" onClick={onClose}>
+                Close
               </Button>
+            </div>
+          )}
+
+          {isAllowEdit && (
+            <div className="flex w-full justify-end gap-4">
               {isEditing && (
                 <AlertDialogComponent
                   variant="secondary"
@@ -402,13 +420,11 @@ function ViewOrderDialog({
                   onConfirm={handleConfirmCancel}
                 />
               )}
+              <Button type="button" onClick={handleEditClick}>
+                {isEditing ? "Save" : "Edit"}
+              </Button>
             </div>
-          ) : (
-            <div></div>
           )}
-          <Button type="button" onClick={onClose}>
-            Close
-          </Button>
         </div>
       </DialogContent>
     </Dialog>

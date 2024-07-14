@@ -11,7 +11,6 @@ namespace DiamonShop.API.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    [Authorize]
     public class OrderController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;
@@ -24,7 +23,7 @@ namespace DiamonShop.API.Controllers
         }
 
         [HttpPost("create")]
-        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
+        
         public async Task<ActionResult<ResultModel>> CreateOrder([FromBody] CreateOrderRequest request)
         {
             var order = await _serviceManager.OrderService.CreateOrder(request);
@@ -43,7 +42,6 @@ namespace DiamonShop.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin,Manager")]
         public async Task<ActionResult<ResultModel>> GetAllOrders()
         {
 
@@ -63,7 +61,7 @@ namespace DiamonShop.API.Controllers
             return res;
         }
         [HttpGet("{id}")]
-        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
+        
         public async Task<ActionResult<ResultModel>> GetOrderById(Guid id)
         {
             var order = await _serviceManager.OrderService.GetOrderByIdAsync(id);
@@ -82,7 +80,7 @@ namespace DiamonShop.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
+        
         public async Task<ActionResult<ResultModel>> DeleteOrderById(Guid id)
         {
             await _serviceManager.OrderService.DeleteOrder(id);
@@ -94,7 +92,7 @@ namespace DiamonShop.API.Controllers
         }
 
         [HttpGet("user/{id}")]
-        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
+        
         public async Task<ActionResult<ResultModel>> GetOrderByCustomerId(Guid id)
         {
             var result = await _serviceManager.OrderService.GetOrderByCustomerIdAsync(id);
@@ -112,8 +110,8 @@ namespace DiamonShop.API.Controllers
             return res;
         }
 
-        [HttpPut("Change-status-order/{id}")]
-        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
+        [HttpPut("change-status/{id}")]
+        
         public async Task<ActionResult<ResultModel>> ChangeOrderStatus(Guid id, OrderStatus orderStatus)
         {
             var result = await _serviceManager.OrderService.ChangeOrderStatusAsync(id, orderStatus);

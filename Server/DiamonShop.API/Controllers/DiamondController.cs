@@ -48,7 +48,7 @@ namespace DiamonShop.API.Controllers
             }
         }
         [HttpPut("{id}")]
-        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
+        
 
         public async Task<IActionResult> UpdateDiamond(Guid id, [FromBody] UpdateDiamondRequest updateDiamondrequest)
         {
@@ -67,7 +67,7 @@ namespace DiamonShop.API.Controllers
 
         }
         [HttpPost]
-        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
+        
 
         public async Task<IActionResult> CreateDiamond(CreateDiamondRequest createDiamondrequest)
         {
@@ -85,7 +85,7 @@ namespace DiamonShop.API.Controllers
         }
 
         [HttpDelete]
-        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
+        
         public async Task<ActionResult<DiamondRespone>> RemoveDiamond(Guid id)
         {
             if (id != null)
@@ -98,7 +98,7 @@ namespace DiamonShop.API.Controllers
         }
 
         [HttpPut("chang-status/{id}")]
-        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
+        
         public async Task<IActionResult> ChangeStatus(Guid id)
         {
             var result = await _services.DiamondService.ChangeStatusAsync(id);

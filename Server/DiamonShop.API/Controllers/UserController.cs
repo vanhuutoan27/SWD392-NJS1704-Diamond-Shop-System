@@ -40,7 +40,7 @@ IMapper mapper, IEmailSender emailSender)
         }
 
         [HttpGet(Name = "GetUsers")]
-        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
+        
         public async Task<ActionResult<ResultModel>> GetUsers()
         {
             var query = _userManager.Users;
@@ -59,7 +59,7 @@ IMapper mapper, IEmailSender emailSender)
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
+        
 
         public async Task<ActionResult<ResultModel>> GetUserById(Guid id)
         {

@@ -36,16 +36,17 @@ function OrderPage() {
   const [isSticky, setIsSticky] = useState(false)
   const [total, setTotal] = useState(0)
   const [formData, setFormData] = useState<IOrderPost>({
-    items: cartItems.map((item: ICart) => ({
+    products: cartItems.map((item: ICart) => ({
       productId: item.productId,
       productType: item.productType || "",
       skuId: item.skuID || "",
       quantity: item.quantity,
       unitPrice: item.price,
-      images: Array.isArray(item.images) ? item.images : [item.images]
+      images: item.image ? [item.image] : []
     })),
     total: 0,
     note: "",
+    receiptDay: "",
     customerId: user?.id || "",
     customerName: "",
     phone: "",
@@ -239,7 +240,9 @@ function OrderPage() {
           />
         </div>
         <div
-          className={`${isSticky ? "top-28" : "top-0"} sticky h-fit w-2/5 rounded-md border-2 border-input bg-white p-5 shadow-md`}
+          className={`${
+            isSticky ? "top-28" : "top-0"
+          } sticky h-fit w-2/5 rounded-md border-2 border-input bg-white p-5 shadow-md`}
         >
           <OrderSummary cartItems={cartItems} onTotalChange={setTotal} />
         </div>

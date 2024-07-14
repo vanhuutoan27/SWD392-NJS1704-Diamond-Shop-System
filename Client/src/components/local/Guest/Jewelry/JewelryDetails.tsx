@@ -11,6 +11,11 @@ import { addToCart, formatCurrency, handleMouseMove } from "@/lib/utils"
 import { Button } from "@/components/global/atoms/button"
 import Section from "@/components/global/organisms/Section"
 
+// Define the custom event type
+interface CartChangedEvent extends CustomEvent {
+  detail: ICart[]
+}
+
 function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
   const { user } = useAuthContext()
   const [cartItems, setCartItems] = useState<ICart[]>([])
@@ -22,6 +27,18 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
     const storedCartItems = localStorage.getItem("cartItems")
     if (storedCartItems) {
       setCartItems(JSON.parse(storedCartItems))
+    }
+
+    // Listen for the cartChanged event to update the cart items state
+    const handleCartChanged = (event: Event) => {
+      const customEvent = event as CartChangedEvent
+      setCartItems(customEvent.detail)
+    }
+
+    window.addEventListener("cartChanged", handleCartChanged)
+
+    return () => {
+      window.removeEventListener("cartChanged", handleCartChanged)
     }
   }, [])
 
@@ -50,7 +67,9 @@ function JewelryDetails({ jewelryDetails }: { jewelryDetails: IJewelry }) {
 
       toast.success("Added to cart successfully")
 
-      window.dispatchEvent(new CustomEvent("cartChanged"))
+      window.dispatchEvent(
+        new CustomEvent("cartChanged", { detail: updatedCart })
+      )
     }
   }
 

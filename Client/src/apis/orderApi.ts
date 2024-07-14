@@ -40,12 +40,24 @@ export const usePostOrder = () => {
         queryClient.invalidateQueries("orders")
         toast.success("Order successful, we are processing the order")
 
-        const productIds = variables.items.map((product) => product.productId)
+        const productIds = variables.products.map(
+          (product) => product.productId
+        )
+
+        // Get the current cart items from local storage
         const storedCart = JSON.parse(localStorage.getItem("cartItems") || "[]")
+
+        // Filter out the ordered items
         const updatedCart = storedCart.filter(
           (item: any) => !productIds.includes(item.productId)
         )
+
+        // Update the local storage and state
         localStorage.setItem("cartItems", JSON.stringify(updatedCart))
+        // Dispatch a custom event to update the state in components using the cart items
+        window.dispatchEvent(
+          new CustomEvent("cartChanged", { detail: updatedCart })
+        )
       },
       onError: (error) => {
         console.error("Error posting order data:", error)
@@ -73,30 +85,30 @@ export const useGetOrderByUserId = (userId: string) => {
 }
 
 export const useUpdateOrderStatus = () => {
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
 
   return useMutation(
-    async ({
-      orderId,
-      orderStatus
-    }: {
-      orderId: string
-      orderStatus: string
-    }) => {
+    async ({ orderId, orderStatus }: { orderId: string, orderStatus: number }) => {
+      // Ensure orderStatus is within the valid range
+      if (orderStatus < 1 || orderStatus > 5) {
+        throw new Error("Invalid order status value");
+      }
+
       const { data } = await diamoonAPI.put(`/Order/change-status/${orderId}`, {
         status: orderStatus
-      })
-      return data
+      });
+
+      return data;
     },
     {
       onSuccess: () => {
-        queryClient.invalidateQueries("orders")
-        toast.success("Order status updated successfully")
+        queryClient.invalidateQueries("orders");
+        toast.success("Order status updated successfully");
       },
       onError: (error) => {
-        console.error("Error updating order status:", error)
-        toast.error("Failed to update order status")
+        console.error("Error updating order status:", error);
+        toast.error("Failed to update order status");
       }
     }
-  )
-}
+  );
+};

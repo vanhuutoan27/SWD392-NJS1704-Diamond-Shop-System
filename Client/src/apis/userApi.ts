@@ -66,7 +66,7 @@ export const usePutUser = () => {
 export const useChangePasswordUser = () => {
   return useMutation(
     async (data: { oldPassword: string; newPassword: string }) => {
-      const response = await diamoonAPI.put("/User/change-password/", {
+      const response = await diamoonAPI.put("/Auth/change-password/", {
         oldPassword: data.oldPassword,
         newPassword: data.newPassword
       })
