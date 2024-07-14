@@ -19,6 +19,49 @@ namespace DiamonShop.Data.Services
             _mapper = mapper;
         }
 
+        public async Task<bool> ChangeOrderStatusAsync(Guid id, OrderStatus status)
+        {
+            var order = await _repositoryManager.Order.GetOrderByIdAsync(id);
+            if (order == null)
+            {
+                return false;
+            }
+            if (status.Equals(order.OrderStatus))
+            {
+                return false;
+            }
+            switch (status)
+            {
+                case OrderStatus.Pending:
+                    order.OrderStatus = OrderStatus.Pending;
+                    break;
+                case OrderStatus.Processing:
+                    order.OrderStatus = OrderStatus.Processing;
+
+                    break;
+                case OrderStatus.Shipping:
+                    order.OrderStatus = OrderStatus.Shipping;
+
+                    break;
+                case OrderStatus.Cancelled:
+                    order.OrderStatus = OrderStatus.Cancelled;
+
+                    break;
+                case OrderStatus.Completed:
+                    order.OrderStatus = OrderStatus.Completed;
+
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(status), status, null);
+            }
+            _repositoryManager.Order.Update(order);
+            await _repositoryManager.SaveAsync();
+            return true;
+
+
+
+        }
+
         public async Task<CreateOrderResponse> CreateOrder(CreateOrderRequest request)
         {
             Order order = new Order()
@@ -32,7 +75,7 @@ namespace DiamonShop.Data.Services
                 Note = request.Note == null ? "" : request.Note,
                 OrderStatus = OrderStatus.Processing,
                 Phone = request.Phone,
-                Status = true,
+                Status = OrderStatus.Pending,
                 PaymentMethod = request.PaymentMethod,
                 ReceiptDay = request.ReceiptDay,
             };

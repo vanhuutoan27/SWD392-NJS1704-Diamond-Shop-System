@@ -7,18 +7,19 @@ using DiamonShop.Core.Models.content.Respone;
 
 
 using DiamonShop.Core.SeedWorks;
+using DiamonShop.Core.SeedWorks.Constants;
 using DiamonShop.Core.services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-using System.Security.Claims;
 
 
 namespace DiamonShop.API.Controllers
 {
     [Route("api/v1/[controller]")]
     [ApiController]
+    [Authorize(Roles = Roles.Admin)]
     public class UserController : ControllerBase
     {
         ResultModel resp;
@@ -104,28 +105,13 @@ IMapper mapper, IEmailSender emailSender)
             }
             await _userManager.AddToRoleAsync(user, request.Role);
 
-            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            //send email to confirm
-            var confirmationLink = Url.ActionLink("ConfirmEmail", "Identity", new { userId = user.Id, @token = token });
-            //await emailSender.SendEmailAsync("quocdai904@gmail.com", user.Email, "Confirm your email address", confirmationLink);
-
 
             resp.IsSuccess = true;
             resp.Message = "Successfull";
             resp.Code = (int)HttpStatusCode.OK;
             return resp;
         }
-        private async Task<IActionResult> ConfirmEmail(string userId, string token)
-        {
-            var user = await _userManager.FindByEmailAsync(userId);
-            var result = await _userManager.ConfirmEmailAsync(user, token);
-            if (result.Succeeded)
-            {
-                return new OkResult();
 
-            }
-            return NotFound(result);
-        }
         [HttpPut("{id}")]
         public async Task<ActionResult<ResultModel>> UpdateUser(Guid id, [FromBody] UpdateUserRequest request)
         {
@@ -221,27 +207,21 @@ IMapper mapper, IEmailSender emailSender)
 
         }
 
-        [HttpPut("change-password")]
-        [Authorize]
-        public async Task<ActionResult<ResultModel>> ChangeMyPassword([FromBody] ChangePasswordRequest request)
+
+        [HttpPost("SendEmail")]
+        public async Task<ActionResult<ResultModel>> SendEmailToUserAsync([FromBody] SendMailRequest request)
         {
-            if (request.OldPassword.ToLower().Equals(request.NewPassword.ToLower()))
+            if (!ModelState.IsValid)
             {
-                return BadRequest("Old Password is The Same with New Password");
+                return BadRequest("Content Not Valid ");
+
             }
-            var userId = ((ClaimsIdentity)User.Identity).FindFirst("Id").Value;
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null) return NotFound();
-            var result = await _userManager.ChangePasswordAsync(user, request.OldPassword, request.NewPassword);
-            if (!result.Succeeded)
-            {
-                return BadRequest(string.Join("<br>", result.Errors.Select(x => x.Description)));
-            }
+            var message = new Message(request.ToEmail, request.Subject, request.Body);
+            await emailSender.SendEmailAsync(message);
             resp.IsSuccess = true;
-            resp.Message = "Change Successfull";
+            resp.Message = "Send Email Successfuly";
             resp.Code = (int)HttpStatusCode.OK;
             return resp;
-
 
         }
     }

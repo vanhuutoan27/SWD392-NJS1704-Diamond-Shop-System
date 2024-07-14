@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 using System.Reflection;
 using System.Security.Claims;
 using System.Text.Json;
@@ -86,6 +87,7 @@ namespace DiamonShop.API.Controllers
 
         [HttpPost]
         [Route("register")]
+        [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
             if (!ModelState.IsValid)
@@ -122,12 +124,13 @@ namespace DiamonShop.API.Controllers
             return BadRequest(ModelState);
         }
         [HttpPost("ConfirmEmail")]
-        public async Task<ActionResult<ResultModel>> ConfirmEmail(string token, string email)
+        public async Task<ActionResult<ResultModel>> ConfirmEmail([FromBody] ConfirmEmailRequest request)
         {
-            var user = await _userManager.FindByEmailAsync(email);
+            var user = await _userManager.FindByEmailAsync(request.Email);
+            Console.WriteLine("your toke: " + request.Token);
             if (user != null)
             {
-                var result = await _userManager.ConfirmEmailAsync(user, token);
+                var result = await _userManager.ConfirmEmailAsync(user, request.Token);
                 if (result.Succeeded)
                 {
                     _resp.IsSuccess = true;
@@ -184,6 +187,30 @@ namespace DiamonShop.API.Controllers
 
             }
             return permissions.Distinct().ToList();
+        }
+
+        [HttpPut("change-password")]
+        [Authorize]
+        public async Task<ActionResult<ResultModel>> ChangeMyPassword([FromBody] ChangePasswordRequest request)
+        {
+            if (request.OldPassword.ToLower().Equals(request.NewPassword.ToLower()))
+            {
+                return BadRequest("Old Password is The Same with New Password");
+            }
+            var userId = ((ClaimsIdentity)User.Identity).FindFirst("Id").Value;
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null) return NotFound();
+            var result = await _userManager.ChangePasswordAsync(user, request.OldPassword, request.NewPassword);
+            if (!result.Succeeded)
+            {
+                return BadRequest(string.Join("<br>", result.Errors.Select(x => x.Description)));
+            }
+            _resp.IsSuccess = true;
+            _resp.Message = "Change Successfull";
+            _resp.Code = (int)HttpStatusCode.OK;
+            return _resp;
+
+
         }
     }
 }
