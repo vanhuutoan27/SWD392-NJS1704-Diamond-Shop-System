@@ -17,7 +17,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -143,6 +142,10 @@ builder.Services.AddSingleton(emailOptions);
 //add
 builder.Services.AddSingleton<IEmailSender, SmtpEmailSender>();
 
+
+//add Role 
+//builder.Services.AddDefaultIdentity<AppUser>()
+//    .AddRoles<AppRole>();
 
 var app = builder.Build();
 

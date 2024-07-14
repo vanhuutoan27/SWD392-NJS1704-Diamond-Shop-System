@@ -18,6 +18,7 @@ namespace DiamonShop.Core.Models.content.Respone
         public DateTime DateCreated { get; set; }
         public DateTime? DateModified { get; set; }
         public bool? Status { get; set; }
+        public int Discount { get; set; }
 
         //navigate
         public List<OrderDetailsResponse> Items { get; set; }

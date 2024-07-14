@@ -78,6 +78,7 @@ namespace DiamonShop.Data.Services
                 Status = true,
                 PaymentMethod = request.PaymentMethod,
                 ReceiptDay = request.ReceiptDay,
+                Discount = request.Discount,
             };
             _repositoryManager.Order.Add(order);
             //add invoice 

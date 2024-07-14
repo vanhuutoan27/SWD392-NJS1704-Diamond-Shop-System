@@ -43,7 +43,7 @@ namespace DiamonShop.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = Roles.Admin + "," + Roles.Manager)]
+        [Authorize(Roles = "Admin,Manager")]
         public async Task<ActionResult<ResultModel>> GetAllOrders()
         {
 

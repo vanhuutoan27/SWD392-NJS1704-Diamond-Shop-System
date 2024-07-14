@@ -14,6 +14,7 @@ namespace DiamonShop.Core.Models.content.RequestModels
         public string? Phone { get; set; }
         public string? Email { get; set; }
         public string? Address { get; set; }
+        public int? Discount { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
 
     }
