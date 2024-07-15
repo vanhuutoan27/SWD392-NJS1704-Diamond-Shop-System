@@ -21,7 +21,7 @@ namespace DiamonShop.API.Controllers
             res = new ResultModel();
         }
 
-        [HttpPost("create")]
+        [HttpPost]
         
         public async Task<ActionResult<ResultModel>> CreateOrder([FromBody] CreateOrderRequest request)
         {

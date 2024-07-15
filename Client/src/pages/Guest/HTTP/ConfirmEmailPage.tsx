@@ -13,12 +13,17 @@ function ConfirmEmailPage() {
   const [token, setToken] = useState("")
   const [email, setEmail] = useState("")
   const [success, setSuccess] = useState<boolean | null>(null)
+  const [loading, setLoading] = useState(false)
 
   // Extract token and email from URL parameters
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
     const token = urlParams.get("token") ?? ""
     const email = urlParams.get("email") ?? ""
+    if (!token || !email) {
+      setSuccess(false)
+      return
+    }
     setToken(token)
     setEmail(email)
 
@@ -35,11 +40,19 @@ function ConfirmEmailPage() {
   const confirmEmailMutation = useConfirmEmail()
 
   const confirmEmail = () => {
+    setLoading(true)
     confirmEmailMutation.mutate(
       { token, email },
       {
-        onSuccess: () => setSuccess(true),
-        onError: () => setSuccess(false)
+        onSuccess: () => {
+          setLoading(false)
+          setSuccess(true)
+          navigate("/")
+        },
+        onError: () => {
+          setLoading(false)
+          setSuccess(false)
+        }
       }
     )
   }
@@ -52,6 +65,11 @@ function ConfirmEmailPage() {
   return (
     <div className="flex h-screen w-full select-none items-center justify-center bg-white">
       <div className="flex w-[700px] flex-col px-4 text-center font-medium">
+        {success === null && (
+          <p className="text-xl font-bold tracking-tight text-gray-800 sm:text-2xl">
+            Loading...
+          </p>
+        )}
         {success === true && (
           <>
             <h1 className="mb-2 text-9xl font-bold text-gray-200">200</h1>
@@ -62,8 +80,8 @@ function ConfirmEmailPage() {
               Please confirm your email address by clicking the button below.
             </p>
             <div className="mt-6 flex items-center justify-center gap-4">
-              <Button type="button" onClick={confirmEmail}>
-                Confirm Email
+              <Button type="button" onClick={confirmEmail} disabled={loading}>
+                {loading ? "Confirming..." : "Confirm Email"}
               </Button>
             </div>
           </>

@@ -77,7 +77,6 @@ IMapper mapper, IEmailSender emailSender)
 
         [HttpPost]
         [Route("create")]
-        [Authorize(Roles = Roles.Admin)]
         public async Task<ActionResult<ResultModel>> CreateUser([FromBody] CreateUserRequest request)
         {
             ResultModel resp = new ResultModel();
@@ -116,7 +115,6 @@ IMapper mapper, IEmailSender emailSender)
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = Roles.Admin)]
 
         public async Task<ActionResult<ResultModel>> UpdateUser(Guid id, [FromBody] UpdateUserRequest request)
         {
@@ -172,7 +170,6 @@ IMapper mapper, IEmailSender emailSender)
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = Roles.Admin)]
 
         public async Task<ActionResult<ResultModel>> DeleteUser(Guid id)
         {
@@ -190,7 +187,6 @@ IMapper mapper, IEmailSender emailSender)
         }
 
         [HttpPut("change-status/{id}")]
-        [Authorize(Roles = Roles.Admin)]
 
         public async Task<ActionResult<ResultModel>> EnableUser(Guid id)
         {
@@ -210,7 +206,7 @@ IMapper mapper, IEmailSender emailSender)
             var result = await _userManager.UpdateAsync(user);
             if (!result.Succeeded) { return BadRequest(result.Errors); }
             resp.IsSuccess = true;
-            resp.Message = "Successfull";
+            resp.Message = "Successful";
             resp.Code = (int)HttpStatusCode.OK;
             return resp;
 
@@ -218,7 +214,6 @@ IMapper mapper, IEmailSender emailSender)
 
 
         [HttpPost("SendEmail")]
-        [Authorize(Roles = Roles.Admin)]
 
         public async Task<ActionResult<ResultModel>> SendEmailToUserAsync([FromBody] SendMailRequest request)
         {
