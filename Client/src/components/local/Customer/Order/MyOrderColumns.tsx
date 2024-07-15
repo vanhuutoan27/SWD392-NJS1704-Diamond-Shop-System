@@ -180,7 +180,7 @@ export const columns: ColumnDef<IOrder>[] = [
 
       const handleConfirmCancelOrder = () => {
         updateOrderStatusMutation.mutate(
-          { orderId: order.orderId, orderStatus: "Cancel" },
+          { orderId: order.orderId, orderStatus: 4 },
           {
             onSuccess: () => {
               window.location.reload()

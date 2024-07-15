@@ -1,3 +1,5 @@
+import { useAuthContext } from "@/contexts/AuthContext"
+import ForbiddenPage from "@/pages/Guest/HTTP/ForbiddenPage"
 import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage"
 
 import { useGetAllInvoices } from "@/apis/invoiceApi"
@@ -7,6 +9,12 @@ import { columns } from "@/components/local/Manager/Invoice/InvoiceListColumns"
 import { DataTable } from "@/components/local/Manager/Invoice/InvoiceListDataTable"
 
 function InvoiceListPage() {
+  const { user } = useAuthContext()
+
+  if (!user || !user.roles || !user.roles.includes("Admin")) {
+    return <ForbiddenPage />
+  }
+
   const { data: invoiceData, error, isLoading } = useGetAllInvoices()
 
   if (isLoading) {

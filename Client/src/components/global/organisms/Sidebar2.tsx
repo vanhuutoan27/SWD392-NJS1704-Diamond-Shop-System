@@ -4,7 +4,6 @@ import { useAuthContext } from "@/contexts/AuthContext"
 import {
   ChevronDown,
   ChevronsUpDown,
-  LayoutDashboard,
   LogOut,
   Package,
   Settings,
@@ -17,11 +16,6 @@ import { projectName } from "@/lib/constants"
 import { Avatar, AvatarImage } from "../atoms/avatar"
 
 const menuItems: Item[] = [
-  {
-    title: "Overview",
-    link: "/staff/dashboard",
-    icon: <LayoutDashboard />
-  },
   {
     title: "Order",
     link: "/staff/order-list",

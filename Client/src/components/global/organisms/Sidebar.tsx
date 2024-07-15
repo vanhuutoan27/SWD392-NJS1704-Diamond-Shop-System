@@ -15,6 +15,7 @@ import {
 import { Link, useLocation } from "react-router-dom"
 
 import { projectName } from "@/lib/constants"
+import { scrollToTop } from "@/lib/utils"
 
 import { Avatar, AvatarImage } from "../atoms/avatar"
 
@@ -66,7 +67,9 @@ function SidebarHeader() {
   return (
     <div className="h-18 mb-4 mt-2 flex flex-col uppercase text-white">
       <h2 className="cursor-pointer select-none text-center text-4xl font-bold md:text-left">
-        <Link to="/">{projectName}</Link>
+        <Link to="/" onClick={scrollToTop}>
+          {projectName}
+        </Link>
       </h2>
       <h4 className="select-none font-semibold tracking-widest text-secondary">
         Diamond Shop System
