@@ -1,3 +1,4 @@
+// ViewOrderDialog.js
 import { useEffect, useRef, useState } from "react"
 
 import NotFoundPage from "@/pages/Guest/HTTP/NotFoundPage"
@@ -53,6 +54,7 @@ function ViewOrderDialog({
     phone: "",
     email: "",
     address: "",
+    discount: 0,
     orderStatus: OrderStatus.Pending,
     paymentMethod: IOrderPaymentMethod.CreditCard,
     dateCreated: "",
@@ -85,6 +87,7 @@ function ViewOrderDialog({
         phone: orderDetails.phone || "",
         email: orderDetails.email || "",
         address: orderDetails.address || "",
+        discount: orderDetails.discount || 0,
         orderStatus: orderDetails.orderStatus || OrderStatus.Pending,
         paymentMethod:
           orderDetails.paymentMethod || IOrderPaymentMethod.Deposit500,
@@ -128,6 +131,7 @@ function ViewOrderDialog({
         phone: orderDetails.phone || "",
         email: orderDetails.email || "",
         address: orderDetails.address || "",
+        discount: orderDetails.discount || 0,
         orderStatus: orderDetails.orderStatus || OrderStatus.Pending,
         paymentMethod:
           orderDetails.paymentMethod || IOrderPaymentMethod.Deposit500,
@@ -327,11 +331,29 @@ function ViewOrderDialog({
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
-                      {OrderStatusStrings.map((status) => (
-                        <SelectItem key={status} value={status}>
-                          {status}
-                        </SelectItem>
-                      ))}
+                      {OrderStatusStrings.map((status) => {
+                        const statusValue =
+                          OrderStatus[status as keyof typeof OrderStatus]
+                        const isDisabled =
+                          statusValue !== formData.orderStatus + 1 &&
+                          !(
+                            formData.orderStatus === OrderStatus.Pending &&
+                            statusValue === OrderStatus.Cancelled
+                          ) &&
+                          !(
+                            formData.orderStatus === OrderStatus.Processing &&
+                            statusValue === OrderStatus.Cancelled
+                          )
+                        return (
+                          <SelectItem
+                            key={status}
+                            value={status}
+                            disabled={isDisabled}
+                          >
+                            {status}
+                          </SelectItem>
+                        )
+                      })}
                     </SelectGroup>
                   </SelectContent>
                 </Select>

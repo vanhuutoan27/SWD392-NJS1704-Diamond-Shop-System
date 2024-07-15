@@ -127,7 +127,7 @@ namespace DiamonShop.API.Controllers
         public async Task<ActionResult<ResultModel>> ConfirmEmail([FromBody] ConfirmEmailRequest request)
         {
             var user = await _userManager.FindByEmailAsync(request.Email);
-            Console.WriteLine("your toke: " + request.Token);
+            Console.WriteLine("your token: " + request.Token);
             if (user != null)
             {
                 var result = await _userManager.ConfirmEmailAsync(user, request.Token);

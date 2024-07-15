@@ -10,7 +10,7 @@ export interface IOrder {
   phone: string
   email: string
   address: string
-  discount?: number
+  discount: number
   orderStatus: OrderStatus
   paymentMethod: IOrderPaymentMethod
   dateCreated: string

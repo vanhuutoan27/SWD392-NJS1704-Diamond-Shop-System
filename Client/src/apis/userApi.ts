@@ -118,9 +118,7 @@ export const useChangeUserStatus = () => {
 export const useConfirmEmail = () => {
   return useMutation(
     async (data: { token: string; email: string }) => {
-      const response = await diamoonAPI.post("/Auth/ConfirmEmail", null, {
-        params: data
-      })
+      const response = await diamoonAPI.post("/Auth/ConfirmEmail", data)
       return response.data
     },
     {

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 
 import { toPng } from "html-to-image"
 import { jsPDF } from "jspdf"
+import { Link } from "react-router-dom"
 import { toast } from "sonner"
 
 import { IInvoice } from "@/types/invoice.interface"
@@ -84,7 +85,16 @@ function InvoiceItem({ invoiceItem }: InvoiceItemProps) {
 
   return (
     <div className="rounded-md border-2 border-input shadow-md">
-      <div className="flex w-full justify-end p-10 pb-0">
+      <div className="flex w-full items-center justify-between p-10 pb-2">
+        <div className="uppercase">
+          <h2 className="cursor-pointer select-none text-center text-4xl font-bold text-gray-800 md:text-left">
+            <Link to="/">{projectName}</Link>
+          </h2>
+          <h4 className="select-none font-semibold tracking-widest">
+            Diamond Shop System
+          </h4>
+        </div>
+
         <Button type="button" onClick={downloadPDF}>
           Download
         </Button>
@@ -180,7 +190,7 @@ function InvoiceItem({ invoiceItem }: InvoiceItemProps) {
                 </p>
               </div>
               <div className="col-span-2">
-                <p className="text-sm font-medium text-secondary">
+                <p className="pl-8 text-sm font-medium text-secondary">
                   {item.quantity}
                 </p>
               </div>
@@ -214,7 +224,13 @@ function InvoiceItem({ invoiceItem }: InvoiceItemProps) {
                 <span>
                   Coupon Discount <span className="text-meta-3">(0%)</span>
                 </span>
-                <span>{invoiceItem.order.discount || "0 VND"}</span>
+                <span>
+                  {invoiceItem.order.discount
+                    ? formatCurrency(
+                        invoiceItem.order.total * invoiceItem.order.discount
+                      )
+                    : "0 VND"}
+                </span>
               </p>
               <p className="flex justify-between font-medium">
                 <span>
